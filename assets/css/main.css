@@ -1,0 +1,63 @@
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.material-icons {
+  position: relative;
+  height: 16px !important;
+}
+
+
+.container {
+  margin: 0 20px 20px;
+  max-width: none !important;
+  overflow: hidden;
+}
+
+div[class$="-mode"] {
+  transition: all 1s ease-out;
+}
+
+.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  color: #fff;
+}
+
+.sepia { 
+  background-color: #ded78b !important;
+  color: #000;
+}
+
+.pride {
+  background: #0000ff !important;
+  color: #fff;
+}
+
+
+.light-mode nav {
+  background: linear-gradient(#179b0a, #4de11c) !important;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

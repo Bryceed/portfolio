@@ -1,0 +1,21 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/color-mode": "^3.2.0",
+    "@nuxtjs/vuetify": "^1.12.3",
+    "nuxt": "^3.3.3"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^0.4.1",
+    "@nuxtjs/emotion": "^1.0.2",
+    "vue-meta": "^2.4.0"
+  }
+}
