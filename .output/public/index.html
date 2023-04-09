@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html >
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="modulepreload" href="/_payload.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/entry.447a8579.js"><link rel="preload" as="style" href="/_nuxt/entry.afdda5e6.css"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/default.ec2cd563.js"><link rel="preload" as="style" href="/_nuxt/default.efb9505d.css"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/nuxt-link.3b7f3e7b.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/index.085f9e5b.js"><link rel="preload" as="style" href="/_nuxt/index.6d398d15.css"><link rel="prefetch" as="script" crossorigin href="/_nuxt/other.587b3cf3.js"><link rel="prefetch" as="script" crossorigin href="/_nuxt/error-component.b0fa42fc.js"><link rel="stylesheet" href="/_nuxt/entry.afdda5e6.css"><link rel="stylesheet" href="/_nuxt/default.efb9505d.css"><link rel="stylesheet" href="/_nuxt/index.6d398d15.css"><style>
+nav{
+    align-items:center;
+    background-color:#333;
+    border-radius:5px;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    margin:20px;
+    padding:10px;
+    position:sticky;
+    top:0;
+}
+nav ul{
+    align-items:center;
+    display:flex;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+nav ul li{
+    display:inline-block;
+    margin-right:10px;
+    position:relative;
+}
+nav ul li a{
+    color:#fff;
+    text-decoration:none;
+}
+nav ul li a:hover{
+    color:#ccc;
+}
+nav .logo{
+    align-items:center;
+    display:flex;
+    font-family:Courier New,Courier,monospace;
+    font-size:1.5em;
+    font-weight:700;
+    height:1.5em;
+    margin:0 10px;
+}
+nav .logo .code-selector{
+    animation:blink 1s infinite;
+    animation-delay:1s;
+    background-color:#fff;
+    display:inline-block;
+    height:1.1em;
+    transition:1s ease-out;
+    width:.65em;
+}
+nav .logo .code-selector.active{
+    animation:none;
+}
+nav .logo span{
+    display:none;
+    width:0;
+}
+nav .logo span.active{
+    animation:typing .1s;
+    animation-delay:1s;
+    animation-fill-mode:forwards;
+    display:inline-block;
+    transition:1s ease-out;
+}
+@keyframes typing{
+0%{
+        width:0;
+}
+to{
+        width:.7em;
+}
+}
+@keyframes blink{
+0%{
+        height:1em;
+}
+40%,50%{
+        height:0;
+}
+to{
+        height:1em;
+}
+}
+nav ul li ul{
+    background-color:#333;
+    color:#fff;
+    display:none;
+    margin:0;
+    padding:10px;
+    position:absolute;
+    right:0;
+    top:100%;
+    width:160px;
+}
+nav ul li:hover ul{
+    display:block;
+}
+nav ul li ul li{
+    display:block;
+    margin:0;
+}
+nav ul li .expand-icon,nav ul li:hover .collapse-icon{
+    display:inline-block;
+}
+nav ul li .collapse-icon,nav ul li:hover .expand-icon{
+    display:none;
+}</style><style>
+h4[data-v-79cb0d6e]{
+        font-weight:700;
+        padding:0 10px;
+}
+li[data-v-79cb0d6e]{
+        z-index:999;
+}
+li ul[data-v-79cb0d6e]{
+        display:none;
+        opacity:0;
+        transition:.25s ease-out;
+}
+li:hover ul[data-v-79cb0d6e]{
+        background-color:#111;
+        border-radius:5px;
+        box-shadow:0 0 10px rgba(0,0,0,.5);
+        color:#fff;
+        display:block;
+        opacity:1;
+        overflow:hidden;
+        padding:10px 0;
+        position:absolute;
+        right:0;
+        top:100%;
+        transition:.35s ease-out;
+}
+li ul li[data-v-79cb0d6e]{
+        align-items:center;
+        display:flex;
+        flex-direction:row;
+        justify-content:start;
+        margin:0;
+        padding:3px 10px 12px;
+}
+li ul li[data-v-79cb0d6e]:not(.active){
+        padding-left:25px;
+}
+li ul li.active[data-v-79cb0d6e]:before{
+        animation:expandSelector-79cb0d6e .25s ease-out forwards;
+        background-color:#fff;
+        border-radius:5px;
+        box-shadow:0 0 10px hsla(0,0%,100%,.5),0 0 20px hsla(0,0%,100%,.5);
+        content:"";
+        display:inline-block;
+        height:5px;
+        margin-right:10px;
+        position:relative;
+        top:4px;
+        width:5px;
+}
+li ul li span[data-v-79cb0d6e]:nth-child(2){
+        margin-top:7px;
+}
+@keyframes expandSelector-79cb0d6e{
+0%{
+            border-radius:0;
+            box-shadow:none;
+            height:5px;
+            width:5px;
+}
+to{
+            border-radius:5px;
+            box-shadow:0 0 10px hsla(0,0%,100%,.5),0 0 20px hsla(0,0%,100%,.5);
+            height:20px;
+            width:5px;
+}
+}
+li ul li[data-v-79cb0d6e]:hover{
+        background-color:#555;
+}
+li ul li span[data-v-79cb0d6e]{
+        margin-right:10px;
+}
+</style><style>
+.about{
+    align-items:center;
+    background-color:rgba(30,30,30,.197);
+    border-radius:5px; 
+    display:flex;
+    height:calc(100vh - 115px);
+    justify-content:center;
+    width:100%;
+}
+.about__container{
+    align-items:center;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    padding:0 20px;
+    width:100%;
+}
+.about__container__text{
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    text-align:center;
+    width:100%;
+}
+.about__container__text h1{
+    color:#fff;
+    font-size:3rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+.about__container__text h1 span{
+    color:#7d28fd;
+}
+.about__container__text p{
+    color:#fff;
+    font-size:1.2rem;
+    font-weight:400;
+    margin-bottom:20px;
+}
+.about__container__text p span{
+    color:#ac65fc;
+}
+.about__container__image{
+    align-items:center;
+    display:flex;
+    justify-content:center;
+    max-width:500px;
+    width:100%;
+    z-index:0 !important;
+}
+.about__container__image img{
+    border:5px solid #0a1b28;
+    border-radius:50%;
+    filter:drop-shadow(0 0 10px #f3f3f3) contrast(1.5) brightness(1);
+    max-width:500px;
+    position:relative;
+    width:70%;
+    z-index:0 !important;
+}
+@media (max-width:768px){
+.about__container{
+        flex-direction:column;
+}
+.about__container__text{
+        margin-bottom:20px;
+}
+}
+</style><style>
+.skills[data-v-da4ae4a8]{
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:100%;
+}
+.skills h2[data-v-da4ae4a8]{
+    color:#fff;
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+.skills__container[data-v-da4ae4a8]{
+    align-items:center;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    height:100%;
+    justify-content:center;
+    width:100%;
+}
+.skills__container__item[data-v-da4ae4a8]{
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    justify-content:center;
+    margin:10px 0;
+    width:100%;
+}
+.skills__container__item__icon[data-v-da4ae4a8]{
+    align-items:center;
+    color:#fff;
+    display:flex;
+    font-size:3rem;
+    height:100%;
+    justify-content:center;
+    margin-bottom:20px;
+    width:100%;
+}
+.meter[data-v-da4ae4a8]{
+    align-items:center;
+    display:flex;
+    height:100%;
+    justify-content:center;
+    width:100%;
+}
+</style><style>
+.meter[data-v-a988d316]{
+    align-items:center;
+    display:flex;
+    height:8px !important;
+    justify-content:center;
+    width:100%;
+}
+.meter__container[data-v-a988d316]{
+    align-items:center;
+    display:flex;
+    flex-direction:row;
+    height:100%;
+    justify-content:center;
+    width:100%;
+}
+.meter__container__bar[data-v-a988d316]{
+    background-color:#111;
+    border-radius:5px;
+    height:100%;
+    margin:0 2px;
+    overflow:hidden;
+    position:relative;
+    width:20px;
+}
+.meter__container__bar.active:nth-child() .meter__container__bar__value[data-v-a988d316]{
+    background-color:#fff;
+}
+.meter__container__bar.active:nth-child(4) .meter__container__bar__value[data-v-a988d316]{
+    background-color:hsla(0,0%,100%,.8);
+}
+.meter__container__bar.active:nth-child(3) .meter__container__bar__value[data-v-a988d316]{
+    background-color:hsla(0,0%,100%,.6);
+}
+.meter__container__bar.active:nth-child(2) .meter__container__bar__value[data-v-a988d316]{
+    background-color:hsla(0,0%,100%,.4);
+}
+.meter__container__bar.active:first-child .meter__container__bar__value[data-v-a988d316]{
+    background-color:hsla(0,0%,100%,.2);
+}
+.meter__container__bar.active .meter__container__bar__value[data-v-a988d316]{
+    height:100%;
+}
+.meter__container__bar__value[data-v-a988d316]{
+    background-color:#ac65fc;
+    bottom:0;
+    height:0;
+    left:0;
+    position:absolute;
+    transition:.25s ease-out;
+    width:100%;
+}
+</style><style>
+.footer[data-v-4c87c2a5]{
+    align-items:center;
+    background-color:#333;
+    border-radius:8px 8px 0 0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin:0 20px;
+    padding:1rem;
+    width:calc(100% - 40px);
+}
+.footer a[data-v-4c87c2a5]{
+    font-weight:700;
+    text-decoration:underline;
+}
+.footer p[data-v-4c87c2a5]:first-child{
+    font-weight:700;
+}
+</style><style data-emotion=""></style><script data-emotion="">window.$emotionSSRIds=[]</script><script>"use strict";const w=window,de=document.documentElement,knownColorSchemes=["dark","light"],preference=window.localStorage.getItem("nuxt-color-mode")||"system";let value=preference==="system"?getColorScheme():preference;const forcedColorMode=de.getAttribute("data-color-mode-forced");forcedColorMode&&(value=forcedColorMode),addColorScheme(value),w["__NUXT_COLOR_MODE__"]={preference,value,getColorScheme,addColorScheme,removeColorScheme};function addColorScheme(e){const o=""+e+"",t="";de.classList?de.classList.add(o):de.className+=" "+o,t&&de.setAttribute("data-"+t,e)}function removeColorScheme(e){const o=""+e+"",t="";de.classList?de.classList.remove(o):de.className=de.className.replace(new RegExp(o,"g"),""),t&&de.removeAttribute("data-"+t)}function prefersColorScheme(e){return w.matchMedia("(prefers-color-scheme"+e+")")}function getColorScheme(){if(w.matchMedia&&prefersColorScheme("").media!=="not all"){for(const e of knownColorSchemes)if(prefersColorScheme(":"+e).matches)return e}return"light"}
+</script></head>
+<body ><div id="__nuxt"><!--[--><!--[--><nav><div class="logo"><span>W</span><span>e</span><span>l</span><span>l</span><div class="typing"><span>.</span><span>d</span><span>e</span><span>v</span></div><div class="code-selector active"></div></div><ul><li><a aria-current="page" href="/" class="router-link-active router-link-exact-active">Home</a></li><li>Projects <div class="expand-icon">▾</div><div class="collapse-icon">▴</div><ul><li><a href="/projects/1" class="">Project 1</a></li><li><a href="/projects/2" class="">Project 2</a></li><li><a href="/projects/3" class="">Project 3</a></li></ul></li><li data-v-79cb0d6e><span class="material-icons" data-v-79cb0d6e>tune</span><ul data-v-79cb0d6e><h4 data-v-79cb0d6e>Theme</h4><li class="active" data-v-79cb0d6e><span class="material-icons" data-v-79cb0d6e>settings</span><span data-v-79cb0d6e>System</span></li><li class="" data-v-79cb0d6e><span class="material-icons" data-v-79cb0d6e>wb_sunny</span><span data-v-79cb0d6e>Light</span></li><li class="" data-v-79cb0d6e><span class="material-icons" data-v-79cb0d6e>brightness_3</span><span data-v-79cb0d6e>Dark</span></li><li class="" data-v-79cb0d6e><span class="material-icons" data-v-79cb0d6e>favorite</span><span data-v-79cb0d6e>Colors</span></li><li class="" data-v-79cb0d6e><span class="material-icons" data-v-79cb0d6e>filter_vintage</span><span data-v-79cb0d6e>Night Filter</span></li></ul></li></ul></nav><div class="container"><div><div class="about"><div class="about__container"><div class="about__container__image"><img src="https://avatars.githubusercontent.com/u/42657376?v=4" alt="Wellington"></div><div class="about__container__text"><h1>Hi, I&#39;m <span>Wellington</span></h1><p>I&#39;m a <span>Full-stack Developer</span> from Brazil.</p><p>I&#39;m passionate about <span>Web Development</span> and <span>UI/UX Design</span>.</p><p>I&#39;m currently working at <span><a href="https://esx.com.br/" target="_blank">ESX</a></span>.</p><p>Feel free to <span><a href="https://github.com/Bryceed" target="_blank">contact me</a></span> for any purpose!</p></div></div></div><div class="skills" data-v-da4ae4a8><h2 data-v-da4ae4a8>Skills</h2><div class="skills__container" data-v-da4ae4a8><div class="skills__container__item" data-v-da4ae4a8><div class="skills__container__item__icon" data-v-da4ae4a8><i class="material-icons" data-v-da4ae4a8>code</i></div><h4 data-v-da4ae4a8>HTML5</h4><div class="meter" data-v-da4ae4a8><div class="meter" data-v-da4ae4a8 data-v-a988d316><div class="meter__container" data-v-a988d316><!--[--><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><!--]--></div></div></div><h4 data-v-da4ae4a8>CSS3</h4><div class="meter" data-v-da4ae4a8><div class="meter" data-v-da4ae4a8 data-v-a988d316><div class="meter__container" data-v-a988d316><!--[--><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar active" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><div class="meter__container__bar" data-v-a988d316><div class="meter__container__bar__value" data-v-a988d316></div></div><!--]--></div></div></div></div></div></div><h1>Portfolio</h1><p>My portfolio</p><ul><li><a href="/projects/1" class="">Project 1</a></li></ul></div></div><footer class="footer" data-v-4c87c2a5><p data-v-4c87c2a5> Site built with <a href="https://nuxtjs.org" data-v-4c87c2a5>Nuxt3</a> (Vue.js) and <a href="https://vitejs.dev" data-v-4c87c2a5>Vite</a>. Under development. </p><p data-v-4c87c2a5> Visit my <a href="https://github.com/Bryceed" data-v-4c87c2a5>GitHub</a> to check more about my profile and projects (including this one). </p></footer><!--]--><!--]--></div><script type="module">import p from "/_payload.js";window.__NUXT__={...p,...((function(a,b){return {state:{"$scolor-mode":{preference:a,value:a,unknown:b,forced:false}},_errors:{},serverRendered:b,config:{public:{},app:{baseURL:"\u002F",buildAssetsDir:"\u002F_nuxt\u002F",cdnURL:""}},prerenderedAt:1681053203600}}("system",true)))}</script><script type="module" src="/_nuxt/entry.447a8579.js" crossorigin></script></body>
+</html>
