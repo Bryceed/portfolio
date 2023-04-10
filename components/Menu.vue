@@ -154,7 +154,7 @@ export default {
 
 <style>
 nav {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, .7);
     color: #fff;
     padding: 10px;
     display: flex;
@@ -164,6 +164,8 @@ nav {
     border-radius: 5px;
     position: sticky;
     top: 0;
+    z-index: 9;
+    backdrop-filter: blur(10px);
 }
 
 nav ul {
