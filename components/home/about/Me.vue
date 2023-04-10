@@ -190,7 +190,7 @@ html.light .about {
     position: relative;
 }
 html.light .about__container__image img {
-    filter: drop-shadow(0 0 10px #6624E7) contrast(1.5) brightness(1.2);
+    filter: drop-shadow(0 0 10px #6624E7) brightness(1.2);
     border: 5px solid #dbe5eb;
 }
 

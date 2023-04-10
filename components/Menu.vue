@@ -163,7 +163,7 @@ nav {
     margin: 20px;
     border-radius: 5px;
     position: sticky;
-    top: 0;
+    top: 20px;
     z-index: 9;
     backdrop-filter: blur(10px);
 }
