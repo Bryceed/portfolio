@@ -21,6 +21,9 @@
     justify-content: center;
     flex-direction: column;
 }
+html.light .footer {
+    background-color: #E6E6E6;
+}
 .footer a {
     text-decoration: underline;
     font-weight: 700;

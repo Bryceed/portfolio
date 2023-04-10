@@ -2,11 +2,6 @@
     <div>
         <HomeAboutMe />
         <HomeSkills />
-        <h1>Portfolio</h1>
-        <p>My portfolio</p>
-        <ul>
-            <li><nuxt-link to="/projects/1">Project 1</nuxt-link></li>
-        </ul>
     </div>
 </template>
 

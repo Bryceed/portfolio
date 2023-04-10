@@ -40,6 +40,9 @@ export default {
     background-color: rgba(30, 30, 30, 0.197);
     border-radius: 5px;
 }
+html.light .about {
+    background: linear-gradient(35deg, rgb(166, 0, 255), rgba(0, 0, 255, 0.27));
+}
 
 .about__container {
     width: 100%;
@@ -63,7 +66,7 @@ export default {
     font-size: 3rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 48px;
 }
 
 .about__container__text h1 span {
@@ -78,7 +81,11 @@ export default {
 }
 
 .about__container__text p span {
-    color: #ac65fc;
+    color: #7c05f4ae;
+    font-weight: 700;
+}
+.about__container__text p span a {
+    text-decoration: underline;
 }
 
 .about__container__image {

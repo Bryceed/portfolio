@@ -39,7 +39,7 @@ export default {
 }
 
 .meter__container__bar {
-    width: 20px;
+    width: 21px;
     height: 100%;
     background-color: #111;
     margin: 0 2px;
@@ -47,35 +47,39 @@ export default {
     position: relative;
     overflow: hidden;
 }
-
-.meter__container__bar.active:nth-child() .meter__container__bar__value {
-    background-color: rgba(255, 255, 255, 1);
+html.light .meter__container__bar:not(.active)  {
+    background-color: #ffffff;
 }
+
 
 .meter__container__bar.active:nth-child(4) .meter__container__bar__value {
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(255, 255, 255, .2);
 }
 .meter__container__bar.active:nth-child(3) .meter__container__bar__value {
-    background-color: rgba(255, 255, 255, .6);
-}
-.meter__container__bar.active:nth-child(2) .meter__container__bar__value {
     background-color: rgba(255, 255, 255, .4);
 }
+.meter__container__bar.active:nth-child(2) .meter__container__bar__value {
+    background-color: rgba(255, 255, 255, .6);
+}
 .meter__container__bar.active:nth-child(1) .meter__container__bar__value {
-    background-color: rgba(255, 255, 255, .2);
+    background-color: rgba(255, 255, 255, .8);
 }
 
 .meter__container__bar.active .meter__container__bar__value {
     height: 100%;
 }
-
+e
 .meter__container__bar__value {
     width: 100%;
     height: 0;
-    background-color: #ac65fc;
     position: absolute;
     bottom: 0;
     left: 0;
     transition: ease-out .25s;
 }
+
+.meter__container__bar.active {
+    background-color: rgb(96, 8, 218);
+}
+
 </style>

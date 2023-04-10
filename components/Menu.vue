@@ -167,6 +167,10 @@ nav {
     z-index: 9;
     backdrop-filter: blur(10px);
 }
+html.light nav {
+    filter: invert(1) brightness(1.5);
+    background-color: rgba(0,0,0, .9);
+}
 
 nav ul {
     list-style: none;
