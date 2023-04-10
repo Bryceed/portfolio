@@ -416,10 +416,11 @@ html.light h2 {
     min-width: 100%;
     min-height: 100%;
     display: flex;
-    align-items: start;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
+    align-content: stretch;
 }
 
 .skills__container__table__column {
