@@ -3,7 +3,7 @@
         <h1>🔴 Lives</h1>
 
         <iframe
-            src="https://player.twitch.tv/?channel=bryceed&parent=localhost"
+            :src=twitchURL
             height="378"
             width="620"
             frameborder="0"
@@ -15,7 +15,13 @@
 </template>
 
 <script>
-
+export default {
+    computed: {
+        twitchURL: function() {
+            return `https://player.twitch.tv/?channel=bryceed&parent=${window.location.hostname}`;
+        }
+    }
+}
 </script>
 
 <style scoped>
