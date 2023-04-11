@@ -368,7 +368,7 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 48px;
+    margin: 48px 0;
 }
 
 .skills h2 {
