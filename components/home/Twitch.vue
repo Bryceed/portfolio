@@ -16,11 +16,17 @@
 
 <script>
 export default {
-    computed: {
-        twitchURL: function() {
-            return `https://player.twitch.tv/?channel=bryceed&parent=${window.location.hostname}`;
+    data() {
+        return {
+            twitchURL: ''
         }
-    }
+    },
+
+    // get actual URL of the page
+    mounted() {
+        this.URL = window.location.hostname;
+        this.twitchURL = `https://player.twitch.tv/?channel=bryceed&parent=${this.URL}`;
+    },
 }
 </script>
 
