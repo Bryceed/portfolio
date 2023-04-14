@@ -430,7 +430,7 @@ html.light h2 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 10px 12px;
+    padding: 10px 12px;
 }
 
 .skills__container__table__column h2 {

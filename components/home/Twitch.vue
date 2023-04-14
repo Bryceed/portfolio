@@ -1,24 +1,39 @@
 <template>
     <div class="card twitch">
         <h1>🔴 Lives</h1>
-
-        <iframe
-            :src=twitchURL
-            height="378"
-            width="620"
-            frameborder="0"
-            scrolling="no"
-            allowfullscreen="true">
-        </iframe>
-
+        <v-if v-if="block != 'iFrame'">
+            <iframe
+                :src=twitchURL
+                height="378"
+                width="620"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen="true">
+            </iframe>
+        </v-if>
+        <v-else>
+            <div class="blocked-alert iframe">
+                <h2 class="title">This browser do not support iFrame</h2>
+                <p class="description">We are having problems displaying the full content of this site because of the technical limitations of your current browser.<br>Anyway, the "Lives" section was created to show that you can follow my <a href="https://www.twitch.tv/bryceed" target="_blank">Twitch channel</a> to follow my live coding streams and gameplays.</p>
+            </div>
+        </v-else>
     </div>
 </template>
 
 <script>
 export default {
+    setup() {
+        const route = useRoute()
+        return {
+            route
+        }
+    },
+
     data() {
         return {
-            twitchURL: ''
+            twitchURL: '',
+            intent: this.$route.query.intent,
+            block: this.$route.query.block
         }
     },
 
@@ -46,6 +61,10 @@ export default {
     html.light .twitch {
         background: linear-gradient(#0025DD, #00093A);
         box-shadow: 0 0 30px black;
+    }
+
+    .twitch .blocked-alert {
+        margin-top: 2rem;
     }
     .twitch iframe {
         margin-top: 2rem;

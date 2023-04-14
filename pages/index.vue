@@ -1,18 +1,8 @@
 <template>
     <div>
-        <div v-if="intent === 'twitch'">
-            <HomeTwitch />
-        </div>
-        <div v-if="intent === 'skills'">
-            <HomeSkills />
-        </div>
         <HomeAboutMe />
-        <div v-if="intent != 'skills'">
-            <HomeSkills />
-        </div>
-        <div v-if="intent != 'twitch'">
-            <HomeTwitch />
-        </div>
+        <HomeSkills />
+        <HomeTwitch />
     </div>
 </template>
 
@@ -29,7 +19,8 @@ export default {
 
     data() {
         return {
-            intent: this.$route.query.intent
+            intent: this.$route.query.intent,
+            block: this.$route.query.block
         }
     },
 
