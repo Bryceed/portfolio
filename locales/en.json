@@ -3,7 +3,7 @@
         "home": {
             "greetings": "Hi, I'm <span>{name}</span>!",
             "description": [
-                "I'm a {years} years old <span>{occupation}</span> from <span>{country}</span>.",
+                "I'm a {years} years old <span>{occupation}</span> from <span>Brazil</span>.",
                 "Passionate about <span>{profession1}</span> and <span>{profession2}</span>.",
                 "Currently working at <span>{business}</span> for {time} months.",
                 "Do you wanna take off an idea from the paper?"

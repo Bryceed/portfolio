@@ -9,6 +9,8 @@ body {
   min-height: 100vh;
 }
 
+/* Typography */
+
 .material-icons {
   position: relative;
   height: 16px !important;

@@ -18,9 +18,9 @@
             <li>Projects <div class="expand-icon">▾</div>
                 <div class="collapse-icon">▴</div>
                 <ul>
-                    <li><nuxt-link to="/projects/1">Project 1</nuxt-link></li>
+                    <!--<li><nuxt-link to="/projects/1">Project 1</nuxt-link></li>
                     <li><nuxt-link to="/projects/2">Project 2</nuxt-link></li>
-                    <li><nuxt-link to="/projects/3">Project 3</nuxt-link></li>
+                    <li><nuxt-link to="/projects/3">Project 3</nuxt-link></li>-->
                 </ul>
             </li>
             <ThemeSwitcher />

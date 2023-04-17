@@ -85,7 +85,7 @@ export default {
     align-items: center;
     background-color: rgba(30, 30, 30, 0.197);
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 html.light .about {
     background: linear-gradient(35deg, rgb(74 0 255), rgb(0 255 150 / 27%));
