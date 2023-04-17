@@ -1,0 +1,24 @@
+{
+    "html": {
+        "home": {
+            "greetings": "Hi, I'm <span>{name}</span>!",
+            "description": [
+                "I'm a {years} years old <span>{occupation}</span> from <span>{country}</span>.",
+                "Passionate about <span>{profession1}</span> and <span>{profession2}</span>.",
+                "Currently working at <span>{business}</span> for {time} months.",
+                "Do you wanna take off an idea from the paper?"
+            ],
+            "actions": {
+                "projects": {
+                    "label": "View my projects",
+                    "url": "/projects"
+                },
+                "contact": {
+                    "label": "Contact me",
+                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
+                }
+            }
+        }
+    },
+    "language": "Language"
+}

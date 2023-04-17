@@ -1,0 +1,25 @@
+{   
+    "html": {
+        "home": {
+            "greetings": "Hola! Yo soy <span>{name}</span>",
+            "description": [
+                "Soy un <span>{occupation}</span> brasileño de {years} años de edad.",
+                "Mis habilidades principales son para <span>{profession1}</span> y <span>{profession2}</span>.",
+                "Actualmente trabajando para <span>{business}</span> durante {time} meses.",
+                "¿Quieres sacar una idea del papel?"
+            ],
+            "actions": {
+                "projects": {
+                    "label": "View my projects",
+                    "url": "/projects"
+                },
+                "contact": {
+                    "label": "Contact me",
+                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
+                }
+            }
+        }
+    },
+
+    "language": "Idioma"
+}

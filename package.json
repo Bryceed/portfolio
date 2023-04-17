@@ -16,6 +16,8 @@
   "dependencies": {
     "@nuxt/ui": "^0.4.1",
     "@nuxtjs/emotion": "^1.0.2",
+    "flag-icons": "^6.6.6",
+    "vue-i18n": "^9.2.2",
     "vue-meta": "^2.4.0"
   }
 }
