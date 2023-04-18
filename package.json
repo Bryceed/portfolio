@@ -9,15 +9,32 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxt/content": "^2.5.2",
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/vuetify": "^1.12.3",
+    "@types/vue-markdown": "^2.2.1",
+    "markdown-it": "^13.0.1",
+    "markdown-it-abbr": "^1.0.4",
+    "markdown-it-deflist": "^2.1.0",
+    "markdown-it-emoji": "^2.0.2",
+    "markdown-it-footnote": "^3.0.3",
+    "markdown-it-ins": "^3.0.1",
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-mark": "^3.0.1",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "markdown-it-toc-and-anchor": "^4.2.0",
     "nuxt": "^3.3.3"
   },
   "dependencies": {
     "@nuxt/ui": "^0.4.1",
     "@nuxtjs/emotion": "^1.0.2",
+    "babel-runtime": "^6.26.0",
     "flag-icons": "^6.6.6",
+    "prism-themes": "^1.9.0",
     "vue-i18n": "^9.2.2",
+    "vue-markdown": "^2.2.4",
     "vue-meta": "^2.4.0"
   }
 }

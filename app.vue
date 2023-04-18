@@ -1,7 +1,7 @@
 <template>
-    <NuxtLayout>
-        <router-view />
-    </NuxtLayout>
+  <NuxtLayout :name="default">
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script>

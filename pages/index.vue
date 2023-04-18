@@ -1,17 +1,18 @@
 <template>
-    <div>
-        <HomeAboutMe />
-        <HomeSkills />
-        <HomeTwitch />
-    </div>
+    <HomeAboutMe />
+    <HomeSkills />
+    <HomeTwitch />
 </template>
 
 <script>
+
 export default {
     name: 'Home',
 
     setup() {
         const route = useRoute()
+        
+
         return {
             route
         }

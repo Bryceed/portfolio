@@ -1,28 +1,32 @@
 <template>
     <nav>
-        <div class="logo">
-            <span>W</span>
-            <span>e</span>
-            <span>l</span>
-            <span>l</span>
-            <div class="typing">
-                <span>.</span>
-                <span>d</span>
+        <a href="/"><!-- guarantee full reload ("panic button" for bugs) -->
+            <div class="logo">
+                <span>W</span>
                 <span>e</span>
-                <span>v</span>
+                <span>l</span>
+                <span>l</span>
+                <div class="typing">
+                    <span>.</span>
+                    <span>d</span>
+                    <span>e</span>
+                    <span>v</span>
+                </div>
+                <div class="code-selector active"></div>
             </div>
-            <div class="code-selector active"></div>
-        </div>
+        </a>
         <ul>
             <li><nuxt-link to="/">Home</nuxt-link></li>
             <li>Projects <div class="expand-icon">▾</div>
                 <div class="collapse-icon">▴</div>
                 <ul>
+                    <p>Coming soon</p>
                     <!--<li><nuxt-link to="/projects/1">Project 1</nuxt-link></li>
                     <li><nuxt-link to="/projects/2">Project 2</nuxt-link></li>
                     <li><nuxt-link to="/projects/3">Project 3</nuxt-link></li>-->
                 </ul>
             </li>
+            <li><nuxt-link to="/blog">Blog</nuxt-link></li>
             <ThemeSwitcher />
         </ul>
     </nav>
@@ -167,6 +171,18 @@ nav {
     z-index: 9;
     backdrop-filter: blur(10px);
 }
+nav::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -20px;
+    right: -20px;
+    height: 60px;
+    background: linear-gradient(to top, rgba(34, 34, 34, 0.8), #222222 31%);
+    z-index: -1;
+    border-radius: 30px;
+}
+
 html.light nav {
     filter: invert(1) brightness(1.5);
     background-color: rgba(0,0,0, .9);
