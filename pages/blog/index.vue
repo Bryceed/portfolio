@@ -3,13 +3,10 @@
 		<main>
 			<section class="lg:px-[15%] px-[5%] pt-20">
 				<h1
-					class="lg:text-6xl text-4xl text-center leading-normal font-bold rainbow-text"
+					class="lg:text-6xl text-4xl text-center leading-normal font-bold"
 				>
 					Blog
 				</h1>
-                <p class="lg:text-xl text-xl text-center leading-normal">
-                    <br>Compartilhar conhecimento nunca é demais<br><br>
-                </p>
 			</section>
 			<section class="lg:px-[15%] px-[5%] lg:pt-20 pt-14">
 				<p
@@ -23,7 +20,7 @@
 						:key="`blogNavItem-${b._path}-${i}`"
 					>
 						<div class="px-7 py-5 rounded-lg border-2">
-							<h2 class="text-lg font-semibold rainbow-text">
+							<h2 class="text-lg font-semibold">
 								{{ b.title }}
 							</h2>
 							<ul
@@ -38,18 +35,14 @@
 										class="list-item text-sm text-gray-600 hover:text-primary-900 underline underline-offset-4 decoration-wavy decoration-primary/40 hover:decoration-primary transition-all"
 									>
 										<NuxtLink :to="`/blog${child._path}`">
-											{{ child.title }}
+											{{ child.excerpt }}
 										</NuxtLink>
 									</li>
 								</template>
 							</ul>
-							<ul v-else class="list-disc list-inside mt-4 pl-2 space-y-3">
-								<li
-									class="list-item text-sm text-gray-600 hover:text-primary-900 underline underline-offset-4 decoration-wavy decoration-primary/40 hover:decoration-primary transition-all"
-								>
+							<div v-else class="list-disc list-inside mt-4 pl-2 space-y-3">
 									<NuxtLink :to="`/blog${b._path}`"> Get Started </NuxtLink>
-								</li>
-							</ul>
+							</div>
 						</div>
 					</template>
 				</div>
@@ -67,11 +60,13 @@
 	</div>
 </template>
 
+
 <script setup>
 	const { data: blogNav } = await useAsyncData("navigation", () => {
 		return fetchContentNavigation(queryContent("articles"));
 	});
 	useHead({
-		title: "Content Blog",
+		title: "Developer Blog | Well.dev",
 	});
 </script>
+

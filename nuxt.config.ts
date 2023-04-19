@@ -37,9 +37,10 @@ export default defineNuxtConfig({
             }
         },
         highlight: {
-			theme: "dracula-soft",
+			theme: "monokai",
 		},
-        nestedProperties: ['author.name']
+        nestedProperties: ['author.name'],
+        documentDriven: true
     }
 
 
