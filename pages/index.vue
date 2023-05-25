@@ -45,8 +45,7 @@ export default {
     },
 
     mounted() {
-        console.log("Portfolio")
-        document.title = 'Well.dev | Nuxt3 + Vite'
+        document.title = 'Portfolio | Well.dev'
     },
 }
 </script>
