@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h1>Projects</h1>
-        <p>Here are some of my projects</p>
+        <h2>Projetos em destaque</h2>
         <div class="mini-display">
             <template v-for="project in projects">
                 <div class="project-item active">
@@ -13,10 +12,23 @@
                 </div>
             </template>
         </div>
+        <div class="see-more">
+            <a href="/projects">Ver mais projetos</a>
+        </div>
     </div>
 </template>
 
 <style scoped>
+    h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    html.light h2 {
+        color: #000;
+    }
     .mini-display {
         display: flex;
         flex-direction: row;
@@ -24,18 +36,19 @@
         justify-content: space-evenly;
         align-items: center;
         font-size: 0;
+        min-height: calc(33vh + 50px);
     }
 
     .project-item {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 300px;
-        height: 300px;
+        justify-content: start;
+        align-items: start;
+        width: calc(30%);
+        height: calc(20vh - 2rem);
         margin: 1rem;
         border-radius: 8px;
-        background: #fff;
+        background: #111;
         color: #000;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         position: relative;
@@ -45,7 +58,7 @@
         transition: all 0.2s ease-in-out;
         cursor: pointer;
         box-shadow: 0 0 0 5px #222222, 0 0 0 10px #782fee;
-        height: 290px;
+        height: calc(33vh - 2rem + 50px);
     }
 
     .project-item ._bg {
@@ -53,17 +66,47 @@
         height: 100%;
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
         border-radius: 8px;
     }
+    .project-item:hover ._bg {
+        transition: all 0.2s ease-in-out;
+        background-size: contain;
+        background-color: #111;
+        height: 85%;
+    }
+
 
     .project-item .info-overlay {
         font-size: 12px;
         position: absolute;
         bottom: 0;
         left: 0;
+        padding: .2rem .8rem;
         background: linear-gradient(transparent, #000);
         right: 0;
         border-radius: 0 0 8px 8px;
+        color: #eee;
+    }
+
+    .project-item .info-overlay h3 {
+        font-size: 2rem;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .project-item .info-overlay p {
+        font-size: .75rem;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease-in-out;
+        display: none;
+        height: 0;
+        opacity: 0;
+    }
+    .project-item:hover .info-overlay p {
+        transition: all 2s ease-in-out;
+        display: block;
+        height: inherit;
+        opacity: 1;
     }
 
     .project-item .project-links {

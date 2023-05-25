@@ -1,12 +1,12 @@
 {
     "projects": [
         {
-            "title": "123",
-            "description": "321",
+            "title": "BeatUP",
+            "description": "Web Rythm Game inspired by LoveBeat, as a new and modern experience for rythm game lovers",
             "dueDate": "2020-01-01",
             "priority": "High",
             "status": "Open",
-            "placeholder": "https://avatars.githubusercontent.com/u/42657376?v=4",
+            "placeholder": "https://scontent.fgru15-1.fna.fbcdn.net/v/t1.6435-9/154758179_413254193109615_7749309675472407673_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CfAXtEC-VXAAX8AUELv&_nc_ht=scontent.fgru15-1.fna&oh=00_AfD__i_HxE7fI79yb5q-1Izv8_tIv3gTjaV224xedavDPA&oe=64969EB7",
             "media": [
                 {
                     "type": "image",
@@ -24,12 +24,12 @@
             "link": "http://test.com/123"
         },
         {
-            "title": "456",
+            "title": "RYAN Bot for Discord",
             "description": "789",
             "dueDate": "2020-01-01",
             "priority": "Medium",
             "status": "Open",
-            "placeholder": "http://test.com/123",
+            "placeholder": "https://user-images.githubusercontent.com/42657376/148737048-abcd0787-5989-4c54-b562-93d70e7365ea.png",
             "media": [
                 {
                     "type": "image",
@@ -47,12 +47,12 @@
             "link": "http://test.com/456"
         },
         {
-            "title": "789",
+            "title": "NOVA Browser",
             "description": "123",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "status": "Open",
-            "placeholder": "http://test.com/123",
+            "placeholder": "https://user-images.githubusercontent.com/42657376/156548692-9aa29d26-8ad4-4642-9e48-716cb74c6e70.png",
             "media": [
                 {
                     "type": "image",
