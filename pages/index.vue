@@ -30,7 +30,6 @@ export default {
             intent: this.$route.query.intent,
             block: this.$route.query.block,
             isPrideMonth,
-            isEaster,
             isChristmas,
             isHalloween,
             isNewYears
