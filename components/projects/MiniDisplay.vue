@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Projetos em destaque</h2>
+        <h2>Projetos</h2>
         <div class="mini-display">
             <template v-for="project in projects">
                 <div class="project-item active">
@@ -9,12 +9,13 @@
                         <h3>{{ project.title }}</h3>
                         <p>{{ project.description }}</p>
                     </div>
+                    <div class="actions">
+                        <CommonButton :link="project.link" :title="$t('html.projects.miniDisplay.button')" />
+                    </div>
                 </div>
             </template>
         </div>
-        <div class="see-more">
-            <a href="/projects">Ver mais projetos</a>
-        </div>
+        
     </div>
 </template>
 
@@ -44,8 +45,8 @@
         flex-direction: column;
         justify-content: start;
         align-items: start;
-        width: calc(30%);
-        height: calc(20vh - 2rem);
+        width: calc(33vw - 3rem);
+        height: calc(33vw / 1.7);
         margin: 1rem;
         border-radius: 8px;
         background: #111;
@@ -58,7 +59,9 @@
         transition: all 0.2s ease-in-out;
         cursor: pointer;
         box-shadow: 0 0 0 5px #222222, 0 0 0 10px #782fee;
-        height: calc(33vh - 2rem + 50px);
+        height: calc(33vw / 1.7 - 20px);
+        width: calc(33vw - 3rem - 20px);
+        margin: calc(1rem + 10px);
     }
     html.light .project-item:hover {
         box-shadow: 0 0 0 5px #fff, 0 0 0 10px #782fee;
@@ -72,6 +75,11 @@
         background-position: center;
         background-repeat: no-repeat;
         border-radius: 8px;
+        transition: all 0.2s ease-out;
+        box-shadow: 0 2px 5px #00000078;
+        background-color: #111;
+        position: absolute;
+        z-index: 2;
     }
     .project-item:hover ._bg {
         transition: all 0.2s ease-in-out;
@@ -84,17 +92,24 @@
     .project-item .info-overlay {
         font-size: 12px;
         position: absolute;
-        bottom: 0;
+        bottom: 0%;
         left: 0;
         padding: .8rem .8rem .2rem;
         background: linear-gradient(transparent, #000);
         right: 0;
         border-radius: 0 0 8px 8px;
         color: #eee;
+        height: 40%;
+        transition: all 0.2s ease-out;
+        z-index: 2;
+        overflow: hidden;
     }
     .project-item:hover .info-overlay {
         transition: all 0.2s ease-in-out;
         padding: 1rem .8rem .2rem;
+        height: 80%;
+        background: linear-gradient(transparent, #000 97%);
+        bottom: 20%;
     }
     html.light .project-item:hover .info-overlay {
         background: none;
@@ -102,9 +117,20 @@
     }
 
     .project-item .info-overlay h3 {
-        font-size: 2rem;
+        transition: all 1.5s ease-in;
+        font-size: 2.5rem;
         font-weight: bold;
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 48%;
+        transition: all 0.2s ease-out;
+        text-align: center;
+    }
+    .project-item:hover .info-overlay h3 {
+        transition: all 0.2s ease-in-out;
+        font-size: 1.5rem;
+        top: 65%;
+        text-align: left;
     }
     .project-item .info-overlay p {
         font-size: .75rem;
@@ -113,46 +139,52 @@
         display: none;
         height: 0;
         opacity: 0;
+        color: rgba(255, 255, 255, 0);
+        position: absolute;
+        top: 86%;
     }
     .project-item:hover .info-overlay p {
-        transition: all .5s ease-in-out;
+        transition: all 3.5s ease-in-out;
         display: block;
         height: inherit;
         opacity: 1;
+        margin: .33rem 0;
+        animation: lightText .5s ease-in-out forwards;
+        overflow: hidden;
+        top: 79%;
+    }
+    @keyframes lightText {
+        0% {
+            height: 0;
+            color: rgba(255, 255, 255, 0);
+        }
+        100% {
+            height: inherit;
+            color: rgba(255, 255, 255, 1);
+        }
     }
 
-    .project-item .project-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 100%;
-        margin-top: 1rem;
+    .project-item .actions {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: .8rem .8rem .2rem;
+        background: linear-gradient(transparent, #000);
+        border-radius: 0 0 8px 8px;
+        transition: all 0.2s ease-out;
+        height: 20%;
     }
 
-    .project-item .project-links a {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    .project-item .actions a {
+        color: #fff;
+        font-size: 1.2rem;
+        margin: 0 .5rem;
+        transition: all 0.2s ease-out;
     }
-
-    .project-item .project-links a:hover {
-        background: #eee;
-    }
-
-    .project-item .project-links a:active {
-        background: #eee;
-    }
-
-    .project-item .project-links a img {
-        width: 50%;
-        height: 50%;
+    .project-item .actions a:hover {
+        transition: all 0.2s ease-in-out;
+        color: #782fee;
     }
 </style>
 

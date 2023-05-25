@@ -18,6 +18,13 @@
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
             }
+        },
+        "projects": {
+            "title": "Meus projetos",
+            "description": "Aqui estão alguns dos meus projetos mais recentes.",
+            "miniDisplay": {
+                "button": "Ver mais"
+            }
         }
     },
     

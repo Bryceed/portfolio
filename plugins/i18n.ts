@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n'
 import en from '../locales/en.json'
 import es from '../locales/es.json'
-import pt from '../locales/pt-BR.json'
+import pt from '../locales/pt-br.json'
 import fr from '../locales/fr.json'
 
 const datetimeFormats = {
@@ -32,7 +32,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
     const i18n = createI18n({
       legacy: true,
       globalInjection: true,
-      locale: 'pt-BR',
+      locale: 'pt-br',
       fallbackLocale: 'en',
       messages: {
         en,

@@ -1,35 +1,13 @@
 {
     "projects": [
+        
         {
-            "title": "BeatUP",
-            "description": "Web Rythm Game inspired by LoveBeat, as a new and modern experience for rythm game lovers",
-            "dueDate": "2020-01-01",
-            "priority": "High",
-            "status": "Open",
-            "placeholder": "https://scontent.fgru15-1.fna.fbcdn.net/v/t1.6435-9/154758179_413254193109615_7749309675472407673_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CfAXtEC-VXAAX8AUELv&_nc_ht=scontent.fgru15-1.fna&oh=00_AfD__i_HxE7fI79yb5q-1Izv8_tIv3gTjaV224xedavDPA&oe=64969EB7",
-            "media": [
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                }
-            ],
-            "link": "http://test.com/123"
-        },
-        {
-            "title": "RYAN Bot for Discord",
-            "description": "789",
+            "title": "RYAN Bot",
+            "description": "Robô (inicialmente pensando) para o Discord, com funções de automação, moderação, diversão e utilitários.",
             "dueDate": "2020-01-01",
             "priority": "Medium",
             "status": "Open",
-            "placeholder": "https://user-images.githubusercontent.com/42657376/148737048-abcd0787-5989-4c54-b562-93d70e7365ea.png",
+            "placeholder": "/assets/images/projects/ryan/placeholder.png",
             "media": [
                 {
                     "type": "image",
@@ -44,15 +22,181 @@
                     "url": "http://test.com/123"
                 }
             ],
-            "link": "http://test.com/456"
+            "link": "https://github.com/RyderMais/Ryan"
         },
         {
-            "title": "NOVA Browser",
+            "title": "BeatUP",
+            "description": "Web Rythm Game with a modern experience for rythm game lovers [Work in Progress].",
+            "dueDate": "2020-01-01",
+            "priority": "High",
+            "status": "Open",
+            "placeholder": "/assets/images/projects/beatup/cover-fb.png",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "https://streamable.com/dfky1y"
+        },
+        
+        {
+            "title": "Orkuty",
             "description": "123",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "status": "Open",
-            "placeholder": "https://user-images.githubusercontent.com/42657376/156548692-9aa29d26-8ad4-4642-9e48-716cb74c6e70.png",
+            "placeholder": "/assets/images/projects/orkuty/banner-pink.png",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "http://test.com/789"
+        },
+        
+        
+        
+        {
+            "title": "Deltaverse",
+            "description": "123",
+            "dueDate": "2020-01-01",
+            "priority": "Low",
+            "status": "Open",
+            "placeholder": "/assets/images/projects/deltaverse/placeholder.png",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "http://test.com/789"
+        },
+        {
+            "title": "Mangut",
+            "description": "Projeto de conclusão de curso com foco nos povos indígenas. Contribuí com o front-end do projeto.",
+            "dueDate": "2020-01-01",
+            "priority": "Low",
+            "status": "Open",
+            "placeholder": "/assets/images/projects/mangut/placeholder.png",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "https://squad19mangut.netlify.app/"
+        },
+        {
+            "title": "Playbook",
+            "description": "Site SPA hospedado no GitHub Pages para testar a capacidade de criação de sites \"estáticos\" com JavaScript.",
+            "dueDate": "2020-01-01",
+            "priority": "Low",
+            "status": "Open",
+            "placeholder": "/assets/images/projects/playbook/JDNow.jpg",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "https://github.com/Bryceed/playbook"
+        },
+        
+        {
+            "title": "webKaraoke",
+            "description": "123",
+            "dueDate": "2020-01-01",
+            "priority": "Low",
+            "status": "Open",
+            "placeholder": "/assets/images/projects/webKaraoke/placeholder.jpg",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "http://test.com/789"
+        },
+        {
+            "title": "karaoTrack.js",
+            "description": "123",
+            "dueDate": "2020-01-01",
+            "priority": "Low",
+            "status": "Open",
+            "placeholder": "/assets/images/projects/karaoTrack.js/placeholder.png",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "https://streamable.com/v4du88"
+        },
+        {
+            "title": "Mi Loja, Tu Loja",
+            "description": "123",
+            "dueDate": "2020-01-01",
+            "priority": "Low",
+            "status": "Open",
+            "placeholder": "/assets/images/projects/miLojaTuLoja/placeholder.png",
             "media": [
                 {
                     "type": "image",
@@ -69,6 +213,7 @@
             ],
             "link": "http://test.com/789"
         }
+        
     ],
     "miniDisplay": [
         "123",
