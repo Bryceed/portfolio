@@ -52,13 +52,17 @@
         color: #000;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         position: relative;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.3s ease-out;
     }
     .project-item:hover {
         transition: all 0.2s ease-in-out;
         cursor: pointer;
         box-shadow: 0 0 0 5px #222222, 0 0 0 10px #782fee;
         height: calc(33vh - 2rem + 50px);
+    }
+    html.light .project-item:hover {
+        box-shadow: 0 0 0 5px #fff, 0 0 0 10px #782fee;
+        background: #eee;
     }
 
     .project-item ._bg {
@@ -71,9 +75,9 @@
     }
     .project-item:hover ._bg {
         transition: all 0.2s ease-in-out;
-        background-size: contain;
+        background-size: cover;
         background-color: #111;
-        height: 85%;
+        height: 80%;
     }
 
 
@@ -82,11 +86,19 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        padding: .2rem .8rem;
+        padding: .8rem .8rem .2rem;
         background: linear-gradient(transparent, #000);
         right: 0;
         border-radius: 0 0 8px 8px;
         color: #eee;
+    }
+    .project-item:hover .info-overlay {
+        transition: all 0.2s ease-in-out;
+        padding: 1rem .8rem .2rem;
+    }
+    html.light .project-item:hover .info-overlay {
+        background: none;
+        color: #000;
     }
 
     .project-item .info-overlay h3 {
@@ -103,7 +115,7 @@
         opacity: 0;
     }
     .project-item:hover .info-overlay p {
-        transition: all 2s ease-in-out;
+        transition: all .5s ease-in-out;
         display: block;
         height: inherit;
         opacity: 1;
