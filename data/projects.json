@@ -6,6 +6,21 @@
             "dueDate": "2020-01-01",
             "priority": "High",
             "status": "Open",
+            "placeholder": "https://avatars.githubusercontent.com/u/42657376?v=4",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
             "link": "http://test.com/123"
         },
         {
@@ -14,6 +29,21 @@
             "dueDate": "2020-01-01",
             "priority": "Medium",
             "status": "Open",
+            "placeholder": "http://test.com/123",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
             "link": "http://test.com/456"
         },
         {
@@ -22,7 +52,27 @@
             "dueDate": "2020-01-01",
             "priority": "Low",
             "status": "Open",
+            "placeholder": "http://test.com/123",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
             "link": "http://test.com/789"
         }
+    ],
+    "miniDisplay": [
+        "123",
+        "456",
+        "789"
     ]
 }
