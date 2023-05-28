@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <a href="/"><!-- guarantee full reload ("panic button" for bugs) -->
+        <NuxtLink to="/">
             <div class="logo">
                 <span>W</span>
                 <span>e</span>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="code-selector active"></div>
             </div>
-        </a>
+        </NuxtLink>
         <ul>
             <li><nuxt-link to="/">Home</nuxt-link></li>
             <li><nuxt-link to="/projects">Projects</nuxt-link> <div class="expand-icon">▾</div>
