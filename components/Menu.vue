@@ -17,7 +17,7 @@
         </a>
         <ul>
             <li><nuxt-link to="/">Home</nuxt-link></li>
-            <li>Projects <div class="expand-icon">▾</div>
+            <li><nuxt-link to="/projects">Projects</nuxt-link> <div class="expand-icon">▾</div>
                 <div class="collapse-icon">▴</div>
                 <ul>
                     <p>Coming soon</p>

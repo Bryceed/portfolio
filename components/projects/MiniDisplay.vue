@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mini-display-container">
         <h2>Projetos</h2>
         <div class="mini-display">
             <template v-for="project in projects">
@@ -15,7 +15,7 @@
                 </div>
             </template>
         </div>
-        
+        <NuxtLink to="/projects" class="btn btn-primary btn-lg btn-block btn-float-right">Ver todos os projetos</NuxtLink>
     </div>
 </template>
 
@@ -29,6 +29,51 @@
     }
     html.light h2 {
         color: #000;
+    }
+
+    .btn-float-right {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 25px;
+        z-index: 999;
+        font-weight: bold;
+        transition: all .1s ease-in-out;
+        background-color: #070707;
+        border-radius: .2rem;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        padding: .5rem 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .btn-float-right:hover {
+        background-color: #444;
+        transition: all .1s ease-in;
+        box-shadow: 0 0 0 5px #222222, 0 0 0 8px #ffffff;
+    }
+
+    .mini-display-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        min-height: calc(33vh + 50px);
+        padding: 2rem 0 4rem;
+        background: #111;
+        color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        transition: all 0.3s ease-out;
+        border-radius: 14px;
+    }
+    html.light .mini-display-container {
+        background: #eee;
+        color: #000;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .mini-display {
         display: flex;
