@@ -50,7 +50,7 @@
         
         {
             "title": "Orkuty",
-            "description": "123",
+            "description": "Recriação da antiga rede social Orkut, com foco em trazer uma junção de UX entre a nostalgia e o visual moderno.",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "status": "Open",
@@ -76,7 +76,7 @@
         
         {
             "title": "Deltaverse",
-            "description": "123",
+            "description": "Servidor de Minecraft com foco em trazer customizações visuais e funcionais, com sistema de economia, lojas, eventos e muito mais.",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "status": "Open",
@@ -121,55 +121,8 @@
             "link": "https://squad19mangut.netlify.app/"
         },
         {
-            "title": "Playbook",
-            "description": "Site SPA hospedado no GitHub Pages para testar a capacidade de criação de sites \"estáticos\" com JavaScript.",
-            "dueDate": "2020-01-01",
-            "priority": "Low",
-            "status": "Open",
-            "placeholder": "/assets/images/projects/playbook/JDNow.jpg",
-            "media": [
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                }
-            ],
-            "link": "https://github.com/Bryceed/playbook"
-        },
-        
-        {
-            "title": "webKaraoke",
-            "description": "123",
-            "dueDate": "2020-01-01",
-            "priority": "Low",
-            "status": "Open",
-            "placeholder": "/assets/images/projects/webKaraoke/placeholder.jpg",
-            "media": [
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                }
-            ],
-            "link": "http://test.com/789"
-        },
-        {
             "title": "karaoTrack.js",
-            "description": "123",
+            "description": "Script open-source para criação de letras sincronizadas no estilo de karaokê, que possibilite o uso de efeitos visuais e de sincronização para diversos fins.",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "status": "Open",
@@ -189,29 +142,6 @@
                 }
             ],
             "link": "https://streamable.com/v4du88"
-        },
-        {
-            "title": "Mi Loja, Tu Loja",
-            "description": "123",
-            "dueDate": "2020-01-01",
-            "priority": "Low",
-            "status": "Open",
-            "placeholder": "/assets/images/projects/miLojaTuLoja/placeholder.png",
-            "media": [
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                },
-                {
-                    "type": "image",
-                    "url": "http://test.com/123"
-                }
-            ],
-            "link": "http://test.com/789"
         }
         
     ],
