@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <NuxtLink to="/">
+        <a href="/"><!-- guarantee full reload ("panic button" for bugs) -->
             <div class="logo">
                 <span>W</span>
                 <span>e</span>
@@ -14,10 +14,10 @@
                 </div>
                 <div class="code-selector active"></div>
             </div>
-        </NuxtLink>
+        </a>
         <ul>
             <li><nuxt-link to="/">Home</nuxt-link></li>
-            <li><nuxt-link to="/projects">Projects</nuxt-link> <div class="expand-icon">▾</div>
+            <li>Projects <div class="expand-icon">▾</div>
                 <div class="collapse-icon">▴</div>
                 <ul>
                     <p>Coming soon</p>
@@ -46,51 +46,41 @@ export default {
                     span.classList.add('active')
                 }, 100 * (idx + 1))
             })
+
             setTimeout(() => {
                 codeSelector.classList.add('active')
             }, 1000)
+
+            // then remove the active class from codeSelector
             setTimeout(() => {
                 codeSelector.classList.remove('active')
             }, 1500)
         }
         typing()
 
+        //default text: Well.dev
         const newSuffixTexts = [
             '.dev',
             '.design',
+            '.web', 
             '.ux',
-            '.ui',
-            '.php',
-            '.js',
-            '.html',
-            '.css',
-            '.react',
-            '.C#',
-            '.python',
-            '.java',
-            '.lua',
-            '.sql',
-            '.json',
-            '.xml',
-            '.git',
-            '.github',
-            '.flutter',
-            '.mysql',
-            '.mongodb',
-            '.node',
-            '.discord-api',
-            '.gostoso',
-            '.vue',
-            '.nuxt',
-            '.esx',
+            '.app',
+            '.gamer',
+            '.streamer',
+            '.LGBTQIA+',
+            '.INTP-T',
             'ington N.',
         ]
 
+        //change suffix every 10 seconds
+        // newSuffixTexts quantity = 16
         let index = 0;
         let indexDelay = 0;
         let waitingTime = 0;
+
         let oldSuffix;
         let newSuffix;
+
         let toEdit = document.querySelector('.typing');
         let editSpans;
 
@@ -105,7 +95,10 @@ export default {
                 clearInterval();
             }
             waitingTime = 0;
+            
+            console.log(oldSuffix.length, newSuffix.length)
 
+            // remove from end to start, same quantity of the new text
             codeSelector.classList.add('active')
 
             for (let i = oldSuffix.length - 1; i >= 0; i--) {
