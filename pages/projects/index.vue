@@ -218,8 +218,9 @@ html.light .project-item:hover ._right .actions{
 }
 
 .project-item ._right .actions a:hover {
-    color: #ccc;
-    background-color: rgb(150, 150, 150);
+    color: #000000;
+    background-color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .project-item ._right .actions a i.material-icons {
