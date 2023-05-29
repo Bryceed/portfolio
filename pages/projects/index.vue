@@ -13,11 +13,14 @@
                 </div>
                 <div class="_right" :style="{'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef'}">
                     <div class="actions" :style="{'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6'}">
+                        <v-if v-if="project.page">
+                            <NuxtLink :to="project.page"><i class="material-icons">arrow_forward</i></NuxtLink>
+                        </v-if>
+                        <v-if v-if="project.code">
+                            <a :href="project.code" target="_blank"><i class="material-icons">code</i></a>
+                        </v-if>
                         <v-if v-if="project.link">
                             <a :href="project.link" target="_blank"><i class="material-icons">launch</i></a>
-                        </v-if>
-                        <v-if v-if="project.github">
-                            <a :href="project.github" target="_blank"><i class="material-icons">code</i></a>
                         </v-if>
                     </div>
                 </div>
@@ -57,6 +60,8 @@ p {
     justify-content: space-evenly;
     align-items: center;
     margin: 0 auto;
+    max-width: 1340px;
+    padding: 0 20px;
 }
 
 .project-item {
@@ -74,7 +79,6 @@ p {
     color: #fff;
     border-radius: 8px;
     border-top-left-radius: 2rem;
-    max-width: 2000px;
 }
 html.light .project-item {
     background: #ece6ef;
@@ -104,12 +108,26 @@ html.light .project-item:hover {
     overflow: hidden;
     position: relative;
 }
+._left::after {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 4%;
+    background: linear-gradient(to left, currentColor, transparent);
+    content: "";
+}
 
 .project-item ._left img {
     width: 40vw;
     height: 100%;
     object-fit: cover;
     border-top-left-radius: 2rem;
+    transition: all .15s ease-in;
+}
+.project-item:hover ._left img {
+    border-bottom-left-radius: 8px;
+    transition: all .15s ease-in;
 }
 
 .project-item ._underneath {
@@ -160,7 +178,7 @@ html.light .project-item:hover {
 .project-item ._right .actions {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -172,6 +190,7 @@ html.light .project-item ._right{
     background-color: currentColor;
     transition: all .15s ease-in;
     border-radius: 0 8px 8px 0;
+    font-size: 0;
 }
 html.light .project-item:hover ._right .actions{
     background-color: currentColor;
@@ -182,7 +201,7 @@ html.light .project-item:hover ._right .actions{
 }
 
 .project-item ._right .actions a {
-    color: #000;
+    color: #ffffff;
     text-decoration: none;
     border-radius: 50%;
     background-color: transparent;
@@ -190,6 +209,12 @@ html.light .project-item:hover ._right .actions{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    left: -5px;
+}
+
+.project-item:not(:hover) ._right .actions v-if:not(:first-of-type) {
+    opacity: 0.2 !important;
 }
 
 .project-item ._right .actions a:hover {
@@ -197,6 +222,9 @@ html.light .project-item:hover ._right .actions{
     background-color: rgb(150, 150, 150);
 }
 
-
+.project-item ._right .actions a i.material-icons {
+    position: relative;
+    top: -4px;
+}
 
 </style>

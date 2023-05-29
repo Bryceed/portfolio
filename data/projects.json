@@ -27,7 +27,10 @@
                     "url": "http://test.com/123"
                 }
             ],
-            "link": "https://github.com/RyderMais/Ryan"
+            "link": "https://github.com/RyderMais/Ryan",
+            "page": "/projects/beatup",
+            "code": "https://github.com/RyderMais/Ryan"
+
         },
         {
             "title": "BeatUP",
@@ -55,6 +58,7 @@
                     "url": "http://test.com/123"
                 }
             ],
+            "page": "/projects/beatup",
             "link": "https://streamable.com/dfky1y"
         },
         
