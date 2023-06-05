@@ -35,7 +35,7 @@
         position: absolute;
         bottom: 1.5rem;
         right: 25px;
-        z-index: 999;
+        z-index: 2;
         font-weight: bold;
         transition: all .1s ease-in-out;
         background-color: #070707;
@@ -60,7 +60,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        width: 100%;
+        width: fill-available;
         min-height: calc(33vh + 50px);
         padding: 2rem 0 4rem;
         background: #111;
@@ -79,13 +79,13 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         grid-gap: 2em;
+        grid-auto-flow: row;
         grid-auto-rows: 200px;
-        grid-auto-flow: dense;
-        grid-auto-columns: 320px;
         justify-content: center;
-        align-content: center;
+        justify-items: center;
         align-items: center;
-        width: 100%;
+        width: 90%;
+        margin-bottom: 2rem;
     }
 
     .project-item {
@@ -95,7 +95,7 @@
         align-items: start;
         width: 320px;
         height: 200px;
-        margin: 1rem;
+        margin: 1em;
         border-radius: 8px;
         background: #111;
         color: #000;
