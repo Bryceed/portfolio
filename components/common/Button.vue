@@ -1,6 +1,5 @@
 <template>
-    <span>OK</span>
-    <a class="btn" :href="link" :target="target">
+    <a :href="link" :target="target" :class="`btn btn-`+ origin">
         {{ title }}
     </a>
 </template>
@@ -24,12 +23,17 @@ export default {
             required: false,
             default: '_blank',
         },
+        origin: {
+            type: String,
+            required: false,
+            default: 'default',
+        },
 
     },
 };
 </script>
 
-<style scoped>
+<style>
 .btn {
     color: #fff;
     text-decoration: none;
@@ -55,4 +59,6 @@ export default {
     transform: translateY(2px);
     transition: all .1s ease-out;
 }
+
+
 </style>
