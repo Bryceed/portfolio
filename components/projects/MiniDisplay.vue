@@ -10,7 +10,7 @@
                         <p>{{ project.description }}</p>
                     </div>
                     <div class="actions">
-                        <CommonButton :link="project.link" :title="$t('html.projects.miniDisplay.button')" />
+                        <CommonButton :link="project.link" :title="$t('html.projects.miniDisplay.button')" :origin="'miniDisplay'"></CommonButton>
                     </div>
                 </div>
             </template>
@@ -76,13 +76,16 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .mini-display {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-gap: 2em;
+        grid-auto-rows: 200px;
+        grid-auto-flow: dense;
+        grid-auto-columns: 320px;
+        justify-content: center;
+        align-content: center;
         align-items: center;
-        font-size: 0;
-        min-height: calc(33vh + 50px);
+        width: 100%;
     }
 
     .project-item {
@@ -90,8 +93,8 @@
         flex-direction: column;
         justify-content: start;
         align-items: start;
-        width: calc(33vw - 3rem);
-        height: calc(33vw / 1.7);
+        width: 320px;
+        height: 200px;
         margin: 1rem;
         border-radius: 8px;
         background: #111;
@@ -104,8 +107,8 @@
         transition: all 0.2s ease-in-out;
         cursor: pointer;
         box-shadow: 0 0 0 5px #222222, 0 0 0 10px #782fee;
-        height: calc(33vw / 1.7 - 20px);
-        width: calc(33vw - 3rem - 20px);
+        height: 180px;
+        width: 310px;
         margin: calc(1rem + 10px);
     }
     html.light .project-item:hover {
@@ -163,19 +166,19 @@
 
     .project-item .info-overlay h3 {
         transition: all 1.5s ease-in;
-        font-size: 2.5rem;
+        font-size: 2.5em;
         font-weight: bold;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.2);
         position: absolute;
-        top: 48%;
+        bottom: 5%;
         transition: all 0.2s ease-out;
-        text-align: center;
+        opacity: 0;
     }
     .project-item:hover .info-overlay h3 {
         transition: all 0.2s ease-in-out;
-        font-size: 1.5rem;
-        top: 65%;
-        text-align: left;
+        font-size: 1.2rem;
+        bottom: 30%;
+        opacity: 1;
     }
     .project-item .info-overlay p {
         font-size: .75rem;
@@ -186,7 +189,7 @@
         opacity: 0;
         color: rgba(255, 255, 255, 0);
         position: absolute;
-        top: 86%;
+        bottom: -52%;
     }
     .project-item:hover .info-overlay p {
         transition: all 3.5s ease-in-out;
@@ -196,7 +199,7 @@
         margin: .33rem 0;
         animation: lightText .5s ease-in-out forwards;
         overflow: hidden;
-        top: 79%;
+        bottom: -52.5%;
     }
     @keyframes lightText {
         0% {
@@ -223,13 +226,37 @@
 
     .project-item .actions a {
         color: #fff;
-        font-size: 1.2rem;
-        margin: 0 .5rem;
+        font-size: 1em;
+        margin: 0.5rem;
         transition: all 0.2s ease-out;
     }
     .project-item .actions a:hover {
         transition: all 0.2s ease-in-out;
         color: #782fee;
+    }
+
+    .btn.btn-miniDisplay {
+        background-color: #070707;
+        border-radius: .2rem;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        padding: .5rem 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        bottom: 4px;
+        position: relative;
+        width: 100%;
+        left: -8px;
+    }
+    .project-item:hover .btn.btn-miniDisplay {
+        color: #D2BEF2;
+        background-color: #782fee;
+        transition: all .1s ease-in;
+        box-shadow: none;
+        bottom: 9px;
+        border: none;
     }
 </style>
 
