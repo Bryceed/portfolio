@@ -15,26 +15,45 @@
                 <div class="code-selector active"></div>
             </div>
         </a>
-        <ul>
-            <li><nuxt-link to="/">Home</nuxt-link></li>
-            <li>Projects <div class="expand-icon">▾</div>
-                <div class="collapse-icon">▴</div>
-                <ul>
-                    <p>Coming soon</p>
-                    <!--<li><nuxt-link to="/projects/1">Project 1</nuxt-link></li>
-                    <li><nuxt-link to="/projects/2">Project 2</nuxt-link></li>
-                    <li><nuxt-link to="/projects/3">Project 3</nuxt-link></li>-->
-                </ul>
-            </li>
-            <li><nuxt-link to="/blog">Blog</nuxt-link></li>
-            <ThemeSwitcher />
-        </ul>
+        <div class="menu-canMobile">
+            <button class="menu-btn" @click="menuOpen = !menuOpen" :class="{ 'menu-open': menuOpen }">
+                <i class="material-icons">menu</i>
+            </button>
+            <ul class="menu" :class="{ 'menu-open': menuOpen }">
+                <li v-for="item in menu" :key="item.id">
+                    <template v-if="item.submenu">
+                        <a href="javascript:void(0)" @click="item.open = !item.open" class="menu-item">
+                            <i class="material-icons expand-icon" v-if="!item.open">expand_more</i>
+                            <i class="material-icons collapse-icon" v-if="item.open">expand_less</i>
+                            {{ item.name }}
+                        </a>
+                        <ul v-if="item.open" class="submenu">
+                            <li v-for="subitem in item.submenu" :key="subitem.id">
+                                <a :href="subitem.link" target="_blank">{{ subitem.name }}</a>
+                            </li>
+                        </ul>
+                    </template>
+                    <template v-else>
+                        <a :href="item.url" target="_blank">{{ item.name }}</a>
+                    </template>
+                </li>
+            </ul>
+        </div>
     </nav>
 </template>
 
 <script>
+import { menu } from "../data/menu.json";
+let menuOpen = false;
 export default {
     name: 'Menu',
+
+    data() {
+        return {
+            menu,
+            menuOpen
+        }
+    },
 
     mounted() {
         const logo = document.querySelector('.logo')
@@ -72,15 +91,11 @@ export default {
             'ington N.',
         ]
 
-        //change suffix every 10 seconds
-        // newSuffixTexts quantity = 16
         let index = 0;
         let indexDelay = 0;
         let waitingTime = 0;
-
         let oldSuffix;
         let newSuffix;
-
         let toEdit = document.querySelector('.typing');
         let editSpans;
 
@@ -98,7 +113,6 @@ export default {
             
             console.log(oldSuffix.length, newSuffix.length)
 
-            // remove from end to start, same quantity of the new text
             codeSelector.classList.add('active')
 
             for (let i = oldSuffix.length - 1; i >= 0; i--) {
@@ -134,7 +148,7 @@ export default {
             }, 1500 + waitingTime)
             
         }, 4000 + waitingTime)
-    }
+    },
 }
 </script>
 
@@ -268,22 +282,74 @@ nav ul li ul {
     right: 0;
 }
 
-nav ul li:hover ul {
-    display: block;
-}
-
 nav ul li ul li {
     display: block;
     margin: 0;
 }
-
-/* dropdown menu icons */
-nav ul li .expand-icon,
-nav ul li:hover .collapse-icon {
-    display: inline-block;
+nav .menu-btn {
+    display: none;
 }
 
-nav ul li:hover .expand-icon,
-nav ul li .collapse-icon {
-    display: none;
-}</style>
+@media (max-width: 599px) {
+    nav .menu-btn {
+        display: block;
+        position: relative;
+        z-index: 5;
+    }
+    nav .menu li {
+        display: none;
+    }
+    nav .menu.menu-open {
+        position: absolute;
+        right: -20px;
+        top: -20px;
+        background-color: #111111;
+        box-shadow: 0 0 30px #333;
+        height: 100vh;
+        width: clamp(240px, 30vw, 400px);
+        flex-direction: column;
+        padding-top: 100px;
+    }
+    nav .menu.menu-open::after {
+        content: '';
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 100vh;
+        width: 100vw;
+        background: linear-gradient(to top, rgba(34, 34, 34, 0.8), #222222F8 31%);
+        z-index: -1;
+        border-radius: 30px;
+    }
+    nav .menu.menu-open::before {
+        content: "WEBSITE";
+        position: absolute;
+        top: 33px;
+        right: 70px;
+    }
+
+    nav .menu.menu-open li {
+        margin: 0;
+        padding: .5em 1.5em;
+        display: block;
+        text-align: left;
+        background-color: #2222223E;
+        width: 100%;
+        border-bottom: thin solid #FFFFFF63;
+    }
+    nav .menu.menu-open li:first-of-type {
+        border-top: thin solid #FFFFFF63;
+    }
+    nav .menu.menu-open li:last-of-type {
+        margin-bottom: 20px;
+    }
+
+    nav .menu li .submenu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+}
+</style>

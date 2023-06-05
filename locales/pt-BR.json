@@ -8,16 +8,16 @@
                 "Atualmente trabalhando para <span>{business}</span>, há {time} meses.",
                 "Buscando tirar uma ideia do papel?"
             ],
-            "actions": {
-                "projects": {
-                    "label": "View my projects",
+            "actions": [
+                {
+                    "label": "Ver projetos",
                     "url": "/projects"
                 },
-                "contact": {
-                    "label": "Contact me",
+                {
+                    "label": "Contato",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
-            }
+            ]
         },
         "projects": {
             "title": "Meus projetos",
@@ -27,7 +27,27 @@
             }
         }
     },
-    
+    "commons": {
+        "actions": {
+            "close": "Fechar",
+            "back": "Voltar"
+        },
+        "languages": {
+            "pt": "Português",
+            "en": "Inglês",
+            "es": "Espanhol"
+        },
+        "themes": {
+            "light": "Claro",
+            "dark": "Escuro"
+        }
+    },
+    "comemorations": {
+        "pride": {
+            "title": "Mês do Orgulho LGBTQIA+",
+            "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
+        }
+    },
     "language": "Idioma",
     "theme": "Tema"
 }

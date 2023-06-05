@@ -1,0 +1,22 @@
+{
+    "menu": {
+        "Project 1": {
+            "name": "Project 1",
+            "description": "This is a project",
+            "image": "http://placehold.it/350x150",
+            "link": "http://www.google.com"
+        },
+        "Project 2": {
+            "name": "Project 2",
+            "description": "This is a project",
+            "image": "http://placehold.it/350x150",
+            "link": "http://www.google.com.br"
+        },
+        "Project 3": {
+            "name": "Project 3",
+            "description": "This is a project",
+            "image": "http://placehold.it/350x150",
+            "link": "http://www.google.com.de"
+        }
+    }
+}

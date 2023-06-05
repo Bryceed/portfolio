@@ -20,6 +20,26 @@
             }
         }
     },
-
+    "commons": {
+        "actions": {
+            "close": "Cerrar",
+            "back": "Volver"
+        },
+        "languages": {
+            "pt": "Portugués",
+            "en": "Inglés",
+            "es": "Español"
+        },
+        "themes": {
+            "light": "Claro",
+            "dark": "Oscuro"
+        }
+    },
+    "comemorations": {
+        "pride": {
+            "title": "Mes del orgullo LGBTQIA+",
+            "message": "¡Feliz mes del orgullo LGBTQIA+! ¡Viva la diversidad!"
+        }
+    },
     "language": "Idioma"
 }

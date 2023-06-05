@@ -12,8 +12,8 @@
                 <p v-html="$t('html.home.description[3]')"></p>
 
                 <div class="about__container__text__buttons">
-                    <a href="https://github.com/Bryceed" target="_blank" class="btn btn--primary">View my projects</a>
-                    <a href="https://api.whatsapp.com/send?phone=5511942018873" target="_blank" class="btn btn--secondary">Let's talk</a>
+                    <a href="https://github.com/Bryceed" target="_blank" class="btn btn--primary" v-html="$t('html.home.actions[0].label')"></a>
+                    <a href="https://www.linkedin.com/in/wellington-do-nascimento/" target="_blank" class="btn btn--secondary" v-html="$t('html.home.actions[1].label')"></a>
                 </div>
             </div>
         </div>
@@ -111,7 +111,7 @@ html.light .about {
 }
 
 .about__container__text h1 {
-    font-size: clamp(2vw, 7vmin, 7vw);
+    font-size: clamp(1.5em, 8vmin, 3em);
     font-weight: 700;
     color: #fff;
     margin-bottom: 48px;
@@ -124,7 +124,7 @@ html.light .about {
 
 .about__container__text p {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-    font-size: clamp(1.4vw, 1.5vmin, 3vw);
+    font-size: clamp(1em, 3vmin, 2em);
     font-weight: 400;
     color: #fff;
     margin-bottom: 20px;
@@ -180,6 +180,7 @@ html.light .about {
     justify-content: center;
     align-items: center;
     z-index: 0 !important;
+    margin-bottom: 40px;
 }
 
 .about__container__image img {
