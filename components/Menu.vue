@@ -37,6 +37,15 @@
                         <a :href="item.url" target="_blank">{{ item.name }}</a>
                     </template>
                 </li>
+                <li class="menu-item lang-switcher" @click="langSwitch()">
+                    <span class="flag-text">{{ $t('language.code') }} </span>
+
+                    <div v-if="$i18n.locale == 'en' || $i18n.locale == 'en-US'" class="flag flag-en rounded"></div>
+
+                    <div v-else-if="$i18n.locale == 'pt-BR' || $i18n.locale == 'pt'" class="flag flag-pt rounded"></div>
+
+                    <div v-else-if="$i18n.locale == 'es' || $i18n.locale == 'es-ES'" class="flag flag-es rounded"></div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -149,6 +158,29 @@ export default {
             
         }, 4000 + waitingTime)
     },
+
+    methods: {
+        toggleMenu() {
+            this.menuOpen = !this.menuOpen
+        },
+
+        closeMenu() {
+            this.menuOpen = false
+        },
+
+        langSwitch() {
+            if (this.$i18n.locale == 'en' || this.$i18n.locale == 'en-US') {
+                localStorage.setItem('lang', 'pt-BR')
+                this.$i18n.locale = 'pt-BR'
+            } else if (this.$i18n.locale == 'pt-BR' || this.$i18n.locale == 'pt') {
+                localStorage.setItem('lang', 'es')
+                this.$i18n.locale = 'es'
+            } else if (this.$i18n.locale == 'es' || this.$i18n.locale == 'es-ES') {
+                localStorage.setItem('lang', 'en-US')
+                this.$i18n.locale = 'en'
+            }
+        }
+    }
 }
 </script>
 
@@ -288,6 +320,26 @@ nav ul li ul li {
 }
 nav .menu-btn {
     display: none;
+}
+nav ul li.lang-switcher {
+    background: #4f4f4f;
+    padding: 0.25em 1em;
+    border-radius: 1em;
+    display: flex;
+    transition: ease-out .3s;
+}
+.lang-switcher:hover {
+    box-shadow: 0 0 0 .15em white;
+    background: black;
+}
+.lang-switcher:active {
+    transition-duration: .1s;
+    position: relative;
+    right: -.2em;
+    background: #222;
+}
+.lang-switcher:active .flag-text {
+    margin-right: .15em
 }
 
 @media (max-width: 599px) {

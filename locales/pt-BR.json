@@ -48,6 +48,11 @@
             "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
         }
     },
-    "language": "Idioma",
+    "language": {
+        "code": "pt",
+        "name": "Português (Brasil)",
+        "nativeName": "Portuguese (Brazil)",
+        "region": "BR"
+    },
     "theme": "Tema"
 }

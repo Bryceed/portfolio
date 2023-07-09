@@ -1,22 +1,61 @@
 {
     "menu": {
-        "Project 1": {
-            "name": "Project 1",
-            "description": "This is a project",
+        "home": {
+            "name": "Home",
+            "description": "This is the home page",
             "image": "http://placehold.it/350x150",
-            "link": "http://www.google.com"
+            "link": "/"
         },
-        "Project 2": {
-            "name": "Project 2",
+        "projects": {
+            "name": "Projects",
             "description": "This is a project",
             "image": "http://placehold.it/350x150",
-            "link": "http://www.google.com.br"
+            "link": "/projects",
+            "child": {
+                "project1": {
+                    "name": "BeatUP",
+                    "description": "This is project 1",
+                    "image": "http://placehold.it/350x150",
+                    "link": "/projects/beatup"
+                },
+                "project2": {
+                    "name": "Deltaverse",
+                    "description": "This is project 2",
+                    "image": "http://placehold.it/350x150",
+                    "link": "/projects/deltaverse"
+                }
+            }
         },
-        "Project 3": {
-            "name": "Project 3",
-            "description": "This is a project",
+        "about": {
+            "name": "About",
+            "description": "This is the about page",
             "image": "http://placehold.it/350x150",
-            "link": "http://www.google.com.de"
+            "link": "/about"
+        },
+        "settings": {
+            "name": "Settings",
+            "description": "This is the settings page",
+            "image": "http://placehold.it/350x150",
+            "child": {
+                "account": {
+                    "name": "Account",
+                    "description": "This is the account page",
+                    "image": "http://placehold.it/350x150",
+                    "link": "/settings/account"
+                },
+                "preferences": {
+                    "name": "Preferences",
+                    "description": "This is the preferences page",
+                    "image": "http://placehold.it/350x150",
+                    "link": "/settings/preferences"
+                },
+                "language": {
+                    "name": "Language",
+                    "description": "This is the language page",
+                    "image": "http://placehold.it/350x150",
+                    "link": "/settings/language"
+                }
+            }
         }
     }
 }

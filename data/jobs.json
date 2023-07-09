@@ -1,0 +1,41 @@
+{
+    "jobs": [
+        {
+            "id": 0,
+            "title": "Freelancer Developer",
+            "company": null,
+            "location": "São Paulo, SP",
+            "start_date": "2012",
+            "end_date": 0,
+            "description": {
+                "pt": "Desenvolvimento de sites e sistemas web, utilizando HTML, CSS, JavaScript, PHP, MySQL, WordPress, entre outras tecnologias.",
+                "en": "Development of websites and web systems, using HTML, CSS, JavaScript, PHP, MySQL, WordPress, among other technologies."
+            }
+        },
+        {
+            "id": 1,
+            "title": "Software Developer",
+            "company": "ESX",
+            "location": "Espírito Santo, ES",
+            "start_date": "2022-07-18",
+            "end_date": 0,
+            "description": {
+                "pt": "Desenvolvimento de sistemas web, utilizando HTML, CSS, JavaScript, PHP, MySQL, entre outras tecnologias.",
+                "en": "Development of web systems, using HTML, CSS, JavaScript, PHP, MySQL, among other technologies."
+            }
+        },
+        {
+            "id": 2,
+            "title": "Front-end Developer | VTEX.IO",
+            "company": "Reserva",
+            "location": "Rio de Janeiro, RJ",
+            "start_date": "2023-01-01",
+            "end_date": 0,
+            "description": {
+                "pt": "Desenvolvimento de lojas virtuais, utilizando HTML, CSS, JavaScript, React, VTEX.IO, entre outras tecnologias.",
+                "en": "Development of virtual stores, using HTML, CSS, JavaScript, React, VTEX.IO, among other technologies."
+            },
+            "related_job": 1
+        }
+    ]
+}

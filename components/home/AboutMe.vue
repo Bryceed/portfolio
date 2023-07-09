@@ -6,7 +6,8 @@
             </div>
             <div class="about__container__text">
                 <h1 v-html="$t('html.home.greetings', {name: 'Wellington'})"></h1>
-                <p v-html="$t('html.home.description[0]', { years: '23', occupation: 'Full Stack Developer' })"></p>
+                <p v-html="$t('html.home.description[0]', { years: personal.age,
+                occupation: 'Full Stack Developer' })"></p>
                 <p v-html="$t('html.home.description[1]', { profession1: 'UI/UX Design', profession2: 'Web Development' })"></p>
                 <p v-html="$t('html.home.description[2]', { business: 'ESX', time: '9' })"></p>
                 <p v-html="$t('html.home.description[3]')"></p>
@@ -21,23 +22,29 @@
 </template>
 
 <script>
+import { about } from "/data/about.json";
 
 export default {
     name: 'HomeAboutMe',
     data() {
         return {
+            about,
             company: {
                 name: 'ESX',
                 url: 'https://esx.com.br/',
                 entrance: '2022-07-17',
                 period: '',
                 exit: null
+            },
+            personal: {
+                age: 0
             }
         }
     },
 
     created() {
         this.company.period = this.getPeriod()
+        this.personal.age = this.getPersonalAge()
     },
 
     methods: {
@@ -56,6 +63,27 @@ export default {
             } else {
                 return `${days} day${days > 1 ? 's' : ''}`
             }
+        },
+        getPersonalAge() {
+            const lastUpdate = about.lastUpdate;
+            const birth = new Date(`${about.birth.year}-${about.birth.month}-${about.birth.day}`);
+            const today = new Date();
+            const diff = Math.abs(today - birth);
+
+            const todayDay = today.getDate();
+            const birthDay = birth.getDate();
+            const todayMonth = today.getMonth();
+            const birthMonth = birth.getMonth();
+            const todayYear = today.getFullYear();
+            const birthYear = birth.getFullYear();
+
+            let years = todayYear - birthYear;
+            if (todayMonth < birthMonth || (todayMonth === birthMonth && todayDay < birthDay)) {
+                years--;
+            }
+
+            // retorne um int com a idade
+            return years;
         }
     },
 
@@ -70,7 +98,9 @@ export default {
                 }
             ]
         }
-    }
+    },
+
+    
 
     
 }
@@ -115,6 +145,7 @@ html.light .about {
     font-weight: 700;
     color: #fff;
     margin-bottom: 48px;
+    font-family: 'Keep Calm', sans-serif;
 }
 
 .about__container__text h1 span {

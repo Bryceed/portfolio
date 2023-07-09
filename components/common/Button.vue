@@ -1,5 +1,5 @@
 <template>
-    <a :href="link" :target="target" :class="`btn btn-`+ origin">
+    <a :href="link" :target="target" :class="`btn btn-`+ type">
         {{ title }}
     </a>
 </template>
@@ -28,7 +28,11 @@ export default {
             required: false,
             default: 'default',
         },
-
+        type: {
+            type: String,
+            required: false,
+            default: 'default',
+        },
     },
 };
 </script>
@@ -59,6 +63,5 @@ export default {
     transform: translateY(2px);
     transition: all .1s ease-out;
 }
-
 
 </style>

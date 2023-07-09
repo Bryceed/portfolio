@@ -8,17 +8,22 @@
                 "Currently working at <span>{business}</span> for {time} months.",
                 "Do you wanna take off an idea from the paper?"
             ],
-            "actions": {
-                "projects": {
-                    "label": "View my projects",
+            "actions": [
+                {
+                    "label": "See my projects",
                     "url": "/projects"
                 },
-                "contact": {
+                {
                     "label": "Contact me",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
-            }
+            ]
         }
     },
-    "language": "Language"
+    "language": {
+        "code": "en",
+        "name": "English",
+        "nativeName": "English",
+        "region": "US"
+    }
 }

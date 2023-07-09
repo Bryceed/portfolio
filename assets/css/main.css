@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '../fonts/keep-calm.css';
 
 @tailwind base;
 @tailwind components;
@@ -10,7 +11,7 @@
 .rainbow-bg {
 	@apply bg-gradient-to-r from-primary to-pink-600;
 }
-
+ 
 .page-enter-active,
 .page-leave-active {
 	transition: all 0.3s ease-in-out;
@@ -129,5 +130,42 @@ div[class$="-mode"] {
 }
 .dark .content .prose :where(p):not(:where(.not-prose,.not-prose *)) {
   color: rgb(255, 255, 255);
+}
+
+/* Flags */
+.flag.flag-pt {
+  background-image: url('/assets/images/icons/Flag - Brazil.svg');
+}
+.flag.flag-en {
+  background-image: url('/assets/images/icons/Flag - USA.svg');
+}
+.flag.flag-es {
+  background-image: url('/assets/images/icons/Flag - Spain.svg');
+}
+
+.flag {
+  position: relative;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+.flag.rounded {
+  border-radius: 10%;
+}
+.flag.circle {
+  border-radius: 50%;
+}
+.flag.rectangle {
+  background-size: contain;
+}
+
+.flag-text {
+  text-transform: uppercase !important;
+  margin-right: .5em;
+  font-weight: bold;
 }
 

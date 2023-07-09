@@ -10,11 +10,11 @@
             ],
             "actions": {
                 "projects": {
-                    "label": "View my projects",
+                    "label": "Ver proyectos",
                     "url": "/projects"
                 },
                 "contact": {
-                    "label": "Contact me",
+                    "label": "Contacto",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
             }
@@ -41,5 +41,10 @@
             "message": "¡Feliz mes del orgullo LGBTQIA+! ¡Viva la diversidad!"
         }
     },
-    "language": "Idioma"
+    "language": {
+        "code": "es",
+        "name": "Spanish",
+        "nativeName": "Español",
+        "region": "ES"
+    }
 }

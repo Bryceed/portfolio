@@ -29,11 +29,15 @@ const datetimeFormats = {
 }
 
 export default defineNuxtPlugin(({ vueApp }) => {
-    const i18n = createI18n({
-      legacy: true,
-      globalInjection: true,
+    const langSettings = {
       locale: 'pt-BR',
       fallbackLocale: 'en',
+    }
+    const i18n = createI18n({
+      legacy: false,
+      globalInjection: true,
+      locale: langSettings.locale,
+      fallbackLocale: langSettings.fallbackLocale,
       messages: {
         en,
         es,
@@ -41,6 +45,6 @@ export default defineNuxtPlugin(({ vueApp }) => {
         fr
       },
     });
-  
+
     vueApp.use(i18n)
   })
