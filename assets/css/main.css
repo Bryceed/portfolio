@@ -134,13 +134,13 @@ div[class$="-mode"] {
 
 /* Flags */
 .flag.flag-pt {
-  background-image: url('/assets/images/icons/Flag%20-%20Brazil.svg');
+  background-image: url('/assets/images/icons/Flag-Brazil.svg');
 }
 .flag.flag-en {
-  background-image: url('/assets/images/icons/Flag%20-%20USA.svg');
+  background-image: url('/assets/images/icons/Flag-USA.svg');
 }
 .flag.flag-es {
-  background-image: url('/assets/images/icons/Flag%20-%20Spain.svg');
+  background-image: url('/assets/images/icons/Flag-Spain.svg');
 }
 
 .flag {
