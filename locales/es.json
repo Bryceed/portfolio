@@ -18,7 +18,11 @@
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
             ]
-        }
+        },
+        "footer": [
+            "Website construido en <b>Nuxt3</b> (Vue). En desarrollo. | {year}",
+            "Visite mi <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver más sobre mis proyectos (incluyendo este)."
+        ]
     },
     "menu": {
         "home": "Inicio",

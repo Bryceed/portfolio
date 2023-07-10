@@ -25,7 +25,11 @@
             "miniDisplay": {
                 "button": "Ver mais"
             }
-        }
+        },
+        "footer": [
+            "サイトは <b>Nuxt3</b> (Vue) で構築されています。開発中です。 | {year}",
+            "私の <a href=\"{url}\" target=\"_blank\">GitHub</a> を訪問して、私のプロジェクトについてもっと見てください（これも含まれます）。"
+        ]
     },
     "menu": {
         "home": "ホーム",

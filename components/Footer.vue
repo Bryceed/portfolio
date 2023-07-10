@@ -1,13 +1,28 @@
 <template>
     <footer class="footer">
-        <p>
-            Site built with <a href="https://nuxtjs.org">Nuxt3</a> (Vue.js) and <a href="https://vitejs.dev">Vite</a>. Under development.
-        </p>
-        <p>
-            Visit my <a href="https://github.com/Bryceed">GitHub</a> to check more about my profile and projects (including this one).
-        </p>
+        <p v-html="$t('html.footer[0]', { year: year })"></p>
+        <p v-html="$t('html.footer[1]', { url: github })"></p>
     </footer>
 </template>
+
+<script>
+import { about } from '../data/about.json';
+
+export default {
+    name: 'Footer',
+
+    data() {
+        return {
+            year: 2022,
+            github: about.links.github
+        }
+    },
+
+    created() {
+        this.year = new Date().getFullYear()
+    }
+}
+</script>
 
 <style scoped>
 .footer {

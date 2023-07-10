@@ -25,7 +25,11 @@
             "miniDisplay": {
                 "button": "Ver mais"
             }
-        }
+        },
+        "footer": [
+            "Site construído em <b>Nuxt3</b> (Vue). Em desenvolvimento. | {year}",
+            "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
+        ]
     },
     "menu": {
         "home": "Início",
