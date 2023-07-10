@@ -20,6 +20,12 @@
             ]
         }
     },
+    "menu": {
+        "home": "Home",
+        "blog": "Blog",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
     "language": {
         "code": "en",
         "name": "English",

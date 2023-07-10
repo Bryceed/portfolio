@@ -25,7 +25,9 @@
                         <a href="javascript:void(0)" @click="item.open = !item.open" class="menu-item">
                             <i class="material-icons expand-icon" v-if="!item.open">expand_more</i>
                             <i class="material-icons collapse-icon" v-if="item.open">expand_less</i>
-                            {{ item.name }}
+                            // get the item.name value to check if there's a key in the language file
+                            <span v-if="$t(`menu.${item.name}`) != item.name">{{ $t(`menu.${item.name}`) }}</span>
+                            <span v-else>{{ item.name }}</span>
                         </a>
                         <ul v-if="item.open" class="submenu">
                             <li v-for="subitem in item.submenu" :key="subitem.id">
@@ -34,11 +36,14 @@
                         </ul>
                     </template>
                     <template v-else>
-                        <a :href="item.url" target="_blank">{{ item.name }}</a>
+                        <NuxtLink :to="item.link" class="menu-item" @click="closeMenu()">
+                            <span v-if="$t(`menu.${item.name.toLowerCase()}`) != item.name.toLowerCase()">{{ $t(`menu.${item.name.toLowerCase()}`) }}</span>
+                            <span v-else>{{ item.name }}</span>
+                        </NuxtLink>
                     </template>
                 </li>
                 <li class="menu-item lang-switcher" @click="langSwitch()">
-                    <span class="flag-text">{{ $t('language.code') }} </span>
+                    <span class="flag-text">{{ $t('language.region') }} </span>
 
                     <div v-if="$i18n.locale == 'en' || $i18n.locale == 'en-US'" class="flag flag-en rounded"></div>
 
@@ -50,9 +55,9 @@
 
                     <div v-else-if="$i18n.locale == 'zh-CN' || $i18n.locale == 'zh'" class="flag flag-ch rounded"></div>
 
-                    <div v-else-if="$i18n.locale == 'ja' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded"></div>
+                    <div v-else-if="$i18n.locale == 'jp' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded"></div>
 
-                    <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded"></div>
+                    <div v-else-if="$i18n.locale == 'kr' || $i18n.locale == 'ko-KR'" class="flag flag-kr rounded"></div>
 
                     <div v-else-if="$i18n.locale == 'ru' || $i18n.locale == 'ru-RU'" class="flag flag-ru rounded"></div>
 
@@ -189,12 +194,12 @@ export default {
                 localStorage.setItem('lang', 'fr')
                 this.$i18n.locale = 'fr'
             } else if (this.$i18n.locale == 'fr' || this.$i18n.locale == 'fr-FR') {
-                localStorage.setItem('lang', 'ja')
-                this.$i18n.locale = 'ja'
-            } else if (this.$i18n.locale == 'ja' || this.$i18n.locale == 'ja-JP') {
-                localStorage.setItem('lang', 'ko')
-                this.$i18n.locale = 'ko'
-            } else if (this.$i18n.locale == 'ko' || this.$i18n.locale == 'ko-KR') {
+                localStorage.setItem('lang', 'jp')
+                this.$i18n.locale = 'jp'
+            } else if (this.$i18n.locale == 'jp' || this.$i18n.locale == 'ja-JP') {
+                localStorage.setItem('lang', 'kr')
+                this.$i18n.locale = 'kr'
+            } else if (this.$i18n.locale == 'kr' || this.$i18n.locale == 'ko-KR') {
                 localStorage.setItem('lang', 'en')
                 this.$i18n.locale = 'en'
             } else {

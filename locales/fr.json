@@ -2,7 +2,7 @@
     "html": {
         "home": {
             "greetings":  "Bonjour! Je suis <span>{name}</span>",
-            "descriptionFR": [
+            "description": [
                 "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
                 "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
                 "Travaillant actuellement pour <span>{business}</span>, depuis {time} mois.",
@@ -26,6 +26,12 @@
                 "button": "Ver mais"
             }
         }
+    },
+    "menu": {
+        "home": "Accueil",
+        "blog": "Blog",
+        "projects": "Projets",
+        "contact": "Contact"
     },
     "commons": {
         "actions": {

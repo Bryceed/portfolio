@@ -27,6 +27,12 @@
             }
         }
     },
+    "menu": {
+        "home": "Главная",
+        "blog": "Блог",
+        "projects": "Проекты",
+        "contact": "Контакт"
+    },
     "commons": {
         "actions": {
             "close": "Fechar",

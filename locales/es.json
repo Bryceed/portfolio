@@ -20,6 +20,12 @@
             ]
         }
     },
+    "menu": {
+        "home": "Inicio",
+        "blog": "Blog",
+        "projects": "Proyectos",
+        "contact": "Contacto"
+    },
     "commons": {
         "actions": {
             "close": "Cerrar",

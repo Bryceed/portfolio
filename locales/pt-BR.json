@@ -27,6 +27,12 @@
             }
         }
     },
+    "menu": {
+        "home": "Início",
+        "blog": "Blog",
+        "projects": "Projetos",
+        "contact": "Contato"
+    },
     "commons": {
         "actions": {
             "close": "Fechar",

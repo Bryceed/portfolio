@@ -27,6 +27,12 @@
             }
         }
     },
+    "menu": {
+        "home": "ホーム",
+        "blog": "ブログ",
+        "projects": "プロジェクト",
+        "contact": "連絡先"
+    },
     "commons": {
         "actions": {
             "close": "Fechar",

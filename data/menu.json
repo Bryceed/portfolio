@@ -26,36 +26,17 @@
                 }
             }
         },
-        "about": {
-            "name": "About",
-            "description": "This is the about page",
+        "blog": {
+            "name": "Blog",
+            "description": "This is a blog",
             "image": "http://placehold.it/350x150",
-            "link": "/about"
+            "link": "/blog"
         },
-        "settings": {
-            "name": "Settings",
-            "description": "This is the settings page",
+        "contact": {
+            "name": "Contact",
+            "description": "This is the contact page",
             "image": "http://placehold.it/350x150",
-            "child": {
-                "account": {
-                    "name": "Account",
-                    "description": "This is the account page",
-                    "image": "http://placehold.it/350x150",
-                    "link": "/settings/account"
-                },
-                "preferences": {
-                    "name": "Preferences",
-                    "description": "This is the preferences page",
-                    "image": "http://placehold.it/350x150",
-                    "link": "/settings/preferences"
-                },
-                "language": {
-                    "name": "Language",
-                    "description": "This is the language page",
-                    "image": "http://placehold.it/350x150",
-                    "link": "/settings/language"
-                }
-            }
+            "link": "/contact"
         }
     }
 }
