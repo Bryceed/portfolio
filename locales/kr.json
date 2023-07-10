@@ -1,20 +1,20 @@
 {
     "html": {
         "home": {
-            "greetings":  "Bonjour! Je suis <span>{name}</span>",
-            "descriptionFR": [
-                "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
-                "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
-                "Travaillant actuellement pour <span>{business}</span>, depuis {time} mois.",
-                "Vous cherchez à concrétiser une idée?"
+            "greetings": "안녕하세요! 저는 <span>{name}</span>입니다.",
+            "description": [
+                "저는 {years}살이고 현재 <span>{occupation}</span>로 <span>브라질</span>에서 활동하고 있습니다.",
+                "저의 주요 기술은 <span>{profession1}</span>과 <span>{profession2}</span>입니다.",
+                "현재 <span>{business}</span>에서 {time}개월 동안 일하고 있습니다.",
+                "아이디어를 실현하고 싶으신가요?"
             ],
             "actions": [
                 {
-                    "label": "Voir les projets",
+                    "label": "프로젝트 보기",
                     "url": "/projects"
                 },
                 {
-                    "label": "Contact",
+                    "label": "연락처",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
             ]
@@ -49,10 +49,10 @@
         }
     },
     "language": {
-        "code": "fr",
-        "name": "Français",
-        "nativeName": "French",
-        "region": "FR"
+        "code": "ko",
+        "name": "Korean",
+        "nativeName": "한국어",
+        "region": "KR"
     },
     "theme": "Tema"
 }

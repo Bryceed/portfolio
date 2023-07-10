@@ -1,20 +1,20 @@
 {
     "html": {
         "home": {
-            "greetings":  "Bonjour! Je suis <span>{name}</span>",
-            "descriptionFR": [
-                "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
-                "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
-                "Travaillant actuellement pour <span>{business}</span>, depuis {time} mois.",
-                "Vous cherchez à concrétiser une idée?"
+            "greetings": "Привет! Я <span>{name}</span>",
+            "description": [
+                "Мне {years} лет, и я в настоящее время работаю <span>{occupation}</span> в <span>Бразилии</span>.",
+                "Мои основные навыки - <span>{profession1}</span> и <span>{profession2}</span>.",
+                "В настоящее время работаю в <span>{business}</span> в течение {time} месяцев.",
+                "Хотите воплотить идею в жизнь?"
             ],
             "actions": [
                 {
-                    "label": "Voir les projets",
+                    "label": "Посмотреть проекты",
                     "url": "/projects"
                 },
                 {
-                    "label": "Contact",
+                    "label": "Контакт",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
             ]
@@ -49,10 +49,10 @@
         }
     },
     "language": {
-        "code": "fr",
-        "name": "Français",
-        "nativeName": "French",
-        "region": "FR"
+        "code": "ru",
+        "name": "Russian",
+        "nativeName": "Русский",
+        "region": "RU"
     },
     "theme": "Tema"
 }

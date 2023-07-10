@@ -133,16 +133,33 @@ div[class$="-mode"] {
 }
 
 /* Flags */
-.flag.flag-pt {
-  background-image: url('/assets/images/icons/Flag-Brazil.svg');
+.flag.flag-pt { /*svg with png fallback*/
+  background-image: url('/assets/images/icons/Flag_Brazil.svg');
 }
 .flag.flag-en {
-  background-image: url('/assets/images/icons/Flag-USA.svg');
+  background-image: url('/assets/images/icons/Flag_USA.svg');
 }
 .flag.flag-es {
-  background-image: url('/assets/images/icons/Flag-Spain.svg');
+  background-image: url('/assets/images/icons/Flag_Spain.svg');
 }
-
+.flag.flag-fr {
+  background-image: url('/assets/images/icons/Flag_France.svg');
+}
+.flag.flag-jp {
+  background-image: url('/assets/images/icons/Flag_Japan.svg');
+}
+.flag.flag-ch {
+  background-image: url('/assets/images/icons/Flag_Chinese.svg');
+}
+.flag.flag-it {
+  background-image: url('/assets/images/icons/Flag_Italy.svg');
+}
+.flag.flag-ru {
+  background-image: url('/assets/images/icons/Flag_Russia.svg');
+}
+.flag.flag-ko {
+  background-image: url('/assets/images/icons/Flag_SouthKorea.svg');
+}
 .flag {
   position: relative;
   display: inline-block;
@@ -167,5 +184,10 @@ div[class$="-mode"] {
   text-transform: uppercase !important;
   margin-right: .5em;
   font-weight: bold;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 

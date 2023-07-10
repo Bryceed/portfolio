@@ -1,20 +1,20 @@
 {
     "html": {
         "home": {
-            "greetings":  "Bonjour! Je suis <span>{name}</span>",
-            "descriptionFR": [
-                "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
-                "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
-                "Travaillant actuellement pour <span>{business}</span>, depuis {time} mois.",
-                "Vous cherchez à concrétiser une idée?"
+            "greetings": "こんにちは！私は <span>{name}</span> です",
+            "description": [
+                "私は {years} 歳で、現在 <span>{occupation}</span> として <span>ブラジル</span> で活動しています。",
+                "私の主なスキルは <span>{profession1}</span> と <span>{profession2}</span> です。",
+                "現在 <span>{business}</span> で働いて {time} ヶ月。",
+                "アイデアを実現したいですか？"
             ],
             "actions": [
                 {
-                    "label": "Voir les projets",
+                    "label": "プロジェクトを見る",
                     "url": "/projects"
                 },
                 {
-                    "label": "Contact",
+                    "label": "連絡先",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
             ]
@@ -49,10 +49,10 @@
         }
     },
     "language": {
-        "code": "fr",
-        "name": "Français",
-        "nativeName": "French",
-        "region": "FR"
+        "code": "jp",
+        "name": "Japanese",
+        "nativeName": "日本語",
+        "region": "JP"
     },
     "theme": "Tema"
 }

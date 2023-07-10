@@ -8,16 +8,16 @@
                 "Actualmente trabajando para <span>{business}</span> durante {time} meses.",
                 "¿Quieres sacar una idea del papel?"
             ],
-            "actions": {
-                "projects": {
-                    "label": "Ver proyectos",
+            "actions": [
+                {
+                    "label": "Ver mis proyectos",
                     "url": "/projects"
                 },
-                "contact": {
-                    "label": "Contacto",
+                {
+                    "label": "Contáctame",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
-            }
+            ]
         }
     },
     "commons": {

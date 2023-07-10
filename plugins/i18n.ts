@@ -3,6 +3,11 @@ import en from '../locales/en.json'
 import es from '../locales/es.json'
 import pt from '../locales/pt-BR.json'
 import fr from '../locales/fr.json'
+import it from '../locales/it.json'
+import jp from '../locales/jp.json'
+import cn from '../locales/zh-CN.json'
+import kr from '../locales/kr.json'
+import ru from '../locales/ru.json'
 
 const datetimeFormats = {
   'en-US': {
@@ -42,7 +47,12 @@ export default defineNuxtPlugin(({ vueApp }) => {
         en,
         es,
         pt,
-        fr
+        fr,
+        it,
+        jp,
+        cn,
+        kr,
+        ru
       },
     });
 

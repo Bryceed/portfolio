@@ -45,6 +45,18 @@
                     <div v-else-if="$i18n.locale == 'pt-BR' || $i18n.locale == 'pt'" class="flag flag-pt rounded"></div>
 
                     <div v-else-if="$i18n.locale == 'es' || $i18n.locale == 'es-ES'" class="flag flag-es rounded"></div>
+
+                    <div v-else-if="$i18n.locale == 'fr' || $i18n.locale == 'fr-FR'" class="flag flag-fr rounded"></div>
+
+                    <div v-else-if="$i18n.locale == 'zh-CN' || $i18n.locale == 'zh'" class="flag flag-ch rounded"></div>
+
+                    <div v-else-if="$i18n.locale == 'ja' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded"></div>
+
+                    <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded"></div>
+
+                    <div v-else-if="$i18n.locale == 'ru' || $i18n.locale == 'ru-RU'" class="flag flag-ru rounded"></div>
+
+                    <div v-else class="flag flag-en rounded"></div>
                 </li>
             </ul>
         </div>
@@ -79,14 +91,12 @@ export default {
                 codeSelector.classList.add('active')
             }, 1000)
 
-            // then remove the active class from codeSelector
             setTimeout(() => {
                 codeSelector.classList.remove('active')
             }, 1500)
         }
         typing()
 
-        //default text: Well.dev
         const newSuffixTexts = [
             '.dev',
             '.design',
@@ -176,7 +186,19 @@ export default {
                 localStorage.setItem('lang', 'es')
                 this.$i18n.locale = 'es'
             } else if (this.$i18n.locale == 'es' || this.$i18n.locale == 'es-ES') {
-                localStorage.setItem('lang', 'en-US')
+                localStorage.setItem('lang', 'fr')
+                this.$i18n.locale = 'fr'
+            } else if (this.$i18n.locale == 'fr' || this.$i18n.locale == 'fr-FR') {
+                localStorage.setItem('lang', 'ja')
+                this.$i18n.locale = 'ja'
+            } else if (this.$i18n.locale == 'ja' || this.$i18n.locale == 'ja-JP') {
+                localStorage.setItem('lang', 'ko')
+                this.$i18n.locale = 'ko'
+            } else if (this.$i18n.locale == 'ko' || this.$i18n.locale == 'ko-KR') {
+                localStorage.setItem('lang', 'en')
+                this.$i18n.locale = 'en'
+            } else {
+                localStorage.setItem('lang', 'en')
                 this.$i18n.locale = 'en'
             }
         }
@@ -327,6 +349,7 @@ nav ul li.lang-switcher {
     border-radius: 1em;
     display: flex;
     transition: ease-out .3s;
+    cursor: pointer;
 }
 .lang-switcher:hover {
     box-shadow: 0 0 0 .15em white;
