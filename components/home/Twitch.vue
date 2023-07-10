@@ -1,7 +1,7 @@
 <template>
-    <div class="card twitch">
+    <div v-if="block != 'iframe'" class="card twitch">
         <h1>🔴 Lives</h1>
-        <div v-if="block != 'iFrame'" class="isiframe">
+        <div class="isiframe">
             <iframe
                 :src=twitchURL
                 height="378"
@@ -10,12 +10,6 @@
                 scrolling="no"
                 allowfullscreen="true">
             </iframe>
-        </div>
-        <div v-else>
-            <div class="blocked-alert iframe">
-                <h2 class="title">This browser do not support iFrame</h2>
-                <p class="description">We are having problems displaying the full content of this site because of the technical limitations of your current browser.<br>Anyway, the "Lives" section was created to show that you can follow my <a href="https://www.twitch.tv/bryceed" target="_blank">Twitch channel</a> to follow my live coding streams and gameplays.</p>
-            </div>
         </div>
     </div>
 </template>
