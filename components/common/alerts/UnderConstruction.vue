@@ -2,8 +2,8 @@
     <div class="under-construction">
         <i class="material-icons">warning_amber</i>
         <h2 v-html="$t('html.commons.underConstruction.title')"></h2>
-        <div v-html="$t('html.commons.underConstruction.description')">
-        </div>
+                                                                            <p v-html="$t('html.commons.underConstruction.description')">
+                                                                            </p>
     </div>
 </template>
 
@@ -37,11 +37,19 @@ export default {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 10px;
+    font-family: "Keep Calm", sans-serif;
+    margin-bottom: 2.5rem;
 }
 
 .under-construction p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 400;
     text-align: center;
+    max-width: 75%;
+    color: #ddd;
+    display: inline;
+    background-color: #333;
+    padding: .2rem .5rem .3rem;
+    border-radius: .2rem;
 }
 </style>
