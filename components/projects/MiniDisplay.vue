@@ -1,21 +1,23 @@
 <template>
     <div class="mini-display-container">
-        <h2>Projetos</h2>
-        <div class="mini-display">
-            <template v-for="project in projects">
-                <div class="project-item active">
-                    <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>
-                    <div class="info-overlay">
-                        <h3>{{ project.title }}</h3>
-                        <p>{{ project.description }}</p>
-                    </div>
-                    <div class="actions">
-                        <CommonButton :link="project.link" :title="$t('html.projects.miniDisplay.button')" :origin="'miniDisplay'"></CommonButton>
-                    </div>
+                    <h2 v-html="$t('html.home.projects.title')"></h2>
+                <div class="mini-display">
+                    <template v-for="project in projects">
+                        <div class="project-item active">
+                            <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>
+                            <div class="info-overlay">
+                                <h3>{{ project.title }}</h3>
+                                <p>{{ project.description }}</p>
+                            </div>
+                            <div class="actions">
+                                <CommonButton :link="project.link" :title="$t('html.projects.miniDisplay.button')" :origin="'miniDisplay'"></CommonButton>
+                            </div>
+                        </div>
+                    </template>
                 </div>
-            </template>
-        </div>
-        <NuxtLink to="/projects" class="btn btn-primary btn-lg btn-block btn-float-right">Ver todos os projetos</NuxtLink>
+                <NuxtLink to="/projects" class="btn btn-primary btn-lg btn-block btn-float-right">
+                    <span v-html="$t('html.home.actions[0].label')"></span>
+                </NuxtLink>
     </div>
 </template>
 

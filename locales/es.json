@@ -1,60 +1,79 @@
-{   
-    "html": {
-        "home": {
-            "greetings": "Hola! Yo soy <span>{name}</span>",
-            "description": [
-                "Soy un <span>{occupation}</span> brasileño de {years} años de edad.",
-                "Mis habilidades principales son para <span>{profession1}</span> y <span>{profession2}</span>.",
-                "Actualmente trabajando para <span>{business}</span> durante {time} meses.",
-                "¿Quieres sacar una idea del papel?"
-            ],
-            "actions": [
-                {
-                    "label": "Ver mis proyectos",
-                    "url": "/projects"
-                },
-                {
-                    "label": "Contáctame",
-                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
-                }
-            ]
+{
+  "html": {
+    "home": {
+      "greetings": "Hola! Yo soy <span>{name}</span>",
+      "description": [
+        "Soy un <span>{occupation}</span> brasileño de {years} años de edad.",
+        "Mis habilidades principales son para <span>{profession1}</span> y <span>{profession2}</span>.",
+        "Actualmente trabajando para <span>{business}</span> durante {time} meses.",
+        "¿Quieres sacar una idea del papel?"
+      ],
+      "actions": [
+        {
+          "label": "Ver mis proyectos",
+          "url": "/projects"
         },
-        "footer": [
-            "Website construido en <b>Nuxt3</b> (Vue). En desarrollo. | {year}",
-            "Visite mi <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver más sobre mis proyectos (incluyendo este)."
-        ]
+        {
+          "label": "Contáctame",
+          "url": "https://api.whatsapp.com/send?phone=5511942018873"
+        }
+      ],
+      "projects": {
+        "title": "Proyectos"
+      }
     },
-    "menu": {
-        "home": "Inicio",
-        "blog": "Blog",
-        "projects": "Proyectos",
-        "contact": "Contacto"
+    "footer": [
+      "Website construido en <b>Nuxt3</b> (Vue). En desarrollo. | {year}",
+      "Visite mi <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver más sobre mis proyectos (incluyendo este)."
+    ],
+    "contact": {
+      "title": "Contacto"
+    },
+    "blog": {
+      "title": "Blog"
     },
     "commons": {
-        "actions": {
-            "close": "Cerrar",
-            "back": "Volver"
-        },
-        "languages": {
-            "pt": "Portugués",
-            "en": "Inglés",
-            "es": "Español"
-        },
-        "themes": {
-            "light": "Claro",
-            "dark": "Oscuro"
-        }
+      "underConstruction": {
+        "description": "Todavía necesito más tiempo para crear esta sesión específica. \nPor favor verifique más tarde o contácteme.",
+        "title": "En construcción"
+      }
     },
-    "comemorations": {
-        "pride": {
-            "title": "Mes del orgullo LGBTQIA+",
-            "message": "¡Feliz mes del orgullo LGBTQIA+! ¡Viva la diversidad!"
-        }
-    },
-    "language": {
-        "code": "es",
-        "name": "Spanish",
-        "nativeName": "Español",
-        "region": "ES"
+    "projects": {
+      "description": "Estos son algunos de mis proyectos más recientes.",
+      "title": "Mis proyectos"
     }
+  },
+  "menu": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "commons": {
+    "actions": {
+      "close": "Cerrar",
+      "back": "Volver"
+    },
+    "languages": {
+      "pt": "Portugués",
+      "en": "Inglés",
+      "es": "Español"
+    },
+    "themes": {
+      "light": "Claro",
+      "dark": "Oscuro"
+    }
+  },
+  "comemorations": {
+    "pride": {
+      "title": "Mes del orgullo LGBTQIA+",
+      "message": "¡Feliz mes del orgullo LGBTQIA+! ¡Viva la diversidad!"
+    }
+  },
+  "language": {
+    "code": "es",
+    "name": "Spanish",
+    "nativeName": "Español",
+    "region": "ES"
+  }
 }

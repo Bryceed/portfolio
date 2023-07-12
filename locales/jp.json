@@ -17,19 +17,31 @@
                     "label": "連絡先",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
-            ]
+            ],
+            "projects": {
+                "title": "プロジェクト"
+            }
         },
         "projects": {
-            "title": "Meus projetos",
-            "description": "Aqui estão alguns dos meus projetos mais recentes.",
+            "title": "プロジェクト",
+            "description": "私のプロジェクトのいくつかを見てください。",
             "miniDisplay": {
-                "button": "Ver mais"
+                "button": "もっと見る"
             }
         },
         "footer": [
             "サイトは <b>Nuxt3</b> (Vue) で構築されています。開発中です。 | {year}",
             "私の <a href=\"{url}\" target=\"_blank\">GitHub</a> を訪問して、私のプロジェクトについてもっと見てください（これも含まれます）。"
-        ]
+        ],
+        "blog": {
+            "title": "ブログ"
+        },
+        "commons": {
+            "underConstruction": {
+                "description": "このセッションを作成するには、まだ少し時間がかかります。\n後で確認するか、私に連絡してください。",
+                "title": "建設中"
+            }
+        }
     },
     "menu": {
         "home": "ホーム",

@@ -1,6 +1,6 @@
 <template>
     <div class="projects">
-        <h2>Projects</h2>
+            <h2 v-html="$t('html.home.projects.title')"></h2>
         <template v-for="project in projects">
             <div class="project-item">
                 <h3>{{ project.title }}</h3>

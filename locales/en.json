@@ -17,13 +17,34 @@
                     "label": "Contact me",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
-            ]
+            ],
+            "projects": {
+                "title": "Projects"
+            }
         },
         "footer": [
             "This site is built with <b>Nuxt3</b> (Vue). Under development. | {year}",
             "Visit my <a href=\"{url}\" target=\"_blank\">GitHub</a> to see more about my projects (including this one)."
-        ]
-
+        ],
+        "contact": {
+            "title": "Contact me"
+        },
+        "blog": {
+            "title": "Blog"
+        },
+        "projects": {
+            "miniDisplay": {
+                "button": "See more"
+            },
+            "description": "Here are some of my most recent projects.",
+            "title": "My projects"
+        },
+        "commons": {
+            "underConstruction": {
+                "title": "Under construction",
+                "description": "I still need some more time to create this specific session. \nPlease check later or contact me."
+            }
+        }
     },
     "menu": {
         "home": "Home",

@@ -1,68 +1,83 @@
 {
-    "html": {
-        "home": {
-            "greetings": "Olá! Sou o <span>{name}</span>",
-            "description": [
-                "Tenho {years} anos e atualmente sou <span>{occupation}</span> atuando no <span>Brasil</span>.",
-                "Minhas habilidades principais são para <span>{profession1}</span> e <span>{profession2}</span>.",
-                "Atualmente trabalhando para <span>{business}</span>, há {time} meses.",
-                "Buscando tirar uma ideia do papel?"
-            ],
-            "actions": [
-                {
-                    "label": "Ver projetos",
-                    "url": "/projects"
-                },
-                {
-                    "label": "Contato",
-                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
-                }
-            ]
+  "html": {
+    "home": {
+      "greetings": "Olá! Sou o <span>{name}</span>",
+      "description": [
+        "Tenho {years} anos e atualmente sou <span>{occupation}</span> atuando no <span>Brasil</span>.",
+        "Minhas habilidades principais são para <span>{profession1}</span> e <span>{profession2}</span>.",
+        "Atualmente trabalhando para <span>{business}</span>, há {time} meses.",
+        "Buscando tirar uma ideia do papel?"
+      ],
+      "actions": [
+        {
+          "label": "Ver projetos",
+          "url": "/projects"
         },
-        "projects": {
-            "title": "Meus projetos",
-            "description": "Aqui estão alguns dos meus projetos mais recentes.",
-            "miniDisplay": {
-                "button": "Ver mais"
-            }
-        },
-        "footer": [
-            "Site construído em <b>Nuxt3</b> (Vue). Em desenvolvimento. | {year}",
-            "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
-        ]
+        {
+          "label": "Contato",
+          "url": "https://api.whatsapp.com/send?phone=5511942018873"
+        }
+      ],
+      "projects": {
+        "title": "Projetos"
+      }
     },
-    "menu": {
-        "home": "Início",
-        "blog": "Blog",
-        "projects": "Projetos",
-        "contact": "Contato"
+    "projects": {
+      "title": "Meus projetos",
+      "description": "Aqui estão alguns dos meus projetos mais recentes.",
+      "miniDisplay": {
+        "button": "Ver mais"
+      }
+    },
+    "footer": [
+      "Site construído em <b>Nuxt3</b> (Vue). Em desenvolvimento. | {year}",
+      "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
+    ],
+    "contact": {
+      "title": "Contate-me"
+    },
+    "blog": {
+      "title": "Blog"
     },
     "commons": {
-        "actions": {
-            "close": "Fechar",
-            "back": "Voltar"
-        },
-        "languages": {
-            "pt": "Português",
-            "en": "Inglês",
-            "es": "Espanhol"
-        },
-        "themes": {
-            "light": "Claro",
-            "dark": "Escuro"
-        }
+      "underConstruction": {
+        "description": "Ainda preciso de mais um tempo para criar essa sessão em específico. Por favor, verifique mais tarde ou entre em contato comigo.",
+        "title": "Em construção"
+      }
+    }
+  },
+  "menu": {
+    "home": "Início",
+    "blog": "Blog",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "commons": {
+    "actions": {
+      "close": "Fechar",
+      "back": "Voltar"
     },
-    "comemorations": {
-        "pride": {
-            "title": "Mês do Orgulho LGBTQIA+",
-            "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
-        }
+    "languages": {
+      "pt": "Português",
+      "en": "Inglês",
+      "es": "Espanhol"
     },
-    "language": {
-        "code": "pt",
-        "name": "Português (Brasil)",
-        "nativeName": "Portuguese (Brazil)",
-        "region": "BR"
-    },
-    "theme": "Tema"
+    "themes": {
+      "light": "Claro",
+      "dark": "Escuro"
+    }
+  },
+  "comemorations": {
+    "pride": {
+      "title": "Mês do Orgulho LGBTQIA+",
+      "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
+    }
+  },
+  "language": {
+    "code": "pt",
+    "name": "Português (Brasil)",
+    "nativeName": "Portuguese (Brazil)",
+    "region": "BR"
+  },
+  "theme": "Tema"
 }

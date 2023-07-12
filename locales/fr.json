@@ -1,7 +1,7 @@
 {
     "html": {
         "home": {
-            "greetings":  "Bonjour! Je suis <span>{name}</span>",
+            "greetings": "Bonjour! Je suis <span>{name}</span>",
             "description": [
                 "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
                 "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
@@ -17,19 +17,34 @@
                     "label": "Contact",
                     "url": "https://api.whatsapp.com/send?phone=5511942018873"
                 }
-            ]
+            ],
+            "projects": {
+                "title": "Projets"
+            }
         },
         "projects": {
-            "title": "Meus projetos",
-            "description": "Aqui estão alguns dos meus projetos mais recentes.",
+            "title": "Mes projets",
+            "description": "Voici quelques-uns de mes projets.",
             "miniDisplay": {
-                "button": "Ver mais"
+                "button": "Voir le projet"
             }
         },
         "footer": [
             "Site construit en <b>Nuxt3</b> (Vue). En développement. | {year}",
             "Visitez mon <a href=\"{url}\" target=\"_blank\">GitHub</a> pour en savoir plus sur mes projets (y compris celui-ci)."
-        ]
+        ],
+        "contact": {
+            "title": "Contact"
+        },
+        "blog": {
+            "title": "Blog"
+        },
+        "commons": {
+            "underConstruction": {
+                "description": "J'ai encore besoin de temps pour créer cette session spécifique. \nVeuillez vérifier plus tard ou contactez-moi.",
+                "title": "En cours de construction"
+            }
+        }
     },
     "menu": {
         "home": "Accueil",

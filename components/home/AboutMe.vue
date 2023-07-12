@@ -2,19 +2,47 @@
     <div class="about">
         <div class="about__container">
             <div class="about__container__image">
-                <img src="https://avatars.githubusercontent.com/u/42657376?v=4" alt="Wellington">
-            </div>
-            <div class="about__container__text">
-                <h1 v-html="$t('html.home.greetings', {name: 'Wellington'})"></h1>
-                <p v-html="$t('html.home.description[0]', { years: personal.age,
-                occupation: 'Full Stack Developer' })"></p>
-                <p v-html="$t('html.home.description[1]', { profession1: 'UI/UX Design', profession2: 'Web Development' })"></p>
-                <p v-html="$t('html.home.description[2]', { business: 'ESX', time: '9' })"></p>
-                <p v-html="$t('html.home.description[3]')"></p>
+                        <img
+                            src="https://avatars.githubusercontent.com/u/42657376?v=4"
+                            alt="Wellington"
+                        />
+                    </div>
+                    <div class="about__container__text">
+                        <h1
+                            v-html="$t('html.home.greetings', { name: 'Wellington' })"
+                        ></h1>
+                        <p
+                            v-html="$t('html.home.description[0]', {
+                                years: personal.age,
+                                occupation: 'Full Stack Developer'
+                            })
+                                "
+                        ></p>
+                        <p
+                            v-html="$t('html.home.description[1]', {
+                                profession1: 'UI/UX Design',
+                                profession2: 'Web Development'
+                            })
+                                "
+                        ></p>
+                        <p
+                            v-html="$t('html.home.description[2]', {
+                                business: 'ESX',
+                                time: '9'
+                            })
+                                "
+                        ></p>
+                        <p v-html="$t('html.home.description[3]')"></p>
 
-                <div class="about__container__text__buttons">
-                    <a href="https://github.com/Bryceed" target="_blank" class="btn btn--primary" v-html="$t('html.home.actions[0].label')"></a>
-                    <a href="https://www.linkedin.com/in/wellington-do-nascimento/" target="_blank" class="btn btn--secondary" v-html="$t('html.home.actions[1].label')"></a>
+                        <div class="about__container__text__buttons">
+                            <NuxtLink to="/projects" class="btn btn--primary">
+                                <i class="material-icons">code</i>
+                                <span v-html="$t('html.home.actions[0].label')"></span>
+                            </NuxtLink>
+                            <NuxtLink to="/contact" class="btn btn--secondary"
+                                ><i class="material-icons">email</i
+                                ><span v-html="$t('html.home.actions[1].label')"></span
+                            ></NuxtLink>
                 </div>
             </div>
         </div>
@@ -25,48 +53,52 @@
 import { about } from "/data/about.json";
 
 export default {
-    name: 'HomeAboutMe',
+    name: "HomeAboutMe",
     data() {
         return {
             about,
             company: {
-                name: 'ESX',
-                url: 'https://esx.com.br/',
-                entrance: '2022-07-17',
-                period: '',
+                name: "ESX",
+                url: "https://esx.com.br/",
+                entrance: "2022-07-17",
+                period: "",
                 exit: null
             },
             personal: {
                 age: 0
             }
-        }
+        };
     },
 
     created() {
-        this.company.period = this.getPeriod()
-        this.personal.age = this.getPersonalAge()
+        this.company.period = this.getPeriod();
+        this.personal.age = this.getPersonalAge();
     },
 
     methods: {
         getPeriod() {
-            const entrance = new Date(this.company.entrance)
-            const exit = this.company.exit ? new Date(this.company.exit) : new Date()
-            const diff = Math.abs(exit - entrance)
-            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365))
-            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30))
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+            const entrance = new Date(this.company.entrance);
+            const exit = this.company.exit
+                ? new Date(this.company.exit)
+                : new Date();
+            const diff = Math.abs(exit - entrance);
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
             if (years > 0) {
-                return `${years} year${years > 1 ? 's' : ''}`
+                return `${years} year${years > 1 ? "s" : ""}`;
             } else if (months > 0) {
-                return `${months} month${months > 1 ? 's' : ''}`
+                return `${months} month${months > 1 ? "s" : ""}`;
             } else {
-                return `${days} day${days > 1 ? 's' : ''}`
+                return `${days} day${days > 1 ? "s" : ""}`;
             }
         },
         getPersonalAge() {
             const lastUpdate = about.lastUpdate;
-            const birth = new Date(`${about.birth.year}-${about.birth.month}-${about.birth.day}`);
+            const birth = new Date(
+                `${about.birth.year}-${about.birth.month}-${about.birth.day}`
+            );
             const today = new Date();
             const diff = Math.abs(today - birth);
 
@@ -78,7 +110,10 @@ export default {
             const birthYear = birth.getFullYear();
 
             let years = todayYear - birthYear;
-            if (todayMonth < birthMonth || (todayMonth === birthMonth && todayDay < birthDay)) {
+            if (
+                todayMonth < birthMonth ||
+                (todayMonth === birthMonth && todayDay < birthDay)
+            ) {
                 years--;
             }
 
@@ -89,27 +124,23 @@ export default {
 
     head() {
         return {
-            title: 'Wellington | Full Stack Developer',
+            title: "Wellington | Full Stack Developer",
             meta: [
                 {
-                    hid: 'description',
-                    name: 'description',
-                    content: 'Wellington | Full Stack Developer'
+                    hid: "description",
+                    name: "description",
+                    content: "Wellington | Full Stack Developer"
                 }
             ]
-        }
-    },
-
-    
-
-    
-}
+        };
+    }
+};
 </script>
 
 <style>
 .about {
     width: 100%;
-    min-height: calc(100vh - 128px); 
+    min-height: calc(100vh - 128px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,7 +168,8 @@ html.light .about {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 2px 2px 3px rgba(0, 0, 0, 0.15);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15),
+        2px 2px 3px rgba(0, 0, 0, 0.15);
 }
 
 .about__container__text h1 {
@@ -145,7 +177,7 @@ html.light .about {
     font-weight: 700;
     color: #fff;
     margin-bottom: 48px;
-    font-family: 'Keep Calm', sans-serif;
+    font-family: "Keep Calm", sans-serif;
 }
 
 .about__container__text h1 span {
@@ -188,20 +220,32 @@ html.light .about {
     transition: all 0.3s ease;
     background-color: rgba(95, 13, 228, 0.791);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
-    transition: all .15s ease-out;
+    transition: all 0.15s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.5;
 }
 
 .about__container__text__buttons a:hover {
     background-color: rgba(142, 72, 255, 0.787);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(255,255,255,1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1),
+        0 0 0 3px rgba(255, 255, 255, 1);
     transform: translateY(-2px);
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
 }
 .about__container__text__buttons a:active {
     background-color: rgb(96, 0, 250);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1), 0 0 0 6px rgba(255,255,255,1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1),
+        0 0 0 6px rgba(255, 255, 255, 1);
     transform: translateY(2px);
-    transition: all .1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+.about__container__text__buttons a .material-icons {
+    position: relative;
+    top: -2px;
+    font-size: 1.6rem;
 }
 
 .about__container__image {
@@ -218,13 +262,13 @@ html.light .about {
     width: 70%;
     max-width: 500px;
     border-radius: 50%;
-    border: 5px solid #0A1B28;
+    border: 5px solid #0a1b28;
     filter: drop-shadow(0 0 10px #f3f3f3) contrast(1.5) brightness(1);
     z-index: 0 !important;
     position: relative;
 }
 html.light .about__container__image img {
-    filter: drop-shadow(0 0 10px #6624E7) brightness(1.2);
+    filter: drop-shadow(0 0 10px #6624e7) brightness(1.2);
     border: 5px solid #dbe5eb;
 }
 
