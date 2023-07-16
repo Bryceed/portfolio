@@ -5,19 +5,24 @@ export default defineNuxtConfig({
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             {
-              hid: 'description',
-              name: 'description',
-              content: process.env.npm_package_description || ''
+                hid: 'description',
+                name: 'description',
+                content: process.env.npm_package_description || ''
             }
-          ],
+        ],
     },
+
     app: {
         pageTransition: { name: 'page', mode: 'out-in' }
     },
+
     title: 'Hello',
+
     description:
         'This is some content coming from app.config.ts that support HMR, try to update it and see it in action.',
+
     showButton: false,
+
     modules: [
         '@nuxt/content',
         '@nuxtjs/emotion',
@@ -25,28 +30,32 @@ export default defineNuxtConfig({
         '@nuxtjs/color-mode',
         '@unocss/nuxt'
     ],
+
     css: [
         '@/assets/css/main.css',
     ],
+
     components: true,
+
     content: {
         markdown: {
             // Object syntax can be used to override default options
             toc: {
-				depth: 3,
-				searchDepth: 3,
-			},
+                depth: 3,
+                searchDepth: 3,
+            },
             prism: {
                 theme: 'prism-themes/themes/prism-material-oceanic.css'
             }
         },
         highlight: {
-			theme: "monokai",
-		},
+            theme: "monokai",
+        },
         nestedProperties: ['author.name'],
         documentDriven: true
+    },
+
+    devtools: {
+        enabled: true
     }
-
-
 })
-
