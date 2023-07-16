@@ -62,7 +62,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        width: fill-available;
+        width: stretch;
         min-height: calc(33vh + 50px);
         padding: 2rem 0 4rem;
         background: #111;
@@ -93,7 +93,7 @@
     .project-item {
         display: flex;
         flex-direction: column;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: start;
         width: 320px;
         height: 200px;

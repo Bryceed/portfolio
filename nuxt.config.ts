@@ -23,6 +23,7 @@ export default defineNuxtConfig({
         '@nuxtjs/emotion',
         '@nuxt/ui',
         '@nuxtjs/color-mode',
+        '@unocss/nuxt'
     ],
     css: [
         '@/assets/css/main.css',

@@ -66,7 +66,7 @@ li ul li {
     padding: 3px 10px 12px;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: row;
 }
 

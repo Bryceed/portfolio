@@ -1,4 +1,4 @@
-<template>
+<NuxtLayout :name="default">
     <v-if v-if="isPrideMonth">
         <CommonAlertsPride />
     </v-if>
@@ -7,7 +7,7 @@
     <ProjectsMiniDisplay />
     <HomeSkills />
     <HomeTwitch />
-</template>
+</NuxtLayout>
 
 <script>
 
