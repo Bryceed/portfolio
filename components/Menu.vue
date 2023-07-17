@@ -59,6 +59,9 @@
 
                     <div v-else class="flag flag-en rounded"></div>
                 </li>
+                <li>
+                    <ThemeSwitcher />
+                </li>
             </ul>
         </div>
     </nav>
@@ -214,7 +217,7 @@ nav {
     padding: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     margin: 20px;
     border-radius: 5px;
     position: sticky;
