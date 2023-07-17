@@ -87,7 +87,17 @@ div[class$="-mode"] {
   100%{background-position:0% 50%}
 }
 
-
+html.light::before {
+  content: "Light theme under development. Some elements should appears inverted.";
+  position: absolute;
+  height: 1em;
+  width: 100%;
+  z-index: 100;
+  text-align: center;
+  font-size: 0.8em;
+  color: #aaa;
+  font-weight: 400;
+}
 .light-mode nav {
   background: linear-gradient(#179b0a, #4de11c) !important;
 }
