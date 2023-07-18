@@ -234,7 +234,7 @@
 </style>
 
 <script>
-import { projects, miniDisplay } from "../../data/projects.json";
+import { projects, miniDisplay } from "../../data/mini_display.json";
 
 export default {
     data() {

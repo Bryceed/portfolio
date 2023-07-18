@@ -1,83 +1,91 @@
 {
-    "html": {
-        "home": {
-            "greetings": "Bonjour! Je suis <span>{name}</span>",
-            "description": [
-                "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
-                "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
-                "Travaillant actuellement pour <span>{business}</span>, depuis {time} mois.",
-                "Vous cherchez à concrétiser une idée?"
-            ],
-            "actions": [
-                {
-                    "label": "Voir les projets",
-                    "url": "/projects"
-                },
-                {
-                    "label": "Contact",
-                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
-                }
-            ],
-            "projects": {
-                "title": "Projets"
-            }
+  "html": {
+    "home": {
+      "greetings": "Bonjour! Je suis <span>{name}</span>",
+      "description": [
+        "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
+        "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
+        "Travaillant actuellement pour <span>{business}</span>, depuis {time} mois.",
+        "Vous cherchez à concrétiser une idée?"
+      ],
+      "actions": [
+        {
+          "label": "Voir les projets",
+          "url": "/projects"
         },
-        "projects": {
-            "title": "Mes projets",
-            "description": "Voici quelques-uns de mes projets.",
-            "miniDisplay": {
-                "button": "Voir le projet"
-            }
-        },
-        "footer": [
-            "Site construit en <b>Nuxt3</b> (Vue). En développement. | {year}",
-            "Visitez mon <a href=\"{url}\" target=\"_blank\">GitHub</a> pour en savoir plus sur mes projets (y compris celui-ci)."
-        ],
-        "contact": {
-            "title": "Contact"
-        },
-        "blog": {
-            "title": "Blog"
-        },
-        "commons": {
-            "underConstruction": {
-                "description": "J'ai encore besoin de temps pour créer cette session spécifique. \nVeuillez vérifier plus tard ou contactez-moi.",
-                "title": "En cours de construction"
-            }
+        {
+          "label": "Contact",
+          "url": "https://api.whatsapp.com/send?phone=5511942018873"
         }
+      ],
+      "projects": {
+        "title": "Projets"
+      }
     },
-    "menu": {
-        "home": "Accueil",
-        "blog": "Blog",
-        "projects": "Projets",
-        "contact": "Contact"
+    "projects": {
+      "title": "Mes projets",
+      "description": "Voici quelques-uns de mes projets.",
+      "miniDisplay": {
+        "button": "Voir le projet"
+      },
+      "messages": {
+        "not-found": "Oops! \nProjet introuvable."
+      }
+    },
+    "footer": [
+      "Site construit en <b>Nuxt3</b> (Vue). En développement. | {year}",
+      "Visitez mon <a href=\"{url}\" target=\"_blank\">GitHub</a> pour en savoir plus sur mes projets (y compris celui-ci)."
+    ],
+    "contact": {
+      "title": "Contact"
+    },
+    "blog": {
+      "title": "Blog"
     },
     "commons": {
-        "actions": {
-            "close": "Fechar",
-            "back": "Voltar"
-        },
-        "languages": {
-            "pt": "Português",
-            "en": "Inglês",
-            "es": "Espanhol"
-        },
-        "themes": {
-            "light": "Claro",
-            "dark": "Escuro"
-        }
+      "underConstruction": {
+        "description": "J'ai encore besoin de temps pour créer cette session spécifique. \nVeuillez vérifier plus tard ou contactez-moi.",
+        "title": "En cours de construction"
+      }
     },
-    "comemorations": {
-        "pride": {
-            "title": "Mês do Orgulho LGBTQIA+",
-            "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
-        }
+    "project": {
+      "buttons": {
+        "return": "Faire demi-tour"
+      }
+    }
+  },
+  "menu": {
+    "home": "Accueil",
+    "blog": "Blog",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "commons": {
+    "actions": {
+      "close": "Fechar",
+      "back": "Voltar"
     },
-    "language": {
-        "code": "fr",
-        "name": "Français",
-        "nativeName": "French",
-        "region": "FR"
+    "languages": {
+      "pt": "Português",
+      "en": "Inglês",
+      "es": "Espanhol"
     },
-    "theme": "Tema"
+    "themes": {
+      "light": "Claro",
+      "dark": "Escuro"
+    }
+  },
+  "comemorations": {
+    "pride": {
+      "title": "Mês do Orgulho LGBTQIA+",
+      "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
+    }
+  },
+  "language": {
+    "code": "fr",
+    "name": "Français",
+    "nativeName": "French",
+    "region": "FR"
+  },
+  "theme": "Tema"
 }

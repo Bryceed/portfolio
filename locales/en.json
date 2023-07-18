@@ -1,61 +1,69 @@
 {
-    "html": {
-        "home": {
-            "greetings": "Hi, I'm <span>{name}</span>!",
-            "description": [
-                "I'm a {years} years old <span>{occupation}</span> from <span>Brazil</span>.",
-                "Passionate about <span>{profession1}</span> and <span>{profession2}</span>.",
-                "Currently working at <span>{business}</span> for {time} months.",
-                "Do you wanna take off an idea from the paper?"
-            ],
-            "actions": [
-                {
-                    "label": "See my projects",
-                    "url": "/projects"
-                },
-                {
-                    "label": "Contact me",
-                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
-                }
-            ],
-            "projects": {
-                "title": "Projects"
-            }
+  "html": {
+    "home": {
+      "greetings": "Hi, I'm <span>{name}</span>!",
+      "description": [
+        "I'm a {years} years old <span>{occupation}</span> from <span>Brazil</span>.",
+        "Passionate about <span>{profession1}</span> and <span>{profession2}</span>.",
+        "Currently working at <span>{business}</span> for {time} months.",
+        "Do you wanna take off an idea from the paper?"
+      ],
+      "actions": [
+        {
+          "label": "See my projects",
+          "url": "/projects"
         },
-        "footer": [
-            "This site is built with <b>Nuxt3</b> (Vue). Under development. | {year}",
-            "Visit my <a href=\"{url}\" target=\"_blank\">GitHub</a> to see more about my projects (including this one)."
-        ],
-        "contact": {
-            "title": "Contact me"
-        },
-        "blog": {
-            "title": "Blog"
-        },
-        "projects": {
-            "miniDisplay": {
-                "button": "See more"
-            },
-            "description": "Here are some of my most recent projects.",
-            "title": "My projects"
-        },
-        "commons": {
-            "underConstruction": {
-                "title": "Under construction",
-                "description": "I still need some more time to create this specific session. \nPlease check later or contact me."
-            }
+        {
+          "label": "Contact me",
+          "url": "https://api.whatsapp.com/send?phone=5511942018873"
         }
+      ],
+      "projects": {
+        "title": "Projects"
+      }
     },
-    "menu": {
-        "home": "Home",
-        "blog": "Blog",
-        "projects": "Projects",
-        "contact": "Contact"
+    "footer": [
+      "This site is built with <b>Nuxt3</b> (Vue). Under development. | {year}",
+      "Visit my <a href=\"{url}\" target=\"_blank\">GitHub</a> to see more about my projects (including this one)."
+    ],
+    "contact": {
+      "title": "Contact me"
     },
-    "language": {
-        "code": "en",
-        "name": "English",
-        "nativeName": "English",
-        "region": "US"
+    "blog": {
+      "title": "Blog"
+    },
+    "projects": {
+      "miniDisplay": {
+        "button": "See more"
+      },
+      "description": "Here are some of my most recent projects.",
+      "title": "My projects",
+      "messages": {
+        "not-found": "Oops! Project not found."
+      }
+    },
+    "commons": {
+      "underConstruction": {
+        "title": "Under construction",
+        "description": "I still need some more time to create this specific session. \nPlease check later or contact me."
+      }
+    },
+    "project": {
+      "buttons": {
+        "return": "Return"
+      }
     }
+  },
+  "menu": {
+    "home": "Home",
+    "blog": "Blog",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "language": {
+    "code": "en",
+    "name": "English",
+    "nativeName": "English",
+    "region": "US"
+  }
 }

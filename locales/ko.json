@@ -31,6 +31,9 @@
       "description": "저의 프로젝트 목록입니다.",
       "miniDisplay": {
         "button": "더 보기"
+      },
+      "messages": {
+        "not-found": "이런! \n프로젝트를 찾을 수 없습니다."
       }
     },
     "footer": [
@@ -47,6 +50,11 @@
       "underConstruction": {
         "description": "이 특정 세션을 만들려면 아직 시간이 더 필요합니다. \n나중에 확인하거나 저에게 연락하십시오.",
         "title": "공사중"
+      }
+    },
+    "project": {
+      "buttons": {
+        "return": "뒤로 돌아 라"
       }
     }
   },

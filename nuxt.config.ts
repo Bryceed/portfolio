@@ -23,13 +23,7 @@ export default defineNuxtConfig({
 
     showButton: false,
 
-    modules: [
-        '@nuxt/content',
-        '@nuxtjs/emotion',
-        '@nuxt/ui',
-        '@nuxtjs/color-mode',
-        '@unocss/nuxt'
-    ],
+    modules: ['@nuxt/content', '@nuxtjs/emotion', '@nuxt/ui', '@nuxtjs/color-mode', '@unocss/nuxt', 'dayjs-nuxt', 'nuxt-jsonapi'],
 
     css: [
         '@/assets/css/main.css',

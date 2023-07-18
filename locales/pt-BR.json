@@ -27,6 +27,12 @@
       "description": "Aqui estão alguns dos meus projetos mais recentes.",
       "miniDisplay": {
         "button": "Ver mais"
+      },
+      "messages": {
+        "not-found": {
+          "title": "Oops! Projeto não encontrado.",
+          "description": "O projeto \"{project_id}\" não foi encontrado em nossos registros.\nPor favor, verifique a digitação do endereço ou retorne para a lista de projetos."
+        }
       }
     },
     "footer": [
@@ -43,6 +49,11 @@
       "underConstruction": {
         "description": "Ainda preciso de mais um tempo para criar essa sessão em específico. Por favor, verifique mais tarde ou entre em contato comigo.",
         "title": "Em construção"
+      }
+    },
+    "project": {
+      "buttons": {
+        "return": "Retornar"
       }
     }
   },

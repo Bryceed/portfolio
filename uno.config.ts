@@ -11,5 +11,12 @@ export default defineConfig({
         presetTypography(),
         presetUno(),
         presetWebFonts(),
+        presetIcons({
+            extraProperties: {
+                'vertical-align': 'middle',
+                'display': 'inline-block',
+                'fill': 'currentColor',
+            }
+        })
     ]
 })

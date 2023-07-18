@@ -40,7 +40,15 @@
     },
     "projects": {
       "description": "Estos son algunos de mis proyectos más recientes.",
-      "title": "Mis proyectos"
+      "title": "Mis proyectos",
+      "messages": {
+        "not-found": "¡Ups! \nProyecto no encontrado."
+      }
+    },
+    "project": {
+      "buttons": {
+        "return": "Volver"
+      }
     }
   },
   "menu": {

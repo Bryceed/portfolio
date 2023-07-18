@@ -1,7 +1,7 @@
 {
     "projects": [
+        
         {
-            "id": "ryan",
             "title": "RYAN Bot",
             "description": "Robô (inicialmente pensando) para o Discord, com funções de automação, moderação, diversão e utilitários.",
             "dueDate": "2020-01-01",
@@ -33,7 +33,6 @@
 
         },
         {
-            "id": "beatup",
             "title": "BeatUP",
             "description": "Web Rythm Game with a modern experience for rythm game lovers [Work in Progress].",
             "dueDate": "2020-01-01",
@@ -62,8 +61,8 @@
             "page": "/projects/beatup",
             "link": "https://streamable.com/dfky1y"
         },
+        
         {
-            "id": "orkuty",
             "title": "Orkuty",
             "description": "Recriação da antiga rede social Orkut, com foco em trazer uma junção de UX entre a nostalgia e o visual moderno.",
             "dueDate": "2020-01-01",
@@ -91,8 +90,8 @@
             ],
             "link": "http://test.com/789"
         },
+        
         {
-            "id": "karaotrack",
             "title": "karaoTrack.js",
             "description": "Script open-source para criação de letras sincronizadas no estilo de karaokê, que possibilite o uso de efeitos visuais e de sincronização para diversos fins.",
             "dueDate": "2020-01-01",
@@ -120,8 +119,8 @@
             ],
             "link": "https://streamable.com/v4du88"
         },
+        
         {
-            "id": "deltaverse",
             "title": "Deltaverse",
             "description": "Servidor de Minecraft com foco em trazer customizações visuais e funcionais, com sistema de economia, lojas, eventos e muito mais.",
             "dueDate": "2020-01-01",
@@ -150,7 +149,6 @@
             "link": "http://test.com/789"
         },
         {
-            "id": "mangut",
             "title": "Mangut",
             "description": "Projeto de conclusão de curso com foco nos povos indígenas. Contribuí com o front-end do projeto.",
             "dueDate": "2020-01-01",
@@ -178,5 +176,12 @@
             ],
             "link": "https://squad19mangut.netlify.app/"
         }
+        
+        
+    ],
+    "miniDisplay": [
+        "123",
+        "456",
+        "789"
     ]
 }

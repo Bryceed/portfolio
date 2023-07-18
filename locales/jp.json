@@ -1,80 +1,88 @@
 {
-    "html": {
-        "home": {
-            "greetings": "こんにちは！私は <span>{name}</span> です",
-            "description": [
-                "私は {years} 歳で、現在 <span>{occupation}</span> として <span>ブラジル</span> で活動しています。",
-                "私の主なスキルは <span>{profession1}</span> と <span>{profession2}</span> です。",
-                "現在 <span>{business}</span> で働いて {time} ヶ月。",
-                "アイデアを実現したいですか？"
-            ],
-            "actions": [
-                {
-                    "label": "プロジェクトを見る",
-                    "url": "/projects"
-                },
-                {
-                    "label": "連絡先",
-                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
-                }
-            ],
-            "projects": {
-                "title": "プロジェクト"
-            }
+  "html": {
+    "home": {
+      "greetings": "こんにちは！私は <span>{name}</span> です",
+      "description": [
+        "私は {years} 歳で、現在 <span>{occupation}</span> として <span>ブラジル</span> で活動しています。",
+        "私の主なスキルは <span>{profession1}</span> と <span>{profession2}</span> です。",
+        "現在 <span>{business}</span> で働いて {time} ヶ月。",
+        "アイデアを実現したいですか？"
+      ],
+      "actions": [
+        {
+          "label": "プロジェクトを見る",
+          "url": "/projects"
         },
-        "projects": {
-            "title": "プロジェクト",
-            "description": "私のプロジェクトのいくつかを見てください。",
-            "miniDisplay": {
-                "button": "もっと見る"
-            }
-        },
-        "footer": [
-            "サイトは <b>Nuxt3</b> (Vue) で構築されています。開発中です。 | {year}",
-            "私の <a href=\"{url}\" target=\"_blank\">GitHub</a> を訪問して、私のプロジェクトについてもっと見てください（これも含まれます）。"
-        ],
-        "blog": {
-            "title": "ブログ"
-        },
-        "commons": {
-            "underConstruction": {
-                "description": "このセッションを作成するには、まだ少し時間がかかります。\n後で確認するか、私に連絡してください。",
-                "title": "建設中"
-            }
+        {
+          "label": "連絡先",
+          "url": "https://api.whatsapp.com/send?phone=5511942018873"
         }
+      ],
+      "projects": {
+        "title": "プロジェクト"
+      }
     },
-    "menu": {
-        "home": "ホーム",
-        "blog": "ブログ",
-        "projects": "プロジェクト",
-        "contact": "連絡先"
+    "projects": {
+      "title": "プロジェクト",
+      "description": "私のプロジェクトのいくつかを見てください。",
+      "miniDisplay": {
+        "button": "もっと見る"
+      },
+      "messages": {
+        "not-found": "Oops! \nProject not found."
+      }
+    },
+    "footer": [
+      "サイトは <b>Nuxt3</b> (Vue) で構築されています。開発中です。 | {year}",
+      "私の <a href=\"{url}\" target=\"_blank\">GitHub</a> を訪問して、私のプロジェクトについてもっと見てください（これも含まれます）。"
+    ],
+    "blog": {
+      "title": "ブログ"
     },
     "commons": {
-        "actions": {
-            "close": "Fechar",
-            "back": "Voltar"
-        },
-        "languages": {
-            "pt": "Português",
-            "en": "Inglês",
-            "es": "Espanhol"
-        },
-        "themes": {
-            "light": "Claro",
-            "dark": "Escuro"
-        }
+      "underConstruction": {
+        "description": "このセッションを作成するには、まだ少し時間がかかります。\n後で確認するか、私に連絡してください。",
+        "title": "建設中"
+      }
     },
-    "comemorations": {
-        "pride": {
-            "title": "Mês do Orgulho LGBTQIA+",
-            "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
-        }
+    "project": {
+      "buttons": {
+        "return": "Turn back"
+      }
+    }
+  },
+  "menu": {
+    "home": "ホーム",
+    "blog": "ブログ",
+    "projects": "プロジェクト",
+    "contact": "連絡先"
+  },
+  "commons": {
+    "actions": {
+      "close": "Fechar",
+      "back": "Voltar"
     },
-    "language": {
-        "code": "jp",
-        "name": "Japanese",
-        "nativeName": "日本語",
-        "region": "JP"
+    "languages": {
+      "pt": "Português",
+      "en": "Inglês",
+      "es": "Espanhol"
     },
-    "theme": "Tema"
+    "themes": {
+      "light": "Claro",
+      "dark": "Escuro"
+    }
+  },
+  "comemorations": {
+    "pride": {
+      "title": "Mês do Orgulho LGBTQIA+",
+      "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
+    }
+  },
+  "language": {
+    "code": "jp",
+    "name": "Japanese",
+    "nativeName": "日本語",
+    "region": "JP"
+  },
+  "theme": "Tema"
 }
