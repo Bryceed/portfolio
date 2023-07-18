@@ -134,7 +134,7 @@ html.light .project-item:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
+    align-items: flex-start;
     width: 60%;
     height: 100%;
     padding: 7px 20px 0;
