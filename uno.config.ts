@@ -7,7 +7,6 @@ import {
 export default defineConfig({
     presets: [
         presetAttributify(),
-        presetIcons(),
         presetTypography(),
         presetUno(),
         presetWebFonts(),
