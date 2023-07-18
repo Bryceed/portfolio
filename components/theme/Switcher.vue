@@ -24,6 +24,7 @@ div[class^="i-akar-icons-"]:hover {
     opacity: 1;
     transition: all .1s ease-in;
 }
+
 </style>
 
 <script>

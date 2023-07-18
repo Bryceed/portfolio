@@ -71,9 +71,9 @@
         border-radius: 14px;
     }
     html.light .mini-display-container {
-        background: #eee;
+        background: transparent;
         color: #000;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
+        box-shadow: none;
     }
     .mini-display {
         display: flex;
@@ -93,7 +93,6 @@
         width: calc(33vw - 3rem);
         height: calc(33vw / 1.7);
         margin: 1rem;
-        border-radius: 8px;
         background: #111;
         color: #000;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

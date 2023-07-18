@@ -461,9 +461,6 @@ html.light .skills__container__table__column h2 {
     font-weight: 700;
     color: #fff;
 }
-html.light ._item__name {
-    color: #777;
-}
 
 ._item__meter {
     width: 100%;
@@ -484,14 +481,19 @@ html.light ._item__name {
     overflow: hidden;
 }
 
-
-
-
 .meter {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+html.light ._item {
+    background-color: rgba(255, 255, 255, 0.492);
+}
+
+html.light ._item__name {
+    color: #777;
 }
 </style>

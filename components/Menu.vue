@@ -225,7 +225,7 @@ nav {
     z-index: 9;
     backdrop-filter: blur(10px);
 }
-nav::after {
+nav::before {
     content: '';
     position: absolute;
     top: -60px;
@@ -233,15 +233,8 @@ nav::after {
     right: -20px;
     height: 60px;
     background: linear-gradient(to top, rgba(34, 34, 34, 0.8), #222222 31%);
-    z-index: -1;
     border-radius: 30px;
 }
-
-html.light nav {
-    filter: invert(1) brightness(1.5);
-    background-color: rgba(0,0,0, .9);
-}
-
 nav ul {
     list-style: none;
     margin: 0;
@@ -352,7 +345,7 @@ nav ul li.lang-switcher {
     padding: 0.25em 1em;
     border-radius: 1em;
     display: flex;
-    transition: ease-out .3s;
+    transition: ease-in-out .3s;
     cursor: pointer;
 }
 .lang-switcher:hover {
@@ -429,6 +422,43 @@ nav ul li.lang-switcher {
         align-items: center;
         width: 100%;
     }
+}
 
+html.light nav {
+    background-color: rgba(227, 227, 227, 0.8);
+    box-shadow: inset 0 0 6px #ccc, 0 0 6px #979797;
+    color: #000;
+}
+html.light nav::before {
+    background: linear-gradient(to top, rgba(207, 207, 207, 0.8), #E3E3E3F8 31%);
+}
+html.light nav ul li a {
+    color: #555;
+    font-weight: 500;
+}
+html.light nav ul li a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+html.light nav .logo .code-selector {
+    background-color: #000;
+}
+
+html.light nav ul li.lang-switcher {
+    background: #ECECEC;
+    color: #000;
+    box-shadow: 0 .07em 0 .1em #00000009;
+    position: relative;
+    top: 0;
+}
+html.light nav ul li.lang-switcher:hover {
+    box-shadow: 0 0 0 .15em #5f0de4;
+    color: #5f0de4;
+    background: #FFFFFF;
+    transition: ease-out .1s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 </style>

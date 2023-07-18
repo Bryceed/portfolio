@@ -69,16 +69,15 @@ p {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background: #2e2e2e;
-    border-radius: 5px;
+    background: #1b1b1b;
+    border-radius: 1em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: 20px 0;
     width: clamp(360px, 100%, 600px);
     height: 140px;
     transition: all .1s ease-in-out;
     color: #fff;
-    border-radius: 8px;
-    border-top-left-radius: 2rem;
+    overflow: hidden;
 }
 html.light .project-item {
     background: #ece6ef;
@@ -87,13 +86,13 @@ html.light .project-item {
 }
 
 .project-item:hover {
-    box-shadow: 0 0 0 5px #222222, 0 0 0 8px #ffffff, 0 0 30px rgba(203, 203, 203, 0.585);
+    box-shadow: 0 0 0 5px #222222, 0 0 0 8px #d1d1d1, 0 0 30px rgba(203, 203, 203, 0.585);
     transition: all .1s ease-in;
     height: 160px;
     margin: 0;
 }
 html.light .project-item:hover {
-    box-shadow: 0 0 0 5px #ffffff, 0 0 0 8px currentColor, 0 0 40px currentColor;
+    box-shadow: 0 0 0 5px #D1D1D1, 0 0 0 8px currentColor, 0 0 40px currentColor;
     transition: all .1s ease-in;
     height: 160px;
     margin: 0;
@@ -122,7 +121,6 @@ html.light .project-item:hover {
     width: 40vw;
     height: 100%;
     object-fit: cover;
-    border-top-left-radius: 2rem;
     transition: all .15s ease-in;
 }
 .project-item:hover ._left img {
