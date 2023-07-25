@@ -2,15 +2,15 @@
     <div class="under-construction">
         <i class="material-icons">warning_amber</i>
         <h2 v-html="$t('html.commons.underConstruction.title')"></h2>
-                                                                            <p v-html="$t('html.commons.underConstruction.description')">
-                                                                            </p>
+        <p v-html="$t('html.commons.underConstruction.description')"></p>
+        <slot></slot>
     </div>
 </template>
 
 <script>
 export default {
     name: "CommonAlertsUnderConstruction"
-}
+};
 </script>
 
 <style scoped>
@@ -30,7 +30,7 @@ export default {
     display: inline-table;
     background-color: red;
     border-radius: 10%;
-    padding: .6rem;
+    padding: 0.6rem;
 }
 
 .under-construction h2 {
@@ -49,7 +49,7 @@ export default {
     color: #ddd;
     display: inline;
     background-color: #333;
-    padding: .2rem .5rem .3rem;
-    border-radius: .2rem;
+    padding: 0.2rem 0.5rem 0.3rem;
+    border-radius: 0.2rem;
 }
 </style>

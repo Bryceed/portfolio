@@ -28,7 +28,7 @@
                 }
             ],
             "link": "https://github.com/RyderMais/Ryan",
-            "page": "/projects/ryan",
+            "page": "/project/ryan",
             "code": "https://github.com/RyderMais/Ryan"
 
         },
@@ -59,7 +59,7 @@
                     "url": "http://test.com/123"
                 }
             ],
-            "page": "/projects/beatup",
+            "page": "/project/beatup",
             "link": "https://streamable.com/dfky1y"
         },
         {
@@ -89,7 +89,8 @@
                     "url": "http://test.com/123"
                 }
             ],
-            "link": "http://test.com/789"
+            "link": "http://test.com/789",
+            "page": "/project/orkuty"
         },
         {
             "id": "karaotrack",
@@ -118,7 +119,8 @@
                     "url": "http://test.com/123"
                 }
             ],
-            "link": "https://streamable.com/v4du88"
+            "link": "https://streamable.com/v4du88",
+            "page": "/project/karaotrack"
         },
         {
             "id": "deltaverse",
@@ -147,7 +149,8 @@
                     "url": "http://test.com/123"
                 }
             ],
-            "link": "http://test.com/789"
+            "link": "http://test.com/789",
+            "page": "/project/deltaverse"
         },
         {
             "id": "mangut",
@@ -176,7 +179,8 @@
                     "url": "http://test.com/123"
                 }
             ],
-            "link": "https://squad19mangut.netlify.app/"
+            "link": "https://squad19mangut.netlify.app/",
+            "page": "/project/mangut"
         }
     ]
 }
