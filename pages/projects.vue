@@ -1,9 +1,9 @@
 <template>
     <div>
-            <h1 v-html="$t('html.projects.title')"></h1>
-            <p v-html="$t('html.projects.description')"></p>
+        <h1 v-html="$t('html.projects.title')"></h1>
+        <p v-html="$t('html.projects.description')"></p>
         <div class="projects">
-            <div class="project-item" v-for="project in projects" :key="project.id" :style="{'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6'}">
+            <div class="project-item" v-for="project in projects" :key="project.id" :style="{'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6'}" :id="project.id">
                 <div class="_left">
                     <img :src="project.placeholder" :alt="project.name" />
                 </div>
@@ -38,6 +38,24 @@ export default {
             projects
         }
     },
+
+    mounted() {
+        // for each project, add a event listener on link click to navigate to the project page
+        this.projects.forEach(project => {
+            if (project.page) {
+                document.getElementById(project.id).addEventListener('click', () => {
+                    this.linkTo(project.page);
+                });
+            }
+        });
+    },
+    methods: {
+        linkTo(page) {
+            if (page) {
+                this.$router.push(page);
+            }
+        }
+    }
 }
 </script>
 

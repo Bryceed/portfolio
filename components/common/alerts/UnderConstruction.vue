@@ -28,7 +28,7 @@ export default {
     color: white;
     margin-bottom: 20px;
     display: inline-table;
-    background-color: red;
+    background-color: rgba(95, 13, 228, 0.791);
     border-radius: 10%;
     padding: 0.6rem;
 }
@@ -46,10 +46,10 @@ export default {
     font-weight: 400;
     text-align: center;
     max-width: 75%;
-    color: #ddd;
     display: inline;
-    background-color: #333;
+    background-color: rgba(95, 13, 228, 0.103);
     padding: 0.2rem 0.5rem 0.3rem;
     border-radius: 0.2rem;
+    opacity: .5;
 }
 </style>
