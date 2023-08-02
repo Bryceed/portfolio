@@ -98,6 +98,18 @@ export default {
                     ".bg-experience nav a, .bg-experience nav i": {
                         "color": `${this.projects.colors.text} !important`
                     },
+                    ".bg-experience.dark body::after": {
+                        "display": "block",
+                        "content": "''",
+                        "background": "black",
+                        "position": "absolute",
+                        "top": 0,
+                        "right": 0,
+                        "left": 0,
+                        "bottom": 0,
+                        "z-index": -1,
+                        "opacity":'.6'
+                    },
                 });
                 document.querySelector("html").classList.add("bg-experience");
             } else {
