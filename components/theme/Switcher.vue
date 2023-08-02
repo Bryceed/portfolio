@@ -1,10 +1,10 @@
 
 <template>
     <div class="theme-switcher">
-        <button v-if="$colorMode.value === 'light'" @click="setTheme('dark')" >
+        <button v-if="$colorMode.preference === 'light'" @click="setTheme('dark')" >
             <div class="i-akar-icons-sun hover:i-akar-icons-sun-fill"></div>
         </button>
-        <button v-if="$colorMode.value === 'dark'" @click="setTheme('light')" >
+        <button v-else @click="setTheme('light')" >
             <div class="i-akar-icons-moon hover:i-akar-icons-moon-fill"></div>     
         </button>
     </div>
@@ -33,16 +33,15 @@ export default {
 
     methods: {
         setTheme(theme) {
-            useColorMode().value = theme
-        }
+            useColorMode().preference = theme
+        },    
     },
 
     watch: {
         '$colorMode.value': {
             immediate: false,
             handler(theme) {
-                document.documentElement.classList.remove('light', 'dark', 'system')
-                document.documentElement.classList.add(theme)
+                this.theme = theme
             }
         }
     }
