@@ -70,8 +70,62 @@ export default {
         )[0];
         !this.projects ?? (this.error = true);
 
-        // TODO: Change background color to follow the project's primary color
-        //document.querySelector("html").style.backgroundColor = this.projects.colors.primary;
+        this.waitDocReady();
+    },
+
+    methods: {
+        waitDocReady(removeClass = false) {
+            if (document.readyState === "complete") {
+                if (removeClass) {
+                    return document.querySelector("html").classList.remove("bg-experience");
+                }
+                this.defineClassStyle({
+                    ".bg-experience": {
+                        "background": `linear-gradient(0deg, ${this.projects.colors.primary}, ${this.projects.colors.secondary}), linear-gradient(0deg, ${this.projects.colors.secondary}, transparent)`
+                    },
+                    ".bg-experience nav": {
+                        "background": `linear-gradient(90deg, ${this.projects.colors.primary}, ${this.projects.colors.secondary}) !important`,
+                        "box-shadow": "none !important"
+                    },
+                    ".bg-experience .footer": {
+                        "background": `${this.projects.colors.secondary} !important`,
+                        "box-shadow": "none !important",
+                        "color": `${this.projects.colors.text} !important`
+                    },
+                    ".bg-experience .container": {
+                        "color": `${this.projects.colors.text} !important`
+                    },
+                    ".bg-experience nav a, .bg-experience nav i": {
+                        "color": `${this.projects.colors.text} !important`
+                    },
+                });
+                document.querySelector("html").classList.add("bg-experience");
+            } else {
+                setTimeout(waitDocReady, 100);
+            }
+        },
+        defineClassStyle(styles) {
+            const style = document.createElement("style");
+            style.id = "class-style";
+            style.innerHTML = Object.keys(styles)
+                .map((selector) => {
+                    const properties = styles[selector];
+                    return `${selector} { ${Object.keys(properties)
+                        .map((property) => {
+                            const value = properties[property];
+                            return `${property}: ${value};`;
+                        })
+                        .join("")} }`;
+                })
+                .join("");
+            document.getElementsByTagName("head")[0].appendChild(style);
+        }
+    },
+
+    // on leave, remove the class from body
+    beforeRouteLeave(to, from, next) {
+        this.waitDocReady(true);
+        next();
     },
 
     watch: {
@@ -80,7 +134,7 @@ export default {
             handler() {
                 this.route.params.project_id = this.$route.params.project_id;
             }
-        }
+        },
     },
 };
 </script>
