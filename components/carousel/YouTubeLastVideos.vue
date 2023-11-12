@@ -304,16 +304,14 @@ export default {
                 <i class="material-icons">close</i>
             </div>
             <div class="modal__inner__content">
-                <div class="modal__inner__content__video">
-                    <iframe
-                        id="youtube-embed"
-                        width="560"
-                        height="315"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                    ></iframe>
-                </div>
+                <iframe
+                    id="youtube-embed"
+                    width="560"
+                    height="315"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
             </div>
         </div>
     </div>
@@ -324,9 +322,9 @@ export default {
         position: relative;
         width: 100%;
         overflow: auto !important;
-        border-radius: 0.5em;
+        border-radius: 0 0 0.5em 0.5em;
         margin-top: 2em;
-        background: #892b2b;
+        background: #282626;
     }
     .carousel .youtube {
         max-width: 200px;
@@ -362,7 +360,7 @@ export default {
         right: -1px;
         left: -1px;
         height: 100%;
-        background: linear-gradient(180deg, #892b2b 12.5%, transparent 12.5%, transparent 87.5%, #892b2b 87.5%);
+        background: linear-gradient(180deg, #282626 12.5%, transparent 12.5%, transparent 87.5%, #282626 87.5%);
         z-index: 3;
     }
     .carousel__item img, .carousel__item a {
@@ -371,6 +369,45 @@ export default {
         -moz-user-drag: none;
         -o-user-drag: none;
         user-drag: none;
+    }
+
+    .modal {
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,.7);
+        padding: 94px 20px 20px 20px;
+        backdrop-filter: blur(3px);
+        z-index: 9;
+    }
+    .modal .modal__inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .modal .modal__inner .modal__inner__close {
+        position: absolute;
+        right: 0;
+        zoom: 2;
+        text-shadow: 1px 1px rgba(0,0,0,.2);
+        z-index: 9;
+    }
+    .modal .modal__inner .modal__inner__close i {
+        cursor: pointer;
+    }
+    .modal .modal__inner .modal__inner__content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    .modal .modal__inner .modal__inner__content #youtube-embed {
+        width: 100%;
+        height: 100%;
     }
 
 </style>

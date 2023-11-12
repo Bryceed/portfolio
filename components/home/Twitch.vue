@@ -1,5 +1,5 @@
 <template>
-    <div v-if="block != 'iframe'" class="card twitch">
+    <div v-if="block != 'iframe'" class="card twitch x-sp">
         <h1>🔴 Lives</h1>
         <div class="isiframe">
             <iframe
@@ -11,6 +11,7 @@
                 allowfullscreen="true">
             </iframe>
         </div>
+        <CarouselYouTubeLastVideos />
     </div>
 </template>
 
@@ -46,14 +47,15 @@ export default {
         align-items: center;
         justify-content: center;
         min-height: calc(100vh - 200px);
-        width: 100%;
-        padding: 2rem;
+        width: calc(100vw - 40px - 1rem);
+        padding-top: 2rem;
         background: black;
         border-radius: 8px;
         color: white;
+        margin-bottom: 2rem;
     }
     html.light .twitch {
-        background: linear-gradient(#0025DD, #00093A);
+        background: linear-gradient(#692cc4, #1c073c);
         box-shadow: 0 0 30px black;
     }
 
@@ -98,5 +100,6 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 2rem;
     }
 </style>

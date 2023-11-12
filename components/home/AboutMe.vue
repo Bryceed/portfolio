@@ -1,5 +1,5 @@
 <template>
-    <div class="about">
+    <div class="about x-sp">
         <div class="about__container">
             <div class="about__container__image">
                         <img

@@ -4,7 +4,6 @@
     </v-if>
     <HomeAboutMe />
     <ProjectsMiniDisplay />
-    <CarouselYouTubeLastVideos />
     <HomeSkills />
     <HomeTwitch />
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="projects">
+    <div class="projects x-sp">
             <h2 v-html="$t('html.home.projects.title')"></h2>
         <template v-for="project in projects">
             <div class="project-item">
