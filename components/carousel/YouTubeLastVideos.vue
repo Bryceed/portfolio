@@ -35,6 +35,7 @@ export default {
             xhr.setRequestHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');// xml
             xhr.setRequestHeader('Content-Type', 'application/xml');
             xhr.responseType = 'document';
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
             const videos: Video[] = [];
 
