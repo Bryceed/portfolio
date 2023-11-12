@@ -28,7 +28,7 @@ export default {
             
             xhr.open(
                 'GET',
-                'http://129.151.32.92:8081/https://www.youtube.com/feeds/videos.xml?channel_id=UCN_W-bGmVEZYSWJ0yphqm6Q'
+                'https://129.151.32.92:8081/https://www.youtube.com/feeds/videos.xml?channel_id=UCN_W-bGmVEZYSWJ0yphqm6Q'
             );
             xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
             xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
@@ -36,6 +36,7 @@ export default {
             xhr.setRequestHeader('Content-Type', 'application/xml');
             xhr.responseType = 'document';
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.setRequestHeader('X-Ignore-Certificate-Errors', '1');
 
             const videos: Video[] = [];
 
@@ -167,7 +168,7 @@ export default {
     <div class="carousel">
         <div class="carousel__inner" v-if="!loading && !failed">
             <div class="carousel__item" v-for="(video, index) in videosData.videos" :key="index">
-                <a :href="video.link || undefined">
+                <a :href="video.link || undefined" target="_blank" rel="noopener noreferrer">
                     <div class="carousel__item__inner">
                         <div class="carousel__item__inner__thumbnail">
                             <figure>
