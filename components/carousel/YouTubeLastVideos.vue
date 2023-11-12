@@ -1,5 +1,5 @@
 <script lang="ts">
-import { build } from 'vite';
+import { ref } from 'vue';
 import 'xhr2';
 interface Video {
     videoId: string;
@@ -13,10 +13,16 @@ interface VideosData {
 }
 
 export default {
-    data(): { loading: boolean; failed: boolean; videosData: VideosData } {
+    data(): { 
+        loading: boolean; 
+        failed: boolean; 
+        isModalOpen: boolean;
+        videosData: VideosData 
+    } {
         return {
             loading: true,
             failed: false,
+            isModalOpen: false,
             videosData: {
                 videos: [],
             },
@@ -140,6 +146,82 @@ export default {
                 }
             };
 
+            function dragScroll() {
+                let isDown = false;
+                let startX = 0;
+                let scrollLeft = 0;
+
+                inner.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    inner.classList.add('active');
+                    startX = e.pageX - inner.offsetLeft;
+                    scrollLeft = inner.scrollLeft;
+                });
+
+                inner.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+
+                inner.addEventListener('mouseup', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+
+                inner.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - inner.offsetLeft;
+                    const walk = (x - startX) * 3;
+                    inner.scrollLeft = scrollLeft - walk;
+                });
+
+                inner.addEventListener('touchstart', (e) => {
+                    isDown = true;
+                    inner.classList.add('active');
+                    startX = e.touches[0].pageX - inner.offsetLeft;
+                    scrollLeft = inner.scrollLeft;
+                });
+
+                inner.addEventListener('touchend', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+
+                inner.addEventListener('touchmove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.touches[0].pageX - inner.offsetLeft;
+                    const walk = (x - startX) * 3;
+                    inner.scrollLeft = scrollLeft - walk;
+                });
+
+                inner.addEventListener('touchcancel', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+
+                inner.addEventListener('touchleave', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+
+                inner.addEventListener('touchenter', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+
+                inner.addEventListener('touchmove', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+
+                inner.addEventListener('touchend', () => {
+                    isDown = false;
+                    inner.classList.remove('active');
+                });
+            };
+
             function init() {
                 setMaxTranslate();
                 setTransform();
@@ -148,10 +230,35 @@ export default {
                 carousel?.addEventListener('mouseout', handleMouseOut);
                 nextBtn?.addEventListener('click', next);
                 prevBtn?.addEventListener('click', prev);
+                dragScroll();
             };
 
             init();
         },
+
+        embedOnModal(type: string, url) {
+            const modal = document.getElementById('youtube-modal') as HTMLElement;
+            const embed = document.getElementById('youtube-embed') as HTMLIFrameElement;
+            const embedUrl = new URL(url);
+            const videoId = embedUrl.searchParams.get('v');
+            const embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&autohide=1&mute=0`;
+
+            embed ? embed.src = embedSrc : console.error('Unknown modal');
+
+            modal.style.display = 'block';
+            this.isModalOpen = true;
+        },
+        modal(action: string) {
+            const modal = document.getElementById('youtube-modal') as HTMLElement;
+            const embed = document.getElementById('youtube-embed') as HTMLIFrameElement;
+
+            if (action === 'open') {
+                this.isModalOpen = true;
+            } else {
+                this.isModalOpen = false;
+                embed.src = '';
+            }
+        }
     },
     watch: {
         videosData: {
@@ -166,14 +273,17 @@ export default {
 
 <template>
     <div class="carousel">
+        <img class="youtube" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/YouTube_light_logo_(2017).svg" alt="YouTube Logo" />
         <div class="carousel__inner" v-if="!loading && !failed">
             <div class="carousel__item" v-for="(video, index) in videosData.videos" :key="index">
-                <a :href="video.link || undefined" target="_blank" rel="noopener noreferrer">
+                <a :href="video.link || undefined" target="_blank" @click.prevent="embedOnModal('youtube', video.link)">
                     <div class="carousel__item__inner">
                         <div class="carousel__item__inner__thumbnail">
-                            <figure>
-                                <img :src="video.thumbnail || undefined" alt="Thumbnail" />
-                            </figure>
+                            <div class="_overflow"></div>
+                            <img :src="video.thumbnail || undefined" alt="Thumbnail" />
+                        </div>
+                        <div class="carousel__item__inner__duration">
+                            <span>{{ video.title }}</span>
                         </div>
                     </div>
                 </a>
@@ -187,24 +297,49 @@ export default {
             </div>
         </div>
     </div>
+
+    <div id="youtube-modal" class="modal" :style="{'display': isModalOpen ? 'block' : 'none'}">
+        <div class="modal__inner">
+            <div class="modal__inner__close" @click="modal('close')">
+                <i class="material-icons">close</i>
+            </div>
+            <div class="modal__inner__content">
+                <div class="modal__inner__content__video">
+                    <iframe
+                        id="youtube-embed"
+                        width="560"
+                        height="315"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
     .carousel {
         position: relative;
         width: 100%;
-        overflow: hidden;
+        overflow: auto !important;
         border-radius: 0.5em;
         margin-top: 2em;
+        background: #892b2b;
+    }
+    .carousel .youtube {
+        max-width: 200px;
+        margin: 2em auto 0;
     }
     .carousel__inner {
         transition: transform 0.5s ease-in-out;
         display: grid;
-        background: black;
         overflow: auto;
         justify-items: center;
         grid-auto-flow: column;
         gap: 2em;
+        padding: 0 2em;
         -webkit-user-select: none;
         -webkit-touch-callout: none;
         -khtml-user-select: none;
@@ -219,6 +354,16 @@ export default {
     }
     .carousel__item.active {
         transform: scale(1.1);
+    }
+    .carousel__item__inner__thumbnail {position: relative;}
+    .carousel__item ._overflow {
+        position: absolute;
+        top: 0;
+        right: -1px;
+        left: -1px;
+        height: 100%;
+        background: linear-gradient(180deg, #892b2b 12.5%, transparent 12.5%, transparent 87.5%, #892b2b 87.5%);
+        z-index: 3;
     }
     .carousel__item img, .carousel__item a {
         -webkit-user-drag: none;

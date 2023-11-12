@@ -48,10 +48,18 @@ body {
 
 
 .container {
-  margin: 0 20px 20px;
-  max-width: none !important;
+  max-width: 100vw !important;
   overflow: hidden;
   min-height: calc(100vh - 197px) !important
+}
+
+.x-sp {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.y-sp {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 div[class$="-mode"] {
