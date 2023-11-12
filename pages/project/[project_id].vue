@@ -77,7 +77,7 @@ export default {
         waitDocReady(removeClass = false) {
             if (document.readyState === "complete") {
                 if (removeClass) {
-                    return document.querySelector("html").classList.remove("bg-experience");
+                    return document.querySelector("body").classList.remove("bg-experience");
                 }
                 this.defineClassStyle({
                     ".bg-experience": {
@@ -111,7 +111,7 @@ export default {
                         "opacity":'.6'
                     },
                 });
-                document.querySelector("html").classList.add("bg-experience");
+                document.querySelector("body").classList.add("bg-experience");
             } else {
                 setTimeout(waitDocReady, 100);
             }

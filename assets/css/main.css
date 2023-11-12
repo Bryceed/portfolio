@@ -36,7 +36,7 @@ html {
   
 }
 body {
-  min-height: calc(100vh - 20px);
+  min-height: calc(100vh);
 }
 
 /* Typography */

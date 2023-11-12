@@ -1,70 +1,72 @@
 <template>
-    <nav>
-        <a href="/"><!-- guarantee full reload ("panic button" for bugs) -->
-            <div class="logo">
-                <span>W</span>
-                <span>e</span>
-                <span>l</span>
-                <span>l</span>
-                <div class="typing">
-                    <span>.</span>
-                    <span>d</span>
+    <div class="menuHandler">
+        <nav>
+            <a href="/"><!-- guarantee full reload ("panic button" for bugs) -->
+                <div class="logo">
+                    <span>W</span>
                     <span>e</span>
-                    <span>v</span>
+                    <span>l</span>
+                    <span>l</span>
+                    <div class="typing">
+                        <span>.</span>
+                        <span>d</span>
+                        <span>e</span>
+                        <span>v</span>
+                    </div>
+                    <div class="code-selector active"></div>
                 </div>
-                <div class="code-selector active"></div>
+            </a>
+            <div class="menu-canMobile">
+                <button class="menu-btn" @click="menuOpen = !menuOpen" :class="{ 'menu-open': menuOpen }">
+                    <i class="material-icons">menu</i>
+                </button>
+                <ul class="menu" :class="{ 'menu-open': menuOpen }">
+                    <li v-for="item in menu" :key="item.id">
+                        <template v-if="item.submenu">
+                            <a href="javascript:void(0)" @click="item.open = !item.open" class="menu-item">
+                                <i class="material-icons expand-icon" v-if="!item.open">expand_more</i>
+                                <i class="material-icons collapse-icon" v-if="item.open">expand_less</i>
+                                // get the item.name value to check if there's a key in the language file
+                                <span v-if="$t(`menu.${item.name}`) != item.name">{{ $t(`menu.${item.name}`) }}</span>
+                                <span v-else>{{ item.name }}</span>
+                            </a>
+                            <ul v-if="item.open" class="submenu">
+                                <li v-for="subitem in item.submenu" :key="subitem.id">
+                                    <a :href="subitem.link" target="_blank">{{ subitem.name }}</a>
+                                </li>
+                            </ul>
+                        </template>
+                        <template v-else>
+                            <NuxtLink :to="item.link" class="menu-item" @click="closeMenu()">
+                                <span v-if="$t(`menu.${item.name.toLowerCase()}`) != item.name.toLowerCase()">{{ $t(`menu.${item.name.toLowerCase()}`) }}</span>
+                                <span v-else>{{ item.name }}</span>
+                            </NuxtLink>
+                        </template>
+                    </li>
+                    <li class="menu-item lang-switcher" @click="langSwitch()">
+                        <span class="flag-text">{{ $t('language.region') }} </span>
+
+                        <div v-if="$i18n.locale == 'en' || $i18n.locale == 'en-US'" class="flag flag-en rounded"></div>
+
+                        <div v-else-if="$i18n.locale == 'pt-BR' || $i18n.locale == 'pt'" class="flag flag-pt rounded"></div>
+
+                        <div v-else-if="$i18n.locale == 'es' || $i18n.locale == 'es-ES'" class="flag flag-es rounded"></div>
+
+                        <div v-else-if="$i18n.locale == 'fr' || $i18n.locale == 'fr-FR'" class="flag flag-fr rounded"></div>
+
+                        <div v-else-if="$i18n.locale == 'jp' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded"></div>
+
+                            <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded"></div>
+
+                        <div v-else class="flag flag-en rounded"></div>
+                    </li>
+                    <li>
+                        <ThemeSwitcher />
+                    </li>
+                </ul>
             </div>
-        </a>
-        <div class="menu-canMobile">
-            <button class="menu-btn" @click="menuOpen = !menuOpen" :class="{ 'menu-open': menuOpen }">
-                <i class="material-icons">menu</i>
-            </button>
-            <ul class="menu" :class="{ 'menu-open': menuOpen }">
-                <li v-for="item in menu" :key="item.id">
-                    <template v-if="item.submenu">
-                        <a href="javascript:void(0)" @click="item.open = !item.open" class="menu-item">
-                            <i class="material-icons expand-icon" v-if="!item.open">expand_more</i>
-                            <i class="material-icons collapse-icon" v-if="item.open">expand_less</i>
-                            // get the item.name value to check if there's a key in the language file
-                            <span v-if="$t(`menu.${item.name}`) != item.name">{{ $t(`menu.${item.name}`) }}</span>
-                            <span v-else>{{ item.name }}</span>
-                        </a>
-                        <ul v-if="item.open" class="submenu">
-                            <li v-for="subitem in item.submenu" :key="subitem.id">
-                                <a :href="subitem.link" target="_blank">{{ subitem.name }}</a>
-                            </li>
-                        </ul>
-                    </template>
-                    <template v-else>
-                        <NuxtLink :to="item.link" class="menu-item" @click="closeMenu()">
-                            <span v-if="$t(`menu.${item.name.toLowerCase()}`) != item.name.toLowerCase()">{{ $t(`menu.${item.name.toLowerCase()}`) }}</span>
-                            <span v-else>{{ item.name }}</span>
-                        </NuxtLink>
-                    </template>
-                </li>
-                <li class="menu-item lang-switcher" @click="langSwitch()">
-                    <span class="flag-text">{{ $t('language.region') }} </span>
-
-                    <div v-if="$i18n.locale == 'en' || $i18n.locale == 'en-US'" class="flag flag-en rounded"></div>
-
-                    <div v-else-if="$i18n.locale == 'pt-BR' || $i18n.locale == 'pt'" class="flag flag-pt rounded"></div>
-
-                    <div v-else-if="$i18n.locale == 'es' || $i18n.locale == 'es-ES'" class="flag flag-es rounded"></div>
-
-                    <div v-else-if="$i18n.locale == 'fr' || $i18n.locale == 'fr-FR'" class="flag flag-fr rounded"></div>
-
-                    <div v-else-if="$i18n.locale == 'jp' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded"></div>
-
-                        <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded"></div>
-
-                    <div v-else class="flag flag-en rounded"></div>
-                </li>
-                <li>
-                    <ThemeSwitcher />
-                </li>
-            </ul>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </template>
 
 <script>
@@ -133,8 +135,6 @@ export default {
                 clearInterval();
             }
             waitingTime = 0;
-            
-            console.log(oldSuffix.length, newSuffix.length)
 
             codeSelector.classList.add('active')
 
@@ -211,6 +211,12 @@ export default {
 </script>
 
 <style>
+.menuHandler {
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 nav {
     background-color: rgba(51, 51, 51, .7);
     color: #fff;
@@ -218,10 +224,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin: 20px;
     border-radius: 5px;
-    position: sticky;
-    top: 20px;
     z-index: 9;
     backdrop-filter: blur(10px);
 }
