@@ -282,8 +282,8 @@ export default {
                             <div class="_overflow"></div>
                             <img :src="video.thumbnail || undefined" alt="Thumbnail" />
                         </div>
-                        <div class="carousel__item__inner__duration">
-                            <span>{{ video.title }}</span>
+                        <div class="carousel__item__inner__text">
+                            <span class="_title">{{ video.title }}</span>
                         </div>
                     </div>
                 </a>
@@ -326,6 +326,18 @@ export default {
         margin-top: 2em;
         background: #282626;
     }
+    .carousel:after, .carousel:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        /* height: 200px; */
+        width: 30px;
+        background: linear-gradient(90deg,#282626, #282626aa, #28262611);
+    }
+    .carousel:before {left: 0;}
+    .carousel:after {right: 0; rotate: 180deg;}
     .carousel .youtube {
         max-width: 200px;
         margin: 2em auto 0;
@@ -344,6 +356,8 @@ export default {
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
     }
     .carousel__item {
         min-width: 120px;
@@ -353,7 +367,18 @@ export default {
     .carousel__item.active {
         transform: scale(1.1);
     }
+    .carousel__item__inner {
+        position: relative;
+    }
     .carousel__item__inner__thumbnail {position: relative;}
+    .carousel__item__inner__text {
+        position: absolute;
+        top: 90%;
+        z-index: 3;
+    }
+    .carousel__item__inner__text ._title {
+        font-size: clamp(5px, 1.4vw, 16px);
+    }
     .carousel__item ._overflow {
         position: absolute;
         top: 0;
@@ -405,9 +430,94 @@ export default {
         top: 0;
         bottom: 0;
     }
+    
     .modal .modal__inner .modal__inner__content #youtube-embed {
         width: 100%;
         height: 100%;
+    }
+
+    html.light .modal {
+        background: rgb(221 221 221 / 70%);
+    }
+    html.light .modal .modal__inner .modal__inner__close i {
+        color: #000;
+        text-shadow: 1px 1px rgba(255,255,255,.2);
+    } 
+    html.light .youtube {
+        filter: brightness(0.22);
+    }
+
+    html.light .carousel {
+        background: white;
+    }
+    html.light .carousel__item ._overflow {
+        background: linear-gradient(180deg, #FFF 12.5%, transparent 12.5%, transparent 87.5%, #FFF 87.5%);
+    }
+
+
+    /* Firefox */
+    * {
+    scrollbar-width: thin;
+    scrollbar-color: #07e84a #202122;
+    }
+    html.light * {
+        scrollbar-color: #AD09FF #DFE9EB;
+    }
+
+    /* Chrome, Edge and Safari */
+    *::-webkit-scrollbar {
+    height: 11px;
+    width: 11px;
+    }
+    *::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background-color: #282626;
+    border: 2px solid #282626;
+    margin: 0 30px;
+    }
+
+    *::-webkit-scrollbar-track:hover {
+    background-color: #222222;
+    }
+
+    *::-webkit-scrollbar-track:active {
+    background-color: #111111;
+    }
+
+    *::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #7707E8;
+    border: 2px solid #282626;
+    margin: 0 20px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+    background-color: #AD09FF;
+    }
+
+    *::-webkit-scrollbar-thumb:active {
+    background-color: #CD03FF;
+    }
+
+    html.light *::-webkit-scrollbar-track {
+        background-color: #DFE9EB;
+        border: 2px solid #F2FCFF;
+    }
+    html.light *::-webkit-scrollbar-track:hover {
+        background-color: #B8C0C2;
+    }
+    html.light *::-webkit-scrollbar-track:active {
+        background-color: #B8C0C2;
+    }
+    html.light *::-webkit-scrollbar-thumb {
+        background-color: #AD09FF;
+        border: 2px solid #FFFFFF;
+    }
+    html.light *::-webkit-scrollbar-thumb:hover {
+        background-color: #AD09FF;
+    }
+    html.light *::-webkit-scrollbar-thumb:active {
+        background-color: #CD03FF;
     }
 
 </style>
