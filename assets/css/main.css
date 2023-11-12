@@ -59,12 +59,13 @@ div[class$="-mode"] {
 }
 
 .light {
-  background-color: #d1d1d1;
+  background: #d1d1d1;
   color: #272727;
 }
 
 .dark {
   color: #fff;
+  background: #272727;
 }
 
 /* Personality Experience */
