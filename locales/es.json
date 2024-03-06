@@ -5,7 +5,7 @@
       "description": [
         "Soy un <span>{occupation}</span> brasileño de {years} años de edad.",
         "Mis habilidades principales son para <span>{profession1}</span> y <span>{profession2}</span>.",
-        "Actualmente trabajando para <span>{business}</span> durante {time} meses.",
+        "Actualmente trabajando para <span>{business}</span> durante {time}.",
         "¿Quieres sacar una idea del papel?"
       ],
       "actions": [
@@ -70,6 +70,31 @@
     "themes": {
       "light": "Claro",
       "dark": "Oscuro"
+    },
+    "timings": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "night": "Buenas noches",
+      "dawn": "Buenas madrugadas",
+      "periodOf": {
+        "day": {
+          "singular": "{periodOf} día",
+          "plural": "{periodOf} días"
+        },
+        "month": {
+          "singular": "{periodOf} mes",
+          "plural": "{periodOf} meses"
+        },
+        "year": {
+          "singular": "{periodOf} año",
+          "plural": "{periodOf} años"
+        },
+        "week": {
+          "singular": "{periodOf} semana",
+          "plural": "{periodOf} semanas"
+        },
+        "concat": " y "
+      }
     }
   },
   "comemorations": {

@@ -5,7 +5,7 @@
       "description": [
         "I'm a {years} years old <span>{occupation}</span> from <span>Brazil</span>.",
         "Passionate about <span>{profession1}</span> and <span>{profession2}</span>.",
-        "Currently working at <span>{business}</span> for {time} months.",
+        "Currently working at <span>{business}</span> for {time}.",
         "Do you wanna take off an idea from the paper?"
       ],
       "actions": [
@@ -65,5 +65,32 @@
     "name": "English",
     "nativeName": "English",
     "region": "US"
+  },
+  "commons": {
+    "timings": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "night": "Good evening",
+      "dawn": "Good dawn",
+      "periodOf": {
+        "day": {
+          "singular": "{periodOf} day",
+          "plural": "{periodOf} days"
+        },
+        "month": {
+          "singular": "{periodOf} month",
+          "plural": "{periodOf} months"
+        },
+        "year": {
+          "singular": "{periodOf} year",
+          "plural": "{periodOf} years"
+        },
+        "week": {
+          "singular": "{periodOf} week",
+          "plural": "{periodOf} weeks"
+        },
+        "concat": " and "
+      }
+    }
   }
 }

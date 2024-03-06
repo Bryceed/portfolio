@@ -5,7 +5,7 @@
       "description": [
         "J'ai {years} ans et je suis actuellement <span>{occupation}</span> travaillant au <span>Brésil</span>.",
         "Mes principales compétences sont pour <span>{profession1}</span> et <span>{profession2}</span>.",
-        "Travaillant actuellement pour <span>{business}</span>, depuis {time} mois.",
+        "Travaillant actuellement pour <span>{business}</span>, depuis {time}.",
         "Vous cherchez à concrétiser une idée?"
       ],
       "actions": [
@@ -62,17 +62,42 @@
   },
   "commons": {
     "actions": {
-      "close": "Fechar",
-      "back": "Voltar"
+      "close": "Fermer",
+      "back": "Retour"
     },
     "languages": {
-      "pt": "Português",
-      "en": "Inglês",
-      "es": "Espanhol"
+      "pt": "Portugais",
+      "en": "Anglais",
+      "es": "Espagnol"
     },
     "themes": {
-      "light": "Claro",
-      "dark": "Escuro"
+      "light": "Clair",
+      "dark": "Sombre"
+    },
+    "timings": {
+      "morning": "Bonjour",
+      "afternoon": "Bon après-midi",
+      "night": "Bonne nuit",
+      "dawn": "Bonne matinée",
+      "periodOf": {
+        "day": {
+          "singular": "{periodOf} jour",
+          "plural": "{periodOf} jours"
+        },
+        "month": {
+          "singular": "{periodOf} mois",
+          "plural": "{periodOf} mois"
+        },
+        "year": {
+          "singular": "{periodOf} an",
+          "plural": "{periodOf} ans"
+        },
+        "week": {
+          "singular": "{periodOf} semaine",
+          "plural": "{periodOf} semaines"
+        },
+        "concat": " et "
+      }
     }
   },
   "comemorations": {

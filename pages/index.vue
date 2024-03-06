@@ -23,10 +23,10 @@ export default {
 
     data() {
         const date = new Date()
-        const isPrideMonth = date.getMonth() === 5 ? true : false;
-        const isChristmas = date.getMonth() === 11 ? true : false;
-        const isHalloween = date.getMonth() === 9 ? true : false;
-        const isNewYears = date.getMonth() === 0 ? true : false;
+        const isPrideMonth = date.getMonth() === 3;
+        const isChristmas = date.getMonth() === 11;
+        const isHalloween = date.getMonth() === 9;
+        const isNewYears = date.getMonth() === 0;
         return {
             intent: this.$route.query.intent,
             block: this.$route.query.block,
@@ -47,7 +47,13 @@ export default {
 
     mounted() {
         document.title = 'Portfolio | Well.dev'
-    },
+
+        // create script and inject an isPrideMonth verification (to alert the user)
+        const script = document.createElement('script')
+        script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11'
+        script.async = true
+        document.head.appendChild(script)
+    }
 }
 </script>
 

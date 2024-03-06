@@ -28,7 +28,7 @@
                         <p
                             v-html="$t('html.home.description[2]', {
                                 business: 'ESX',
-                                time: '9'
+                                time: getPeriod()
                             })
                                 "
                         ></p>
@@ -83,15 +83,22 @@ export default {
                 : new Date();
             const diff = Math.abs(exit - entrance);
             const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
 
             if (years > 0) {
-                return `${years} year${years > 1 ? "s" : ""}`;
+                if (months > 0) {
+                    const yearsText = this.$t("commons.timings.periodOf.year." + (years > 1 ? "plural" : "singular"), { periodOf: years });
+                    const monthsText = this.$t("commons.timings.periodOf.month." + (months > 1 ? "plural" : "singular"), { periodOf: months });
+                    const concatText = this.$t("commons.timings.periodOf.concat");
+                    return yearsText + concatText + monthsText;
+                } else {
+                    return this.$t("commons.timings.periodOf.day." + (days > 1 ? "plural" : "singular"), { periodOf: days });
+                }
             } else if (months > 0) {
-                return `${months} month${months > 1 ? "s" : ""}`;
+                return this.$t("commons.timings.periodOf.month." + (months > 1 ? "plural" : "singular"), { periodOf: months });
             } else {
-                return `${days} day${days > 1 ? "s" : ""}`;
+                return this.$t("commons.timings.periodOf.day." + (days > 1 ? "plural" : "singular"), { periodOf: days });
             }
         },
         getPersonalAge() {

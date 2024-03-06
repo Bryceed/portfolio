@@ -5,7 +5,7 @@
       "description": [
         "私は {years} 歳で、現在 <span>{occupation}</span> として <span>ブラジル</span> で活動しています。",
         "私の主なスキルは <span>{profession1}</span> と <span>{profession2}</span> です。",
-        "現在 <span>{business}</span> で働いて {time} ヶ月。",
+        "現在 <span>{business}</span> で働いて {time}。",
         "アイデアを実現したいですか？"
       ],
       "actions": [
@@ -29,7 +29,7 @@
         "button": "もっと見る"
       },
       "messages": {
-        "not-found": "Oops! \nProject not found."
+        "not-found": "Oops! \nプロジェクトが見つかりませんでした。"
       }
     },
     "footer": [
@@ -47,7 +47,7 @@
     },
     "project": {
       "buttons": {
-        "return": "Turn back"
+        "return": "戻る"
       }
     }
   },
@@ -59,23 +59,48 @@
   },
   "commons": {
     "actions": {
-      "close": "Fechar",
-      "back": "Voltar"
+      "close": "閉じる",
+      "back": "戻る"
     },
     "languages": {
-      "pt": "Português",
-      "en": "Inglês",
-      "es": "Espanhol"
+      "pt": "ポルトガル語",
+      "en": "英語",
+      "es": "スペイン語"
     },
     "themes": {
-      "light": "Claro",
-      "dark": "Escuro"
+      "light": "明るい",
+      "dark": "暗い"
+    },
+    "timings": {
+      "morning": "おはようございます",
+      "afternoon": "こんにちは",
+      "night": "こんばんは",
+      "dawn": "お早うございます",
+      "periodOf": {
+        "day": {
+          "singular": "{periodOf}日",
+          "plural": "{periodOf}日"
+        },
+        "month": {
+          "singular": "{periodOf}ヶ月",
+          "plural": "{periodOf}ヶ月"
+        },
+        "year": {
+          "singular": "{periodOf}年",
+          "plural": "{periodOf}年"
+        },
+        "week": {
+          "singular": "{periodOf}週間",
+          "plural": "{periodOf}週間"
+        },
+        "concat": "と"
+      }
     }
   },
   "comemorations": {
     "pride": {
-      "title": "Mês do Orgulho LGBTQIA+",
-      "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
+      "title": "LGBTQIA+の月",
+      "message": "LGBTQIA+の月おめでとうございます！ 🏳️‍🌈"
     }
   },
   "language": {
@@ -84,5 +109,5 @@
     "nativeName": "日本語",
     "region": "JP"
   },
-  "theme": "Tema"
+  "theme": "テーマ"
 }
