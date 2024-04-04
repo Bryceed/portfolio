@@ -36,7 +36,7 @@
       }
     },
     "footer": [
-      "Site construído em <b>Nuxt3</b> (Vue). Em desenvolvimento. | {year}",
+      "Site construído em <b>Nuxt3</b>. por Wellington N. ({year})",
       "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
     ],
     "contact": {

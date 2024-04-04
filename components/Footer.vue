@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <p v-html="$t('html.footer[0]', { year: year })"></p>
+        <p v-html="$t('html.footer[0]', { year: getYear() })"></p>
         <p v-html="$t('html.footer[1]', { url: github })"></p>
     </footer>
 </template>
@@ -13,14 +13,16 @@ export default {
 
     data() {
         return {
-            year: 2022,
             github: about.links.github
         }
     },
 
-    created() {
-        this.year = new Date().getFullYear()
-    }
+    methods: {
+        getYear() {
+            return new Date().getFullYear();
+        }
+    },
+    
 }
 </script>
 
