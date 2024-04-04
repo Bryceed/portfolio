@@ -23,7 +23,7 @@ export default {
 
     data() {
         const date = new Date()
-        const isPrideMonth = date.getMonth() === 3;
+        const isPrideMonth = date.getMonth() === 6;
         const isChristmas = date.getMonth() === 11;
         const isHalloween = date.getMonth() === 9;
         const isNewYears = date.getMonth() === 0;
