@@ -1,7 +1,11 @@
 <template>
-    <a :href="link" :target="target" :class="`btn btn-`+ type">
+    <a :href="link" :class="`btn btn-` + type" :target="!newTab ? '_self' : (target != null ? target : '_blank')"
+        v-if="newTab" :rel="origin">
         {{ title }}
     </a>
+    <NuxtLink :to="link" :class="`btn btn-` + type" v-else>
+        {{ title }}
+    </NuxtLink>
 </template>
 
 <script>
@@ -32,6 +36,11 @@ export default {
             type: String,
             required: false,
             default: 'default',
+        },
+        newTab: {
+            type: Boolean,
+            required: false,
+            default: true,
         },
     },
 };

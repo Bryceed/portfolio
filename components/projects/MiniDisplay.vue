@@ -10,12 +10,14 @@
                         <p>{{ project.description }}</p>
                     </div>
                     <div class="actions">
-                        <CommonButton :link="project.link" :title="$t('html.projects.miniDisplay.button')" />
+                        <CommonButton :link="project.page" :title="$t('html.projects.miniDisplay.button')"
+                            :newTab="false" />
                     </div>
                 </div>
             </template>
         </div>
-        <NuxtLink to="/projects" class="btn btn-primary btn-lg btn-block btn-float-right">Ver todos os projetos</NuxtLink>
+        <NuxtLink to="/projects" class="btn btn-primary btn-lg btn-block btn-float-right">Ver todos os projetos
+        </NuxtLink>
     </div>
 </template>
 
