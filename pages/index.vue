@@ -1,7 +1,7 @@
 <template>
-    <v-if v-if="isPrideMonth">
+    <div v-if="isPrideMonth">
         <CommonAlertsPride />
-    </v-if>
+    </div>
     <HomeAboutMe />
     <ProjectsMiniDisplay />
     <HomeSkills />

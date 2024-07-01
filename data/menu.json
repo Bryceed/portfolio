@@ -32,6 +32,12 @@
             "image": "http://placehold.it/350x150",
             "link": "/blog"
         },
+        "about": {
+            "name": "About",
+            "description": "This is the about page",
+            "image": "http://placehold.it/350x150",
+            "link": "/about"
+        },
         "contact": {
             "name": "Contact",
             "description": "This is the contact page",

@@ -9,8 +9,6 @@
 import { about } from '../data/about.json';
 
 export default {
-    name: 'Footer',
-
     data() {
         return {
             github: about.links.github
@@ -22,7 +20,6 @@ export default {
             return new Date().getFullYear();
         }
     },
-    
 }
 </script>
 

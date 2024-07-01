@@ -146,7 +146,7 @@ export default {
 
 <style>
 .about {
-    width: 100%;
+    width: auto;
     min-height: calc(100vh - 128px);
     display: flex;
     justify-content: center;

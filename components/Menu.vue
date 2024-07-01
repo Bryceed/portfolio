@@ -236,7 +236,7 @@ nav::before {
     right: -20px;
     height: 60px;
     background: linear-gradient(to top, rgba(34, 34, 34, 0.8), #222222 31%);
-    border-radius: 30px;
+        border-radius: 30px;
 }
 nav ul {
     list-style: none;
