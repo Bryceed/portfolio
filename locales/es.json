@@ -16,6 +16,10 @@
         {
           "label": "Contáctame",
           "url": "https://api.whatsapp.com/send?phone=5511942018873"
+        },
+        {
+          "label": "Sobre mí",
+          "url": "/about"
         }
       ],
       "projects": {

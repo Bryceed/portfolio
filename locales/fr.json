@@ -16,6 +16,10 @@
         {
           "label": "Contact",
           "url": "https://api.whatsapp.com/send?phone=5511942018873"
+        },
+        {
+          "label": "À propos",
+          "url": "/about"
         }
       ],
       "projects": {

@@ -59,8 +59,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: relative;
-        width: 100%;
+        width: calc(100% - 4rem);
+            margin: 0 2rem;
         min-height: calc(33vh + 50px);
         padding: 2rem 0 4rem;
         background: #111;
@@ -98,6 +98,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         position: relative;
         transition: all 0.3s ease-out;
+        border-radius: .5rem
     }
     .project-item:hover {
         transition: all 0.2s ease-in-out;

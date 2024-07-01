@@ -6,16 +6,20 @@
         "Tenho {years} anos e atualmente sou <span>{occupation}</span> atuando no <span>Brasil</span>.",
         "Minhas habilidades principais são para <span>{profession1}</span> e <span>{profession2}</span>.",
         "Atualmente trabalhando para <span>{business}</span>, há {time}.",
-        "Buscando tirar uma ideia do papel?"
+        "<b>Vamos tirar o seu projeto do papel?</b>"
       ],
       "actions": [
         {
-          "label": "Ver projetos",
+          "label": "Projetos",
           "url": "/projects"
         },
         {
           "label": "Contato",
           "url": "https://api.whatsapp.com/send?phone=5511942018873"
+        },
+        {
+          "label": "Sobre mim",
+          "url": "/about"
         }
       ],
       "projects": {
@@ -62,7 +66,7 @@
     "blog": "Blog",
     "projects": "Projetos",
     "contact": "Contato",
-    "about": "Sobre"
+    "about": "Sobre mim"
   },
   "commons": {
     "actions": {

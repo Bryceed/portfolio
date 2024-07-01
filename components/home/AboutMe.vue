@@ -2,47 +2,39 @@
     <div class="about x-sp">
         <div class="about__container">
             <div class="about__container__image">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/42657376?v=4"
-                            alt="Wellington"
-                        />
-                    </div>
-                    <div class="about__container__text">
-                        <h1
-                            v-html="$t('html.home.greetings', { name: 'Wellington' })"
-                        ></h1>
-                        <p
-                            v-html="$t('html.home.description[0]', {
-                                years: personal.age,
-                                occupation: 'Full Stack Developer'
-                            })
-                                "
-                        ></p>
-                        <p
-                            v-html="$t('html.home.description[1]', {
-                                profession1: 'UI/UX Design',
-                                profession2: 'Web Development'
-                            })
-                                "
-                        ></p>
-                        <p
-                            v-html="$t('html.home.description[2]', {
-                                business: 'ESX',
-                                time: getPeriod()
-                            })
-                                "
-                        ></p>
-                        <p v-html="$t('html.home.description[3]')"></p>
+                <img src="https://avatars.githubusercontent.com/u/42657376?v=4" alt="Wellington" />
+            </div>
+            <div class="about__container__text">
+                <h1 v-html="$t('html.home.greetings', { name: 'Wellington' })"></h1>
+                <p v-html="$t('html.home.description[0]', {
+                    years: personal.age,
+                    occupation: 'Full Stack Developer'
+                })
+                    "></p>
+                <p v-html="$t('html.home.description[1]', {
+                    profession1: 'UI/UX Design',
+                    profession2: 'Web Development'
+                })
+                    "></p>
+                <p v-html="$t('html.home.description[2]', {
+                    business: 'ESX',
+                    time: getPeriod()
+                })
+                    "></p>
+                <p v-html="$t('html.home.description[3]')"></p>
 
-                        <div class="about__container__text__buttons">
-                            <NuxtLink to="/projects" class="btn btn--primary">
-                                <i class="material-icons">code</i>
-                                <span v-html="$t('html.home.actions[0].label')"></span>
-                            </NuxtLink>
-                            <NuxtLink to="/contact" class="btn btn--secondary"
-                                ><i class="material-icons">email</i
-                                ><span v-html="$t('html.home.actions[1].label')"></span
-                            ></NuxtLink>
+                <div class="about__container__text__buttons">
+
+                    <NuxtLink to="/about" class="btn btn--primary">
+                        <i class="material-icons">person</i>
+                        <span v-html="$t('html.home.actions[2].label')"></span>
+                    </NuxtLink>
+                    <NuxtLink to="/projects" class="btn btn--primary">
+                        <i class="material-icons">code</i>
+                        <span v-html="$t('html.home.actions[0].label')"></span>
+                    </NuxtLink>
+                    <NuxtLink to="/contact" class="btn btn--secondary"><i class="material-icons">email</i><span
+                            v-html="$t('html.home.actions[1].label')"></span></NuxtLink>
                 </div>
             </div>
         </div>
@@ -146,14 +138,14 @@ export default {
 
 <style>
 .about {
-    width: auto;
     min-height: calc(100vh - 128px);
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(30, 30, 30, 0.197);
     border-radius: 5px;
-    margin-top: 10px;
+    width: calc(100% - 4rem);
+    margin: 0 2rem;
 }
 html.light .about {
     background: linear-gradient(35deg, rgb(74 0 255), rgb(0 255 150 / 27%));

@@ -43,20 +43,20 @@ export default {
 <style scoped>
     .twitch {
         display: flex;
-        flex-direction: column;
+    flex-direction: column;
         align-items: center;
         justify-content: center;
         min-height: calc(100vh - 200px);
-        width: calc(100vw - 40px - 1rem);
+        width: calc(100vw - 4rem);
         padding-top: 2rem;
         background: black;
         border-radius: 8px;
         color: white;
-        margin-bottom: 2rem;
+    margin: 2rem;
     }
     html.light .twitch {
         background: linear-gradient(#692cc4, #1c073c);
-        box-shadow: 0 0 30px black;
+    box-shadow: 1px 5px 4px 2px #98989863;
     }
 
     .twitch .blocked-alert {

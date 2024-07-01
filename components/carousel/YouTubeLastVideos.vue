@@ -338,6 +338,10 @@ export default {
     }
     .carousel:before {left: 0;}
     .carousel:after {right: 0; rotate: 180deg;}
+                html.light .carousel:after,
+                html.light .carousel:before {
+                    background: linear-gradient(90deg, #d1d1d1, #ffffff5e, #fff0);
+                }
     .carousel .youtube {
         max-width: 200px;
         margin: 2em auto 0;
