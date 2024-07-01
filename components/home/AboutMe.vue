@@ -24,7 +24,6 @@
                 <p v-html="$t('html.home.description[3]')"></p>
 
                 <div class="about__container__text__buttons">
-
                     <NuxtLink to="/about" class="btn btn--primary">
                         <i class="material-icons">person</i>
                         <span v-html="$t('html.home.actions[2].label')"></span>
@@ -271,13 +270,19 @@ html.light .about__container__image img {
     border: 5px solid #dbe5eb;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .about__container {
         flex-direction: column;
     }
 
     .about__container__text {
         margin-bottom: 20px;
+    }
+    .about__container__text__buttons {
+        margin-top: 3rem;
+        flex-direction: column;
+        gap: 1.5rem;
+        flex-flow: wrap;
     }
 }
 </style>

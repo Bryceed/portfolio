@@ -26,7 +26,6 @@
                             <a href="javascript:void(0)" @click="item.open = !item.open" class="menu-item">
                                 <i class="material-icons expand-icon" v-if="!item.open">expand_more</i>
                                 <i class="material-icons collapse-icon" v-if="item.open">expand_less</i>
-                                // get the item.name value to check if there's a key in the language file
                                 <span v-if="$t(`menu.${item.name}`) != item.name">{{ $t(`menu.${item.name}`) }}</span>
                                 <span v-else>{{ item.name }}</span>
                             </a>
@@ -43,7 +42,7 @@
                             </NuxtLink>
                         </template>
                     </li>
-                    <li class="menu-item lang-switcher" @click="langSwitch()">
+                    <li class="menu-item lang-switcher" @click="langSwitch()" :class="{ 'menu-open': menuOpen }">
                         <span class="flag-text">{{ $t('language.region') }} </span>
 
                         <div v-if="$i18n.locale == 'en' || $i18n.locale == 'en-US'" class="flag flag-en rounded"></div>
@@ -205,12 +204,16 @@ export default {
                 localStorage.setItem('lang', 'en')
                 this.$i18n.locale = 'en'
             }
+        },
+
+        isMobile() {
+            return window.innerWidth <= 1024
         }
     }
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .menuHandler {
     padding: 20px;
     position: sticky;
@@ -223,7 +226,7 @@ nav {
     padding: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     border-radius: 5px;
     z-index: 9;
     backdrop-filter: blur(10px);
@@ -365,11 +368,23 @@ nav ul li.lang-switcher {
     margin-right: .15em
 }
 
-@media (max-width: 599px) {
+@media (max-width: 1024px) {
     nav .menu-btn {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
-        z-index: 5;
+        z-index: 20;
+        background-color: rgba(255, 255, 255, .2);
+        width: 2.3rem;
+        height: 2.1rem;
+        border-radius: .2rem;
+        zoom: 1.2;
+
+        .material-icons {
+            height: 24px !important;
+            color: #fff;
+        }
     }
     nav .menu li {
         display: none;
@@ -401,6 +416,10 @@ nav ul li.lang-switcher {
         position: absolute;
         top: 33px;
         right: 70px;
+    }
+
+    nav .menu:not(.menu-open) li.lang-switcher{
+        display: none;
     }
 
     nav .menu.menu-open li {
