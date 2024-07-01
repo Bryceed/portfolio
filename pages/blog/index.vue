@@ -20,10 +20,11 @@ export default {
         posts() {
             (this.posts || []).forEach(post => {
                 post.pubDate = new Date(post.pubDate).toLocaleDateString();
+                post.link = post.link.split('/').pop().split('?')[0].split('#')[0];
             });
             if (this.posts == []) {
                 console.log('No posts found');
-            }
+            } 
         }
     }
 }
@@ -231,7 +232,7 @@ html.dark {
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.pubDate }}</p>
                 <p v-html="post.description"></p>
-                <a :href="post.link">Read more</a>
+                <a :href="'/blog/post/' + post.link">Read more</a>
             </div>
         </div>
     </div>
