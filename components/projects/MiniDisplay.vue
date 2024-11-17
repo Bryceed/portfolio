@@ -311,7 +311,6 @@ html.light .mini-display-container {
     
     .project-item .actions a:hover {
         transition: all 0.2s ease-in-out;
-        color: var(--highlight-color);
     }
     
     @media (max-width: 960px) {
@@ -327,11 +326,11 @@ html.light .mini-display-container {
         .project-item {
             aspect-ratio: 16 / 10;
             font-size: 1rem;
-            template-columns: 1fr;
+            grid-template-columns: 1fr;
         }
     
         .project-item .info-overlay h3 {
-            font-size: 1.5rem;
+            font-size: 7vw
         }
     
         .project-item .info-overlay p {
