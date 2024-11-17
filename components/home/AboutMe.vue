@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { about } from "/data/about.json";
+import { about } from "@/data/about.json";
 
 export default {
     name: "HomeAboutMe",
@@ -141,7 +141,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(30, 30, 30, 0.197);
+    background-color: #222;
     border-radius: 5px;
     width: calc(100% - 4rem);
     margin: 0 2rem;

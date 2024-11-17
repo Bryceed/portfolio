@@ -23,7 +23,7 @@ export default {
 <style scoped>
 .meter {
     width: 100%;
-    height: 8px !important;
+    height: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,11 +39,11 @@ export default {
 }
 
 .meter__container__bar {
-    width: 21px;
+    width: 20%;
     height: 100%;
     background-color: #111;
     margin: 0 2px;
-    border-radius: 5px;
+    border-radius: 11px;
     position: relative;
     overflow: hidden;
 }
@@ -51,6 +51,26 @@ html.light .meter__container__bar:not(.active)  {
     background-color: #ffffff;
 }
 
+/* make lower bars shorter in height */
+.meter__container__bar:nth-child(5) {
+    height: 100%;
+}
+
+.meter__container__bar:nth-child(4) {
+    height: 90%;
+}
+
+.meter__container__bar:nth-child(3) {
+    height: 80%;
+}
+
+.meter__container__bar:nth-child(2) {
+    height: 70%;
+}
+
+.meter__container__bar:nth-child(1) {
+    height: 60%;
+}
 
 .meter__container__bar.active:nth-child(4) .meter__container__bar__value {
     background-color: rgba(255, 255, 255, .2);

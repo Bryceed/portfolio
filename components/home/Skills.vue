@@ -1,363 +1,109 @@
 <template>
     <div class="skills">
-        <h2>Skills</h2>
-        <div class="skills__container">
-            <div class="skills__container__item">
-                <div class="skills__container__item__icon">
-                    <i class="material-icons">code</i>
-                </div>
-            </div>
-
-            <div class="skills__container__table">
-                <div class="skills__container__table__column">
-                    <h2>Front-end</h2>
-                    <div class="_item">
-                        <div class="_item__name">HTML</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">CSS</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">SASS</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Bootstrap</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Tailwind</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Bulma</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Vuetify</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Materialize</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">jQuery</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Angular</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">JavaScript</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">TypeScript</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Vue</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Nuxt3</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">React</div>
-                        <CommonMeter :value="3" />
+        <h2>Habilidades</h2>
+        <div class="skills__container" :class="{ active: selectedItem }">
+            <div v-for="category in skills" :key="category.name" class="skills__container__carousel__category">
+                <h2>{{ category.emoji }} {{ category.name }} <span>({{ category.items.length }})</span></h2>
+                <button v-if="category.showLeftArrow" class="nav-button left"
+                    @click="scrollLeft(category)">&#9664;</button>
+                <div :ref="'carousel-' + category.name" class="skills__container__carousel"
+                    @scroll="handleScroll(category)" @mousedown="startDrag($event, category)">
+                    <div class="skills__container__carousel__items">
+                        <div v-for="item in category.items" :key="item.name" class="_item" @click="showDetails(item)">
+                            <div class="_item__name">{{ item.name }}</div>
+                            <CommonMeter :value="item.value" />
+                        </div>
                     </div>
                 </div>
-                <div class="skills__container__table__column">
-                    <h2>Back-end</h2>
-                    <div class="_item">
-                        <div class="_item__name">Node.js</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Express.js</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">MongoDB</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">MySQL</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Firebase Firestore</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">PHP</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Laravel</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Python</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Java</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Java Spring</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">C#</div>
-                        <CommonMeter :value="1" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">ASP.NET MVC</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Blazor</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                </div>
-                <div class="skills__container__table__column">
-                    <h2>Infra</h2>
-                    <div class="_item">
-                        <div class="_item__name">Apache</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Nginx</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Apache Tomcat</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Docker</div>
-                        <CommonMeter :value="1" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Kubernetes</div>
-                        <CommonMeter :value="1" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">AWS</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Oracle Cloud</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Google Cloud</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Firebase</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Heroku</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Netlify</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Vercel</div>
-                        <CommonMeter :value="5" />
-                    </div> 
-                    <div class="_item">
-                        <div class="_item__name">GitHub</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">GitLab</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Bitbucket</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                </div>
-                <div class="skills__container__table__column">
-                    <h2>DevOps</h2>
-                    <div class="_item">
-                        <div class="_item__name">Jenkins</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">CircleCI</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">TravisCI</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">GitHub Actions</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">GitLab CI/CD</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Bitbucket Pipelines</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">AWS CodePipeline</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">AWS CodeBuild</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">AWS CodeDeploy</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Oracle Cloud DevOps</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                </div>
-                <div class="skills__container__table__column">
-                    <h2>Productivity</h2>
-                    <div class="_item">
-                        <div class="_item__name">Microsoft Office</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Word</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Excel</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">PowerPoint</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Access</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Notion</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Trello</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Jira</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Slack</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                </div>
-                <div class="skills__container__table__column">
-                    <h2>Design</h2>
-                    <div class="_item">
-                        <div class="_item__name">Adobe Photoshop</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Adobe Illustrator</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Adobe XD</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Adobe InDesign</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Adobe After Effects</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Adobe Premiere Pro</div>
-                        <CommonMeter :value="1" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Figma</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Canva</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Pixlr X</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Inkscape</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Gimp</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Blender</div>
-                        <CommonMeter :value="2" />
-                    </div>
-                </div> 
-                <div class="skills__container__table__column">
-                    <h2>Others</h2>
-                    <div class="_item">
-                        <div class="_item__name">Windows</div>
-                        <CommonMeter :value="5" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Linux</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">MacOS</div>
-                        <CommonMeter :value="1" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Android</div>
-                        <CommonMeter :value="3" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">iOS</div>
-                        <CommonMeter :value="1" />
-                    </div>
-                    <div class="_item">
-                        <div class="_item__name">Git</div>
-                        <CommonMeter :value="4" />
-                    </div>
-                </div>
+                <button v-if="category.showRightArrow" class="nav-button right"
+                    @click="scrollRight(category)">&#9654;</button>
             </div>
         </div>
-    </div>      
+        <div class="side-panel" :class="{ open: selectedItem }">
+            <button class="close-button" @click="closeDetails">X</button>
+            <div v-if="selectedItem">
+                <h2>{{ selectedItem.name }}</h2>
+                <CommonMeter :value="selectedItem.value" />
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
+import skills from '@/data/skills.json';
+
 export default {
     name: 'Skills',
+    data() {
+        return {
+            skills: skills.map(category => ({
+                ...category,
+                showLeftArrow: false,
+                showRightArrow: true,
+                isDragging: false,
+                startX: 0,
+                scrollLeft: 0
+            })),
+            selectedItem: null
+        };
+    },
+    methods: {
+        scrollLeft(category) {
+            const carousel = this.$refs['carousel-' + category.name][0];
+            if (carousel) {
+                carousel.scrollBy({ left: -carousel.clientWidth * 0.75, behavior: 'smooth' });
+            }
+        },
+        scrollRight(category) {
+            const carousel = this.$refs['carousel-' + category.name][0];
+            if (carousel) {
+                carousel.scrollBy({ left: carousel.clientWidth * 0.75, behavior: 'smooth' });
+            }
+        },
+        showDetails(item) {
+            this.selectedItem = item;
+        },
+        closeDetails() {
+            this.selectedItem = null;
+        },
+        handleScroll(category) {
+            const carousel = this.$refs['carousel-' + category.name][0];
+            if (carousel) {
+                category.showLeftArrow = carousel.scrollLeft > 0;
+                category.showRightArrow = carousel.scrollLeft + carousel.clientWidth < carousel.scrollWidth;
+            }
+        },
+        startDrag(event, category) {
+            const carousel = this.$refs['carousel-' + category.name][0];
+            if (carousel) {
+                category.isDragging = true;
+                category.startX = event.pageX - carousel.offsetLeft;
+                category.scrollLeft = carousel.scrollLeft;
+                carousel.classList.add('dragging');
+                document.addEventListener('mousemove', this.onDrag.bind(this, category));
+                document.addEventListener('mouseup', this.stopDrag.bind(this, category));
+            }
+        },
+        onDrag(category, event) {
+            if (!category.isDragging) return;
+            const carousel = this.$refs['carousel-' + category.name][0];
+            const x = event.pageX - carousel.offsetLeft;
+            const walk = (x - category.startX) * 2; // scroll-fast
+            carousel.scrollLeft = category.scrollLeft - walk;
+        },
+        stopDrag(category) {
+            category.isDragging = false;
+            const carousel = this.$refs['carousel-' + category.name][0];
+            carousel.classList.remove('dragging');
+            document.removeEventListener('mousemove', this.onDrag);
+            document.removeEventListener('mouseup', this.stopDrag);
+        }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.skills.forEach(category => this.handleScroll(category));
+        });
+    }
 }
 </script>
 
@@ -377,6 +123,7 @@ export default {
     color: #fff;
     margin-bottom: 20px;
 }
+
 html.light h2 {
     color: #000;
 }
@@ -386,107 +133,90 @@ html.light h2 {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: row;
     flex-wrap: wrap;
+    position: relative;
+    transition: margin-right 0.3s;
+    gap: 2.5rem;
 }
 
-.skills__container__item {
+.skills__container.active {
+    margin-right: 300px;
+}
+
+.skills__container__carousel {
     width: 100%;
-    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 10px 0;
-}
-
-.skills__container__item__icon {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.skills__container__table {
-    min-width: 100%;
-    min-height: 100%;
-    display: flex;
+    overflow-x: hidden;
     align-items: flex-start;
-    justify-content: space-evenly;
     flex-direction: row;
-    flex-wrap: wrap;
-    align-content: stretch;
+    scroll-behavior: smooth;
+    cursor: grab;
+    user-select: none;
 }
 
-.skills__container__table__column {
-    max-width: 100%;
-    height: 100%;
+.skills__container__carousel.dragging {
+    cursor: grabbing;
+}
+
+.skills__container__carousel__category {
+    min-width: 200px;
+    margin: 0 10px;
+    position: relative;
+}
+
+.skills__container__carousel__items {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 10px 12px;
+    flex-direction: row;
+    gap: 1rem;
 }
 
-.skills__container__table__column h2 {
-    font-size: 1.5rem;
+.skills__container__carousel__category h2 {
+    font-size: 2rem;
     font-weight: 700;
-    color: #fff;
+    color: #ffffff9b;
     margin-bottom: 5px;
+    margin-left: 20px;
 }
-html.light .skills__container__table__column h2 {
+
+.skills__container__carousel__category h2 span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #ffffff2e;
+}
+
+html.light .skills__container__carousel__category h2 {
     color: #000;
+}
+
+.skills__container__carousel__items ._item:first-of-type {
+    margin-left: 68px;
 }
 
 ._item {
     height: 100%;
+    width: 170px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
     margin: 10px 0;
-
     padding: 0px 7px 5px;
-    background-color: rgba(255,255,255,.03);
+    background-color: rgba(255, 255, 255, .03);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 ._item__name {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
+    margin: .2rem 0 .3rem;
     color: #fff;
-}
-
-._item__meter {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-._item__meter__bar {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border-radius: 10px;
+    white-space: nowrap;
     overflow: hidden;
-}
-
-.meter {
+    text-overflow: ellipsis;
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 html.light ._item {
@@ -495,5 +225,114 @@ html.light ._item {
 
 html.light ._item__name {
     color: #777;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.nav-button.left {
+    left: 0;
+}
+
+.nav-button.right {
+    right: 0;
+}
+
+.side-panel {
+    position: fixed;
+    right: -300px;
+    top: 100px;
+    bottom: 10px;
+    max-width: 280px;
+    width: 100%;
+    overflow: visible;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: right 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 999;
+    backdrop-filter: blur(7px);
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.side-panel.open {
+    right: 20px;
+    transform-origin: 110% 50%;
+    animation: openSidePanel .4s;
+}
+
+@keyframes openSidePanel {
+    0% {
+        right: -30px;
+        opacity: 1;
+        transform: perspective(800px) rotateY(90deg);
+    }
+
+    100% {
+        right: 20px;
+        opacity: 1;
+        transform: perspective(800px) rotateY(0deg);
+    }
+}
+
+/* when close, animate the side panel to the right */
+.side-panel:not(.open) {
+    animation: closeSidePanel 0.3s;
+}
+
+@keyframes closeSidePanel {
+    0% {
+        opacity: 1;
+        transform: perspective(800px) rotateY(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: perspective(800px) rotateY(-60deg);
+    }
+}
+
+/* add darker background to overlay the rest of the page when side panel is open */
+.side-panel::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(72, 72, 72, 0.63), rgba(27, 27, 27, 0.63));
+    z-index: -1;
+    border-radius: 6px;
+}
+
+html.light .side-panel {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(73, 73, 73, 0.2), 0 0 40px rgba(0, 0, 0, 0.234), inset 0 0 0 2px #ffffff;
+}
+
+html.light .side-panel::before {
+    background: linear-gradient(rgba(255, 255, 255, 0.725), rgb(221, 221, 221));
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    align-self: flex-end;
 }
 </style>

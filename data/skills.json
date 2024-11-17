@@ -1,0 +1,369 @@
+[
+    {
+        "name": "Front-end",
+        "emoji": "🎨",
+        "color": "#f7df1e",
+        "items": [
+            {
+                "name": "HTML",
+                "value": 5
+            },
+            {
+                "name": "CSS",
+                "value": 5
+            },
+            {
+                "name": "SASS",
+                "value": 4
+            },
+            {
+                "name": "Bootstrap",
+                "value": 4
+            },
+            {
+                "name": "Tailwind",
+                "value": 3
+            },
+            {
+                "name": "Bulma",
+                "value": 3
+            },
+            {
+                "name": "Vuetify",
+                "value": 2
+            },
+            {
+                "name": "Materialize",
+                "value": 2
+            },
+            {
+                "name": "jQuery",
+                "value": 4
+            },
+            {
+                "name": "Angular",
+                "value": 2
+            },
+            {
+                "name": "JavaScript",
+                "value": 4
+            },
+            {
+                "name": "TypeScript",
+                "value": 3
+            },
+            {
+                "name": "Vue",
+                "value": 2
+            },
+            {
+                "name": "Nuxt3",
+                "value": 2
+            },
+            {
+                "name": "React",
+                "value": 3
+            }
+        ]
+    },
+    {
+        "name": "Back-end",
+        "emoji": "🚀",
+        "color": "#f7df1e",
+        "items": [
+            {
+                "name": "Node.js",
+                "value": 4
+            },
+            {
+                "name": "Express.js",
+                "value": 4
+            },
+            {
+                "name": "MongoDB",
+                "value": 2
+            },
+            {
+                "name": "MySQL",
+                "value": 3
+            },
+            {
+                "name": "Firebase Firestore",
+                "value": 2
+            },
+            {
+                "name": "PHP",
+                "value": 5
+            },
+            {
+                "name": "Laravel",
+                "value": 3
+            },
+            {
+                "name": "Python",
+                "value": 2
+            },
+            {
+                "name": "Java",
+                "value": 2
+            },
+            {
+                "name": "Java Spring",
+                "value": 3
+            },
+            {
+                "name": "C#",
+                "value": 1
+            },
+            {
+                "name": "ASP.NET MVC",
+                "value": 2
+            },
+            {
+                "name": "Blazor",
+                "value": 3
+            }
+        ]
+    },
+    {
+        "name": "Infra",
+        "emoji": "☁️",
+        "color": "#f7df1e",
+        "items": [
+            {
+                "name": "Apache",
+                "value": 5
+            },
+            {
+                "name": "Nginx",
+                "value": 5
+            },
+            {
+                "name": "Apache Tomcat",
+                "value": 3
+            },
+            {
+                "name": "Docker",
+                "value": 1
+            },
+            {
+                "name": "Kubernetes",
+                "value": 1
+            },
+            {
+                "name": "AWS",
+                "value": 2
+            },
+            {
+                "name": "Oracle Cloud",
+                "value": 2
+            },
+            {
+                "name": "Google Cloud",
+                "value": 3
+            },
+            {
+                "name": "Firebase",
+                "value": 3
+            },
+            {
+                "name": "Heroku",
+                "value": 3
+            },
+            {
+                "name": "Netlify",
+                "value": 5
+            },
+            {
+                "name": "Vercel",
+                "value": 5
+            },
+            {
+                "name": "GitHub",
+                "value": 4
+            },
+            {
+                "name": "GitLab",
+                "value": 3
+            },
+            {
+                "name": "Bitbucket",
+                "value": 3
+            }
+        ]
+    },
+    {
+        "name": "DevOps",
+        "emoji": "🛠️",
+        "color": "#f7df1e",
+        "items": [
+            {
+                "name": "Jenkins",
+                "value": 4
+            },
+            {
+                "name": "CircleCI",
+                "value": 5
+            },
+            {
+                "name": "TravisCI",
+                "value": 5
+            },
+            {
+                "name": "GitHub Actions",
+                "value": 5
+            },
+            {
+                "name": "GitLab CI/CD",
+                "value": 5
+            },
+            {
+                "name": "Bitbucket Pipelines",
+                "value": 5
+            },
+            {
+                "name": "AWS CodePipeline",
+                "value": 5
+            },
+            {
+                "name": "AWS CodeBuild",
+                "value": 5
+            },
+            {
+                "name": "AWS CodeDeploy",
+                "value": 5
+            },
+            {
+                "name": "Oracle Cloud DevOps",
+                "value": 5
+            }
+        ]
+    },
+    {
+        "name": "Productivity",
+        "emoji": "📊",
+        "color": "#f7df1e",
+        "items": [
+            {
+                "name": "Microsoft Office",
+                "value": 5
+            },
+            {
+                "name": "Word",
+                "value": 5
+            },
+            {
+                "name": "Excel",
+                "value": 5
+            },
+            {
+                "name": "PowerPoint",
+                "value": 5
+            },
+            {
+                "name": "Access",
+                "value": 5
+            },
+            {
+                "name": "Notion",
+                "value": 5
+            },
+            {
+                "name": "Trello",
+                "value": 5
+            },
+            {
+                "name": "Jira",
+                "value": 5
+            },
+            {
+                "name": "Slack",
+                "value": 5
+            }
+        ]
+    },
+    {
+        "name": "Design",
+        "emoji": "🖼️",
+        "items": [
+            {
+                "name": "Adobe Photoshop",
+                "value": 5
+            },
+            {
+                "name": "Adobe Illustrator",
+                "value": 3
+            },
+            {
+                "name": "Adobe XD",
+                "value": 4
+            },
+            {
+                "name": "Adobe InDesign",
+                "value": 4
+            },
+            {
+                "name": "Adobe After Effects",
+                "value": 2
+            },
+            {
+                "name": "Adobe Premiere Pro",
+                "value": 1
+            },
+            {
+                "name": "Figma",
+                "value": 5
+            },
+            {
+                "name": "Canva",
+                "value": 5
+            },
+            {
+                "name": "Pixlr X",
+                "value": 5
+            },
+            {
+                "name": "Inkscape",
+                "value": 3
+            },
+            {
+                "name": "Gimp",
+                "value": 2
+            },
+            {
+                "name": "Blender",
+                "value": 2
+            }
+        ]
+    },
+    {
+        "name": "Others",
+        "emoji": "👨‍💻",
+        "items": [
+            {
+                "name": "Windows",
+                "value": 5
+            },
+            {
+                "name": "Linux",
+                "value": 4
+            },
+            {
+                "name": "MacOS",
+                "value": 1
+            },
+            {
+                "name": "Android",
+                "value": 3
+            },
+            {
+                "name": "iOS",
+                "value": 1
+            },
+            {
+                "name": "Git",
+                "value": 4
+            }
+        ]
+    }
+]
