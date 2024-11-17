@@ -54,7 +54,9 @@
     },
     "project": {
       "buttons": {
-        "return": "Return"
+        "return": "Return",
+        "back": "Back",
+        "allProjects": "All Projects"
       }
     }
   },

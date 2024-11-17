@@ -1,34 +1,34 @@
 <template>
-        <h1 v-html="$t('html.projects.title')"></h1>
-        <p v-html="$t('html.projects.description')"></p>
-        <div class="projects">
-            <div class="project-item" v-for="project in projects" :key="project.id"
-                :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">
-                <div class="_left">
-                    <img :src="project.placeholder" :alt="project.name" />
-                </div>
-                <div class="_underneath"
-                    :style="{ 'background': project.colors.primary ? `linear-gradient(90deg, ${project.colors.primary}, transparent)` : 'transparent', 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
-                    <h3>{{ project.title }}</h3>
-                    <p>{{ project.description }}</p>
-                </div>
-                <div class="_right"
-                    :style="{ 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
-                    <div class="actions"
-                        :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }">
-                        <v-if v-if="project.page">
-                            <NuxtLink :to="project.page"><i class="material-icons">arrow_forward</i></NuxtLink>
-                        </v-if>
-                        <v-if v-if="project.code">
-                            <a :href="project.code" target="_blank"><i class="material-icons">code</i></a>
-                        </v-if>
-                        <v-if v-if="project.link">
-                            <a :href="project.link" target="_blank"><i class="material-icons">launch</i></a>
-                        </v-if>
-                    </div>
+    <h1 v-html="$t('html.projects.title')"></h1>
+    <p v-html="$t('html.projects.description')"></p>
+    <div class="projects">
+        <div class="project-item" v-for="project in projects" :key="project.id"
+            :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">
+            <div class="_left">
+                <img :src="project.placeholder" :alt="project.name" />
+            </div>
+            <div class="_underneath"
+                :style="{ 'background': project.colors.primary ? `linear-gradient(90deg, ${project.colors.primary}, transparent)` : 'transparent', 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+            </div>
+            <div class="_right"
+                :style="{ 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
+                <div class="actions"
+                    :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }">
+                    <v-if v-if="project.page">
+                        <NuxtLink :to="`/project/${project.id}`"><i class="material-icons">arrow_forward</i></NuxtLink>
+                    </v-if>
+                    <v-if v-if="project.code">
+                        <a :href="project.code" target="_blank"><i class="material-icons">code</i></a>
+                    </v-if>
+                    <v-if v-if="project.link">
+                        <a :href="project.link" target="_blank"><i class="material-icons">launch</i></a>
+                    </v-if>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>

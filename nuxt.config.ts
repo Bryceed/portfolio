@@ -34,7 +34,6 @@ export default defineNuxtConfig({
   ],
 
   css: ["@/assets/css/main.css"],
-
   components: true,
 
   content: {
@@ -58,4 +57,6 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+
+  compatibilityDate: "2024-11-17",
 });

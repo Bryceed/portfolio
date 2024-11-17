@@ -57,7 +57,9 @@
     },
     "project": {
       "buttons": {
-        "return": "Retornar"
+        "return": "Retornar",
+        "back": "Voltar",
+        "allProjects": "Todos os projetos"
       }
     }
   },
