@@ -16,11 +16,7 @@
                     profession2: 'Web Development'
                 })
                     "></p>
-                <p v-html="$t('html.home.description[2]', {
-                    business: 'ESX',
-                    time: getPeriod()
-                })
-                    "></p>
+                <p v-html="description2"></p>
                 <p v-html="$t('html.home.description[3]')"></p>
 
                 <div class="about__container__text__buttons">
@@ -64,6 +60,16 @@ export default {
     created() {
         this.company.period = this.getPeriod();
         this.personal.age = this.getPersonalAge();
+    },
+
+    computed: {
+        description2() {
+            return this.$t('html.home.description[2]', {
+                business: `<a href="${this.company.url}" target="_blank">DevLand <i class="material-icons">open_in_new</i></a>             
+                `,
+                time: this.getPeriod()
+            });
+        }
     },
 
     methods: {
@@ -146,8 +152,13 @@ export default {
     width: calc(100% - 4rem);
     margin: 0 2rem;
 }
+
 html.light .about {
     background: linear-gradient(35deg, rgb(74 0 255), rgb(0 255 150 / 27%));
+}
+
+.about a {
+    color: #fff;
 }
 
 .about__container {
@@ -194,9 +205,31 @@ html.light .about {
 .about__container__text p span {
     font-weight: 700;
 }
+
 .about__container__text p span a {
-    text-decoration: underline;
-    color: rgba(95, 13, 228, 0.791);
+    text-decoration: none;
+    color: #2924cc;
+    background-color: white;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.about__container__text p span a i {
+    position: relative;
+    top: 2px;
+    left: -2px;
+    zoom: .8;
+    transition: all .1s ease;
+}
+
+.about__container__text p span a:hover {
+    background-color: #2924cc;
+    color: white;
+}
+
+.about__container__text p span a:hover i {
+    color: white;
+    zoom: 1;
 }
 
 .about__container__text__buttons {
