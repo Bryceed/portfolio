@@ -37,25 +37,31 @@
                         </template>
                         <template v-else>
                             <NuxtLink :to="item.link" class="menu-item" @click="closeMenu()">
-                                <span v-if="$t(`menu.${item.name.toLowerCase()}`) != item.name.toLowerCase()">{{ $t(`menu.${item.name.toLowerCase()}`) }}</span>
+                                <span v-if="$t(`menu.${item.name.toLowerCase()}`) != item.name.toLowerCase()">{{
+                                    $t(`menu.${item.name.toLowerCase()}`) }}</span>
                                 <span v-else>{{ item.name }}</span>
                             </NuxtLink>
                         </template>
                     </li>
                     <li class="menu-item lang-switcher" @click="langSwitch()" :class="{ 'menu-open': menuOpen }">
-                        <span class="flag-text">{{ $t('language.region') }} </span>
+                        <span class="flag-text">{{ $t('language.code') }} </span>
 
                         <div v-if="$i18n.locale == 'en' || $i18n.locale == 'en-US'" class="flag flag-en rounded"></div>
 
-                        <div v-else-if="$i18n.locale == 'pt-BR' || $i18n.locale == 'pt'" class="flag flag-pt rounded"></div>
+                        <div v-else-if="$i18n.locale == 'pt-BR' || $i18n.locale == 'pt'" class="flag flag-pt rounded">
+                        </div>
 
-                        <div v-else-if="$i18n.locale == 'es' || $i18n.locale == 'es-ES'" class="flag flag-es rounded"></div>
+                        <div v-else-if="$i18n.locale == 'es' || $i18n.locale == 'es-ES'" class="flag flag-es rounded">
+                        </div>
 
-                        <div v-else-if="$i18n.locale == 'fr' || $i18n.locale == 'fr-FR'" class="flag flag-fr rounded"></div>
+                        <div v-else-if="$i18n.locale == 'fr' || $i18n.locale == 'fr-FR'" class="flag flag-fr rounded">
+                        </div>
 
-                        <div v-else-if="$i18n.locale == 'jp' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded"></div>
+                        <div v-else-if="$i18n.locale == 'jp' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded">
+                        </div>
 
-                            <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded"></div>
+                        <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded">
+                        </div>
 
                         <div v-else class="flag flag-en rounded"></div>
                     </li>

@@ -230,6 +230,7 @@ html.light .about {
 .about__container__text p span a:hover i {
     color: white;
     zoom: 1;
+    margin: 0 0;
 }
 
 .about__container__text__buttons {
