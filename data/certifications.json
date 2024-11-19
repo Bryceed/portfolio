@@ -1,0 +1,15 @@
+[
+    {
+        "id": "cert1",
+        "title": "Astrologia (Básico)",
+        "emissor": "Udemy",
+        "description": "Certificação básica em astrologia. Curso ministrado por Luiz André.",
+        "link": "https://example.com/cert1"
+    },
+    {
+        "id": "cert2",
+        "title": "Certificação 2",
+        "description": "Descrição da certificação 2.",
+        "link": "https://example.com/cert2"
+    }
+]

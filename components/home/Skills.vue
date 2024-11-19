@@ -3,7 +3,8 @@
         <h2>Habilidades</h2>
         <div class="skills__container" :class="{ active: selectedItem }">
             <div v-for="category in skills" :key="category.name" class="skills__container__carousel__category">
-                <h2>{{ category.emoji }} {{ category.name }} <span>({{ category.items.length }})</span></h2>
+                <h2><span class="emoji">{{ category.emoji }}</span>{{ category.name }} <span>({{ category.items.length
+                        }})</span></h2>
                 <button v-if="category.showLeftArrow" class="nav-button left"
                     @click="scrollLeft(category)">&#9664;</button>
                 <div :ref="'carousel-' + category.name" class="skills__container__carousel"
@@ -186,6 +187,10 @@ html.light h2 {
     color: #ffffff2e;
 }
 
+.skills__container__carousel__category h2 span.emoji {
+    font-size: 2rem;
+    margin-right: 1.5rem;
+}
 html.light .skills__container__carousel__category h2 {
     color: #000;
 }

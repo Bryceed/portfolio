@@ -49,8 +49,8 @@ export default {
         return {
             about,
             company: {
-                name: "ESX",
-                url: "https://esx.com.br/",
+                name: "DevLand",
+                url: "https://devland.tech/?utm_source=wellington_portfolio&utm_medium=about_mee&utm_campaign=devland",
                 entrance: "2022-07-17",
                 period: "",
                 exit: null
