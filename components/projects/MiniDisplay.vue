@@ -111,6 +111,7 @@ html.light .mini-display-container {
     font-size: calc(0.5vw + 0.5em);
     transform: perspective(2000px);
     transform-style: preserve-3d;
+    transition: none;
 }
 
 .project-item:hover {
