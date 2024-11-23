@@ -38,7 +38,14 @@
     },
     "projects": {
       "miniDisplay": {
-        "button": "See more"
+        "button": {
+          "details": "Details",
+          "quickView": "Quick View",
+          "website": "Visit Website",
+          "invite": "Invite",
+          "join": "Join",
+          "watch": "Watch"
+        }
       },
       "description": "Here are some of my most recent projects.",
       "title": "My projects",
