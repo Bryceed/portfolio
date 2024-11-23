@@ -30,7 +30,14 @@
       "title": "Mes projets",
       "description": "Voici quelques-uns de mes projets.",
       "miniDisplay": {
-        "button": "Voir le projet"
+        "button": {
+          "details": "Détails",
+          "quickView": "Vue rapide",
+          "website": "Visiter le site",
+          "invite": "Inviter",
+          "join": "Rejoindre",
+          "watch": "Regarder"
+        }
       },
       "messages": {
         "not-found": "Oops! \nProjet introuvable."

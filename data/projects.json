@@ -3,7 +3,7 @@
         {
             "id": "ryan",
             "title": "RYAN Bot",
-            "description": "Robô (inicialmente pensando) para o Discord, com funções de automação, moderação, diversão e utilitários.",
+            "description": "Robô de automação para Discord, com foco em trazer funcionalidades com painel de controle e APIs.",
             "dueDate": "2020-01-01",
             "priority": "Medium",
             "colors": {
@@ -28,6 +28,7 @@
                 }
             ],
             "link": "https://ryan.rydermais.com/",
+            "website": "https://ryan.rydermais.com/",
             "page": "/project/ryan",
             "code": "https://github.com/RyderMais/Ryan"
 
@@ -35,7 +36,7 @@
         {
             "id": "beatup",
             "title": "BeatUP",
-            "description": "Web Rythm Game with a modern experience for rythm game lovers [Work in Progress].",
+            "description": "Experiência de jogo multiplataforma, com foco em trazer uma experiência de jogo rítmico e desafiador.",
             "dueDate": "2020-01-01",
             "priority": "High",
             "colors": {
@@ -65,7 +66,7 @@
         {
             "id": "orkuty",
             "title": "Orkuty",
-            "description": "Recriação da antiga rede social Orkut, com foco em trazer uma junção de UX entre a nostalgia e o visual moderno.",
+            "description": "Recriação do Orkut, com foco em trazer a experiência nostálgica do Orkut para os dias atuais.",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
@@ -95,7 +96,7 @@
         {
             "id": "karaotrack",
             "title": "karaoTrack.js",
-            "description": "Script open-source para criação de letras sincronizadas no estilo de karaokê, que possibilite o uso de efeitos visuais e de sincronização para diversos fins.",
+            "description": "Script para monitorar e exibir letras de músicas em tempo real, com foco em trazer uma experiência de karaokê.",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
@@ -125,7 +126,7 @@
         {
             "id": "deltaverse",
             "title": "Deltaverse",
-            "description": "Servidor de Minecraft com foco em trazer customizações visuais e funcionais, com sistema de economia, lojas, eventos e muito mais.",
+            "description": "Servidor de Minecraft com foco em trazer uma experiência de integração com o Discord, painel de controle e APIs.",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
@@ -155,7 +156,7 @@
         {
             "id": "mangut",
             "title": "Mangut",
-            "description": "Projeto de conclusão de curso com foco nos povos indígenas. Contribuí com o front-end do projeto.",
+            "description": "TCC em grupo para a Recode PRO, onde oferecemos uma vitrine virtual aos produtos orgânicos de povos originários.",
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {

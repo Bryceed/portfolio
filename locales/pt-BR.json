@@ -30,7 +30,14 @@
       "title": "Meus projetos",
       "description": "Aqui estão alguns dos meus projetos mais recentes.",
       "miniDisplay": {
-        "button": "Ver mais"
+        "button": {
+          "details": "Detalhes",
+          "quickView": "Visão rápida",
+          "website": "Visitar site",
+          "invite": "Convidar",
+          "join": "Participar",
+          "watch": "Assistir"
+        }
       },
       "messages": {
         "not-found": {

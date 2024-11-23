@@ -46,7 +46,14 @@
       "description": "Estos son algunos de mis proyectos más recientes.",
       "title": "Mis proyectos",
       "miniDisplay": {
-        "button": "Ver más"
+        "button": {
+          "details": "Detalles",
+          "quickView": "Vista rápida",
+          "website": "Visitar sitio",
+          "invite": "Invitar",
+          "join": "Participar",
+          "watch": "Ver"
+        }
       },
       "messages": {
         "not-found": "¡Ups! \nProyecto no encontrado."

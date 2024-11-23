@@ -4,15 +4,18 @@
         <div class="mini-display">
             <template v-for="project in projects" :key="project.id">
                 <div class="project-item" :class="{ active: project.active }" @click="toggleActive(project)"
-                    :style="{ '--highlight-color': project.colors.primary }">
+                    @mouseleave="hoverOut(project)" :style="{ '--highlight-color': project.colors.primary }">
                     <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>
                     <div class="info-overlay">
                         <h3>{{ project.title }}</h3>
                         <p>{{ project.description }}</p>
                     </div>
                     <div class="actions">
-                        <CommonButton :link="project.page" :title="$t('html.projects.miniDisplay.button')"
+                        <CommonButton :link="project.page" :title="$t('html.projects.miniDisplay.button.details')"
                             :newTab="false" :style="{ 'background-color': project.colors.primary }" />
+                        <CommonButton v-if="project.website" :link="project.website"
+                            :title="$t('html.projects.miniDisplay.button.website')" :newTab="true"
+                            :style="{ 'background-color': project.colors.primary }" />
                     </div>
                 </div>
             </template>
@@ -117,7 +120,7 @@ html.light .mini-display-container {
 
 html.light .project-item:hover {
     box-shadow: 0 0 0 5px #fff, 0 0 0 10px var(--highlight-color);
-    background: #eee;
+    
 }
 
 .project-item ._bg {
@@ -267,6 +270,7 @@ html.light .project-item:hover .info-overlay {
     transform: translateZ(27px) translateY(-10%);
     display: flex;
     justify-content: center;
+    gap: 0.5rem;
 }
 
 @keyframes showActions {
@@ -425,6 +429,7 @@ html.light .project-item.active .info-overlay {
 </style>
 
 <script>
+import o from "~/docs/_nuxt/other.587b3cf3";
 import { projects } from "../../data/projects.json";
 
 export default {
@@ -436,6 +441,9 @@ export default {
     methods: {
         toggleActive(project) {
             project.active = !project.active;
+        },
+        hoverOut(project) {
+            project.active = false;
         }
     },
     mounted() {
@@ -447,7 +455,7 @@ export default {
             reverse: true,
             speed: 300,
             glare: true,
-            "max-glare": 0.3,
+            "max-glare": 0.5,
             "glare-prerender": false,
             "gyroscope": true
         });

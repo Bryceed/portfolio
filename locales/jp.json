@@ -30,7 +30,14 @@
       "title": "プロジェクト",
       "description": "私のプロジェクトのいくつかを見てください。",
       "miniDisplay": {
-        "button": "もっと見る"
+        "button": {
+          "details": "詳細",
+          "quickView": "クイックビュー",
+          "website": "ウェブサイトを訪問",
+          "invite": "招待",
+          "join": "参加",
+          "watch": "見る"
+        }
       },
       "messages": {
         "not-found": "Oops! \nプロジェクトが見つかりませんでした。"
