@@ -15,7 +15,7 @@
                             :newTab="false" :style="{ 'background-color': project.colors.primary }" />
                         <CommonButton v-if="project.website" :link="project.website"
                             :title="$t('html.projects.miniDisplay.button.website')" :newTab="true"
-                            :style="{ '--highlight-color': project.colors.primary }" />
+                            :style="{ 'background-color': project.colors.secondary }" />
                     </div>
                 </div>
             </template>
