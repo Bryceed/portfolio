@@ -50,7 +50,7 @@ export default {
 .btn {
     color: #fff;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: clamp(8px, 2vw, 1.2rem);
     font-weight: 700;
     padding: .4rem .75rem;
     border-radius: 5px;
@@ -58,6 +58,10 @@ export default {
     background-color: rgba(95, 13, 228, 0.791);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
     transition: all .15s ease-out;
+        display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.5;
 }
 
 .btn:hover {
