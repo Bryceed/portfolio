@@ -173,7 +173,6 @@ html.light .project-item:hover {
     border-radius: 0 0 8px 8px;
     color: #eee;
     height: 40%;
-    transition: all 0.2s ease-out;
     z-index: 2;
     transform: translateZ(25px);
 }
