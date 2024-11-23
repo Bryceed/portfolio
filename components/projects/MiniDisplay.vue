@@ -4,7 +4,7 @@
         <div class="mini-display">
             <template v-for="project in projects" :key="project.id">
                 <div class="project-item" :class="{ active: project.active }" @click="toggleActive(project)"
-                    @mouseleave="hoverOut(project)" :style="{ '--highlight-color': project.colors.primary }">
+                    :style="{ '--highlight-color': project.colors.primary }">
                     <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>
                     <div class="info-overlay">
                         <h3>{{ project.title }}</h3>
@@ -15,7 +15,7 @@
                             :newTab="false" :style="{ 'background-color': project.colors.primary }" />
                         <CommonButton v-if="project.website" :link="project.website"
                             :title="$t('html.projects.miniDisplay.button.website')" :newTab="true"
-                            :style="{ 'background-color': project.colors.primary }" />
+                            :style="{ '--highlight-color': project.colors.primary }" />
                     </div>
                 </div>
             </template>
@@ -428,7 +428,6 @@ html.light .project-item.active .info-overlay {
 </style>
 
 <script>
-import o from "~/docs/_nuxt/other.587b3cf3";
 import { projects } from "../../data/projects.json";
 
 export default {
