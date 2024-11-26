@@ -10,6 +10,13 @@ export default defineNuxtConfig({
         content: process.env.npm_package_description || "",
       },
     ],
+    script: [
+      {
+        src: '/js/vanilla-tilt.min.js',
+        async: true,
+        defer: true,
+      },
+    ],
   },
 
   app: {
@@ -60,4 +67,10 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2024-11-17",
+
+  vite: {
+    optimizeDeps: {
+      exclude: ['vanilla-tilt']
+    }
+  }
 });

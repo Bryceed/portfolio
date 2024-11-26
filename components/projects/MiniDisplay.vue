@@ -449,15 +449,17 @@ export default {
         console.log("Projects")
         document.title = 'Well.dev | Projects'
 
-        VanillaTilt.init(document.querySelectorAll(".project-item"), {
-            max: 15,
-            reverse: true,
-            speed: 300,
-            glare: true,
-            "max-glare": 0.5,
-            "glare-prerender": false,
-            "gyroscope": true
-        });
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(document.querySelectorAll(".project-item"), {
+                max: 15,
+                reverse: true,
+                speed: 300,
+                glare: true,
+                "max-glare": 0.5,
+                "glare-prerender": false,
+                "gyroscope": true
+            });
+        }
     }
 }
 </script>

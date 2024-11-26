@@ -101,15 +101,17 @@ export default {
         }
     },
     mounted() {
-        VanillaTilt.init(document.querySelectorAll(".skills__container__carousel__items ._item"), {
-            reverse: false,
-            max: 35,
-            speed: 400,
-            scale: 1.05,
-            glare: true,
-            axis: "x",
-            "max-glare": 0.5
-        });
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(document.querySelectorAll(".skills__container__carousel__items ._item"), {
+                reverse: false,
+                max: 35,
+                speed: 400,
+                scale: 1.05,
+                glare: true,
+                axis: "x",
+                "max-glare": 0.5
+            });
+        }
         this.$nextTick(() => {
             this.skills.forEach(category => this.handleScroll(category));
         });
