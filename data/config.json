@@ -1,0 +1,4 @@
+{
+    "blogDataUrl": "http://129.148.39.151:8090/api",
+    "blogPostsEndpoint": "/collections/portfolio_blog_posts/records?fields=id,title,banner,post:excerpt(200,true)"
+}

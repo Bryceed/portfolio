@@ -22,7 +22,7 @@ import { useRoute } from 'vue-router';
 
 export default {
     setup() {
-        const route = useRoute();
+        const route = useRoute(); 
         const postId = ref(route.params.post);
         const post = ref({});
         const feed = ref({});

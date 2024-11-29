@@ -8,7 +8,7 @@
                     <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>
                     <div class="info-overlay">
                         <h3>{{ project.title }}</h3>
-                        <p>{{ project.description }}</p>
+                        <p>{{ getDescription(project) }}</p>
                     </div>
                     <div class="actions">
                         <CommonButton :link="project.page" :title="$t('html.projects.miniDisplay.button.details')"
@@ -35,7 +35,7 @@ h2 {
 }
 
 html.light h2 {
-    color: #000;
+    color: #5d13d4;
 }
 
 .btn-float-right {
@@ -461,6 +461,9 @@ export default {
         },
         hoverOut(project) {
             project.active = false;
+        },
+        getDescription(project) {
+            return project.description[this.$i18n.locale] || project.description['en'];
         }
     },
     mounted() {

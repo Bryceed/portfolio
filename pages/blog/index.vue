@@ -1,33 +1,50 @@
-// get data from https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@bryceed
+<template>
+    <div>
+        <div class="blog-minibio">
+            <span></span>
+            <h1>Blog</h1>
+        </div>
+
+        <div class="blog-posts">
+            <div v-for="post in posts" :key="post.id" class="blog-post">
+                <h2>{{ post.title }}</h2>
+                <div v-html="post.post"></div>
+                <div class="author">
+                    <img :src="post.banner[0]" alt="Blog logo" />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
 
 <script>
+import config from "~/data/config.json";
 
 export default {
-    name: "Blog",
+    async asyncData() {
+        const posts = useState('posts', () => []);
+        const { data } = await $fetch(`${config.blogDataUrl}${config.blogPostsEndpoint}`);
+        posts.value = data.items;
+    },
     data() {
         return {
-            posts: [],
             feed: {}
-        }
+        };
+    },
+    computed: {
+        posts() {
+            return useState('posts').value;
+        },
     },
     async mounted() {
-        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@bryceed');
-        const data = await response.json();
-        this.posts = data.items;
-        this.feed = data.feed;
-    },
-    watch: {
-        posts() {
-            (this.posts || []).forEach(post => {
-                post.pubDate = new Date(post.pubDate).toLocaleDateString();
-                post.link = post.link.split('/').pop().split('?')[0].split('#')[0];
-            });
-            if (this.posts == []) {
-                console.log('No posts found');
-            } 
+        try {
+            const { data } = await $fetch(`${config.blogDataUrl}${config.blogPostsEndpoint}`);
+            this.feed = data.feed;
+        } catch (error) {
+            console.error("Error fetching feed:", error);
         }
     }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -206,34 +223,3 @@ html.dark {
 
 }
 </style>
-
-<template>
-    <div>
-        <div class="blog-minibio">
-            <span></span>
-            <h1>Blog</h1>
-            <div class="minibio_side">
-                <img :src="feed.image" alt="Blog logo" />
-                <p>medium.com/@bryceed</p>
-                <p><b>{{ posts.length }} posts</b></p>
-                <div class="icons">
-                    <a :href="feed.link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-medium"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div v-if="posts.length == 0">
-            <p>Trying to load posts...</p>
-        </div>
-        <div v-else class="blog-posts">
-            <div v-for="post in posts" :key="post.title" class="blog-post" :class="{ 'loaded': post.pubDate }">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.pubDate }}</p>
-                <p v-html="post.description"></p>
-                <a :href="'/blog/post/' + post.link">Read more</a>
-            </div>
-        </div>
-    </div>
-</template>

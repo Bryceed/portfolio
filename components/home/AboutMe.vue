@@ -182,7 +182,7 @@ html.light .about {
 }
 
 .about__container__text h1 {
-    font-size: clamp(1.5em, 9vmin, 3.5em);
+    font-size: clamp(1.5em, 8.5vmin, 3.2em);
     font-weight: 700;
     color: #fff;
     margin-bottom: 48px;

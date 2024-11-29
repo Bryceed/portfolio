@@ -3,12 +3,29 @@
         {
             "id": "ryan",
             "title": "RYAN Bot",
-            "description": "Robô de automação para Discord, com foco em trazer funcionalidades com painel de controle e APIs.",
+            "description": {
+                "pt-BR": "Robô de automação para Discord, com foco em trazer funcionalidades com painel de controle e APIs.",
+                "en": "Automation bot for Discord, focused on bringing functionalities with control panel and APIs.",
+                "es": "Bot de automatización para Discord, enfocado en traer funcionalidades con panel de control y APIs.",
+                "fr": "Bot d'automatisation pour Discord, axé sur l'apport de fonctionnalités avec panneau de contrôle et APIs.",
+                "jp": "Discordの自動化ボット、コントロールパネルとAPIを備えた機能を提供することに焦点を当てています。",
+                "ko": "Discord용 자동화 봇으로, 제어판 및 API 기능을 제공하는 데 중점을 둡니다."
+            },
             "dueDate": "2020-01-01",
             "priority": "Medium",
             "colors": {
-                "primary": "#3d378a",
+                "primary": "#5C0CC7",
                 "secondary": "#161073",
+                "surface": {
+                    "light": {
+                        "primary": "#5C0CC7",
+                        "secondary": "#161073"
+                    },
+                    "dark": {
+                        "primary": "#5C0CC7",
+                        "secondary": "#161073"
+                    }
+                },
                 "text": "#FFFFFF"
             },
             "status": "Open",
@@ -36,12 +53,29 @@
         {
             "id": "beatup",
             "title": "BeatUP",
-            "description": "Experiência de jogo multiplataforma, com foco em trazer uma experiência de jogo rítmico e desafiador.",
+            "description": {
+                "pt-BR": "Experiência de jogo multiplataforma, com foco em trazer uma experiência de jogo rítmico e desafiador.",
+                "en": "Multiplatform gaming experience, focused on bringing a rhythmic and challenging gaming experience.",
+                "es": "Experiencia de juego multiplataforma, enfocada en traer una experiencia de juego rítmica y desafiante.",
+                "fr": "Expérience de jeu multiplateforme, axée sur l'apport d'une expérience de jeu rythmique et stimulante.",
+                "jp": "マルチプラットフォームのゲーム体験で、リズミカルで挑戦的なゲーム体験を提供することに焦点を当てています。",
+                "ko": "다중 플랫폼 게임 경험으로, 리드미컬하고 도전적인 게임 경험을 제공하는 데 중점을 둡니다."
+            },
             "dueDate": "2020-01-01",
             "priority": "High",
             "colors": {
-                "primary": "#04263E",
-                "secondary": "#022844",
+                "primary": "#022844",
+                "secondary": "#0A1E2B",
+                "surface": {
+                    "light": {
+                        "primary": "#033a5c",
+                        "secondary": "#0b2a3d"
+                    },
+                    "dark": {
+                        "primary": "#011d2e",
+                        "secondary": "#05151e"
+                    }
+                },
                 "text": "#FFFFFF"
             },
             "status": "Open",
@@ -66,12 +100,29 @@
         {
             "id": "orkuty",
             "title": "Orkuty",
-            "description": "Recriação do Orkut, com foco em trazer a experiência nostálgica do Orkut para os dias atuais.",
+            "description": {
+                "pt-BR": "Recriação do Orkut, com foco em trazer a experiência nostálgica do Orkut para os dias atuais.",
+                "en": "Recreation of Orkut, focused on bringing the nostalgic experience of Orkut to the present day.",
+                "es": "Recreación de Orkut, enfocada en traer la experiencia nostálgica de Orkut a la actualidad.",
+                "fr": "Recréation d'Orkut, axée sur l'apport de l'expérience nostalgique d'Orkut à nos jours.",
+                "jp": "Orkutの再現で、Orkutの懐かしい体験を現代に提供することに焦点を当てています。",
+                "ko": "Orkut의 재창조로, Orkut의 향수를 현재로 가져오는 데 중점을 둡니다."
+            },
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
-                "primary": "#96296a",
-                "secondary": "#bf0e6e",
+                "primary": "#9D256C",
+                "secondary": "#8F3069",
+                "surface": {
+                    "light": {
+                        "primary": "#b23a7d",
+                        "secondary": "#a03b73"
+                    },
+                    "dark": {
+                        "primary": "#7a1d54",
+                        "secondary": "#6e2850"
+                    }
+                },
                 "text": "#FFFFFF"
             },
             "status": "Open",
@@ -96,12 +147,29 @@
         {
             "id": "karaotrack",
             "title": "karaoTrack.js",
-            "description": "Script para monitorar e exibir letras de músicas em tempo real, com foco em trazer uma experiência de karaokê.",
+            "description": {
+                "pt-BR": "Script para monitorar e exibir letras de músicas em tempo real, com foco em trazer uma experiência de karaokê.",
+                "en": "Script to monitor and display song lyrics in real-time, focused on bringing a karaoke experience.",
+                "es": "Script para monitorear y mostrar letras de canciones en tiempo real, enfocado en traer una experiencia de karaoke.",
+                "fr": "Script pour surveiller et afficher les paroles des chansons en temps réel, axé sur l'apport d'une expérience de karaoké.",
+                "jp": "リアルタイムで歌詞を監視および表示するスクリプトで、カラオケ体験を提供することに焦点を当てています。",
+                "ko": "실시간으로 노래 가사를 모니터링하고 표시하는 스크립트로, 카라오케 경험을 제공하는 데 중점을 둡니다."
+            },
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
                 "primary": "#615f63",
                 "secondary": "#444",
+                "surface": {
+                    "light": {
+                        "primary": "#7a787c",
+                        "secondary": "#5a5a5a"
+                    },
+                    "dark": {
+                        "primary": "#4a484c",
+                        "secondary": "#333"
+                    }
+                },
                 "text": "#FFFFFF"
             },
             "status": "Open",
@@ -126,12 +194,29 @@
         {
             "id": "deltaverse",
             "title": "Deltaverse",
-            "description": "Servidor de Minecraft com foco em trazer uma experiência de integração com o Discord, painel de controle e APIs.",
+            "description": {
+                "pt-BR": "Servidor de Minecraft com foco em trazer uma experiência de integração com o Discord, painel de controle e APIs.",
+                "en": "Minecraft server focused on bringing an integration experience with Discord, control panel, and APIs.",
+                "es": "Servidor de Minecraft enfocado en traer una experiencia de integración con Discord, panel de control y APIs.",
+                "fr": "Serveur Minecraft axé sur l'apport d'une expérience d'intégration avec Discord, panneau de contrôle et APIs.",
+                "jp": "Discord、コントロールパネル、およびAPIとの統合体験を提供することに焦点を当てたMinecraftサーバー。",
+                "ko": "Discord, 제어판 및 API와의 통합 경험을 제공하는 데 중점을 둔 Minecraft 서버."
+            },
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
                 "primary": "#ce6c50",
                 "secondary": "#803634",
+                "surface": {
+                    "light": {
+                        "primary": "#e07d61",
+                        "secondary": "#8f403e"
+                    },
+                    "dark": {
+                        "primary": "#b35a45",
+                        "secondary": "#6f2e2c"
+                    }
+                },
                 "text": "#FFFFFF"
             },
             "status": "Open",
@@ -156,12 +241,29 @@
         {
             "id": "mangut",
             "title": "Mangut",
-            "description": "TCC em grupo para a Recode PRO, onde oferecemos uma vitrine virtual aos produtos orgânicos de povos originários.",
+            "description": {
+                "pt-BR": "TCC em grupo para a Recode PRO, onde oferecemos uma vitrine virtual aos produtos orgânicos de povos originários.",
+                "en": "Group TCC for Recode PRO, where we offer a virtual showcase for organic products from indigenous peoples.",
+                "es": "TCC en grupo para Recode PRO, donde ofrecemos una vitrina virtual para productos orgánicos de pueblos originarios.",
+                "fr": "TCC en groupe pour Recode PRO, où nous offrons une vitrine virtuelle pour les produits biologiques des peuples autochtones.",
+                "jp": "Recode PROのグループTCCで、先住民の有機製品を仮想ショーケースで提供します。",
+                "ko": "Recode PRO를 위한 그룹 TCC로, 원주민의 유기농 제품을 위한 가상 쇼케이스를 제공합니다."
+            },
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
                 "primary": "#fb6600",
                 "secondary": "#cd9500",
+                "surface": {
+                    "light": {
+                        "primary": "#ff7a1a",
+                        "secondary": "#e0a000"
+                    },
+                    "dark": {
+                        "primary": "#d95500",
+                        "secondary": "#b37a00"
+                    }
+                },
                 "text": "#FFFFFF"
             },
             "status": "Open",

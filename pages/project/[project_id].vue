@@ -1,26 +1,30 @@
 <template>
-    <div class="flex flex-col md:flex-row mt-12" v-if="!error">
-        <div class="w-full md:w-1/4 sticky top-0">
-            <h1 class="text-5xl font-bold mb-6 text-center">
-                {{ project.title }}
-            </h1>
-            <div class="relative w-full h-0 pb-3/4">
-                <img :src="project.placeholder" alt="Project Image"
-                    class="absolute h-full w-full object-cover rounded-lg shadow-md" />
-            </div>
+    <div class="flex flex-col md:flex-row mx-[20px]" v-if="!error">
+        <div class="w-full md:w-1/4 relative">
+            <div class="card-intro rounded-lg px-6 h-auto pt-8">
+                <h1 class="text-5xl font-bold mb-6 text-center">
+                    {{ project.title }}
+                </h1>
+                <div class="relative w-full h-0 pb-3/4">
+                    <img :src="project.placeholder" alt="Project Image"
+                        class="absolute h-full w-full object-cover rounded-lg shadow-md" />
+                </div>
 
-            <h3 class="text-l text-gray-500 mt-2">
-                {{ project.description }}
-            </h3>
+                <h3 class="text-l text-gray-500 mt-2">
+                    {{ getDescription(project) }}
+                </h3>
+            </div>
             <div class="flex flex-col items-start justify-center mt-12">
                 <button @click="goBack"
                     class="text-light-800 font-bold py-4 px-1 rounded inline-flex items-center icon-left mb-6">
                     <span class="i-akar-icons-arrow-left mr-2"></span>
-                    <span class="ml-2">{{ $t('project.buttons.back') }}</span>
+                    <span class="ml-2">{{ $t('html.project.buttons.back') }}</span>
                 </button>
             </div>
         </div>
-        <div class="w-full md:w-3/4">
+        <div class="w-full md:w-3/4 min-h-screen w-auto pt-8">
+            <CommonAlertsUnderConstruction />
+            <CommonAlertsUnderConstruction />
             <CommonAlertsUnderConstruction />
         </div>
     </div>
@@ -72,6 +76,11 @@ export default {
                     return document.querySelector("body").classList.remove("bg-experience");
                 }
                 defineClassStyle({
+                    ":root": {
+                        "--primary-color": project.value.colors.primary,
+                        "--secondary-color": project.value.colors.secondary,
+                        "--text-color": project.value.colors.text,
+                    },
                     ".bg-experience": {
                         "background": `linear-gradient(0deg, ${project.value.colors.primary}, ${project.value.colors.secondary}), linear-gradient(0deg, ${project.value.colors.secondary}, transparent)`
                     },
@@ -151,5 +160,11 @@ export default {
         this.waitDocReady(true);
         next();
     },
+
+    methods: {
+        getDescription(project) {
+            return project.description[this.$i18n.locale] || project.description['en'];
+        },
+    }
 };
 </script>

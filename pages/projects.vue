@@ -10,7 +10,7 @@
             <div class="_underneath"
                 :style="{ 'background': project.colors.primary ? `linear-gradient(90deg, ${project.colors.primary}, transparent)` : 'transparent', 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
                 <h3>{{ project.title }}</h3>
-                <p>{{ project.description }}</p>
+                <p>{{ getDescription(project) }}</p>
             </div>
             <div class="_right"
                 :style="{ 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
@@ -52,6 +52,9 @@ export default {
         });
     },
     methods: {
+        getDescription(project) {
+            return project.description[this.$i18n.locale] || project.description['en'];
+        },
         linkTo(page) {
             if (page) {
                 this.$router.push(page);
@@ -162,10 +165,11 @@ html.light .project-item:hover {
 
 .project-item ._underneath h3 {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     margin-bottom: .5rem;
     text-align: left;
+    font-family: 'Parkinsans', 'Roboto', sans-serif !important;
 }
 
 .project-item ._underneath p {
