@@ -5,7 +5,7 @@
     <HomeAboutMe />
     <ProjectsMiniDisplay />
     <HomeSkills />
-    <HomeTwitch />
+
 </template>
 
 <script>

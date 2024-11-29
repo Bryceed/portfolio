@@ -1,5 +1,5 @@
 <template>
-    <div class="mbti-container">
+    <div class="mbti-container" v-if="personalityType && $i18n.locale">
         <div class="mbti-header" :style="{ backgroundColor: primaryColor }">
             <h1>{{ title }}</h1>
             <svg class="mbti-svg" viewBox="0 0 100 5">
@@ -14,7 +14,7 @@
             <div class="mbti-text">
                 <h2>
                     {{
-                        percentage + "% " + personalityType.title
+                        percentage + "% " + personalityType.title[$i18n.locale]
                     }}
                     <span>
                         ({{ personalityType.abbreviation }})
@@ -33,18 +33,18 @@
                 <div class="legends">
                     <div :style="{ color: leftColor }">
                         <span>{{ leftPercentage }}%</span>
-                        <span>{{ table.types[leftType].title }}</span>
+                        <span>{{ table.types[leftType].title[$i18n.locale] }}</span>
 
                     </div>
                     <div :style="{ color: rightColor }">
                         <span>{{ rightPercentage }}%</span>
-                        <span>{{ table.types[rightType].title }}</span>
+                        <span>{{ table.types[rightType].title[$i18n.locale] }}</span>
                     </div>
                 </div>
                 <p class="mbti-description">
-                    {{ personalityType.description }}
+                    {{ personalityType.description[$i18n.locale] }}
                 </p>
-                <h3>O que é {{ title.toLowerCase() }}?</h3>
+                <h3>{{ getLocalizedWhatIs() }} {{ title.toLowerCase() }}?</h3>
                 <p class="quote">
                     {{ description }}
                 </p>
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-
+import table from '~/data/mbti.js';
 export default {
     props: {
         primaryColor: {
@@ -84,101 +84,7 @@ export default {
         // característica em inglês (energia, mente, natureza, táticas)
     },
     data() {
-        let table = {
-            titles: {
-                energy: {
-                    title: 'Energia',
-                    description: 'A energia é a característica que determina como você interage com o mundo exterior, seja por meio de ações ou reflexões. A energia é dividida em dois aspectos: extroversão e introversão. A extroversão é a tendência a se concentrar no mundo exterior, enquanto a introversão é a tendência a se concentrar no mundo interior.'
-                },
-                mind: {
-                    title: 'Mente',
-                    description: 'A mente é a característica que determina como você toma decisões e lida com informações. A mente é dividida em dois aspectos: observação e intuição. A observação é a tendência a se concentrar em informações concretas e no que pode ser visto, ouvido, sentido ou experimentado. A intuição é a tendência a se concentrar em informações abstratas e nas possibilidades futuras.'
-                },
-                nature: {
-                    title: 'Natureza',
-                    description: 'A natureza é a característica que determina como você lida com emoções e situações estressantes. A natureza é dividida em dois aspectos: sentimento e pensamento. O sentimento é a tendência a tomar decisões com base em emoções e valores pessoais. O pensamento é a tendência a tomar decisões com base na lógica e na razão.'
-                },
-                tactics: {
-                    title: 'Tática',
-                    description: 'As táticas são a característica que determina como você lida com planejamento e tomada de decisões. As táticas são divididas em dois aspectos: julgamento e prospecção. O julgamento é a tendência a se concentrar em resultados e em seguir um plano. Prospecção é a tendência a se concentrar em possibilidades e em manter as opções em aberto.'
-                },
-                identity: {
-                    title: 'Identidade',
-                    description: 'A identidade é a característica que determina como você lida com a confiança, a autoestima e a determinação. A identidade é dividida em dois aspectos: assertividade e turbulência. A assertividade é a tendência a se sentir confiante e a assumir o controle de uma situação. A turbulência é a tendência a se sentir ansioso e a se preocupar com o futuro.'
-                }
-            },
-            types: {
-                introverted: {
-                    title: 'Introvertido',
-                    abbreviation: 'I',
-                    description: 'Os introvertidos tendem a ser mais reservados e a se concentrar em seu mundo interior. Eles preferem atividades solitárias ou em pequenos grupos e podem se sentir sobrecarregados em ambientes sociais. Os introvertidos geralmente precisam de tempo sozinhos para recarregar suas energias.'
-                },
-                extroverted: {
-                    title: 'Extrovertido',
-                    abbreviation: 'E',
-                    description: 'Os extrovertidos tendem a ser mais sociáveis e a se concentrar no mundo exterior. Eles preferem atividades em grupo e podem se sentir entediados ou solitários quando estão sozinhos. Os extrovertidos geralmente se sentem energizados em ambientes sociais.'
-                },
-                observant: {
-                    title: 'Observador',
-                    abbreviation: 'S',
-                    description: 'Os observadores tendem a ser mais práticos e a se concentrar em detalhes concretos. Eles preferem informações objetivas e confiáveis e podem ter dificuldade em lidar com incertezas ou ambiguidades. Os observadores geralmente confiam em suas experiências passadas e em seus sentidos para tomar decisões.'
-                },
-                intuitive: {
-                    title: 'Intuitivo',
-                    abbreviation: 'N',
-                    description: 'Os intuitivos tendem a ser mais imaginativos e a se concentrar em possibilidades futuras. Eles preferem informações abstratas e teóricas e podem ter dificuldade em lidar com fatos concretos ou com o presente imediato. Os intuitivos geralmente confiam em sua intuição e em sua imaginação para tomar decisões.'
-                },
-                thinking: {
-                    title: 'Pensamento',
-                    abbreviation: 'T',
-                    description: 'Os pensadores tendem a ser mais lógicos e a se concentrar na razão. Eles preferem analisar informações objetivas e imparciais e podem ter dificuldade em lidar com emoções ou valores pessoais. Os pensadores geralmente confiam em sua capacidade de raciocínio e em sua objetividade para tomar decisões.'
-                },
-                feeling: {
-                    title: 'Sentimento',
-                    abbreviation: 'F',
-                    description: 'Os sentimentais tendem a ser mais emocionais e a se concentrar em valores pessoais. Eles preferem tomar decisões com base em suas emoções e em suas crenças pessoais e podem ter dificuldade em lidar com lógica ou com a razão. Os sentimentais geralmente confiam em sua intuição e em seus valores para tomar decisões.'
-                },
-                judging: {
-                    title: 'Julgador',
-                    abbreviation: 'J',
-                    description: 'Os julgadores tendem a ser mais organizados e a se concentrar em resultados. Eles preferem seguir um plano e tomar decisões de forma rápida e eficiente. Os julgadores geralmente têm dificuldade em lidar com mudanças de última hora ou com situações imprevisíveis.'
-                },
-                prospecting: {
-                    title: 'Prospecção',
-                    abbreviation: 'P',
-                    description: 'Os prospectores tendem a ser mais flexíveis e a se concentrar em possibilidades. Eles preferem manter as opções em aberto e explorar diferentes alternativas antes de tomar uma decisão. Os desbravadores geralmente têm dificuldade em seguir um plano rígido ou em se comprometer com uma única opção.'
-                },
-                assertive: {
-                    title: 'Assertivo',
-                    abbreviation: 'A',
-                    description: 'Os assertivos tendem a ser mais confiantes e a se concentrar em seus objetivos. Eles preferem tomar a iniciativa e assumir o controle de uma situação. Os assertivos geralmente têm dificuldade em lidar com indecisões ou com situações em que não têm controle.'
-                },
-                turbulent: {
-                    title: 'Turbulento',
-                    abbreviation: 'T',
-                    description: 'Os turbulentos tendem a ser mais ansiosos e a se concentrar em suas emoções. Eles preferem ter um plano de backup e estar preparados para o pior cenário. Os turbulentos geralmente têm dificuldade em lidar com incertezas ou com situações imprevisíveis, sendo mais propensos a se preocuparem com o futuro e a terem dificuldade em relaxar.'
-                }
-            },
-            pairs: {
-                introverted: 'extroverted',
-                extroverted: 'introverted',
-                observant: 'intuitive',
-                intuitive: 'observant',
-                thinking: 'feeling',
-                feeling: 'thinking',
-                judging: 'prospecting',
-                prospecting: 'judging',
-                assertive: 'turbulent',
-                turbulent: 'assertive'
-            },
-            display: {
-                introverted_extroverted: 'energy',
-                observant_intuitive: 'mind',
-                thinking_feeling: 'nature',
-                judging_prospecting: 'tactics',
-                assertive_turbulent: 'identity'
-            }
-        }
+        const locale = this.$i18n.locale;
         const personalityType = table.types[this.percentageType];
 
         let comparationCategory, leftType, rightType;
@@ -199,8 +105,8 @@ export default {
 
         const oppositeType = table.pairs[this.percentageType];
 
-        const title = this.title || (table.titles[comparationCategory] && table.titles[comparationCategory].title);
-        const description = this.description || (table.titles[comparationCategory] && table.titles[comparationCategory].description);
+        const title = this.title || (table.titles[comparationCategory] && table.titles[comparationCategory].title[locale]);
+        const description = this.description || (table.titles[comparationCategory] && table.titles[comparationCategory].description[locale]);
 
         const leftColor = this.percentageType === leftType ? this.primaryColor : this.secondaryColor;
         const rightColor = this.percentageType === rightType ? this.primaryColor : this.secondaryColor;
@@ -220,7 +126,8 @@ export default {
             rightPercentage,
             leftColor,
             rightColor,
-            table
+            table,
+            locale
         };
 
     },
@@ -229,10 +136,63 @@ export default {
             return 'mbti-component-' + this._uid;
         },
     },
-    beforeMount() {
-        this.$el.setAttribute('id', 'component-' + this._uid);
+    watch: {
+        '$i18n.locale': function (newLocale) {
+            this.updateLocale(newLocale);
+        }
+    },
+    methods: {
+        updateLocale(newLocale) {
+            const personalityType = table.types[this.percentageType];
+            const title = this.title || (table.titles[this.comparationCategory] && table.titles[this.comparationCategory].title[newLocale]);
+            const description = this.description || (table.titles[this.comparationCategory] && table.titles[this.comparationCategory].description[newLocale]);
+
+            this.personalityType = personalityType;
+            this.title = title;
+            this.description = description;
+        },
+        getLocalizedWhatIs() {
+            const locale = this.$i18n.locale;
+            switch (locale) {
+                case 'en':
+                    return 'What is';
+                case 'es':
+                    return '¿Qué es';
+                case 'fr':
+                    return 'Qu\'est-ce que';
+                case 'jp':
+                    return 'とは何ですか';
+                case 'ko':
+                    return '무엇입니까';
+                case 'pt-BR':
+                default:
+                    return 'O que é';
+            }
+        }
     },
     mounted() {
+        // next tick to get the component id
+        this.$nextTick(() => {
+            const component = document.getElementById(this.getComponentId);
+            if (component) {
+                component.style.setProperty('--primary-color', this.primaryColor);
+                component.style.setProperty('--secondary-color', this.secondaryColor);
+            }
+
+            this.$refs.component.setAttribute('id', 'component-' + this._uid);
+
+
+        });
+        // quando a tela redimensionar, atualize o tamanho da fonte para a largura do .mbti-container
+        // set font as css var
+        window.addEventListener('resize', () => {
+            const fontSize = document.querySelector('.mbti-container').offsetWidth / 100;
+            document.documentElement.style.setProperty('--font-size', fontSize.toFixed(1));
+        });
+
+        // set font size based on window width
+        const fontSize = document.querySelector('.mbti-container').offsetWidth / 100;
+        document.documentElement.style.setProperty('--font-size', fontSize.toFixed(1));
         console.table(this.$data);
     },
 };
@@ -248,28 +208,31 @@ body {
 }
 
 .mbti-container {
-    width: calc(100% - 64px);
-    height: fit-content;
-    padding: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    aspect-ratio: 4/3;
+    position: relative;
     background-color: #FFF;
-    margin: 32px;
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    // escalar fontes com base na largura do container
+    font-size: var(--font-size);
 }
 
 .mbti-header {
-    /* use the primaryColor prop as the background color */
     background-color: var(--personalityCardColor);
-    padding: 20px 0;
+    padding: 2% 0;
     padding-bottom: 0;
     text-align: center;
-    position: relative;
+    position: absolute;
+    top: 0;
     width: 100%;
     color: white;
-    margin-bottom: 40px;
+    margin-bottom: 4%;
 }
 
 .mbti-header h1 {
-    font-size: 2rem;
+    font-size: calc(var(--font-size) * 3px);
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -283,11 +246,11 @@ body {
 }
 
 .mbti-about {
-    padding: 20px;
-    font-size: 1em;
+    padding: 2%;
+    font-size: calc(var(--font-size) * 1px);
     line-height: 1em;
     color: #333;
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -295,13 +258,15 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: start;
-    padding: 20px;
-    gap: 20px;
-    position: relative;
+    padding: 2%;
+    gap: 2%;
+    position: absolute;
+    top: 15%;
+    width: 100%;
 }
 
 .mbti-image {
-    width: calc(50% - 20px);
+    width: calc(var(--font-size) * 30px);
     display: flex;
     justify-content: center;
     align-items: start;
@@ -313,55 +278,56 @@ body {
 }
 
 .mbti-text {
-    width: calc(50% - 20px);
-    padding: 20px;
+    width: calc(var(--font-size) * 60px);
+    padding: 2%;
 }
 
 .mbti-text h2 {
-    font-size: 3em;
+    font-size: calc(var(--font-size) * 5.5px);
     color: #333;
     display: flex;
     justify-content: start;
     align-items: start;
-    margin-bottom: 20px;
-    gap: 10px;
+    margin-bottom: 2%;
+    gap: 1%;
 }
 
 .mbti-text h2 span {
-    font-size: 0.5em;
+    font-size: calc(var(--font-size) * 2.5px);
     color: #707070;
     opacity: 0.8;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 1%;
 }
 
 .mbti-text p {
-    font-size: 1.5em;
-    line-height: 1.5em;
+    font-size: calc(var(--font-size) * 2.2px);
+    line-height: 1.3;
     color: #333;
     white-space: pre-line;
 }
 
 .mbti-text h3 {
-    font-size: 2em;
+    font-size: calc(var(--font-size) * 2.8px);
     color: #333;
-    margin-top: 48px;
-    margin-bottom: 0px;
+    margin-top: 4%;
+    margin-bottom: 0;
+    font-weight: 500;
 }
 
 .mbti-text p.quote {
-    font-size: 1.2em;
+    font-size: calc(var(--font-size) * 1.7px);
     line-height: 1.4em;
     color: #707070;
     border-left: 3px solid #7070706c;
-    padding-left: 20px;
-    margin: 20px 0;
+    padding-left: 2%;
+    margin: 2% 0;
 }
 
 .mbti-text .legends {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0 50px;
+    margin: 2% 0 5%;
 }
 
 .mbti-text .legends div {
@@ -373,14 +339,14 @@ body {
 .mbti-text .legends div:first-child {
     text-align: left;
     align-items: flex-start;
-    font-size: 1.5em;
+    font-size: calc(var(--font-size) * 2.8px);
     line-height: 1.1em;
 }
 
 .mbti-text .legends div:last-child {
     text-align: right;
     align-items: flex-end;
-    font-size: 1.5em;
+    font-size: calc(var(--font-size) * 2.8px);
     line-height: 1.1em;
 }
 
@@ -397,7 +363,7 @@ body {
 
 .mbti-text .legends .middleMarker span {
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     color: #707070;
@@ -405,11 +371,11 @@ body {
 
 .progress-bar {
     width: 100%;
-    height: 12px;
+    height: calc(var(--font-size) * 1.5px);
     background-color: #f1f1f1;
     border-radius: 10px;
     overflow: hidden;
-    margin: 10px 0;
+    margin: 1% 0;
     position: relative;
 }
 
@@ -441,10 +407,10 @@ body {
 }
 
 html.dark {
-    --personalityCardColor: #111;
+    --personalityCardColor: #912e2e;
 
     .mbti-container {
-        background-color: #333;
+        background-color: #000000b4;
     }
 
     .mbti-header {
@@ -478,8 +444,17 @@ html.dark {
 }
 
 @media (max-width: 1280px) {
+    .mbti-container {
+        height: fit-content;
+        margin-bottom: 0;
+        aspect-ratio: auto;
+        padding-bottom: 0px;
+    }
+
     .mbti-content {
         flex-direction: column;
+        gap: 2%;
+        position: relative;
     }
 
     .mbti-image {
@@ -489,6 +464,42 @@ html.dark {
 
     .mbti-text {
         width: 100%;
+    }
+
+    .mbti-text h2 {
+        font-size: calc(var(--font-size) * 6px);
+    }
+
+    .mbti-text h2 span {
+        font-size: calc(var(--font-size) * 3px);
+    }
+
+    .mbti-text p {
+        font-size: calc(var(--font-size) * 3px);
+    }
+
+    .mbti-text h3 {
+        font-size: calc(var(--font-size) * 3.5px);
+    }
+
+    .mbti-text p.quote {
+        font-size: calc(var(--font-size) * 2.5px);
+    }
+
+    .mbti-text .legends div {
+        font-size: calc(var(--font-size) * 3.5px);
+    }
+
+    .mbti-text .legends div span:first-child {
+        font-size: calc(var(--font-size) * 3.5px);
+    }
+
+    .mbti-text .legends div span:last-child {
+        font-size: calc(var(--font-size) * 2.5px);
+    }
+
+    .progress-bar {
+        height: calc(var(--font-size) * 2px);
     }
 }
 </style>

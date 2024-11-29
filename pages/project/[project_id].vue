@@ -99,6 +99,9 @@ export default {
                     ".bg-experience nav a, .bg-experience nav i": {
                         "color": `${project.value.colors.text} !important`
                     },
+                    ".bg-experience nav ul li.lang-switcher": {
+                        "background": `${project.value.colors.primary} !important`
+                    },
                     ".bg-experience.dark body::after": {
                         "display": "block",
                         "content": "''",
@@ -143,6 +146,10 @@ export default {
             }
         };
 
+        const getDescription = (project) => {
+            return project.description[this.$i18n.locale] || project.description['en'];
+        };
+
         watch(() => route.params.project_id, loadProject, { immediate: true });
 
         return {
@@ -152,7 +159,8 @@ export default {
             loadProject,
             waitDocReady,
             defineClassStyle,
-            goBack
+            goBack,
+            getDescription
         };
     },
 

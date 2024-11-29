@@ -1,21 +1,19 @@
 <template>
-    <a href="/about/personality-test">Teste de personalidade</a>
 
     <CommonAlertsUnderConstruction>
         <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-            <button class="btn btn-primary" @click="openLink('/files/cv/Wellington.pdf')">
-                <div class="mb-1">
-                    <span class="i-akar-icons-download mb-1 mr-1"></span>
-                    <span class="mx-2">CV</span>
-                </div>
-            </button>
+            <NuxtLink to="/about/personality-test" class="btn btn--primary" @mouseover="prefetchPersonalityResult"
+                @click="prefetchLink">
+                <span class="i-akar-icons-face-happy"></span>
+                <span>MBTI</span>
+            </NuxtLink>
 
             <div class="divider"></div>
+            <NuxtLink to="/contact" class="btn btn--secondary"><i class="material-icons mb-2">email</i><span
+                    v-html="$t('html.home.actions[1].label')"></span></NuxtLink>
 
-            <NuxtLink to="/about/personality-test" class="btn btn--primary">
-                <span class="i-akar-icons-face-happy mb-1 mr-2"></span>
-                <span>Personalidade: INTP-T</span>
-            </NuxtLink>
+
+
         </div>
     </CommonAlertsUnderConstruction>
 </template>
@@ -51,6 +49,12 @@ export default {
     methods: {
         openLink(link) {
             window.open(link, '_blank');
+        },
+        prefetchPersonalityResult() {
+            this.$nuxt.prefetch('/about/personality-test');
+        },
+        prefetchLink() {
+            this.$nuxt.prefetch('/contact');
         }
     }
 };

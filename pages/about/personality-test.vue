@@ -20,11 +20,13 @@
                 profundos e inovadores.</p>
         </div>
     </div>
-    <PersonalityResult primaryColor="#4298B4" :percentage="81" percentageType="introverted" />
-    <PersonalityResult primaryColor="#E4AE3A" :percentage="91" percentageType="intuitive" />
-    <PersonalityResult primaryColor="#33A474" :percentage="74" percentageType="thinking" />
-    <PersonalityResult primaryColor="#96637C" :percentage="92" percentageType="prospecting" />
-    <PersonalityResult primaryColor="#F25E62" :percentage="51" percentageType="turbulent" />
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        <PersonalityResult primaryColor="#4298B4" :percentage="81" percentageType="introverted" />
+        <PersonalityResult primaryColor="#E4AE3A" :percentage="91" percentageType="intuitive" />
+        <PersonalityResult primaryColor="#33A474" :percentage="74" percentageType="thinking" />
+        <PersonalityResult primaryColor="#96637C" :percentage="92" percentageType="prospecting" />
+        <PersonalityResult primaryColor="#F25E62" :percentage="51" percentageType="turbulent" />
+    </div>
     <div class="credits">
         Estudo e <a href="https://www.16personalities.com/profiles/1b0e2ee7ed173" target="_blank">resultado</a> baseado
         no
@@ -33,6 +35,16 @@
             target="_blank">16personalities</a>
     </div>
 </template>
+
+<script>
+import PersonalityResult from '~/components/personality/result.vue';
+
+export default {
+    components: {
+        PersonalityResult
+    }
+};
+</script>
 
 <style>
 .mbti-result-resume {
