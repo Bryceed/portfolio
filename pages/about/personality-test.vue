@@ -20,7 +20,7 @@
                 profundos e inovadores.</p>
         </div>
     </div>
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+    <div class="grid grid-cols-1 md:grid-cols-1 md:gap-4 md:w-2/3 mx-8 md:mx-auto lg:w-1/2 mb-4">
         <PersonalityResult primaryColor="#4298B4" :percentage="81" percentageType="introverted" />
         <PersonalityResult primaryColor="#E4AE3A" :percentage="91" percentageType="intuitive" />
         <PersonalityResult primaryColor="#33A474" :percentage="74" percentageType="thinking" />
