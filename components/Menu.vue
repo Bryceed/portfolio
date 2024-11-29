@@ -458,7 +458,7 @@ html.light nav {
     color: #000;
 }
 html.light nav::before {
-    background: linear-gradient(to top, rgba(207, 207, 207, 0.8), #E3E3E3F8 31%);
+    background: linear-gradient(0deg, #d1d1d17a, #D1D1D1 31%);
 }
 html.light nav ul li a {
     color: #555;
