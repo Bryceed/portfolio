@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     "@unocss/nuxt",
     "dayjs-nuxt",
     "nuxt-jsonapi",
+    "@nuxt/fonts"
   ],
 
   css: ["@/assets/css/main.css"],
@@ -45,8 +46,8 @@ export default defineNuxtConfig({
   components: true,
 
   content: {
+    // Ensure the content module is correctly configured
     markdown: {
-      // Object syntax can be used to override default options
       toc: {
         depth: 3,
         searchDepth: 3,

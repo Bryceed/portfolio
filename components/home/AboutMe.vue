@@ -182,11 +182,10 @@ html.light .about {
 }
 
 .about__container__text h1 {
-    font-size: clamp(1.5em, 8vmin, 3em);
+    font-size: clamp(1.5em, 9vmin, 3.5em);
     font-weight: 700;
     color: #fff;
     margin-bottom: 48px;
-    font-family: "Keep Calm", sans-serif;
 }
 
 .about__container__text h1 span {

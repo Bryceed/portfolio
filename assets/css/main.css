@@ -1,5 +1,6 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '../fonts/keep-calm.css';
+@import './global.css';
 
 @tailwind base;
 @tailwind components;

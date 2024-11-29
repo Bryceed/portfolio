@@ -6,6 +6,7 @@ node_modules
 .env
 dist
 .DS_Store
+.data
 
 .output
 .vscode/settings.json

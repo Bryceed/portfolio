@@ -28,7 +28,7 @@
 <style scoped>
 h2 {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 900;
     color: #fff;
     margin-bottom: 20px;
     text-align: center;
