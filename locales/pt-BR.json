@@ -8,6 +8,8 @@
         "Atualmente trabalhando para <span>{business}</span>, há {time}.",
         "<b>Vamos tirar o seu projeto do papel?</b>"
       ],
+      "skillsTitle": "Habilidades",
+      "projectsTitle": "Projetos",
       "actions": [
         {
           "label": "Projetos",

@@ -1,6 +1,6 @@
 <template>
     <div class="mini-display-container">
-        <h2>Projetos</h2>
+        <h2>{{ $t('html.home.projectsTitle') }}</h2>
         <div class="mini-display">
             <template v-for="project in projects" :key="project.id">
                 <div class="project-item" :class="{ active: project.active }" @click="toggleActive(project)"
@@ -20,7 +20,10 @@
                 </div>
             </template>
         </div>
-        <NuxtLink to="/projects" class="btn btn-primary btn-lg btn-block btn-float-right">Ver todos os projetos
+
+        <NuxtLink to="/about" class="btn btn--primary btn-float-right">
+            {{ $t('html.home.actions[0].label') }}
+            <span class="material-icons">arrow_forward</span>
         </NuxtLink>
     </div>
 </template>
@@ -35,32 +38,54 @@ h2 {
 }
 
 html.light h2 {
-    color: #5d13d4;
+    color: #111111;
 }
 
 .btn-float-right {
     position: absolute;
+    right: 2rem;
     bottom: 1.5rem;
-    right: 25px;
-    z-index: 999;
+    z-index: 5;
     font-weight: bold;
     transition: all .1s ease-in-out;
-    background-color: #070707;
-    border-radius: .2rem;
+    border-radius: .5rem;
     line-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
-    padding: .5rem 1rem;
+    padding: .8rem 1.2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Parkinsans', 'Roboto', sans-serif;
+    font-weight: 500;
+
+    background: #615f6388;
 }
 
 .btn-float-right:hover {
-    background-color: #444;
-    transition: all .1s ease-in;
-    box-shadow: 0 0 0 5px #222222, 0 0 0 8px #ffffff;
+    background: #615f63;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
 }
+
+html.light .btn-float-right {
+    background: #ece6ef;
+    color: #000;
+    box-shadow: none;
+}
+
+html.light .btn-float-right:hover {
+    background: #ffffff;
+    color: #000;
+    box-shadow: none;
+}
+
+.btn-float-right .material-icons {
+    font-size: 1.5rem;
+    position: relative;
+    top: -.25rem;
+}
+
 
 .mini-display-container {
     display: flex;
@@ -114,6 +139,12 @@ html.light .mini-display-container {
     transition: none;
 }
 
+html.light .project-item {
+    background: #ece6ef;
+    color: #000;
+    box-shadow: transparent
+}
+
 .project-item:hover {
     cursor: pointer;
     box-shadow: 0 0 0 5px #222222, 0 0 0 10px var(--highlight-color);
@@ -121,7 +152,6 @@ html.light .mini-display-container {
 
 html.light .project-item:hover {
     box-shadow: 0 0 0 5px #fff, 0 0 0 10px var(--highlight-color);
-    
 }
 
 .project-item ._bg {
@@ -164,6 +194,10 @@ html.light .project-item:hover {
     z-index: 1;
 }
 
+html.light .project-item:hover ._bg::after {
+    background: linear-gradient(transparent 70%, var(--highlight-color));
+}
+
 .project-item .info-overlay {
     font-size: 12px;
     position: absolute;
@@ -177,6 +211,11 @@ html.light .project-item:hover {
     height: 40%;
     z-index: 2;
     transform: translateZ(25px);
+}
+
+html.light .project-item:not(:hover) .info-overlay {
+    background: linear-gradient(transparent, var(--highlight-color)) !important;
+    color: #000;
 }
 
 .project-item:hover .info-overlay {
@@ -255,6 +294,10 @@ html.light .project-item:hover .info-overlay {
     background: white;
 }
 
+.light .project-item .info-overlay h3 {
+    color: rgba(255, 255, 255, 0.274) !important;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 .light .project-item:hover .info-overlay h3 {
     color: rgba(255, 255, 255, 1) !important;
 }

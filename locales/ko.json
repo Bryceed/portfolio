@@ -8,6 +8,8 @@
         "현재 <span>{business}</span>에서 {time} 동안 일하고 있습니다.",
         "아이디어를 실현하고 싶으신가요?"
       ],
+      "skillsTitle": "기술",
+      "projectsTitle": "프로젝트",
       "actions": [
         {
           "label": "프로젝트 보기",

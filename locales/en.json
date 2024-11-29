@@ -8,6 +8,8 @@
         "Currently working at <span>{business}</span> for {time}.",
         "Do you wanna take off an idea from the paper?"
       ],
+      "skillsTitle": "Skills",
+      "projectsTitle": "Projects",
       "actions": [
         {
           "label": "See my projects",

@@ -24,10 +24,6 @@
                         <i class="material-icons">person</i>
                         <span v-html="$t('html.home.actions[2].label')"></span>
                     </NuxtLink>
-                    <NuxtLink to="/projects" class="btn btn--primary">
-                        <i class="material-icons">code</i>
-                        <span v-html="$t('html.home.actions[0].label')"></span>
-                    </NuxtLink>
                     <NuxtLink to="/contact" class="btn btn--secondary"><i class="material-icons">email</i><span
                             v-html="$t('html.home.actions[1].label')"></span></NuxtLink>
                 </div>
@@ -143,14 +139,14 @@ export default {
 
 <style>
 .about {
-    min-height: calc(100vh - 128px);
+    min-height: calc(100vh - 8rem);
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #222;
     border-radius: 5px;
     width: calc(100% - 4rem);
-    margin: 0 2rem;
+        margin: 0 2rem;
 }
 
 html.light .about {
@@ -167,7 +163,7 @@ html.light .about {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    margin: 30px auto;
+    margin: 20px auto;
 }
 
 .about__container__text {

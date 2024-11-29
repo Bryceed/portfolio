@@ -1,6 +1,6 @@
 <template>
     <div class="skills">
-        <h2>Habilidades</h2>
+        <h2>{{ $t('html.home.skillsTitle') }}</h2>
         <div class="skills__container" :class="{ active: selectedItem }">
             <div v-for="category in skills" :key="category.name" class="skills__container__carousel__category">
                 <h2><span class="emoji">{{ category.emoji }}</span>{{ category.name }} <span>({{ category.items.length
