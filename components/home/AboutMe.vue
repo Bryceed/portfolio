@@ -241,12 +241,12 @@ html.light .about {
 }
 
 .about__container__text__buttons a {
-    margin: 0 10px;
+    margin: 0 .5rem;
     color: #fff;
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 700;
-    padding: 5px 20px 10px;
+    padding: .5rem 1rem;
     border-radius: 5px;
     transition: all 0.3s ease;
     background-color: rgba(95, 13, 228, 0.791);
@@ -256,6 +256,7 @@ html.light .about {
     align-items: center;
     gap: 10px;
     line-height: 1.5;
+    font-family: 'Parkinsans', 'Roboto', sans-serif !important;
 }
 
 .about__container__text__buttons a:hover {
@@ -275,8 +276,8 @@ html.light .about {
 
 .about__container__text__buttons a .material-icons {
     position: relative;
-    top: -2px;
-    font-size: 1.6rem;
+    top: -.3rem;
+        font-size: 1.65rem;
 }
 
 .about__container__image {

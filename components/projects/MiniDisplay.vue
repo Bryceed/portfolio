@@ -149,6 +149,7 @@ html.light .project-item:hover {
     height: 62%;
     position: relative;
     overflow: hidden;
+    border-radius: 12px;
 }
 
 .project-item:hover ._bg::after {
@@ -159,7 +160,7 @@ html.light .project-item:hover {
     right: 0;
     bottom: 0;
     background: linear-gradient(transparent 70%, #000000c1);
-    border-radius: 8px;
+    border-radius: 12px;
     z-index: 1;
 }
 
@@ -195,6 +196,7 @@ html.light .project-item:hover .info-overlay {
 .project-item .info-overlay h3 {
     transition: all 1.5s ease-in;
     font-size: clamp(1rem, 2.5vw, 2.5rem);
+    font-family: 'Parkinsans', 'Roboto', sans-serif;
     /* Responsive font size */
     font-weight: bold;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -226,6 +228,7 @@ html.light .project-item:hover .info-overlay {
     color: rgba(255, 255, 255, 0);
     position: absolute;
     top: 86%;
+    font-family: 'Inter', 'Roboto', sans-serif;
 }
 
 .project-item:hover .info-overlay p {
@@ -238,6 +241,7 @@ html.light .project-item:hover .info-overlay {
     overflow: hidden;
     top: 5%;
     font-size: clamp(0.75rem, 1vw, 1rem);
+    font-weight: 300;
     /* Responsive font size */
     line-height: 1.3em;
 }
@@ -272,6 +276,13 @@ html.light .project-item:hover .info-overlay {
     justify-content: center;
     gap: 0.5rem;
 }
+.actions a {
+
+    font-family: 'Parkinsans', 'Roboto', sans-serif !important;
+    font-weight: 500;
+
+    zoom: .8;
+}
 
 @keyframes showActions {
     0% {
@@ -289,11 +300,13 @@ html.light .project-item:hover .info-overlay {
     0% {
         height: 0;
         color: rgba(255, 255, 255, 0);
+        opacity: 0;
     }
 
     100% {
         height: inherit;
         color: rgb(217, 217, 217);
+        opacity: .8 !important;
     }
 }
 
@@ -318,6 +331,11 @@ html.light .project-item:hover .info-overlay {
     font-size: 1.2rem;
     margin: 0;
     transition: all 0.2s ease-out;
+    font-family: 'Parkinsans', 'Roboto', sans-serif !important;
+    font-weight: 700;
+    padding: .1rem 1rem;
+    border-radius: .5rem;
+    line-height: 1;
 }
 
 .project-item .actions a:hover {
