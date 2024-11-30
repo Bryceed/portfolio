@@ -111,7 +111,7 @@ export default {
         const newSuffixTexts = [
             '.dev',
             '.design',
-            '.web', 
+            '.web',
             '.ux',
             '.app',
             '.gamer',
@@ -135,7 +135,7 @@ export default {
             index++;
             oldSuffix = newSuffixTexts[index - 1];
             newSuffix = newSuffixTexts[index];
-            
+
             if (index > newSuffixTexts.length - 1) {
                 clearInterval();
             }
@@ -174,7 +174,7 @@ export default {
                     codeSelector.classList.remove('active')
                 }, waitingTime)
             }, 1500 + waitingTime)
-            
+
         }, 4000 + waitingTime)
     },
 
@@ -226,6 +226,7 @@ export default {
     top: 0;
     z-index: 10;
 }
+
 nav {
     background-color: rgba(51, 51, 51, .7);
     color: #fff;
@@ -237,6 +238,7 @@ nav {
     z-index: 9;
     backdrop-filter: blur(10px);
 }
+
 nav::before {
     content: '';
     position: absolute;
@@ -245,8 +247,9 @@ nav::before {
     right: -20px;
     height: 60px;
     background: linear-gradient(to top, rgba(34, 34, 34, 0.8), #222222 31%);
-        border-radius: 30px;
+    border-radius: 30px;
 }
+
 nav ul {
     list-style: none;
     margin: 0;
@@ -349,9 +352,11 @@ nav ul li ul li {
     display: block;
     margin: 0;
 }
+
 nav .menu-btn {
     display: none;
 }
+
 nav ul li.lang-switcher {
     background: #4f4f4f;
     padding: 0.25em 1em;
@@ -360,16 +365,19 @@ nav ul li.lang-switcher {
     transition: ease-in-out .3s;
     cursor: pointer;
 }
+
 .lang-switcher:hover {
     box-shadow: 0 0 0 .15em white;
     background: black;
 }
+
 .lang-switcher:active {
     transition-duration: .1s;
     position: relative;
     right: -.2em;
     background: #222;
 }
+
 .lang-switcher:active .flag-text {
     margin-right: .15em
 }
@@ -392,9 +400,11 @@ nav ul li.lang-switcher {
             color: #fff;
         }
     }
+
     nav .menu li {
         display: none;
     }
+
     nav .menu.menu-open {
         position: absolute;
         right: -20px;
@@ -406,6 +416,7 @@ nav ul li.lang-switcher {
         flex-direction: column;
         padding-top: 100px;
     }
+
     nav .menu.menu-open::after {
         content: '';
         position: absolute;
@@ -417,6 +428,7 @@ nav ul li.lang-switcher {
         z-index: -1;
         border-radius: 30px;
     }
+
     nav .menu.menu-open::before {
         content: "WEBSITE";
         position: absolute;
@@ -424,7 +436,7 @@ nav ul li.lang-switcher {
         right: 70px;
     }
 
-    nav .menu:not(.menu-open) li.lang-switcher{
+        nav .menu:not(.menu-open) li.lang-switcher {
         display: none;
     }
 
@@ -437,9 +449,11 @@ nav ul li.lang-switcher {
         width: 100%;
         border-bottom: thin solid #FFFFFF63;
     }
+
     nav .menu.menu-open li:first-of-type {
         border-top: thin solid #FFFFFF63;
     }
+
     nav .menu.menu-open li:last-of-type {
         margin-bottom: 20px;
     }
@@ -457,17 +471,21 @@ html.light nav {
     box-shadow: inset 0 0 6px #ccc, 0 0 6px #979797;
     color: #000;
 }
+
 html.light nav::before {
     background: linear-gradient(0deg, #d1d1d17a, #D1D1D1 31%);
 }
+
 html.light nav ul li a {
     color: #555;
     font-weight: 500;
 }
+
 html.light nav ul li a:hover {
     color: #000;
     text-decoration: underline;
 }
+
 html.light nav .logo .code-selector {
     background-color: #000;
 }
@@ -479,6 +497,7 @@ html.light nav ul li.lang-switcher {
     position: relative;
     top: 0;
 }
+
 html.light nav ul li.lang-switcher:hover {
     box-shadow: 0 0 0 .15em #5f0de4;
     color: #5f0de4;

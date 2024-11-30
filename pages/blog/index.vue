@@ -1,49 +1,102 @@
 <template>
-    <div>
-        <div class="blog-minibio">
-            <span></span>
-            <h1>Blog</h1>
-        </div>
+    <div class="blog-minibio">
+        <h1>{{ title[$i18n.locale] }}</h1>
+        <p>{{ description[$i18n.locale] }}</p>
 
-        <div class="blog-posts">
-            <div v-for="post in posts" :key="post.id" class="blog-post">
-                <h2>{{ post.title }}</h2>
-                <div v-html="post.post"></div>
-                <div class="author">
-                    <img :src="post.banner[0]" alt="Blog logo" />
-                </div>
-            </div>
+    </div>
+
+    <div class="blog-posts">
+        <div v-for="post in posts" :key="post.id" class="blog-post" v-if="fetchStatus === 'success'">
+            <h2>{{ post.title }}</h2>
+            <img :src="reconstructLink(post, post.thumbnail)" :alt="post.title"
+                onerror="this.src='/assets/images/generic/placeholder.webp'" />
+            <p>{{ post.article }}</p>
+            <a :href="`/blog/${post.custom_path}`">Read more</a>
         </div>
+        <div class="flex justify-center items-center h-32 w-full mt-8"
+            v-else-if="fetchStatus === 'loading' || fetchStatus === 'pending'">
+            <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+        </div>
+        <div v-else-if="fetchStatus === 'error'">
+            <p>Error fetching posts: {{ fetchError.value }}</p>
+        </div>
+    </div>
+    <div class="w-full flex justify-center items-center mt-8">
+        <div class="disclaimer my-6 mx-auto inline-block" v-if="$i18n.locale != 'pt-BR'">{{
+            mistakesByIATranslationWarning[$i18n.locale]
+        }}</div>
     </div>
 </template>
 
-<script>
-import config from "~/data/config.json";
+<script setup>
+import { ref, onMounted } from 'vue';
 
-export default {
-    async asyncData() {
-        const posts = useState('posts', () => []);
-        const { data } = await $fetch(`${config.blogDataUrl}${config.blogPostsEndpoint}`);
-        posts.value = data.items;
-    },
-    data() {
-        return {
-            feed: {}
-        };
-    },
-    computed: {
-        posts() {
-            return useState('posts').value;
-        },
-    },
-    async mounted() {
+
+const baseUrl = 'https://services.rydermais.com'
+
+const posts = ref([]);
+const fetchStatus = ref('pending');
+const fetchError = ref(null);
+
+// set texts and lang
+const title = {
+    'pt-BR': 'Publicações',
+    'en': 'Posts',
+    'es': 'Publicaciones',
+    'fr': 'Publications',
+    'ko': '게시물',
+    'jp': '投稿'
+};
+const description = {
+    'pt-BR': 'Posts sobre tecnologia, desenvolvimento de software e outras coisas interessantes.',
+    'en': 'Posts about technology, software development and other interesting things.',
+    'es': 'Publicaciones sobre tecnología, desarrollo de software y otras cosas interesantes.',
+    'fr': 'Publications sur la technologie, le développement de logiciels et d\'autres choses intéressantes.',
+    'ko': '기술, 소프트웨어 개발 및 기타 흥미로운 주제에 대한 게시물.',
+    'jp': '技術、ソフトウェア開発、その他興味深いトピックに関する投稿。'
+};
+const mistakesByIATranslationWarning = {
+    'pt-BR': 'Textos traduzidos com IA. Pode conter erros.',
+    'en': 'Assisted translated texts with AI. May contain errors.',
+    'es': 'Traducción asistida de textos con IA en inglés. Puede contener errores.',
+    'fr': 'Assisté traduit avec IA de l\'anglais. Peut contenir des erreurs.',
+    'ko': 'AI에 의해 번역 된 영어 텍스트. 오류가 포함 될 수 있습니다.',
+    'jp': 'AIによる英語のテキストの翻訳。エラーが含まれる可能性があります。'
+};
+
+onMounted(async () => {
+
+    if (sessionStorage.getItem('cachedPosts')) {
+        posts.value = JSON.parse(sessionStorage.getItem('cachedPosts'));
+        fetchStatus.value = 'success';
+    } else {
+        fetchStatus.value = 'loading';
         try {
-            const { data } = await $fetch(`${config.blogDataUrl}${config.blogPostsEndpoint}`);
-            this.feed = data.feed;
+            const response = await $fetch(
+                baseUrl + '/api/collections/blog_posts/records',
+                {
+                    params: {
+                        fields: '*,article:excerpt(200,true)',
+                        sort: '-created,id',
+                    },
+                }
+            );
+            console.log(response);
+            posts.value = response.items;
+            fetchStatus.value = 'success';
+            // Cache the data
+            sessionStorage.setItem('cachedPosts', JSON.stringify(response.items));
         } catch (error) {
-            console.error("Error fetching feed:", error);
+            fetchStatus.value = 'error';
+            fetchError.value = error.message;
+
+            console.error(error);
         }
     }
+});
+
+const reconstructLink = (source, link) => {
+    return baseUrl + '/api/files/' + source.collectionId + '/' + source.id + '/' + link;
 };
 </script>
 
@@ -101,6 +154,14 @@ export default {
     }
 }
 
+.disclaimer {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #b8b8b8;
+    border-radius: 4rem;
+    background: #782fee;
+    padding: .1rem 1rem;
+}
 .blog-minibio {
     display: flex;
     flex-direction: column;
@@ -115,6 +176,7 @@ export default {
         margin-bottom: 1rem;
     }
 
+    
     .minibio_side {
         display: flex;
         flex-direction: column;
