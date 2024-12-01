@@ -58,9 +58,9 @@ img {
 
 
 .container {
-  max-width: 100vw !important;
+  max-width: 100dvw !important;
   overflow: hidden;
-  min-height: calc(100vh - 197px) !important
+  min-height: calc(100dvh - 177px) !important
 }
 
 .x-sp {
