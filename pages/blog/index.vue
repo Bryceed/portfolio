@@ -12,7 +12,7 @@
                 <div class="post-card-image" @click="openModal(post.id)"
                     :style="{ backgroundImage: 'url(' + reconstructLink(post, post.thumbnail) + '?thumb=100x50)' }">
 
-                    <h2>{{ post.title }} demais para que isso aconteça um dia</h2>
+                    <h2>{{ post.title }}</h2>
                     <div class="post-card-details">
                         <p>{{ formatDate(post.created) }}</p>
                     </div>
@@ -34,7 +34,7 @@
     <div class="w-full flex justify-center items-center mt-8">
         <div class="disclaimer my-6 mx-auto inline-block" v-if="$i18n.locale != 'pt-BR'">{{
             mistakesByIATranslationWarning[$i18n.locale]
-        }}</div>
+            }}</div>
     </div>
 
     <PostModal v-if="isModalOpen" :postId="selectedPostId" @close="closeModal" />
