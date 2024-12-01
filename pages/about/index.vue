@@ -2,6 +2,7 @@
 
     <CommonAlertsUnderConstruction>
         <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+            <span class="hand-pointing">👉</span>
             <NuxtLink to="/about/personality-test" class="btn btn--primary" @mouseover="prefetchPersonalityResult"
                 @click="prefetchLink">
                 <span class="i-akar-icons-face-happy"></span>
@@ -35,10 +36,45 @@
     max-width: 1340px;
     padding: 0 20px;
     gap: 7px;
+    position: relative;
 }
 
 .btn-group button {
     cursor: pointer;
+}
+
+.hand-pointing {
+    position: absolute;
+    left: -2rem;
+    font-size: 2rem;
+    margin-right: 10px;
+    animation: hand-pointing 1.5s infinite;
+}
+
+@keyframes hand-pointing {
+    0% {
+        transform: translateX(0);
+    }
+
+    15% {
+        transform: translateX(10px);
+    }
+
+    30% {
+        transform: translateX(0);
+    }
+
+    45% {
+        transform: translateX(10px);
+    }
+
+    60% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 </style>
 
