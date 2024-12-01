@@ -23,9 +23,8 @@
             </div>
         </div>
         <div class="w-full md:w-3/4 min-h-screen w-auto pt-8">
-            <CommonAlertsUnderConstruction />
-            <CommonAlertsUnderConstruction />
-            <CommonAlertsUnderConstruction />
+            <ProjectInfo :projectId="route.params.project_id" />
+            <ProjectUpdates :projectId="route.params.project_id" />
         </div>
     </div>
     <div v-else>
@@ -45,9 +44,16 @@
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { projects } from "../../data/projects.json";
+import ProjectInfo from '@/components/ProjectInfo.vue';
+import ProjectUpdates from '@/components/ProjectUpdates.vue';
 
 export default {
     name: "Project",
+
+    components: {
+        ProjectInfo,
+        ProjectUpdates,
+    },
 
     setup() {
         const route = useRoute();
