@@ -215,7 +215,7 @@ export default {
         isMobile() {
             return window.innerWidth <= 1024
         }
-    }
+    },
 }
 </script>
 
@@ -268,8 +268,41 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
 }
+nav ul li a.router-link-active {
+    color: #7b5efc;
+    font-weight: bold;
+    position: relative;
+    transition: ease-out .1s;
+}
 
-nav ul li a:hover {
+// make underline effect
+nav ul li a.router-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    border-radius: 2px;
+    background-image: linear-gradient(0deg, #7b5efc 2px, #7b5efc81 2px, #7b5efc21 4px, transparent 100%);
+    animation: underline .2s backwards;
+}
+
+@keyframes underline {
+    0% {
+        width: 0;
+        left: 50%;
+        height: 0;
+    }
+
+    100% {
+        width: 100%;
+        left: 0;
+        height: 10px;
+    }
+}
+
+nav ul li a:hover:not(.router-link-active) {
     color: #ccc;
 }
 
@@ -436,7 +469,7 @@ nav ul li.lang-switcher {
         right: 70px;
     }
 
-        nav .menu:not(.menu-open) li.lang-switcher {
+    nav .menu:not(.menu-open) li.lang-switcher {
         display: none;
     }
 
@@ -481,9 +514,13 @@ html.light nav ul li a {
     font-weight: 500;
 }
 
-html.light nav ul li a:hover {
+html.light nav ul li a.router-link-active {
+    color: #7B5EFC;
+    font-weight: bold;
+}
+
+html.light nav ul li a:hover:not(.router-link-active) {
     color: #000;
-    text-decoration: underline;
 }
 
 html.light nav .logo .code-selector {
@@ -507,5 +544,11 @@ html.light nav ul li.lang-switcher:hover {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+nav ul li.smart-active a {
+    color: #ff0;
+    /* Estilo para o item ativo */
+    font-weight: bold;
 }
 </style>
