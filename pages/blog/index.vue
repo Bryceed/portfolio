@@ -11,7 +11,7 @@
             <img :src="reconstructLink(post, post.thumbnail)" :alt="post.title"
                 onerror="this.src='/assets/images/generic/placeholder.webp'" />
             <p>{{ post.article }}</p>
-            <a :href="`/blog/${post.custom_path}`">Read more</a>
+            <a @click="openModal(post.id)">Read more</a>
         </div>
         <div class="flex justify-center items-center h-32 w-full mt-8"
             v-else-if="fetchStatus === 'loading' || fetchStatus === 'pending'">
@@ -24,13 +24,14 @@
     <div class="w-full flex justify-center items-center mt-8">
         <div class="disclaimer my-6 mx-auto inline-block" v-if="$i18n.locale != 'pt-BR'">{{
             mistakesByIATranslationWarning[$i18n.locale]
-        }}</div>
+            }}</div>
     </div>
+    <PostModal v-if="isModalOpen" :postId="selectedPostId" @close="closeModal" />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-
+import PostModal from '@/components/PostModal.vue'; // Import the new component
 
 const baseUrl = 'https://services.rydermais.com'
 
@@ -62,6 +63,19 @@ const mistakesByIATranslationWarning = {
     'fr': 'Assisté traduit avec IA de l\'anglais. Peut contenir des erreurs.',
     'ko': 'AI에 의해 번역 된 영어 텍스트. 오류가 포함 될 수 있습니다.',
     'jp': 'AIによる英語のテキストの翻訳。エラーが含まれる可能性があります。'
+};
+
+const isModalOpen = ref(false);
+const selectedPostId = ref(null);
+
+const openModal = (postId) => {
+    selectedPostId.value = postId;
+    isModalOpen.value = true;
+};
+
+const closeModal = () => {
+    isModalOpen.value = false;
+    selectedPostId.value = null;
 };
 
 onMounted(async () => {
