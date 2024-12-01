@@ -2,7 +2,7 @@
     <div class="modal-overlay" @click.self="close">
         <div class="modal-display">
             <button class="close-button" @click="close">X</button>
-            <div class="modal-gradient-top"></div>
+            <div :class="['modal-gradient-top', { show: showGradientTop }]"></div>
             <div class="modal-content">
                 <div v-if="fetchStatus === 'loading'" class="loading-spinner"></div>
                 <div v-else-if="fetchStatus === 'error'">
@@ -14,7 +14,7 @@
                     <div v-html="post.article" class="post-article"></div>
                 </div>
             </div>
-            <div class="modal-gradient-bottom"></div>
+            <div :class="['modal-gradient-bottom', { show: showGradientBottom }]"></div>
         </div>
     </div>
 </template>
@@ -58,6 +58,34 @@ const fetchPost = async (id) => {
 watch(() => props.postId, (newId) => {
     if (newId) {
         fetchPost(newId);
+
+        // then, when the content scroll reaches the top or bottom, hide the gradient
+        window.addEventListener('scroll', () => {
+
+            // if is scroll from the div content
+            const content = document.querySelector('.modal-content');
+            if (content) {
+                if (content.scrollTop === 0) {
+                    showGradientTop.value = false;
+                } else {
+                    showGradientTop.value = true;
+                }
+
+                // if scroll pos is the top of the div content, hide the gradient on top
+                if (content.scrollTop === 0) {
+                    showGradientTop.value = false;
+                } else {
+                    showGradientTop.value = true;
+                }
+
+                // if the scroll is at the bottom of the div content, hide the gradient on bottom
+                if (content.scrollTop + content.clientHeight >= content.scrollHeight) {
+                    showGradientBottom.value = false;
+                } else {
+                    showGradientBottom.value = true;
+                }
+            }
+        });
     }
 });
 
@@ -66,6 +94,9 @@ onMounted(() => {
         fetchPost(props.postId);
     }
 });
+
+const showGradientTop = ref(false);
+const showGradientBottom = ref(true);
 </script>
 
 <style>
@@ -78,7 +109,6 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeIn 0.4s ease-out;
 }
 
 .modal-overlay:after {
@@ -91,6 +121,7 @@ onMounted(() => {
     background: rgba(31, 31, 31, 0.502);
     backdrop-filter: blur(5px);
     z-index: -1;
+    animation: fadeIn 0.4s ease-out;
 }
 
 html.light .modal-overlay:after {
@@ -98,12 +129,14 @@ html.light .modal-overlay:after {
 }
 
 .modal-display {
-    background: #131313da;
-    border-radius: 8px;
+    background: #2E2E2E;
+    border-radius: 8px 8px 0 0;
+    max-width: 800px;
     width: 100%;
     margin: 0 20px;
     max-height: calc(100dvh - (4rem + 40px));
-    animation: slideUp 0.3s ease-in-out;
+    animation: slideUp .4s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: ease-in-out 0.3s;
     scrollbar-width: thin;
     scrollbar-color: #ccc #f4f4f4;
     overflow: hidden;
@@ -112,14 +145,15 @@ html.light .modal-overlay:after {
     flex-direction: column;
     z-index: 3;
     height: calc(100dvh - 4rem);
+    box-shadow: 0 5px 10px 0 #000000a1;
 }
 
 html.light .modal-display {
     background: rgba(248, 248, 248, 0.842);
+    box-shadow: 0 5px 10px 0 #969696a1;
 }
 
 .modal-content {
-    max-width: 800px;
     margin: 0 auto;
     padding: 1rem;
     height: 100%;
@@ -136,10 +170,15 @@ html.light .modal-display {
     height: 4rem;
     background: linear-gradient(180deg, #131313da 0%, #13131300 100%);
     z-index: 4;
+    display: none;
 }
 
 html.light .modal-gradient-top {
     background: linear-gradient(180deg, #f8f8f8 0%, #f8f8f800 100%);
+}
+
+.modal-gradient-top.show {
+    display: block;
 }
 
 .modal-gradient-bottom {
@@ -150,10 +189,15 @@ html.light .modal-gradient-top {
     height: 4rem;
     background: linear-gradient(0deg, #131313da 0%, #13131300 100%);
     z-index: 4;
+    display: none;
 }
 
 html.light .modal-gradient-bottom {
     background: linear-gradient(0deg, #f8f8f8 0%, #f8f8f800 100%);
+}
+
+.modal-gradient-bottom.show {
+    display: block;
 }
 
 .modal-display .close-button {
@@ -213,12 +257,12 @@ html.light .modal-gradient-bottom {
 }
 
 .post-article {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 400;
     color: #f4f4f4;
     line-height: 1.5;
     text-align: justify;
-    margin: 0 1rem 1rem;
+    max-width: 100%;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -271,6 +315,10 @@ html.light .post-article a {
     background: rgba(244, 244, 244, 0.144);
     border-radius: 4px;
     font-family: 'Fira Code', monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    text-align: left !important;
+    font-size: 1rem;
 }
 
 html.light .post-article code {

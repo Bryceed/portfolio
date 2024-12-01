@@ -3,29 +3,38 @@ import en from '../locales/en.json'
 import es from '../locales/es.json'
 import pt from '../locales/pt-BR.json'
 import fr from '../locales/fr.json'
-import jp from '../locales/jp.json'
+import ja from '../locales/ja-JP.json'
 import ko from '../locales/ko.json'
 
 const datetimeFormats = {
   'en-US': {
     short: {
-      year: 'numeric', month: 'short', day: 'numeric'
+      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
     },
     long: {
-      year: 'numeric', month: 'short', day: 'numeric',
-      weekday: 'short', hour: 'numeric', minute: 'numeric'
+      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
+      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
     }
   },
   'pt-BR': {
     short: {
-      year: 'numeric', month: 'numeric', day: 'numeric',
-      weekday: 'short',  hour: 'numeric', minute: 'numeric',
+      year: 'numeric' as const, month: 'numeric' as const, day: 'numeric' as const,
+      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const,
       hour12: false
       },
     long: {
-      year: 'numeric', month: 'numeric', day: 'numeric',
-      weekday: 'long',  hour: 'numeric', minute: 'numeric',
+      year: 'numeric' as const, month: 'numeric' as const, day: 'numeric' as const,
+      weekday: 'long' as const, hour: 'numeric' as const, minute: 'numeric' as const,
       hour12: false
+    }
+  },
+  'ja-JP': {
+    short: {
+      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
+    },
+    long: {
+      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
+      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
     }
   }
 }
@@ -45,9 +54,10 @@ export default defineNuxtPlugin(({ vueApp }) => {
         es,
         pt,
         fr,
-        jp,
+        ja,
         ko,
       },
+      datetimeFormats
     });
 
     vueApp.use(i18n)

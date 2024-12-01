@@ -57,7 +57,7 @@
                         <div v-else-if="$i18n.locale == 'fr' || $i18n.locale == 'fr-FR'" class="flag flag-fr rounded">
                         </div>
 
-                        <div v-else-if="$i18n.locale == 'jp' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded">
+                        <div v-else-if="$i18n.locale == 'ja' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded">
                         </div>
 
                         <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded">
@@ -198,9 +198,9 @@ export default {
                 localStorage.setItem('lang', 'fr')
                 this.$i18n.locale = 'fr'
             } else if (this.$i18n.locale == 'fr' || this.$i18n.locale == 'fr-FR') {
-                localStorage.setItem('lang', 'jp')
-                this.$i18n.locale = 'jp'
-            } else if (this.$i18n.locale == 'jp' || this.$i18n.locale == 'ja-JP') {
+                localStorage.setItem('lang', 'ja-JP')
+                this.$i18n.locale = 'ja-JP'
+            } else if (this.$i18n.locale == 'ja-JP' || this.$i18n.locale == 'ko-KR') {
                 localStorage.setItem('lang', 'ko')
                 this.$i18n.locale = 'ko'
             } else if (this.$i18n.locale == 'ko' || this.$i18n.locale == 'ko-KR') {

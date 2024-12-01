@@ -1,0 +1,127 @@
+{
+    "html": {
+        "home": {
+            "greetings": "こんにちは！私は <span>{name}</span> です",
+            "description": [
+                "私は {years} 歳で、現在 <span>{occupation}</span> として <span>ブラジル</span> で活動しています。",
+                "私の主なスキルは <span>{profession1}</span> と <span>{profession2}</span> です。",
+                "現在 <span>{business}</span> で働いて {time}。",
+                "アイデアを実現したいですか？"
+            ],
+            "skillsTitle": "スキル",
+            "projectsTitle": "プロジェクト",
+            "actions": [
+                {
+                    "label": "プロジェクトを見る",
+                    "url": "/projects"
+                },
+                {
+                    "label": "連絡先",
+                    "url": "https://api.whatsapp.com/send?phone=5511942018873"
+                },
+                {
+                    "label": "自己紹介",
+                    "url": "/about"
+                }
+            ],
+            "projects": {
+                "title": "プロジェクト"
+            }
+        },
+        "projects": {
+            "title": "プロジェクト",
+            "description": "私のプロジェクトのいくつかを見てください。",
+            "miniDisplay": {
+                "button": {
+                    "details": "詳細",
+                    "quickView": "クイックビュー",
+                    "website": "ウェブサイトを訪問",
+                    "invite": "招待",
+                    "join": "参加",
+                    "watch": "見る"
+                }
+            },
+            "messages": {
+                "not-found": "Oops! \nプロジェクトが見つかりませんでした。"
+            }
+        },
+        "footer": [
+            "サイトは <b>Nuxt3</b> (Vue) で構築されています。開発中です。 | {year}",
+            "私の <a href=\"{url}\" target=\"_blank\">GitHub</a> を訪問して、私のプロジェクトについてもっと見てください（これも含まれます）。"
+        ],
+        "blog": {
+            "title": "ブログ"
+        },
+        "commons": {
+            "underConstruction": {
+                "description": "このセッションを作成するには、まだ少し時間がかかります。\n後で確認するか、私に連絡してください。",
+                "title": "建設中"
+            }
+        },
+        "project": {
+            "buttons": {
+                "return": "戻る"
+            }
+        }
+    },
+    "menu": {
+        "home": "ホーム",
+        "blog": "ブログ",
+        "projects": "プロジェクト",
+        "contact": "連絡先",
+        "about": "私について"
+    },
+    "commons": {
+        "actions": {
+            "close": "閉じる",
+            "back": "戻る"
+        },
+        "languages": {
+            "pt": "ポルトガル語",
+            "en": "英語",
+            "es": "スペイン語"
+        },
+        "themes": {
+            "light": "明るい",
+            "dark": "暗い"
+        },
+        "timings": {
+            "morning": "おはようございます",
+            "afternoon": "こんにちは",
+            "night": "こんばんは",
+            "dawn": "お早うございます",
+            "periodOf": {
+                "day": {
+                    "singular": "{periodOf}日",
+                    "plural": "{periodOf}日"
+                },
+                "month": {
+                    "singular": "{periodOf}ヶ月",
+                    "plural": "{periodOf}ヶ月"
+                },
+                "year": {
+                    "singular": "{periodOf}年",
+                    "plural": "{periodOf}年"
+                },
+                "week": {
+                    "singular": "{periodOf}週間",
+                    "plural": "{periodOf}週間"
+                },
+                "concat": "と"
+            }
+        }
+    },
+    "comemorations": {
+        "pride": {
+            "title": "LGBTQIA+の月",
+            "message": "LGBTQIA+の月おめでとうございます！ 🏳️‍🌈"
+        }
+    },
+    "language": {
+        "code": "jp",
+        "name": "Japanese",
+        "nativeName": "日本語",
+        "region": "JP"
+    },
+    "theme": "テーマ"
+}
