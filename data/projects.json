@@ -64,12 +64,12 @@
             "dueDate": "2020-01-01",
             "priority": "High",
             "colors": {
-                "primary": "#022844",
-                "secondary": "#0A1E2B",
+                "primary": "#091F2E",
+                "secondary": "#053555",
                 "surface": {
                     "light": {
-                        "primary": "#033a5c",
-                        "secondary": "#0b2a3d"
+                        "primary": "#091F2E",
+                        "secondary": "053555"
                     },
                     "dark": {
                         "primary": "#011d2e",
@@ -112,7 +112,7 @@
             "priority": "Low",
             "colors": {
                 "primary": "#9D256C",
-                "secondary": "#8F3069",
+                "secondary": "#621543",
                 "surface": {
                     "light": {
                         "primary": "#b23a7d",
@@ -158,8 +158,8 @@
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
-                "primary": "#615f63",
-                "secondary": "#444",
+                "primary": "#7d7d7d",
+                "secondary": "#615F63",
                 "surface": {
                     "light": {
                         "primary": "#7a787c",
@@ -205,7 +205,7 @@
             "dueDate": "2020-01-01",
             "priority": "Low",
             "colors": {
-                "primary": "#ce6c50",
+                "primary": "#a4472b",
                 "secondary": "#803634",
                 "surface": {
                     "light": {
@@ -253,7 +253,7 @@
             "priority": "Low",
             "colors": {
                 "primary": "#fb6600",
-                "secondary": "#cd9500",
+                "secondary": "#cd3e00",
                 "surface": {
                     "light": {
                         "primary": "#ff7a1a",
