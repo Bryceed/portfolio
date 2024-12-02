@@ -1,7 +1,7 @@
 <template>
     <div class="project-info">
         <h2>Project Information</h2>
-        <div v-html="info"></div>
+        <div v-html="info" class="info"></div>
     </div>
 </template>
 
@@ -66,6 +66,7 @@ onMounted(() => {
     list-style-type: disc;
     padding-left: 1.5rem;
     z-index: 2;
+    text-align: left !important;
 }
 
 html.light .project-info {

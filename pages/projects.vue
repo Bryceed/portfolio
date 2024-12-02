@@ -16,15 +16,15 @@
                 :style="{ 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
                 <div class="actions"
                     :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }">
-                    <v-if v-if="project.page">
+                    <template v-if="project.page" class="project-page">
                         <NuxtLink :to="`/project/${project.id}`"><i class="material-icons">arrow_forward</i></NuxtLink>
-                    </v-if>
-                    <v-if v-if="project.code">
+                    </template>
+                    <template v-if="project.code" class="project-code">
                         <a :href="project.code" target="_blank"><i class="material-icons">code</i></a>
-                    </v-if>
-                    <v-if v-if="project.link">
+                    </template>
+                    <template v-if="project.link" class="project-link">
                         <a :href="project.link" target="_blank"><i class="material-icons">launch</i></a>
-                    </v-if>
+                    </template>
                 </div>
             </div>
         </div>
@@ -41,25 +41,24 @@ export default {
         }
     },
 
-    mounted() {
-        // for each project, add a event listener on link click to navigate to the project page
-        this.projects.forEach(project => {
-            if (project.page) {
-                document.getElementById(project.id).addEventListener('click', () => {
-                    this.linkTo(project.page);
-                });
-            }
-        });
-    },
     methods: {
         getDescription(project) {
             return project.description[this.$i18n.locale] || project.description['en'];
         },
         linkTo(page) {
             if (page) {
-                this.$router.push(page);
+                this.$router.push({ path: page });
             }
         }
+    },
+
+    mounted() {
+        //for all cards click, navigate to the project page
+        document.querySelectorAll('.project-item').forEach(item => {
+            item.addEventListener('click', () => {
+                this.linkTo(`/project/${item.id}`);
+            });
+        });
     }
 }
 </script>
@@ -71,12 +70,14 @@ h1 {
     margin-bottom: 1rem;
     text-align: center;
 }
+
 p {
     font-size: 1.2rem;
     font-weight: 400;
     margin-bottom: 2rem;
     text-align: center;
 }
+
 .projects {
     display: flex;
     flex-wrap: wrap;
@@ -102,6 +103,7 @@ p {
     color: #fff;
     overflow: hidden;
 }
+
 html.light .project-item {
     background: #ece6ef;
     color: #000;
@@ -114,6 +116,7 @@ html.light .project-item {
     height: 160px;
     margin: 0;
 }
+
 html.light .project-item:hover {
     box-shadow: 0 0 0 5px #D1D1D1, 0 0 0 8px currentColor, 0 0 40px currentColor;
     transition: all .1s ease-in;
@@ -130,6 +133,7 @@ html.light .project-item:hover {
     overflow: hidden;
     position: relative;
 }
+
 ._left::after {
     position: absolute;
     right: 0;
@@ -146,6 +150,7 @@ html.light .project-item:hover {
     object-fit: cover;
     transition: all .15s ease-in;
 }
+
 .project-item:hover ._left img {
     border-bottom-left-radius: 8px;
     transition: all .15s ease-in;
@@ -179,6 +184,7 @@ html.light .project-item:hover {
     margin-bottom: 20px;
     text-align: left;
 }
+
 .light .project-item ._underneath {
     background-color: currentColor !important;
 }
@@ -192,6 +198,7 @@ html.light .project-item:hover {
     padding: 10px;
     transition: all .1s ease-out;
 }
+
 .project-item:hover ._right {
     padding: 5px;
     transition: all .15s ease-in;
@@ -205,18 +212,21 @@ html.light .project-item:hover {
     width: 100%;
     height: 100%;
     background-color: transparent;
-    border-radius: 6px;
+    border-radius: .7rem;
     transition: all .1s ease-out;
 }
-html.light .project-item ._right{
+
+html.light .project-item ._right {
     background-color: currentColor;
     transition: all .15s ease-in;
     border-radius: 0 8px 8px 0;
     font-size: 0;
 }
-html.light .project-item:hover ._right .actions{
+
+html.light .project-item:hover ._right .actions {
     background-color: currentColor;
 }
+
 .project-item:hover ._right .actions {
     background-color: rgb(60, 60, 60);
     transition: all .15s ease-in;
@@ -227,15 +237,22 @@ html.light .project-item:hover ._right .actions{
     text-decoration: none;
     border-radius: 50%;
     background-color: transparent;
-    padding: 50% 80% !important;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     left: -5px;
+    width: 40px;
+    height: 40px;
+
+    transition: all .15s ease-in;
 }
 
-.project-item:not(:hover) ._right .actions v-if:not(:first-of-type) {
+.project-item:hover ._right .actions a {
+    left: 0;
+}
+
+.project-item:not(:hover) ._right .actions :not([class^="project-"]):not(:first-of-type) {
     opacity: 0.2 !important;
 }
 
