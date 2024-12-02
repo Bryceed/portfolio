@@ -1,7 +1,7 @@
 <template>
     <div class="project-updates">
         <h2 class="text-center w-full updates-title mt-6">Updates</h2>
-        <div class="flex flex-col items-center justify-center w-full ">
+        <div class="flex flex-col items-center justify-center w-full update-area">
             <div v-for="update in updates" :key="update.id" class="update-item md:w-10/12 md:offset-2"
                 :style="{ animationDelay: (updates.indexOf(update) * 0.2) + 's' }" v-if="fetchStatus === 'success'">
                 <h2>{{ update.title }}</h2>
@@ -82,9 +82,17 @@ const reconstructLink = (source, link) => {
 <style scoped>
 .project-updates {
     display: flex;
-        flex-direction: column;
-            gap: 1rem;
-        }
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.update-area {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    padding: 1rem;
+}
         
         .updates-title {
             font-size: 2rem;
