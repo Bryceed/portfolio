@@ -44,9 +44,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@import url('~/assets/css/markdown.css');
 .project-info {
-    margin-bottom: 2rem;
-    color: #fff;
+    margin-bottom: 2rem;    color: #fff;
     padding: 1rem;
     border-radius: 8px;
     margin-top: 3rem;

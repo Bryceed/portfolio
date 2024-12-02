@@ -82,58 +82,66 @@ const reconstructLink = (source, link) => {
 <style scoped>
 .project-updates {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.updates-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    font-family: 'Parkinsans', sans-serif !important;
-}
-
-.update-item {
-    color: white;
-    padding: 1rem 1.25rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
-    animation: fadeIn 0.25s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
-}
-
-.update-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--primary-color);
-    border-left: 4px solid var(--secondary-color);
-    border-radius: 8px;
-    filter: contrast(1.1) brightness(1.1) saturate(1.2);
-    z-index: -1;
-}
-
-
-.update-item h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-family: 'Parkinsans', sans-serif !important;
-    font-weight: 500;
-    z-index: 1;
-}
-
-.update-content {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
-    text-align: left;
-    max-width: 100%;
-}
+        flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .updates-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Parkinsans', sans-serif !important;
+        }
+        
+        .update-item {
+            color: white;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.25s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
+        }
+        
+        .update-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 8px;
+            filter: contrast(1.1) brightness(1.1) saturate(1.2);
+            z-index: -1;
+        }
+        
+        
+        .update-item h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Parkinsans', sans-serif !important;
+            font-weight: 500;
+            z-index: 1;
+        }
+        
+        .update-content {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            text-align: left;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+        
+        
+        }
+        
+        .update-content * {
+            margin-bottom: .45rem;
+        }
 
 .update-date {
     font-size: 0.8rem;
