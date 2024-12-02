@@ -10,7 +10,7 @@
                         class="absolute h-full w-full object-cover rounded-lg shadow-md" />
                 </div>
 
-                <h3 class="text-l text-gray-500 mt-2">
+                <h3 class="text-l text-description mt-2">
                     {{ getDescription(project) }}
                 </h3>
 
@@ -75,6 +75,10 @@
         background-color: var(--secondary-color);
         color: var(--text-color);
     }
+}
+
+.text-description {
+    color: var(--text-color);
 }
 </style>
 <script>
