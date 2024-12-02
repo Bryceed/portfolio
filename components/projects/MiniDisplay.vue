@@ -21,7 +21,7 @@
             </template>
         </div>
 
-        <NuxtLink to="/about" class="btn btn--primary btn-float-right">
+        <NuxtLink to="/projects" class="btn btn--primary btn-float-right">
             {{ $t('html.home.actions[0].label') }}
             <span class="material-icons">arrow_forward</span>
         </NuxtLink>
