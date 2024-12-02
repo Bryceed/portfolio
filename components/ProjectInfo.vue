@@ -69,9 +69,6 @@ onMounted(() => {
     z-index: 2;
     text-align: left !important;
     border-left: 2px solid var(--primary-color);
-}
-
-html.light .project-info {
-    color: #131313;
-}
+    color: rgba(255, 255, 255, .7)
+    }
 </style>

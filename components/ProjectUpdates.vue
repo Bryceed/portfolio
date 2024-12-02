@@ -3,7 +3,7 @@
         <h2 class="text-center w-full updates-title mt-6">Updates</h2>
         <div class="flex flex-col items-center justify-center w-full ">
             <div v-for="update in updates" :key="update.id" class="update-item md:w-10/12 md:offset-2"
-                v-if="fetchStatus === 'success'">
+                :style="{ animationDelay: (updates.indexOf(update) * 0.2) + 's' }" v-if="fetchStatus === 'success'">
                 <h2>{{ update.title }}</h2>
                 <p v-if="update.type === 'news'" v-html="update.content" class="update-content"></p>
                 <img v-if="update.type === 'photo'" :src="update.content" alt="Project Update Photo" />
@@ -94,25 +94,42 @@ const reconstructLink = (source, link) => {
 }
 
 .update-item {
-    background: var(--primary-color);
-    color: var(--text-color);
+    color: white;
     padding: 1rem 1.25rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid var(--secondary-color);
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.25s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
 }
+
+.update-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 8px;
+    filter: contrast(1.1) brightness(1.1) saturate(1.2);
+    z-index: -1;
+}
+
 
 .update-item h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     font-family: 'Parkinsans', sans-serif !important;
     font-weight: 500;
+    z-index: 1;
 }
 
 .update-content {
     font-size: 1.1rem;
     font-weight: 400;
-    color: var(--text-color);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.5;
     text-align: left;
     max-width: 100%;
@@ -159,6 +176,17 @@ const reconstructLink = (source, link) => {
     animation-delay: -0.16s;
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 @keyframes bounce {
 
     0%,
@@ -172,14 +200,4 @@ const reconstructLink = (source, link) => {
     }
 }
 
-html.light .update-item {
-    background: #f4f4f4;
-    color: #131313;
-}
-
-html.light .bounce1,
-html.light .bounce2,
-html.light .bounce3 {
-    background-color: #131313;
-}
 </style>
