@@ -47,7 +47,6 @@ onMounted(() => {
     color: #fff;
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 3rem;
     position: relative;
     z-index: 2;
@@ -67,6 +66,7 @@ onMounted(() => {
     padding-left: 1.5rem;
     z-index: 2;
     text-align: left !important;
+    border-left: 2px solid var(--primary-color);
 }
 
 html.light .project-info {
