@@ -86,6 +86,7 @@ p {
     margin: 0 auto 3rem;
     max-width: 1340px;
     padding: 0 20px;
+    gap: 20px;
 }
 
 .project-item {
@@ -96,7 +97,7 @@ p {
     background: #1b1b1b;
     border-radius: 1em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 20px 0;
+    margin: 10px 0;
     width: clamp(360px, 100%, 600px);
     height: 140px;
     transition: all .1s ease-in-out;
@@ -112,14 +113,14 @@ html.light .project-item {
 
 .project-item:hover {
     box-shadow: 0 0 0 5px #222222, 0 0 0 8px #d1d1d1, 0 0 30px rgba(203, 203, 203, 0.585);
-    transition: all .1s ease-in;
+    transition: all .1s ease-in-out;
     height: 160px;
     margin: 0;
 }
 
 html.light .project-item:hover {
     box-shadow: 0 0 0 5px #D1D1D1, 0 0 0 8px currentColor, 0 0 40px currentColor;
-    transition: all .1s ease-in;
+    transition: all .1s ease-in-out;
     height: 160px;
     margin: 0;
 }
@@ -148,12 +149,12 @@ html.light .project-item:hover {
     width: 40vw;
     height: 100%;
     object-fit: cover;
-    transition: all .15s ease-in;
+    transition: all .15s ease-in-out;
 }
 
 .project-item:hover ._left img {
     border-bottom-left-radius: 8px;
-    transition: all .15s ease-in;
+    transition: all .15s ease-in-out;
 }
 
 .project-item ._underneath {
@@ -173,8 +174,19 @@ html.light .project-item:hover {
     font-weight: 600;
     color: #fff;
     margin-bottom: .5rem;
+    margin-top: 0rem;
     text-align: left;
     font-family: 'Parkinsans', 'Roboto', sans-serif !important;
+}
+.project-item:hover ._underneath h3 {
+    font-size: 1.75rem;
+    transition: all .1s ease-in;
+    margin-top: .25rem;
+}
+
+.project-item:not(:hover) ._underneath h3 {
+
+    transition: all .1s ease-in-out;
 }
 
 .project-item ._underneath p {
@@ -185,6 +197,10 @@ html.light .project-item:hover {
     text-align: left;
 }
 
+.project-item:hover ._underneath p {
+    font-weight: 500;
+    transition: all .1s ease-in;
+}
 .light .project-item ._underneath {
     background-color: currentColor !important;
 }
@@ -245,7 +261,7 @@ html.light .project-item:hover ._right .actions {
     width: 40px;
     height: 40px;
 
-    transition: all .15s ease-in;
+    transition: all .1s ease-in-out;
 }
 
 .project-item:hover ._right .actions a {
