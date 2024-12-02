@@ -9,7 +9,7 @@
                 <img v-if="update.type === 'photo'" :src="update.content" alt="Project Update Photo" />
                 <a v-if="update.type === 'link'" :href="update.content" target="_blank">{{ update.content }}</a>
                 <div class="update-date">{{ formatDate(update.created) }} |
-                    <img :src="reconstructLink(update, update.author.avatar)" :alt="update.author.username"
+                    <img :src="reconstructLink(update, update.expand.author.avatar)" :alt="update.author.username"
                         class="avatar" />
                     {{ update.expand.author.username }}
                 </div>
@@ -73,6 +73,10 @@ const formatDate = (date) => {
         day: 'numeric',
     });
 };
+
+const reconstructLink = (source, link) => {
+    return baseUrl + '/api/files/_pb_users_auth_/' + source.expand.author.id + '/' + link;
+};
 </script>
 
 <style scoped>
@@ -86,6 +90,7 @@ const formatDate = (date) => {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    font-family: 'Parkinsans', sans-serif !important;
 }
 
 .update-item {
@@ -100,6 +105,8 @@ const formatDate = (date) => {
 .update-item h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    font-family: 'Parkinsans', sans-serif !important;
+    font-weight: 500;
 }
 
 .update-content {
@@ -107,21 +114,23 @@ const formatDate = (date) => {
     font-weight: 400;
     color: var(--text-color);
     line-height: 1.5;
-    text-align: justify;
+    text-align: left;
     max-width: 100%;
 }
 
 .update-date {
     font-size: 0.8rem;
     color: var(--text-color);
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: start;
 }
 
 .avatar {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    margin-left: 0.5rem;
+    margin: 0 0.2rem;
 }
 
 .loading-spinner {
