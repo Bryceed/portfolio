@@ -67,7 +67,7 @@ export default {
 h1 {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     text-align: center;
 }
 
@@ -83,7 +83,7 @@ p {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 auto 3rem;
     max-width: 1340px;
     padding: 0 20px;
 }
