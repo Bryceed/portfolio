@@ -38,9 +38,10 @@
             </div>
         </div>
 
-        <div class="w-full md:w-3/4 min-h-screen w-auto pt-8">
-            <ProjectInfo :projectId="route.params.project_id" />
+        <div class="w-full md:w-3/4 min-h-screen w-auto ">
+
             <ProjectUpdates :projectId="route.params.project_id" />
+            <ProjectInfo :projectId="route.params.project_id" />
         </div>
     </div>
     <div v-else>

@@ -1,6 +1,6 @@
 <template>
     <div class="project-updates">
-        <h2 class="text-center w-full updates-title mt-8">Updates</h2>
+        <h2 class="text-center w-full updates-title mt-6">Updates</h2>
         <div class="flex flex-col items-center justify-center w-full ">
             <div v-for="update in updates" :key="update.id" class="update-item md:w-10/12 md:offset-2"
                 v-if="fetchStatus === 'success'">
