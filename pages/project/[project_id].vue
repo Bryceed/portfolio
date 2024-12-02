@@ -13,15 +13,31 @@
                 <h3 class="text-l text-gray-500 mt-2">
                     {{ getDescription(project) }}
                 </h3>
-            </div>
-            <div class="flex flex-col items-start justify-center mt-12">
-                <button @click="goBack"
-                    class="text-light-800 font-bold py-4 px-1 rounded inline-flex items-center icon-left mb-6">
-                    <span class="i-akar-icons-arrow-left mr-2"></span>
-                    <span class="ml-2">{{ $t('html.project.buttons.back') }}</span>
-                </button>
+
+                <!-- render website and source code buttons if available -->
+                <div class="flex flex-row items-center justify-center mt-12 gap-2">
+                    <a v-if="project.link" :href="project.link" target="_blank"
+                        class="text-light-800 font-bold py-4 px-1 rounded inline-flex items-center icon-left mb-6 btn btn--primary btn-reverse">
+                        <span class="i-akar-icons-link"></span>
+                        <span class="">Website</span>
+                    </a>
+                    <a v-if="project.code" :href="project.code" target="_blank"
+                        class="text-light-800 font-bold py-4 px-1 rounded inline-flex items-center icon-left mb-6 btn btn--primary btn-reverse">
+                        <span class="i-akar-icons-github"></span>
+                        <span class="">GitHub</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-col items-start justify-center mt-12">
+                    <button @click="goBack"
+                        class="text-light-800 font-bold py-4 px-1 rounded inline-flex items-center icon-left mb-6 btn btn--primary">
+                        <span class="i-akar-icons-arrow-left"></span>
+                        <span class="">{{ $t('html.project.buttons.back') }}</span>
+                    </button>
+                </div>
             </div>
         </div>
+
         <div class="w-full md:w-3/4 min-h-screen w-auto pt-8">
             <ProjectInfo :projectId="route.params.project_id" />
             <ProjectUpdates :projectId="route.params.project_id" />
@@ -40,6 +56,27 @@
     </div>
 </template>
 
+<style scoped>
+.btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 1rem;
+
+    &:hover {
+        background-color: var(--primary-color);
+    }
+}
+
+.btn-reverse {
+    background-color: var(--text-color);
+    color: var(--secondary-color);
+
+    &:hover {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+    }
+}
+</style>
 <script>
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';

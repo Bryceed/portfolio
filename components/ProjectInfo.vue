@@ -1,7 +1,9 @@
 <template>
-    <div class="project-info">
-        <h2>Project Information</h2>
-        <div v-html="info" class="info"></div>
+    <div class="flex flex-col items-center justify-center w-full">
+        <div class="project-info md:w-10/12 md:offset-2">
+            <h2>Project Information</h2>
+            <div v-html="info" class="info"></div>
+        </div>
     </div>
 </template>
 
