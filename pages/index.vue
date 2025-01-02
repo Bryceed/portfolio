@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { getPageTitle } from '../utils/pageTitle';
 
 export default {
     name: 'Home',
@@ -37,22 +38,14 @@ export default {
         }
     },
 
-    head() {
-        return {
-            link: [
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
-            ],
-        }
-    },
-
     mounted() {
-        document.title = 'Portfolio | Well.dev'
-
         // create script and inject an isPrideMonth verification (to alert the user)
         const script = document.createElement('script')
         script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11'
         script.async = true
         document.head.appendChild(script)
+
+        document.title = getPageTitle({ mainPage: 'Home' });
     }
 }
 </script>

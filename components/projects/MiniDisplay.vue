@@ -510,8 +510,6 @@ export default {
         }
     },
     mounted() {
-        console.log("Projects")
-        document.title = 'Well.dev | Projects'
 
         if (typeof VanillaTilt !== 'undefined') {
             VanillaTilt.init(document.querySelectorAll(".project-item"), {

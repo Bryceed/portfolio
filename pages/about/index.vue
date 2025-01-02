@@ -79,6 +79,8 @@
 </style>
 
 <script>
+import { getPageTitle } from '../utils/pageTitle';
+
 export default {
     name: "Contact",
 
@@ -92,6 +94,10 @@ export default {
         prefetchLink() {
             this.$nuxt.prefetch('/contact');
         }
+    },
+
+    mounted() {
+        document.title = getPageTitle({ mainPage: 'About' });
     }
 };
 </script>

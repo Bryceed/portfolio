@@ -33,8 +33,10 @@
 
 <script>
 import { projects } from "../data/projects.json";
+import { getPageTitle } from '../utils/pageTitle';
 
 export default {
+    name: 'Projects',
     data() {
         return {
             projects
@@ -53,6 +55,7 @@ export default {
     },
 
     mounted() {
+        document.title = getPageTitle({ mainPage: 'Projects' });
         //for all cards click, navigate to the project page
         document.querySelectorAll('.project-item').forEach(item => {
             item.addEventListener('click', () => {

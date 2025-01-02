@@ -88,6 +88,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { projects } from "../../data/projects.json";
 import ProjectInfo from '@/components/ProjectInfo.vue';
 import ProjectUpdates from '@/components/ProjectUpdates.vue';
+import { getPageTitle } from '@/utils/pageTitle';
 
 export default {
     name: "Project",
@@ -112,6 +113,7 @@ export default {
                 project.value = foundProject;
                 if (process.client) {
                     waitDocReady();
+                    document.title = getPageTitle({ mainPage: 'Project', title: project.value.title });
                 }
             } else {
                 error.value = true;

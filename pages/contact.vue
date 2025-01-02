@@ -57,8 +57,14 @@
 </style>
 
 <script>
+import { getPageTitle } from '../utils/pageTitle';
+
 export default {
     name: "Contact",
+
+    mounted() {
+        document.title = getPageTitle({ mainPage: 'Contact' });
+    },
 
     methods: {
         openLink(link) {

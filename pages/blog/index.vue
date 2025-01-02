@@ -43,7 +43,8 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import PostModal from '@/components/PostModal.vue'; // Import the new component
+import PostModal from '@/components/PostModal.vue';
+import { getPageTitle } from '../utils/pageTitle';
 
 const baseUrl = 'https://services.rydermais.com'
 
@@ -100,6 +101,8 @@ let formatDate = (date) => {
 };
 
 onMounted(async () => {
+    document.title = getPageTitle({ mainPage: 'Blog' });
+
     if (sessionStorage.getItem('cachedPosts')) {
         posts.value = JSON.parse(sessionStorage.getItem('cachedPosts'));
         fetchStatus.value = 'success';
