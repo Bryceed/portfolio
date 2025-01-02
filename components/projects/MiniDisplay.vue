@@ -2,7 +2,7 @@
     <div class="mini-display-container">
         <h2>{{ $t('html.home.projectsTitle') }}</h2>
         <div class="mini-display">
-            <template v-for="project in projects" :key="project.id">
+            <template v-for="(project, index) in projects.slice(0, 6)" :key="project.id">
                 <div class="project-item" :class="{ active: project.active }" @click="toggleActive(project)"
                     :style="{ '--highlight-color': project.colors.primary }">
                     <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>
