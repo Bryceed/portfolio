@@ -234,7 +234,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 9px;
     z-index: 9;
     backdrop-filter: blur(10px);
 }
