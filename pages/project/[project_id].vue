@@ -125,6 +125,7 @@ export default {
                 if (removeClass) {
                     return document.querySelector("body").classList.remove("bg-experience");
                 }
+                if (project.value && project.value.colors) {
                 defineClassStyle({
                     ":root": {
                         "--primary-color": project.value.colors.primary,
@@ -164,7 +165,8 @@ export default {
                         "z-index": -1,
                         "opacity":'.6'
                     },
-                });
+                })
+                };
                 document.querySelector("body").classList.add("bg-experience");
             } else {
                 setTimeout(() => waitDocReady(removeClass), 100);

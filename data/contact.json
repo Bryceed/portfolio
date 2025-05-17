@@ -1,0 +1,15 @@
+{
+  "socialMedia": {
+    "github": "https://github.com/bryceed",
+    "linkedin": "https://www.linkedin.com/in/wellington-do-nascimento/",
+    "discord": "https://discord.gg/uYvVeha",
+    "whatsapp": "https://api.whatsapp.com/send?phone=5511942018873"
+  },
+  "contact": {
+    "email": "hello@wellington.dev",
+    "phone": "+55 11 94201-8873"
+  },
+  "cvFile": "/files/cv/Wellington.pdf",
+  "personalityTest": "/about/personality-test",
+  "homepageProjectsLimit": 6
+}

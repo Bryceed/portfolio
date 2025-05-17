@@ -1,17 +1,17 @@
 <template>
     <footer class="footer">
-        <p v-html="$t('html.footer[0]', { year: getYear() })"></p>
-        <p v-html="$t('html.footer[1]', { url: github })"></p>
+        <p v-html="$t('footer[0]', { year: getYear() })"></p>
+        <p v-html="$t('footer[1]', { url: github })"></p>
     </footer>
 </template>
 
 <script>
-import { about } from '../data/about.json';
+import about from '../data/about.json';
 
 export default {
     data() {
         return {
-            github: about.links.github
+            github: about.links.github | ''
         }
     },
 

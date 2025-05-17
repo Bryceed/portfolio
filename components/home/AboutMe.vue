@@ -2,21 +2,22 @@
     <div class="about x-sp">
         <div class="about__container">
             <div class="about__container__image">
-                <img src="https://avatars.githubusercontent.com/u/42657376?v=4" alt="Wellington" />
+                <img :src="about.picture || 'https://avatars.githubusercontent.com/u/42657376?v=4'" :alt="getFullName()" />
             </div>
             <div class="about__container__text">
                 <h1 v-html="$t('html.home.greetings', { name: 'Wellington' })"></h1>
                 <p v-html="$t('html.home.description[0]', {
                     years: personal.age,
                     occupation: 'Full Stack Developer'
-                })
-                    "></p>
+                })"></p>
                 <p v-html="$t('html.home.description[1]', {
                     profession1: 'UI/UX Design',
                     profession2: 'Web Development'
-                })
-                    "></p>
-                <p v-html="description2"></p>
+                })"></p>
+                <p v-html="$t('html.home.description[2]', {
+                    company: currentJob.company || 'N/A',
+                    jobRole: currentJob.jobRole || 'N/A'
+                })"></p>
                 <p v-html="$t('html.home.description[3]')"></p>
 
                 <div class="about__container__text__buttons">
@@ -24,8 +25,10 @@
                         <i class="material-icons">person</i>
                         <span v-html="$t('html.home.actions[2].label')"></span>
                     </NuxtLink>
-                    <NuxtLink to="/contact" class="btn btn--secondary"><i class="material-icons">email</i><span
-                            v-html="$t('html.home.actions[1].label')"></span></NuxtLink>
+                    <NuxtLink to="/contact" class="btn btn--secondary">
+                        <i class="material-icons">email</i>
+                        <span v-html="$t('html.home.actions[1].label')"></span>
+                    </NuxtLink>
                 </div>
             </div>
         </div>
@@ -33,92 +36,86 @@
 </template>
 
 <script>
-import { about } from "@/data/about.json";
+import timeline from '@/data/timeline.json';
 
 export default {
     name: "HomeAboutMe",
     data() {
         return {
-            about,
-            company: {
-                name: "DevLand",
-                url: "https://devland.tech/?utm_source=wellington_portfolio&utm_medium=about_mee&utm_campaign=devland",
-                entrance: "2022-07-17",
-                period: "",
-                exit: null
-            },
+            about: {}, // Placeholder for about data
+            currentJob: null,
             personal: {
                 age: 0
-            }
+            },
+            primaryColor: "#3498db" // Example primary color
         };
     },
 
     created() {
-        this.company.period = this.getPeriod();
-        this.personal.age = this.getPersonalAge();
+        try {
+            this.personal.age = this.getPersonalAge();
+            this.currentJob = this.getCurrentJob();
+        } catch (error) {
+            console.error("Error initializing data:", error);
+            this.personal.age = 25; // Fallback value
+        }
     },
 
     computed: {
-        description2() {
-            return this.$t('html.home.description[2]', {
-                business: `<a href="${this.company.url}" target="_blank">DevLand <i class="material-icons">open_in_new</i></a>             
-                `,
-                time: this.getPeriod()
-            });
+        currentJobDescription() {
+            if (this.currentJob && this.currentJob.company !== "N/A") {
+                return `<a href="${this.currentJob.company}" target="_blank">${this.currentJob.jobRole} <i class="material-icons">open_in_new</i></a>`;
+            }
+            return "Em busca de oportunidade";
         }
     },
 
     methods: {
-        getPeriod() {
-            const entrance = new Date(this.company.entrance);
-            const exit = this.company.exit
-                ? new Date(this.company.exit)
-                : new Date();
-            const diff = Math.abs(exit - entrance);
-            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
-            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-
-            if (years > 0) {
-                if (months > 0) {
-                    const yearsText = this.$t("commons.timings.periodOf.year." + (years > 1 ? "plural" : "singular"), { periodOf: years });
-                    const monthsText = this.$t("commons.timings.periodOf.month." + (months > 1 ? "plural" : "singular"), { periodOf: months });
-                    const concatText = this.$t("commons.timings.periodOf.concat");
-                    return yearsText + concatText + monthsText;
-                } else {
-                    return this.$t("commons.timings.periodOf.day." + (days > 1 ? "plural" : "singular"), { periodOf: days });
-                }
-            } else if (months > 0) {
-                return this.$t("commons.timings.periodOf.month." + (months > 1 ? "plural" : "singular"), { periodOf: months });
-            } else {
-                return this.$t("commons.timings.periodOf.day." + (days > 1 ? "plural" : "singular"), { periodOf: days });
+        getFullName() {
+            if (this.about && this.about.name) {
+                return `${this.about.name.first} ${this.about.name.middle} ${this.about.name.last}`;
             }
+            return "Wellington do Nascimento";
         },
-        getPersonalAge() {
-            const lastUpdate = about.lastUpdate;
-            const birth = new Date(
-                `${about.birth.year}-${about.birth.month}-${about.birth.day}`
-            );
+
+        getCurrentJob() {
             const today = new Date();
-            const diff = Math.abs(today - birth);
+            const jobs = timeline.events
+                .filter(event => event.startDate && (!event.endDate || new Date(event.endDate) >= today))
+                .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 
-            const todayDay = today.getDate();
-            const birthDay = birth.getDate();
-            const todayMonth = today.getMonth();
-            const birthMonth = birth.getMonth();
-            const todayYear = today.getFullYear();
-            const birthYear = birth.getFullYear();
+            return jobs.length > 0 ? jobs[0] : { jobRole: "Em busca de oportunidade", company: "N/A" };
+        },
 
-            let years = todayYear - birthYear;
-            if (
-                todayMonth < birthMonth ||
-                (todayMonth === birthMonth && todayDay < birthDay)
-            ) {
-                years--;
+        getPersonalAge() {
+            try {
+                if (!this.about || !this.about.birth) {
+                    throw new Error("Missing birth data");
+                }
+
+                const birth = new Date(
+                    `${this.about.birth.year}-${this.about.birth.month}-${this.about.birth.day}`
+                );
+
+                if (isNaN(birth.getTime())) {
+                    throw new Error("Invalid birth date");
+                }
+
+                const today = new Date();
+                let age = today.getFullYear() - birth.getFullYear();
+                const isBeforeBirthday =
+                    today.getMonth() < birth.getMonth() ||
+                    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
+
+                if (isBeforeBirthday) {
+                    age--;
+                }
+
+                return age;
+            } catch (error) {
+                console.error("Error calculating age:", error);
+                return 25; // Default fallback
             }
-
-            // retorne um int com a idade
-            return years;
         }
     },
 
@@ -139,7 +136,6 @@ export default {
 
 <style>
 .about {
-    min-height: calc(100vh - 8rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,6 +143,7 @@ export default {
     border-radius: 5px;
     width: calc(100% - 4rem);
         margin: 0 2rem;
+        border-radius: 1rem;
 }
 
 html.light .about {
@@ -164,8 +161,9 @@ html.light .about {
     align-items: center;
     flex-direction: row;
     margin: 20px auto;
+    aspect-ratio: 3;
+    padding: 2rem .5rem;
 }
-
 .about__container__text {
     width: 100%;
     display: flex;
@@ -178,7 +176,7 @@ html.light .about {
 }
 
 .about__container__text h1 {
-    font-size: clamp(1.5em, 8.5vmin, 3.2em);
+    font-size: clamp(1.5em, 4.5vmin, 2.5em);
     font-weight: 700;
     color: #fff;
     margin-bottom: 48px;
@@ -191,7 +189,7 @@ html.light .about {
 
 .about__container__text p {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-    font-size: clamp(1em, 3vmin, 2em);
+    font-size: clamp(1em, 2.25vmin, 1.5em);
     font-weight: 400;
     color: #fff;
     margin-bottom: 20px;
@@ -298,6 +296,16 @@ html.light .about {
 html.light .about__container__image img {
     filter: drop-shadow(0 0 10px #6624e7) brightness(1.2);
     border: 5px solid #dbe5eb;
+}
+
+.about__header {
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+.about__header-svg {
+    margin-top: 10px;
 }
 
 @media (max-width: 1024px) {

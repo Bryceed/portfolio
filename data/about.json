@@ -1,28 +1,26 @@
 {
-    "about": {
-        "name": {
-            "first": "Wellington",
-            "middle": "do",
-            "last": "Nascimento"
-        },
-        "birth": {
-            "year": 1999,
-            "month": 5,
-            "day": 10
-        },
-        "location": {
-            "country": "Brazil",
-            "state": "Guarulhos",
-            "city": "São Paulo"
-        },
-        "gender": "Male",
-        "email": "wellington.tvd@outlook.com.br",
-        "phone": "+55 (11) 94201-8873",
-        "links": {
-            "github": "https://github.com/Bryceed",
-            "linkedin": "https://www.linkedin.com/in/wellington-do-nascimento/"
-        },
-        "picture": "https://avatars.githubusercontent.com/u/56080521?v=4",
-        "lastUpdate": "2023-07-09"
-    }
+    "name": {
+        "first": "Wellington",
+        "middle": "do",
+        "last": "Nascimento"
+    },
+    "birth": {
+        "year": 1999,
+        "month": 5,
+        "day": 10
+    },
+    "location": {
+        "country": "Brazil",
+        "state": "Guarulhos",
+        "city": "São Paulo"
+    },
+    "gender": "Male",
+    "email": "wellington.tvd@outlook.com.br",
+    "phone": "+55 (11) 94201-8873",
+    "links": {
+        "github": "https://github.com/Bryceed",
+        "linkedin": "https://www.linkedin.com/in/wellington-do-nascimento/"
+    },
+    "picture": "https://avatars.githubusercontent.com/u/42657376?v=4",
+    "lastUpdate": "2023-07-09"
 }

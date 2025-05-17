@@ -1,7 +1,7 @@
 <template>
-    <div class="mini-display-container">
+    <div class="projects-highlight-container">
         <h2>{{ $t('html.home.projectsTitle') }}</h2>
-        <div class="mini-display">
+        <div class="projects-highlight">
             <template v-for="(project, index) in projects.slice(0, 6)" :key="project.id">
                 <div class="project-item" :class="{ active: project.active }" @click="toggleActive(project)"
                     :style="{ '--highlight-color': project.colors.primary }">
@@ -20,11 +20,6 @@
                 </div>
             </template>
         </div>
-
-        <NuxtLink to="/projects" class="btn btn--primary btn-float-right">
-            {{ $t('html.home.actions[0].label') }}
-            <span class="material-icons">arrow_forward</span>
-        </NuxtLink>
     </div>
 </template>
 
@@ -87,15 +82,15 @@ html.light .btn-float-right:hover {
 }
 
 
-.mini-display-container {
+.projects-highlight-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: calc(100% - 4rem);
-    margin: 0 2rem;
+    margin: 0 2rem 4rem;
     min-height: calc(33vh + 50px);
-    padding: 2rem 0 4rem;
+    padding: 2rem 0 0;
     background: #111;
     color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
@@ -104,13 +99,13 @@ html.light .btn-float-right:hover {
     border-radius: 14px;
 }
 
-html.light .mini-display-container {
+html.light .projects-highlight-container {
     background: transparent;
     color: #000;
     box-shadow: none;
 }
 
-.mini-display {
+.projects-highlight {
     display: grid;
     justify-content: space-evenly;
     align-items: center;
@@ -118,7 +113,7 @@ html.light .mini-display-container {
     width: calc(100% - 4rem);
     min-height: calc(33vh + 50px);
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     margin: 2rem;
     /* limit to 4 columns */
     max-width: calc(400px * 4 + 3rem);
@@ -174,8 +169,6 @@ html.light .project-item:hover {
     transition: all 0.2s ease-in-out;
     background-size: cover;
     background-color: #111;
-    /*background-image is the url image, but i also want to add a gradient to the image, do it without background-image
-                                                                                                                                        */
     height: 62%;
     position: relative;
     overflow: hidden;
@@ -463,12 +456,12 @@ html.light .project-item.active .info-overlay {
     transform: translateZ(25px);
 }
     @media (max-width: 960px) {
-        .mini-display-container {
+        .projects-highlight-container {
             width: 100%;
             margin: 0 1rem;
         }
     
-        .mini-display {
+        .projects-highlight {
             margin: 0rem;
         }
     

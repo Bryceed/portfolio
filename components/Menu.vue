@@ -8,10 +8,7 @@
                     <span>l</span>
                     <span>l</span>
                     <div class="typing">
-                        <span>.</span>
-                        <span>d</span>
-                        <span>e</span>
-                        <span>v</span>
+                        
                     </div>
                     <div class="code-selector active"></div>
                 </div>
@@ -88,94 +85,63 @@ export default {
     },
 
     mounted() {
-        const logo = document.querySelector('.logo')
-        const codeSelector = document.querySelector('.code-selector')
-        let spans = document.querySelectorAll('.logo span')
-        const typing = () => {
+        const logo = document.querySelector('.logo');
+        const codeSelector = document.querySelector('.code-selector');
+        const spans = document.querySelectorAll('.logo span');
+        const typingContainer = document.querySelector('.typing');
+        const suffixes = ['ington N.', 'Nas.dev'];
+        let currentSuffixIndex = 0;
+
+        const activateSpans = () => {
             spans.forEach((span, idx) => {
                 setTimeout(() => {
-                    span.classList.add('active')
-                }, 100 * (idx + 1))
-            })
+                    span.classList.add('active');
+                }, 100 * (idx + 1));
+            });
 
             setTimeout(() => {
-                codeSelector.classList.add('active')
-            }, 1000)
+                codeSelector.classList.add('active');
+            }, 1000);
 
             setTimeout(() => {
-                codeSelector.classList.remove('active')
-            }, 1500)
-        }
-        typing()
+                codeSelector.classList.remove('active');
+            }, 1500);
+        };
 
-        const newSuffixTexts = [
-            '.dev',
-            '.design',
-            '.web',
-            '.ux',
-            '.app',
-            '.gamer',
-            '.streamer',
-            '.LGBTQIA+',
-            '.INTP-T',
-            'ington N.',
-        ]
+        const updateSuffix = () => {
+            const currentSuffix = suffixes[currentSuffixIndex];
+            const nextSuffix = suffixes[(currentSuffixIndex + 1) % suffixes.length];
+            currentSuffixIndex = (currentSuffixIndex + 1) % suffixes.length;
 
-        let index = 0;
-        let indexDelay = 0;
-        let waitingTime = 0;
-        let oldSuffix;
-        let newSuffix;
-        let toEdit = document.querySelector('.typing');
-        let editSpans;
-
-        setInterval(() => {
-            toEdit = document.querySelector('.typing');
-            editSpans = document.querySelectorAll('.typing span');
-            index++;
-            oldSuffix = newSuffixTexts[index - 1];
-            newSuffix = newSuffixTexts[index];
-
-            if (index > newSuffixTexts.length - 1) {
-                clearInterval();
-            }
-            waitingTime = 0;
-
-            codeSelector.classList.add('active')
-
-            for (let i = oldSuffix.length - 1; i >= 0; i--) {
-                indexDelay += 200;
+            // Remove current suffix
+            Array.from(typingContainer.children).forEach((span, idx) => {
                 setTimeout(() => {
-                    editSpans[oldSuffix.length - 1 - i].classList.add('remove')
-                    setTimeout(() => {
-                        editSpans[oldSuffix.length - 1 - i].remove()
-                    }, 200)
-                }, 170 * (i + 1))
-            }
+                    span.classList.add('remove');
+                    setTimeout(() => span.remove(), 300);
+                }, idx * 100);
+            });
 
-            indexDelay = 0;
-
+            // Add new suffix
             setTimeout(() => {
-                codeSelector.classList.add('active')
-                waitingTime = 0;
-                for (let i = 0; i < newSuffix.length; i++) {
-                    let _span = document.createElement('span');
-                    _span.innerText = newSuffix[i];
-                    _span.classList.add('active')
+                codeSelector.classList.add('active');
+                nextSuffix.split('').forEach((char, idx) => {
                     setTimeout(() => {
-                        toEdit.appendChild(_span)
-                    }, 60 * (i + 1))
-                    setTimeout(() => {
-                        waitingTime += 60;
-                    }, 60 * (i + 1))
-                }
+                        const span = document.createElement('span');
+                        span.textContent = char;
+                        span.classList.add('active');
+                        typingContainer.appendChild(span);
+                    }, idx * 100);
+                });
 
                 setTimeout(() => {
-                    codeSelector.classList.remove('active')
-                }, waitingTime)
-            }, 1500 + waitingTime)
+                    codeSelector.classList.remove('active');
+                }, nextSuffix.length * 100 + 500);
+            }, currentSuffix.length * 100 + 500);
+        };
 
-        }, 4000 + waitingTime)
+        activateSpans();
+
+        setInterval(updateSuffix, 4000);
     },
 
     methods: {

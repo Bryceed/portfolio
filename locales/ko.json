@@ -9,7 +9,7 @@
         "아이디어를 실현하고 싶으신가요?"
       ],
       "skillsTitle": "기술",
-      "projectsTitle": "프로젝트",
+      "projectsTitle": "하이라이트",
       "actions": [
         {
           "label": "프로젝트 보기",
@@ -54,7 +54,36 @@
       "저의 <a href=\"{url}\" target=\"_blank\">GitHub</a>에서 이 프로젝트를 포함한 다른 프로젝트를 확인하실 수 있습니다."
     ],
     "contact": {
-      "title": "연락처"
+      "title": "연락처",
+      "description": "프로젝트나 취업 기회에 대해 논의하려면 저에게 연락하세요.",
+      "buttons": {
+        "sendEmail": "이메일 보내기",
+        "sendMessage": "메시지 보내기",
+        "downloadCV": "이력서 다운로드",
+        "whatsapp": "WhatsApp으로 채팅"
+      },
+      "cv": {
+        "title": "이력서",
+        "description": "업데이트된 CV 다운로드"
+      },
+      "form": {
+        "title": "메시지 보내기",
+        "name": "이름",
+        "namePlaceholder": "귀하의 이름",
+        "email": "이메일",
+        "emailPlaceholder": "your.email@example.com",
+        "subject": "제목",
+        "subjectPlaceholder": "연락 이유",
+        "message": "메시지",
+        "messagePlaceholder": "여기에 메시지를 입력하세요...",
+        "submit": "메시지 보내기",
+        "success": "메시지가 성공적으로 전송되었습니다! 곧 연락 드리겠습니다.",
+        "error": "메시지를 보내는 중 오류가 발생했습니다. 다시 시도해 주세요.",
+        "or": "또는"
+      },
+      "social": {
+        "title": "소셜 미디어"
+      }
     },
     "blog": {
       "title": "블로그"
@@ -68,6 +97,43 @@
     "project": {
       "buttons": {
         "return": "뒤로 돌아 라"
+      }
+    },
+    "about": {
+      "title": "소개",
+      "description": "제 직업 경로, 기술 및 성격에 대해 더 알아보세요.",
+      "personal": {
+        "title": "개인 정보",
+        "name": {
+          "label": "이름"
+        },
+        "location": {
+          "label": "위치"
+        },
+        "education": {
+          "label": "교육"
+        },
+        "occupation": {
+          "label": "직업"
+        },
+        "age": {
+          "label": "생일",
+          "value": "{date} ({age} 년)"
+        }
+      },
+      "experience": {
+        "title": "직업 경험",
+        "company": {
+          "button": "편물"
+        }
+      },
+      "skills": {
+        "title": "기술적 능력"
+      },
+      "personality": {
+        "title": "성격",
+        "description": "저는 논리적이고 창의적이며 분석적인 사람입니다. INTP-T 성격 유형에 대해 더 알아보세요.",
+        "button": "테스트 결과 보기"
       }
     }
   },

@@ -9,7 +9,7 @@
         "<b>Vamos tirar o seu projeto do papel?</b>"
       ],
       "skillsTitle": "Habilidades",
-      "projectsTitle": "Projetos",
+      "projectsTitle": "Destaques",
       "actions": [
         {
           "label": "Projetos",
@@ -53,7 +53,38 @@
       "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
     ],
     "contact": {
-      "title": "Contate-me"
+      "title": "Contato",
+      "description": "Entre em contato comigo para conversarmos sobre seu projeto ou oportunidade de trabalho.",
+      "buttons": {
+        "sendEmail": "Enviar E-mail",
+        "sendMessage": "Enviar Mensagem",
+        "downloadCV": "Baixar CV",
+        "whatsapp": "Conversar no WhatsApp",
+        "whatsappAlternative": "Conversar agora no WhatsApp"
+      },
+      "cv": {
+        "title": "Currículo",
+        "description": "Baixe meu CV atualizado"
+      },
+      "form": {
+        "title": "Envie uma mensagem",
+        "name": "Nome",
+        "namePlaceholder": "Seu nome",
+        "email": "E-mail",
+        "emailPlaceholder": "seu.email@exemplo.com",
+        "subject": "Assunto",
+        "subjectPlaceholder": "Motivo do contato",
+        "message": "Mensagem",
+        "messagePlaceholder": "Digite sua mensagem aqui...",
+        "submit": "Enviar mensagem",
+        "success": "Mensagem enviada com sucesso! Retornarei em breve.",
+        "error": "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.",
+        "or": "ou",
+        "divider": "OU"
+      },
+      "social": {
+        "title": "Redes Sociais"
+      }
     },
     "blog": {
       "title": "Blog"
@@ -69,6 +100,43 @@
         "return": "Retornar",
         "back": "Voltar",
         "allProjects": "Todos os projetos"
+      }
+    },
+    "about": {
+      "title": "Sobre Mim",
+      "description": "Conheça mais sobre minha trajetória profissional, habilidades e personalidade.",
+      "personal": {
+        "title": "Informações Pessoais",
+        "name": {
+          "label": "Nome"
+        },
+        "location": {
+          "label": "Localização"
+        },
+        "education": {
+          "label": "Formação"
+        },
+        "occupation": {
+          "label": "Profissão"
+        },
+        "age": {
+          "label": "Data de Nascimento",
+          "value": "{date} ({age} anos)"
+        }
+      },
+      "experience": {
+        "title": "Experiência Profissional",
+        "company": {
+          "button": "Web"
+        }
+      },
+      "skills": {
+        "title": "Habilidades Técnicas"
+      },
+      "personality": {
+        "title": "Personalidade",
+        "description": "Sou uma pessoa lógica, criativa e analítica. Descubra mais sobre meu perfil de personalidade INTP-T.",
+        "button": "Ver resultado do teste"
       }
     }
   },

@@ -1,6 +1,5 @@
 <template>
-    <h1 v-html="$t('html.projects.title')"></h1>
-    <p v-html="$t('html.projects.description')"></p>
+    <ProjectsHighlightsDisplay />
     <div class="projects">
         <div class="project-item" v-for="project in projects" :key="project.id"
             :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">
@@ -62,6 +61,8 @@ export default {
                 this.linkTo(`/project/${item.id}`);
             });
         });
+
+        // resize observer to fit cards
     }
 }
 </script>
