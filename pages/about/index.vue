@@ -1,4 +1,5 @@
-<template>  <div>
+<template>  
+  <div>
     <div class="about-page">
       
       <!-- Hero Card mais elaborado -->
@@ -18,7 +19,6 @@
           <div class="hero-card__profile-info">
             <h1>Wellington do Nascimento</h1>
             <p>{{ $t('html.about.description') }}</p>
-            
           </div>
         </div>
       </div>
@@ -216,7 +216,7 @@ export default {
     }
   },
   mounted() {
-    document.title = getPageTitle({ mainPage: 'About' });
+    document.title = getPageTitle({ mainPage: 'About | WellNas.dev' });
   }
 };
 </script>
@@ -357,6 +357,9 @@ export default {
 
 .hero-card__profile {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
   align-items: center;
   gap: 2rem;
   position: relative;
@@ -379,6 +382,8 @@ export default {
 
 .hero-card__profile-info {
   color: #fff;
+  width: 100%;
+  text-align: center;
 }
 
 .hero-card__profile-info h1 {
@@ -392,6 +397,7 @@ export default {
   font-size: 1.2rem;
   max-width: 600px;
   line-height: 1.5;
+  margin: 0 auto;
 }
 
 .hero-card__profile-info a {
