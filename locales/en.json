@@ -10,6 +10,17 @@
       ],
       "skillsTitle": "Skills",
       "projectsTitle": "Highlights",
+      "featuredProjects": "Featured Projects",
+      "experience": "Professional Experience",
+      "certifications": "Certifications",
+      "ctaTitle": "Let's Work Together",
+      "ctaText": "Have a project in mind? Looking for a developer to join your team? Let's talk!",
+      "contactMe": "Contact Me",
+      "viewProjects": "View Projects",
+      "viewMore": "View More",
+      "view": "View",
+      "details": "Details",
+      "visit": "Visit",
       "actions": [
         {
           "label": "See my projects",

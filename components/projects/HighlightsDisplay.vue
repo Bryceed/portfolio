@@ -5,15 +5,14 @@
             <template v-for="(project, index) in projects.slice(0, 6)" :key="project.id">
                 <div class="project-item" :class="{ active: project.active }" @click="toggleActive(project)"
                     :style="{ '--highlight-color': project.colors.primary }">
-                    <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>
-                    <div class="info-overlay">
+                    <div class="_bg" :style="{ backgroundImage: 'url(' + project.placeholder + ')' }"></div>                    <div class="info-overlay">
                         <h3>{{ project.title }}</h3>
                         <p>{{ getDescription(project) }}</p>
                     </div>
                     <div class="actions">
-                        <CommonButton :link="project.page" :title="$t('html.projects.miniDisplay.button.details')"
+                        <CommonButton :link="`/project/${project.id}`" :title="$t('html.projects.miniDisplay.button.details')"
                             :newTab="false" :style="{ 'background-color': project.colors.primary }" />
-                        <CommonButton v-if="project.website" :link="project.website"
+                        <CommonButton v-if="project.link" :link="project.link"
                             :title="$t('html.projects.miniDisplay.button.website')" :newTab="true"
                             :style="{ 'background-color': project.colors.secondary }" />
                     </div>
