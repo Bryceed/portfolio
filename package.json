@@ -9,7 +9,7 @@
     "postinstall": "patch-package && nuxt prepare"
   },
   "engines": {
-    "node": "18.x.x"
+    "node": "18.x"
   },
   "devDependencies": {
     "@iconify-json/akar-icons": "^1.1.17",

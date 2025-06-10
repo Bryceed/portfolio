@@ -119,34 +119,30 @@ export default {
         },
 
         getPersonalAge() {
-            try {
-                if (!this.about || !this.about.birth) {
-                    throw new Error("Missing birth data");
-                }
-
-                const birth = new Date(
-                    `${this.about.birth.year}-${this.about.birth.month}-${this.about.birth.day}`
-                );
-
-                if (isNaN(birth.getTime())) {
-                    throw new Error("Invalid birth date");
-                }
-
-                const today = new Date();
-                let age = today.getFullYear() - birth.getFullYear();
-                const isBeforeBirthday =
-                    today.getMonth() < birth.getMonth() ||
-                    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
-
-                if (isBeforeBirthday) {
-                    age--;
-                }
-
-                return age;
-            } catch (error) {
-                console.error("Error calculating age:", error);
-                return 25; // Default fallback
+            if (!this.about || !this.about.birth) {
+                return null;
             }
+            const { day, month, year } = this.about.birth;
+            const birthDate = new Date(year, month - 1, day);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        },
+        getPersonalBirthDate() {
+            if (!this.about || !this.about.birth) {
+                return null;
+            }
+            const { day, month, year } = this.about.birth;
+
+            return new Date(year, month - 1, day).toLocaleDateString(this.$i18n.locale, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
         }
     },
 

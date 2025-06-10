@@ -1,15 +1,64 @@
-[
-    {
-        "id": "cert1",
-        "title": "Astrologia (Básico)",
-        "emissor": "Udemy",
-        "description": "Certificação básica em astrologia. Curso ministrado por Luiz André.",
-        "link": "https://example.com/cert1"
-    },
-    {
-        "id": "cert2",
-        "title": "Certificação 2",
-        "description": "Descrição da certificação 2.",
-        "link": "https://example.com/cert2"
-    }
-]
+{
+    "items": [
+        {
+            "id": "cert1",
+            "title": "Certificado de Desenvolvimento Full Stack",
+            "emissor": "Meta",
+            "issuerLogo": "https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/k97pj8-or0k.png",
+            "image": "/images/certs/fullstack-meta.jpg",
+            "description": "Desenvolvimento de aplicações web completas utilizando tecnologias modernas como React, Node.js e APIs RESTful",
+            "date": "2023-12-15",
+            "expirationDate": null,
+            "link": "https://www.coursera.org/account/accomplishments/professional-cert/XXXXXXXX",
+            "tags": ["React", "Node.js", "JavaScript", "MongoDB", "Express", "API Development", "Front-end", "Back-end"]
+        },
+        {
+            "id": "cert2",
+            "title": "Google UX Design Professional Certificate",
+            "emissor": "Google",
+            "issuerLogo": "https://lh3.googleusercontent.com/7NabwbSMJjZFDc9D-6tlJm2_gX-AbIXgFXUYO2xJ-VyXYxQnDE4JyitPRqMqKXBm5-iQ-TFmKKxdGWTLqSjr9A",
+            "image": "/images/certs/ux-design-google.jpg",
+            "description": "Certificação profissional em Design UX, abordando princípios de design centrado no usuário, prototipação e testes de usabilidade",
+            "date": "2023-10-05",
+            "expirationDate": null,
+            "link": "https://www.coursera.org/account/accomplishments/professional-cert/XXXXXXXX",
+            "tags": ["UI/UX Design", "Figma", "User Research", "Prototyping", "Usability Testing"]
+        },
+        {
+            "id": "cert3",
+            "title": "AWS Certified Developer - Associate",
+            "emissor": "Amazon Web Services",
+            "issuerLogo": "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png",
+            "image": "/images/certs/aws-developer.jpg",
+            "description": "Certificação que valida conhecimentos em desenvolvimento e manutenção de aplicações AWS, incluindo serviços fundamentais como Lambda, S3 e DynamoDB",
+            "date": "2024-02-20",
+            "expirationDate": "2027-02-20",
+            "link": "https://aws.amazon.com/verification",
+            "tags": ["AWS", "Lambda", "S3", "DynamoDB", "Cloud", "Serverless", "API Gateway"]
+        },
+        {
+            "id": "cert4",
+            "title": "Microsoft Certified: Azure Fundamentals",
+            "emissor": "Microsoft",
+            "issuerLogo": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
+            "image": "/images/certs/azure-fundamentals.jpg",
+            "description": "Certificação que valida conhecimentos fundamentais sobre serviços em nuvem Azure e conceitos básicos de computação em nuvem",
+            "date": "2023-08-10",
+            "expirationDate": null,
+            "link": "https://learn.microsoft.com/users/verify-certification",
+            "tags": ["Azure", "Cloud", "Microsoft", "Fundamentals", "Certification"]
+        },
+        {
+            "id": "cert5",
+            "title": "Certified Scrum Master (CSM)",
+            "emissor": "Scrum Alliance",
+            "issuerLogo": "https://www.scrumalliance.org/images/default-source/badges/sa_scrummaster.png",
+            "image": "/images/certs/scrum-master.jpg",
+            "description": "Certificação que valida conhecimentos e habilidades em Scrum e práticas ágeis, incluindo facilitação de sprints e eventos Scrum",
+            "date": "2022-11-15",
+            "expirationDate": "2024-11-15",
+            "link": "https://certification.scrumalliance.org/accounts/certificate-verification",
+            "tags": ["Scrum", "Agile", "Project Management", "Leadership", "Teams"]
+        }
+    ]
+}

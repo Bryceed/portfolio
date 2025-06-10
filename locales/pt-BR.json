@@ -10,6 +10,17 @@
       ],
       "skillsTitle": "Habilidades",
       "projectsTitle": "Destaques",
+      "featuredProjects": "Projetos em Destaque",
+      "experience": "Experiência Profissional",
+      "certifications": "Certificações",
+      "ctaTitle": "Vamos Trabalhar Juntos?",
+      "ctaText": "Tem um projeto em mente? Procurando um desenvolvedor para sua equipe? Vamos conversar!",
+      "contactMe": "Entre em Contato",
+      "viewProjects": "Ver Projetos",
+      "viewMore": "Ver Mais",
+      "view": "Visualizar",
+      "details": "Detalhes",
+      "visit": "Visitar",
       "actions": [
         {
           "label": "Projetos",
