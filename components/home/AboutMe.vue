@@ -15,9 +15,9 @@
                     profession2: 'Web Development'
                 })"></p>
                 <p v-html="$t('html.home.description[2]', {
-                    company: currentJob.company || 'N/A',
-                    jobRole: currentJob.jobRole || 'N/A'
-                })"></p>
+                    business: currentJob.company || 'N/A',
+                    time: currentJob.period || 'N/A',
+                })" v-if="currentJob && currentJob.company !== 'N/A'"></p>
                 <p v-html="$t('html.home.description[3]')"></p>
 
                 <div class="about__container__text__buttons">
@@ -37,12 +37,13 @@
 
 <script>
 import timeline from '@/data/timeline.json';
+import about from '@/data/about.json';
 
 export default {
     name: "HomeAboutMe",
     data() {
         return {
-            about: {}, // Placeholder for about data
+            about: about,
             currentJob: null,
             personal: {
                 age: 0
@@ -52,6 +53,11 @@ export default {
     },
 
     created() {
+        this.personal.age = "-";
+        this.currentJob = "-";
+    },
+
+    mounted() {
         try {
             this.personal.age = this.getPersonalAge();
             this.currentJob = this.getCurrentJob();
@@ -67,6 +73,25 @@ export default {
                 return `<a href="${this.currentJob.company}" target="_blank">${this.currentJob.jobRole} <i class="material-icons">open_in_new</i></a>`;
             }
             return "Em busca de oportunidade";
+        },
+
+        aboutPicture() {
+            return this.about.picture || "https://avatars.githubusercontent.com/u/42657376?v=4";
+        },
+
+        generateTextJobPeriod(startDate, endDate, lang = this.$i18n.locale) {
+            try {
+                if (!startDate) {
+                    throw new Error("Start date is required");
+                }
+            } catch (error) {
+                console.error("Error generating job period text:", error);
+                return "-";
+            }
+            const start = new Date(startDate);
+            const end = endDate ? new Date(endDate) : new Date();
+            const options = { year: 'numeric', month: 'short' };
+            return `${start.toLocaleDateString(lang, options)} - ${end.toLocaleDateString(lang, options)}`;
         }
     },
 
@@ -83,6 +108,12 @@ export default {
             const jobs = timeline.events
                 .filter(event => event.startDate && (!event.endDate || new Date(event.endDate) >= today))
                 .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+            if (jobs.length > 0) {
+                return {
+                    ...jobs[0],
+                    period: this.generateTextJobPeriod(jobs[0].startDate, jobs[0].endDate, lang= this.$i18n.locale)
+                };
+            }
 
             return jobs.length > 0 ? jobs[0] : { jobRole: "Em busca de oportunidade", company: "N/A" };
         },

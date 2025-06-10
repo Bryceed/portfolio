@@ -199,5 +199,9 @@
     "nativeName": "Portuguese (Brazil)",
     "region": "BR"
   },
-  "theme": "Tema"
+  "theme": "Tema",
+  "footer": [
+    "Site construído com ❤️ em Nuxt3. ({year})",
+    "Visite meu <a href=\"{github}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
+  ]
 }
