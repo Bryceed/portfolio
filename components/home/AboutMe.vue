@@ -167,10 +167,9 @@ export default {
     justify-content: center;
     align-items: center;
     background-color: #222;
-    border-radius: 5px;
-    width: calc(100% - 4rem);
-        margin: 0 2rem;
-        border-radius: 1rem;
+    width: calc(100% - 5.5rem);
+    margin: 0 auto;
+    border-radius: 1rem;
 }
 
 html.light .about {

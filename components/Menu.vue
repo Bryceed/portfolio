@@ -40,27 +40,31 @@
                             </NuxtLink>
                         </template>
                     </li>
-                    <li class="menu-item lang-switcher" @click="langSwitch()" :class="{ 'menu-open': menuOpen }">
-                        <span class="flag-text">{{ $t('language.code') }} </span>
+                    <li class="menu-item lang-switcher" :class="{ 'menu-open': langPopupOpen }" style="position:relative;" v-if="currentLang">                      <div class="lang-display" @click="toggleLangPopup()">
+                        <span :class="getFlagClassForLang(currentLang)" class="flag rounded language-flag" :title="currentLang.name"></span>
+                        <span class="flag-text">{{ currentLang.region || $t('language.region') }}</span>
+                      </div>
 
-                        <div v-if="$i18n.locale == 'en' || $i18n.locale == 'en-US'" class="flag flag-en rounded"></div>
-
-                        <div v-else-if="$i18n.locale == 'pt-BR' || $i18n.locale == 'pt'" class="flag flag-pt rounded">
+                      <!-- Popup inline em vez de componente -->
+                      <div v-if="langPopupOpen" class="lang-popup">
+                        <div class="lang-grid">
+                          <div 
+                            v-for="lang in languages" 
+                            :key="getLangKey(lang)" 
+                            class="lang-item"
+                            :class="{ 'active': currentLang.code === lang.code && currentLang.region === lang.region }"
+                            @click="selectLang(lang)"
+                          >
+                            <span :class="getFlagClassForLang(lang)" class="flag rounded"></span>
+                            <div class="lang-info">
+                              <div class="lang-code">
+                                {{ lang.code }}<span v-if="lang.region && lang.region !== lang.code">-{{ lang.region }}</span>
+                              </div>
+                              <div class="lang-name">{{ lang.name }}</div>
+                            </div>
+                          </div>
                         </div>
-
-                        <div v-else-if="$i18n.locale == 'es' || $i18n.locale == 'es-ES'" class="flag flag-es rounded">
-                        </div>
-
-                        <div v-else-if="$i18n.locale == 'fr' || $i18n.locale == 'fr-FR'" class="flag flag-fr rounded">
-                        </div>
-
-                        <div v-else-if="$i18n.locale == 'ja' || $i18n.locale == 'ja-JP'" class="flag flag-jp rounded">
-                        </div>
-
-                        <div v-else-if="$i18n.locale == 'ko' || $i18n.locale == 'ko-KR'" class="flag flag-ko rounded">
-                        </div>
-
-                        <div v-else class="flag flag-en rounded"></div>
+                      </div>
                     </li>
                     <li>
                         <ThemeSwitcher />
@@ -73,18 +77,96 @@
 
 <script>
 import { menu } from "../data/menu.json";
+import LanguageSelector from './common/LanguageSelector.vue';
+import ThemeSwitcher from './theme/Switcher.vue';
+import { onMounted } from 'vue';
 let menuOpen = false;
+let langPopupOpen = false;
+
 export default {
     name: 'Menu',
-
-    data() {
+    components: {
+        LanguageSelector,
+        ThemeSwitcher
+    },    created() {
+        // Vamos usar um método específico para lidar com a inicialização do idioma
+        if (process.client) {
+            this.$nextTick(() => {
+                this.initializeLanguageFromLocalStorage();
+            });
+        }
+    },data() {
+        // Durante o SSR, sempre inicializamos com o idioma padrão
+        let initialLang = { code: 'pt', region: 'BR', name: 'Português (Brasil)' };
+        
+        // Define as linguagens disponíveis
+        const availableLanguages = [
+            { code: 'pt', region: 'BR', name: 'Português (Brasil)' },
+            { code: 'pt', region: 'PT', name: 'Português (Portugal)' },
+            { code: 'en', region: 'US', name: 'English' },
+            { code: 'es', region: 'ES', name: 'Español' },
+            { code: 'fr', region: 'FR', name: 'Français' },
+            { code: 'de', region: 'DE', name: 'Deutsch' },
+            { code: 'ru', region: 'RU', name: 'Русский' },
+            { code: 'ja', region: 'JP', name: '日本語' },
+            { code: 'ko', region: 'KR', name: '한국어' },
+            { code: 'en', region: 'CA', name: 'English (Canada)' }
+        ];
+        
+        // Durante o SSR, evitamos acessar localStorage
+        // A atualização para o idioma salvo acontecerá no cliente (mounted e created)
+        
         return {
             menu,
-            menuOpen
+            menuOpen,
+            langPopupOpen,
+            languages: availableLanguages,
+            currentLang: initialLang
+        }    },
+    watch: {
+        '$i18n.locale': {
+            immediate: false, // Mudamos para false para evitar execução durante SSR
+            handler(newVal) {
+                // Atualiza currentLang ao trocar o locale
+                const found = this.languages.find(l => {
+                  const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
+                  return locale.toLowerCase() === newVal.toLowerCase();
+                });
+                
+                if (found) {
+                  // No cliente, fazemos uma atualização completa para garantir reatividade
+                  if (process.client) {
+                    // Usando JSON.parse/stringify para criar uma cópia profunda
+                    this.currentLang = JSON.parse(JSON.stringify(found));
+                    
+                    // Forçar atualização depois que o idioma mudar
+                    this.$nextTick(() => {
+                        // Forçar atualização do componente
+                        this.$forceUpdate();
+                    });
+                  }
+                }
+            }
         }
-    },
-
-    mounted() {
+    },mounted() {
+        // Inicializa o idioma somente no cliente após a hidratação
+        if (process.client) {
+            // Verificar se estamos voltando de uma troca de idioma
+            const justChangedLang = sessionStorage.getItem('justChangedLang');
+            
+            if (justChangedLang === 'true') {
+                // Limpar o flag
+                sessionStorage.removeItem('justChangedLang');
+                console.log('Página recarregada após troca de idioma');
+            }
+            
+            // Esperamos a hidratação estar completa antes de inicializar o idioma
+            setTimeout(() => {
+                this.initializeLanguageFromLocalStorage();
+            }, 100);
+        }
+        
+        // Configurações do logo
         const logo = document.querySelector('.logo');
         const codeSelector = document.querySelector('.code-selector');
         const spans = document.querySelectorAll('.logo span');
@@ -144,6 +226,15 @@ export default {
         setInterval(updateSuffix, 4000);
     },
 
+    beforeMount() {
+        if (!process.client) return;
+
+        const savedLocale = localStorage.getItem('lang');
+        if (savedLocale) {
+            this.$i18n.locale = savedLocale;
+        }
+    },
+
     methods: {
         toggleMenu() {
             this.menuOpen = !this.menuOpen
@@ -153,35 +244,126 @@ export default {
             this.menuOpen = false
         },
 
-        langSwitch() {
-            if (this.$i18n.locale == 'en' || this.$i18n.locale == 'en-US') {
-                localStorage.setItem('lang', 'pt-BR')
-                this.$i18n.locale = 'pt-BR'
-            } else if (this.$i18n.locale == 'pt-BR' || this.$i18n.locale == 'pt') {
-                localStorage.setItem('lang', 'es')
-                this.$i18n.locale = 'es'
-            } else if (this.$i18n.locale == 'es' || this.$i18n.locale == 'es-ES') {
-                localStorage.setItem('lang', 'fr')
-                this.$i18n.locale = 'fr'
-            } else if (this.$i18n.locale == 'fr' || this.$i18n.locale == 'fr-FR') {
-                localStorage.setItem('lang', 'ja-JP')
-                this.$i18n.locale = 'ja-JP'
-            } else if (this.$i18n.locale == 'ja-JP' || this.$i18n.locale == 'ko-KR') {
-                localStorage.setItem('lang', 'ko')
-                this.$i18n.locale = 'ko'
-            } else if (this.$i18n.locale == 'ko' || this.$i18n.locale == 'ko-KR') {
-                localStorage.setItem('lang', 'en')
-                this.$i18n.locale = 'en'
-            } else {
-                localStorage.setItem('lang', 'en')
-                this.$i18n.locale = 'en'
+        toggleLangPopup() {
+            this.langPopupOpen = !this.langPopupOpen;
+            console.log('Popup estado:', this.langPopupOpen);
+        },          selectLang(lang) {
+            // Construir o locale no formato correto (pt-BR, en, etc)
+            const locale = lang.region && lang.region !== lang.code ? `${lang.code}-${lang.region}` : lang.code;
+            
+            console.log('Alterando idioma para:', locale);
+            
+            try {
+              // Salvar no localStorage para persistência entre sessões
+              localStorage.setItem('lang', locale);
+              
+              // Atualizar o i18n locale no Vue 3 (forma correta)
+              if (this.$i18n.global) {
+                // Usar global.locale.value para Vue I18n 9
+                this.$i18n.global.locale.value = locale;
+              } else {
+                // Fallback para versões anteriores
+                this.$i18n.locale = locale;
+              }
+              
+              // Atualizar o estado local do componente
+              this.currentLang = JSON.parse(JSON.stringify(lang));
+              
+              // Fechar o popup
+              this.langPopupOpen = false;
+                // Definir flag para indicar que a página está sendo recarregada após troca de idioma
+              sessionStorage.setItem('justChangedLang', 'true');
+              
+              // Forçar um reload completo da página para garantir que todas as traduções sejam atualizadas
+              // Esta é uma solução mais robusta para problemas de atualização de i18n
+              window.location.reload();
+              
+            } catch (error) {
+              console.error('Erro ao alterar o idioma:', error);
             }
+            
+            console.log('Idioma selecionado manualmente:', lang.code, lang.region, this.getLangFlagClass());
         },
 
-        isMobile() {
+        getLangKey(lang) {
+            return `${lang.code}_${lang.region.toUpperCase() || ''}`;
+        },
+        
+        getLangFlagClass() {
+            const lang = this.currentLang;
+            return this.getFlagClassForLang(lang);
+        },          getFlagClassForLang(lang) {
+            if (!lang) return 'flag flag-en_US'; 
+            let code = (lang.code || 'en').toLowerCase();
+            let region = lang.region ? lang.region.toUpperCase() : 'US'; // 
+            return `flag flag-${code}_${region}`;
+        },        isMobile() {
             return window.innerWidth <= 1024
+        },
+          // Método para inicializar o idioma do localStorage
+        initializeLanguageFromLocalStorage() {
+            if (!process.client) return; // Executar apenas no cliente
+            
+            try {
+                const savedLocale = localStorage.getItem('lang');
+                console.log('Locale salvo recuperado:', savedLocale);
+                
+                if (!savedLocale) return;
+                
+                // Encontrar o objeto de idioma correspondente
+                const found = this.languages.find(l => {
+                    const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
+                    return locale.toLowerCase() === savedLocale.toLowerCase();
+                });
+                
+                if (!found) {
+                    console.warn('Idioma salvo não encontrado na lista de idiomas disponíveis:', savedLocale);
+                    return;
+                }
+                
+                console.log('Idioma encontrado:', found);
+                
+                // Atualizar o estado local com o idioma encontrado
+                this.currentLang = JSON.parse(JSON.stringify(found));
+                
+                // Atualizar o i18n (priorizar a API global do Vue I18n 9)
+                if (this.$i18n.global) {
+                    this.$i18n.global.locale.value = savedLocale;
+                } else {
+                    this.$i18n.locale = savedLocale;
+                }
+                
+                // Forçar a atualização da interface
+                this.$nextTick(() => {
+                    this.$forceUpdate();
+                    
+                    // Atualizar classes da bandeira se necessário
+                    const flagElement = document.querySelector('.language-flag');
+                    if (flagElement) {
+                        const correctClass = this.getFlagClassForLang(found);
+                        
+                        // Limpar classes antigas
+                        [...flagElement.classList].forEach(cls => {
+                            if (cls.startsWith('flag-')) {
+                                flagElement.classList.remove(cls);
+                            }
+                        });
+                        
+                        // Adicionar classes novas
+                        correctClass.split(' ').forEach(cls => {
+                            if (cls.startsWith('flag-')) {
+                                flagElement.classList.add(cls);
+                            }
+                        });
+                    }
+                });
+                
+                console.log('Idioma inicializado com sucesso:', savedLocale);
+            } catch (error) {
+                console.error('Erro ao inicializar idioma:', error);
+            }
         }
-    },
+    }
 }
 </script>
 
@@ -200,7 +382,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 9px;
+    border-radius: 2rem !important;
     z-index: 9;
     backdrop-filter: blur(10px);
 }
@@ -373,12 +555,7 @@ nav ul li.lang-switcher {
 .lang-switcher:active {
     transition-duration: .1s;
     position: relative;
-    right: -.2em;
     background: #222;
-}
-
-.lang-switcher:active .flag-text {
-    margin-right: .15em
 }
 
 @media (max-width: 1024px) {
@@ -516,5 +693,157 @@ nav ul li.smart-active a {
     color: #ff0;
     /* Estilo para o item ativo */
     font-weight: bold;
+}
+
+// Novos estilos para o selector de idiomas
+.lang-display {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.lang-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.lang-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 10000;
+  background: #181818;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 1.5px 8px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  max-width: 280px;
+  width: 75vw;
+  border: 1.5px solid #232323;
+  animation: popup-fade-in 0.2s ease-out;
+}
+
+
+@keyframes popup-fade-in {
+  from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lang-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem; /* Adiciona espaçamento à direita para rolagem */
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.5em 0.7em 0.5em 1em;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+  overflow: visible;
+}
+
+.lang-item:hover {
+  
+  background: #7B5EFC42;
+}
+
+.lang-item.active {
+  color: #fff;
+  position: relative;
+  z-index: 10;
+}
+.lang-item.active:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: .35rem;
+    height: 1.75rem;
+    border-radius: 1rem;
+    background-color: #7B5EFC;
+    transform: translateY(-50%);
+    transition: all 0.2s ease-in-out;
+}
+
+.lang-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lang-name {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #fff;
+}
+
+.lang-code {
+  font-size: 0.85em;
+  color: #bbb;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+.lang-display > .flag {
+    position: relative;
+    left: -.2em;
+}
+.lang-grid .flag {
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 15%;
+}
+
+html.light {
+  .lang-popup {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 1.5px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .lang-item:hover {
+    background: #e9e9e9;
+  }
+
+  .lang-code {
+    color: #333;
+  }
+
+  .lang-name {
+    color: #666;
+  }
+}
+
+/* Language flag animation */
+.language-flag {
+    transition: all 0.3s ease;
+    animation: flag-change 0.4s ease-in-out;
+}
+
+@keyframes flag-change {
+    0% { 
+        transform: scale(0.8);
+        opacity: 0.6; 
+    }
+    50% { 
+        transform: scale(1.2);
+        opacity: 0.8; 
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1; 
+    }
 }
 </style>

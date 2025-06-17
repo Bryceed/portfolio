@@ -1,0 +1,55 @@
+{
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "nativeName": "Deutsch",
+    "region": "DE"
+  },
+  "menu": {
+    "home": "Startseite",
+    "blog": "Blog",
+    "projects": "Projekte",
+    "contact": "Kontakt",
+    "about": "Über mich"
+  },
+  "commons": {
+    "actions": {
+      "close": "Schließen",
+      "back": "Zurück"
+    },
+    "languages": {
+      "pt": "Portugiesisch",
+      "en": "Englisch",
+      "es": "Spanisch",
+      "fr": "Französisch",
+      "de": "Deutsch",
+      "ru": "Russisch"
+    },
+    "themes": {
+      "light": "Hell",
+      "dark": "Dunkel"
+    }
+  },
+  "footer[0]": "Website erstellt mit ❤️ in Mut3. ({Jahr})",
+  "footer[1]": "Besuchen Sie meine <a href = \"{github}\" target = \"_ leer\"> github </a> Um mehr über meine Projekte zu erfahren (einschließlich dieser).",
+  "html": {
+    "contact": {
+      "cv": {
+        "traditional": "Traditionell",
+        "europass": "Europäisches Modell (Europas)",
+        "chooseModel": "Wählen Sie den Lehrplanstil aus",
+        "selectLanguage": "Dateisprache",
+        "traditionalDescription": "",
+        "popup": {
+          "description": "Bei der Auswahl der Sprache werden Sie zum Anzeigen und Herunterladen der Datei umgeleitet."
+        }
+      },
+      "form": {
+        "submitting": "Vorbereitung der Form..."
+      },
+      "phone": {
+        "description": "(WhatsApp, Anrufe und SMS)"
+      }
+    }
+  }
+}

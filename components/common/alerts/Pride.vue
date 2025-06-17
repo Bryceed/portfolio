@@ -25,9 +25,11 @@
 
     margin-bottom: 20px;
     position: fixed;
-    left: 2px;
-    top: 0;
-    bottom: 0;
+    left: -2rem;
+    top: -2rem;
+    height: 11rem;
+    z-index: 21;
+    transform: rotate(45deg);
     z-index: 21;
 }
 

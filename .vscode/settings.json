@@ -11,5 +11,6 @@
     "i18n-ally.localesPaths": ["lang", "locales"],
     "i18n-ally.keystyle": "nested",
     "i18n-ally.sourceLanguage": "pt-BR",
-    "vue.codeActions.enabled": false
+    "vue.codeActions.enabled": false,
+    "vue-i18n.i18nPaths": "locales"
 }

@@ -1,4 +1,4 @@
-{
+﻿{
   "html": {
     "home": {
       "greetings": "Olá! Sou o <span>{name}</span>",
@@ -75,7 +75,15 @@
       },
       "cv": {
         "title": "Currículo",
-        "description": "Baixe meu CV atualizado"
+        "description": "Baixe meu CV atualizado",
+        "traditional": "Tradicional",
+        "europass": "Modelo europeu (Europass)",
+        "chooseModel": "Selecione o estilo do currículo",
+        "selectLanguage": "Idioma do arquivo",
+        "traditionalDescription": "",
+        "popup": {
+          "description": "Ao selecionar o idioma, você será redirecionado para visualização e download do arquivo."
+        }
       },
       "form": {
         "title": "Envie uma mensagem",
@@ -91,10 +99,14 @@
         "success": "Mensagem enviada com sucesso! Retornarei em breve.",
         "error": "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.",
         "or": "ou",
-        "divider": "OU"
+        "divider": "OU",
+        "submitting": "Preparando formulário..."
       },
       "social": {
         "title": "Redes Sociais"
+      },
+      "phone": {
+        "description": "(WhatsApp, ligações e SMS)"
       }
     },
     "blog": {
@@ -198,10 +210,104 @@
       }
     }
   },
-  "comemorations": {
+  "messages": {
     "pride": {
       "title": "Mês do Orgulho LGBTQIA+",
-      "message": "Feliz mês do orgulho LGBTQIA+! 🏳️‍🌈"
+      "message": "Hoje celebramos o mês do orgulho LGBTQIA+! 🌈\n\nAproveite para celebrar a diversidade, a inclusão e o amor em todas as suas formas. Que possamos continuar lutando por igualdade e respeito todos os dias.\n\nFeliz mês do orgulho! 🏳️‍🌈",
+      "startAt": "01-06",
+      "endAt": "30-06"
+    },
+    "blackHistory": {
+      "title": "Dia da Conscientização Negra 🎉",
+      "message": "Celebramos o Dia da Conscientização Negra! Hoje é um dia para refletirmos sobre a importância da cultura negra e a luta contra o racismo. Que possamos valorizar a diversidade e promover a igualdade todos os dias.",
+      "startAt": "15-11",
+      "endAt": "20-11"
+    },
+    "christmas": {
+      "title": "Feliz Natal! 🎄",
+      "message": "Desejo a você um Natal cheio de alegria, amor e paz. Que esta época traga momentos especiais com seus entes queridos.",
+      "startAt": "20-12",
+      "endAt": "25-12"
+    },
+    "newYear": {
+      "title": "Feliz Ano Novo! 🎉",
+      "message": "Que o novo ano traga novas oportunidades, conquistas e muita felicidade. Vamos juntos fazer de {year} um ano incrível!",
+      "startAt": "28-12",
+      "endAt": "03-01"
+    },
+    "easter": {
+      "title": "Feliz Páscoa! 🐰",
+      "message": "Desejo a você uma Páscoa cheia de amor, renovação e momentos doces com sua família e amigos.",
+      "startAt": "01-04",
+      "endAt": "04-04"
+    },
+    "halloween": {
+      "title": "Feliz Halloween! 🎃",
+      "message": "Que seu Halloween seja cheio de travessuras, gostosuras e muita diversão! Aproveite as fantasias e as guloseimas!",
+      "startAt": "30-10",
+      "endAt": "01-11"
+    },
+    "thanksgiving": {
+      "title": "Feliz Dia de Ação de Graças! 🦃",
+      "message": "Desejo a você um Dia de Ação de Graças repleto de gratidão, amor e momentos especiais com sua família e amigos.",
+      "startAt": "20-11",
+      "endAt": "25-11"
+    },
+    "valentines": {
+      "title": "Feliz Dia dos Namorados! 💖",
+      "message": "Neste Dia dos Namorados, celebre o amor e a conexão especial que você compartilha com alguém especial. Que seja um dia cheio de carinho e momentos inesquecíveis!",
+      "startAt": "10-06",
+      "endAt": "12-06",
+      "region": "BR"
+    },
+    "aprilFools": {
+      "title": "Feliz Dia da Mentira! 🤪",
+      "message": "Hoje é o dia perfeito para pregar peças e se divertir com amigos e familiares. Mas lembre-se, peguem leve com as brincadeiras e tudo com bom humor!",
+      "startAt": "01-04",
+      "endAt": "01-04"
+    },
+    "motherDay": {
+      "title": "Feliz Dia das Mães! 🌷",
+      "message": "Neste Dia das Mães, celebre o amor e a dedicação de todas as mães. Que seja um dia cheio de carinho, gratidão e momentos especiais com suas mães.",
+      "startAt": "10-05",
+      "endAt": "12-05"
+    },
+    "fatherDay": {
+      "title": "Feliz Dia dos Pais! 👔",
+      "message": "Neste Dia dos Pais, celebre o amor e a dedicação de todos os pais. Que seja um dia cheio de carinho, gratidão e momentos especiais com seus pais.",
+      "startAt": "10-08",
+      "endAt": "12-08"
+    },
+    "independenceDay": {
+      "title": "Feliz Dia da Independência! 🇧🇷",
+      "message": "Hoje celebramos a independência do Brasil! Que possamos valorizar nossa história e lutar por um país melhor.",
+      "startAt": "05-09",
+      "endAt": "07-09",
+      "region": "BR"
+    },
+    "internationalWomensDay": {
+      "title": "Feliz Dia Internacional da Mulher! 🌸",
+      "message": "Hoje celebramos a força, a coragem e as conquistas das mulheres ao redor do mundo. Que possamos continuar lutando por igualdade e respeito todos os dias."
+    },
+    "internationalWorkersDay": {
+      "title": "Feliz Dia do Trabalhador! 👷‍♂️👩‍🏭",
+      "message": "Hoje celebramos o trabalho e a dedicação de todos os trabalhadores. Que possamos valorizar o esforço e a contribuição de cada um para a sociedade."
+    },
+    "internationalChildrensDay": {
+      "title": "Feliz Dia das Crianças! 🎈",
+      "message": "Hoje celebramos a alegria, a inocência e a magia da infância. Que possamos proteger e cuidar de nossas crianças, garantindo um futuro melhor para elas."
+    },
+    "internationalStudentsDay": {
+      "title": "Feliz Dia Internacional do Estudante! 🎓",
+      "message": "Hoje celebramos a dedicação e o esforço de todos os estudantes. Que possamos valorizar a educação e lutar por um futuro melhor para todos."
+    },
+    "internationalTeachersDay": {
+      "title": "Feliz Dia Internacional dos Professores! 🍎",
+      "message": "Hoje celebramos o trabalho e a dedicação de todos os professores. Que possamos valorizar a educação e reconhecer o papel fundamental que eles desempenham na formação de nossas crianças e jovens."
+    },
+    "memorial": {
+      "title": "Minha memória eterna",
+      "message": "Esse site não recebe atualizações há um bom tempo, então é muito provável que eu não esteja mais vivo. Ainda assim, você pode conferir como era meu trabalho e minhas ideias até {year}.\nAgradeço por sua visita e espero que tenha gostado do que viu. Se você está vendo isso, é porque alguém ainda se importa com meu legado.\nObrigado por visitar meu memorial virtual. Espero que você encontre inspiração e aprendizado aqui.\n\nCom carinho,\nWellington N."
     }
   },
   "language": {

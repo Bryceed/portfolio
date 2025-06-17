@@ -5,80 +5,53 @@
       <p>{{ $t('html.contact.description') }}</p>
     </div>
     <div class="contact-content">
-      <div class="contact-form-container">
-        <h2>{{ $t('html.contact.form.title') }}</h2>
-        <form class="contact-form" @submit.prevent="sendEmail">
-          <div class="form-group">
-            <label for="name">{{ $t('html.contact.form.name') }}</label>
-            <input 
-              type="text" 
-              id="name" 
-              v-model="formData.name" 
-              :placeholder="$t('html.contact.form.namePlaceholder')" 
-              required
-            />
-          </div>
-          
-          <div class="form-group">
-            <label for="email">{{ $t('html.contact.form.email') }}</label>
-            <input 
-              type="email" 
-              id="email" 
-              v-model="formData.email" 
-              :placeholder="$t('html.contact.form.emailPlaceholder')" 
-              required
-            />
-          </div>
-          
-          <div class="form-group">
-            <label for="subject">{{ $t('html.contact.form.subject') }}</label>
-            <input 
-              type="text" 
-              id="subject" 
-              v-model="formData.subject" 
-              :placeholder="$t('html.contact.form.subjectPlaceholder')" 
-              required
-            />
-          </div>
-          
-          <div class="form-group">
-            <label for="message">{{ $t('html.contact.form.message') }}</label>
-            <textarea 
-              id="message" 
-              v-model="formData.message" 
-              :placeholder="$t('html.contact.form.messagePlaceholder')" 
-              rows="5" 
-              required
-            ></textarea>
-          </div>
-          
-          <button type="submit" class="btn btn-primary">
-            <i class="material-icons">send</i>
-            {{ $t('html.contact.form.submit') }}
-          </button>
-        </form>
-        
-        <div class="contact-divider">
-          <span>{{ $t('html.contact.form.divider') }}</span>
-        </div>
-      </div>
-      
+
       <div class="contact-info">
         <div class="contact-methods">
           <div class="contact-method">
-            <h3>Email</h3>
+            <h2>Email</h2>
             <a :href="'mailto:' + contactInfo.email">{{ contactInfo.email }}</a>
           </div>
           
           <div class="contact-method">
-            <h3>WhatsApp</h3>
+            <h2>Phone</h2>
             <a :href="'https://api.whatsapp.com/send?phone=' + formatPhone(contactInfo.phone)" target="_blank">
               {{ contactInfo.phone }}
-            </a>
+            </a> 
+          <span>{{ $t('html.contact.phone.description') }}</span>
+          </div>
+
+          <div class="contact-method">
+            <h2>{{ $t('html.contact.cv.title') }}</h2>
+            <div class="cv-button-group">
+              <button
+                class="cv-btn left"
+                :class="{ active: selectedCvType === 'traditional' }"
+                @click="openCvPopup('traditional')"
+                type="button"
+              >
+                {{ $t('html.contact.cv.traditional') }}
+              </button>
+              <span class="cv-divider"></span>
+              <button
+                class="cv-btn right"
+                :class="{ active: selectedCvType === 'europass' }"
+                @click="openCvPopup('europass')"
+                type="button"
+              >
+                {{ $t('html.contact.cv.europass') }}
+              </button>
+            </div>
+            <CvPopup
+              v-if="showCvPopup"
+              :type="cvPopupType"
+              :current-lang="$i18n.locale"
+              @close="showCvPopup = false"
+            />
           </div>
           
           <div class="social-links">
-            <h3>{{ $t('html.contact.social.title') }}</h3>
+            <h2>{{ $t('html.contact.social.title') }}</h2>
             <div class="social-buttons">
               <a v-if="contactInfo.links?.github" :href="contactInfo.links.github" target="_blank" class="social-btn github">
                 <i class="material-icons">code</i>
@@ -116,56 +89,101 @@
 <script>
 import { getPageTitle } from '@/utils/pageTitle';
 import about from '@/data/about.json';
-import contactData from '@/data/contact.json';
+import cvData from '@/data/cv/index.json';
+import { contactLinks } from '@/utils/contactLinks';
+import CvPopup from '@/components/CvPopup.vue';
 
 export default {
   name: "ContactPage",
+  components: {
+    CvPopup
+  },
   data() {
     return {
-      formData: {
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      },
+      about,
+      contactLinks,
       contactInfo: {
-        email: about.email || 'hello@wellington.dev',
-        phone: about.phone || '+55 11 94201-8873',
-        links: about.links || {},
-        cvFile: contactData.cvFile || '/files/cv/Wellington.pdf'
-      }
+        email: about.email,
+        phone: about.phone,
+        links: {
+          github: about.links?.github,
+          linkedin: about.links?.linkedin,
+          whatsapp: contactLinks.whatsapp,
+          instagram: about.links?.instagram
+        },
+        cvFile: null
+      },
+      formData: {
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      },
+      isSubmitting: false,
+      formStatus: null,
+      showCvPopup: false,
+      cvPopupType: 'traditional',
+      selectedCvType: 'traditional',
+      traditionalCvs: cvData.traditionalCvs
     };
+  },
+  mounted() {
+    document.title = getPageTitle({ mainPage: this.$t('html.contact.title') });
   },
   methods: {
     formatPhone(phone) {
-      return phone ? phone.replace(/\D/g, '') : '';
+      // Remove todos os caracteres não numéricos
+      return phone.replace(/\D/g, '');
+    },
+    resetForm() {
+      this.formData = {
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      };
+      this.isSubmitting = false;
     },
     sendEmail() {
-      // Criar o mailto link com os dados do formulário
-      const subject = encodeURIComponent(this.formData.subject);
-      const body = encodeURIComponent(
-        `Nome: ${this.formData.name}\n` +
-        `Email: ${this.formData.email}\n\n` +
-        `${this.formData.message}`
-      );
+      this.isSubmitting = true;
       
-      // Abrir o cliente de email padrão do usuário com os campos preenchidos
-      window.location.href = `mailto:${this.contactInfo.email}?subject=${subject}&body=${body}`;
+      // Simulação de envio (em produção, substituir por API real)
+      setTimeout(() => {
+        this.isSubmitting = false;
+        this.formStatus = {
+          type: 'success',
+          message: this.$t('html.contact.form.success')
+        };
+        
+        // Reset após 5 segundos
+        setTimeout(() => {
+          this.formStatus = null;
+          this.resetForm();
+        }, 5000);
+      }, 2000);
+    },    openCvPopup(type) {
+      this.selectedCvType = type;
+      this.cvPopupType = type;
+
+      if (type === 'traditional') {
+        // Para o currículo tradicional, mostrar popup para selecionar o PDF
+        this.showCvPopup = true;
+      } else if (type === 'europass') {
+        // Para o Europass, mostrar popup para selecionar o idioma e abrir a visualização HTML
+        this.showCvPopup = true;
+      }
+    },
+    suggestedCvLang() {
+      const locale = this.$i18n.locale;
+      const available = this.traditionalCvs.map(cv => cv.lang);
       
-      // Resetar formulário após envio
-      this.formData = {
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      };
-    }
-  },
-  mounted() {
-    if (typeof this.$t === 'function') {
-      document.title = this.$t('html.contact.title') + " | Portfolio";
-    } else {
-      document.title = "Contact | Portfolio";
+      if (available.includes(locale)) {
+        return locale;
+      } else if (locale.startsWith('pt') && available.includes('pt-BR')) {
+        return 'pt-BR';
+      } else {
+        return available[0] || 'en';
+      }
     }
   }
 };
@@ -205,13 +223,15 @@ export default {
     opacity: 0.9;
 }
 
-.contact-content {  display: grid;
-  grid-template-columns: 1fr 1fr;
+.contact-content {  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 3rem;
   padding-bottom: 3rem;
   
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
@@ -324,6 +344,18 @@ export default {
       font-size: 1.2rem;
       font-weight: 600;
     }
+    h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    span {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
     
     a {
       color: var(--dark-primary-color, #9871F6);
@@ -336,6 +368,40 @@ export default {
         text-decoration: underline;
       }
     }
+
+    .cv-button-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+
+      .cv-btn {
+        flex: 1;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active {
+          background: var(--dark-primary-color, #9871F6);
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          transform: translateY(-2px);
+        }
+      }
+
+      .cv-divider {
+        width: 1px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
   }
   
   .social-links {
@@ -343,6 +409,11 @@ export default {
       margin: 0 0 1rem;
       font-size: 1.2rem;
       font-weight: 600;
+    }
+    h2 {
+      margin: 0 0 1.2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
     }
     
     .social-buttons {

@@ -1,0 +1,186 @@
+{
+    "personal_info": {
+        "name": "Wellington do Nascimento",
+        "photo_url": "The PDF contains a photo of the individual.",
+        "linkedin_qr_code_url": "The PDF contains a QR code that likely links to the LinkedIn profile.",
+        "linkedin": "https://linkedin.com/in/wellington-do-nascimento",
+        "website": "https://wellnas.dev",
+        "phone": "+55 (11) 94201-8873",
+        "email": "dev.wellnascimento@gmail.com",
+        "age": "26 years (05/10/1999)",
+        "nationality": "Brazilian",
+        "location": "Cavalcanti, Rio de Janeiro/RJ"
+    },
+    "objective": "IT DEVELOPER",
+    "roles": [
+        "FULL STACK DEVELOPER",
+        "FRONT-END",
+        "BACK-END",
+        "MOBILE"
+    ],
+    "stack": [
+        "NODE",
+        "JAVASCRIPT",
+        "REACT",
+        "NEXT.JS",
+        "VUE",
+        "C#",
+        ".NET CORE",
+        "JAVA"
+    ],
+    "qualifications": {
+        "summary": "Over 12 years of professional experience in full stack development, including user experience, project management, design, prototyping, database, and back-end programming.",
+        "skills": [
+            "Quick learner, self-taught, proactive, receptive, value delivery, and non-violent communication.",
+            "Solid knowledge and experience with Node.js, React, Next.js, and CSS/SASS.",
+            "Extensive knowledge in web sites, mobile apps, user experience, and responsive design.",
+            "Vast experience and skill in front-end and back-end development."
+        ]
+    },
+    "about": {
+        "education": "Education: Higher Education - Computer Engineering (expected 2027/Q2)",
+        "languages": "Portuguese, English (C1), Spanish (B1), Italian (A1), and Japanese (A2)",
+        "development_areas": "Websites, responsive design, databases, servers, infrastructure, cloud, VM, automation, mobile, UI/UX..."
+    },
+    "certifications": [
+        {
+            "title": "Full Stack Developer",
+            "provider": "RECODE Pro",
+            "hours": "540h"
+        },
+        {
+            "title": "Computer Architecture",
+            "provider": "Descomplica",
+            "hours": "160h"
+        },
+        {
+            "title": "Frontend Career Path",
+            "provider": "Scrimba",
+            "hours": "72h"
+        },
+        {
+            "title": "The A.I. Career Path",
+            "provider": "Scrimba",
+            "hours": "72h"
+        },
+        {
+            "title": "Dart & Flutter",
+            "provider": "Alura",
+            "hours": "48h"
+        },
+        {
+            "title": "Unity 3D Games",
+            "provider": "Udemy",
+            "hours": "128h"
+        },
+        {
+            "title": "jQuery",
+            "provider": "Alura",
+            "hours": "10h"
+        },
+        {
+            "title": "The Full Stack Path",
+            "provider": "curso.dev",
+            "hours": "00"
+        },
+        {
+            "title": "UX Strategies",
+            "provider": "Alura",
+            "hours": "8h"
+        },
+        {
+            "title": "UX Basic",
+            "provider": "Alura",
+            "hours": "32h"
+        },
+        {
+            "title": "React & TypeScript",
+            "provider": "Alura",
+            "hours": "12h"
+        },
+        {
+            "title": "Compliance and risks",
+            "provider": "MAG Group",
+            "hours": "12h"
+        },
+        {
+            "title": "IT Security",
+            "provider": "Alura",
+            "hours": "12h"
+        },
+        {
+            "title": "LGPD Law (GDPR)",
+            "provider": "Bradesco",
+            "hours": "2h"
+        },
+        {
+            "title": "Marketing Management",
+            "provider": "SEST SENAT",
+            "hours": "30h"
+        }
+    ],
+    "experience": [
+        {
+            "company": "DevLand (by ESX)",
+            "period": "07/2022 - 03/2025",
+            "location": "São Paulo, SP, Brazil - Remote",
+            "summary": "Worked in consulting, providing software development services.",
+            "roles": [
+                {
+                    "title": "Back-end Developer (.NET C# / Angular) - Grupo MAG",
+                    "period": "05/2024-03/2025",
+                    "details": "Reported to the client team leads and the technical lead at the consultancy. Responsible for developing APIs for communication with the client's database, developing interfaces for using this data in an integrated development team (single team) of about 10 members, with daily ceremonies following the agile SCRUM methodology, proactive problem-solving, ideation, participation, implementation of new features, process automation, self-learning, e-commerce systems, development and deployment process.",
+                    "technologies": [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]
+                },
+                {
+                    "title": "Front-end Developer (VTEX / React) - RESERVA (AR&CO. Group)",
+                    "period": "01/2023 - 04/2024",
+                    "details": "Responsible for all navigation and user experience in the Reserva retail store's e-commerce, working directly with VTEX.IO, React, and other frameworks to ensure quality and delivery requirements. Worked directly on main site demands such as homepage, search system, and specific activities like back-end adjustments, prototyping in Figma, etc. Worked with Master Data, VTEX CLI, JavaScript ES6, React, SASS, APIs, and expanded features for other AR&CO group stores, such as BAW Clothing.",
+                    "technologies": ["Google Analytics", "Serverless", "SQL Queries", "React", "JavaScript", "TypeScript", "Node", "Knockout.js", "Jest (Unit Testing)", "Webpack", "PWA", "React Native", "jQuery", "VTEX.IO", "VTEX CLI", "CSS/SASS", "Google Tag Manager", "Microsoft Clarity", "web:eyez"]
+                },
+                {
+                    "title": "Full Stack Developer - DevLand (by ESX)",
+                    "details": "Worked on internal company projects as one of the first developers for third-party projects, sole technical lead for the development of the company's web system and landing page for acquiring potential clients, technical volunteer to assist junior/mid-level developers in company teams, and participated in DevLand initiatives such as the boutSex and HYLA App.",
+                    "technologies": ["Dart", "Flutter", "Google Firebase", "Google Analytics", "Serverless", "Vue", "Nuxt3", "React", "JavaScript", "jQuery", "CSS/SASS", "Google Tag Manager"]
+                }
+            ]
+        },
+        {
+            "company": "Freelance Developer",
+            "period": "2011-2022",
+            "location": "Guarulhos, SP, Brazil - Remote",
+            "summary": "End-to-end work to solve various client demands.",
+            "roles": [
+                {
+                    "title": "Full-stack Developer / Customer Service",
+                    "period": "05/2011-06/2022",
+                    "details": "Website creation, web design, image creation and editing, consulting and development of visual identities and brands, automation and self-service systems integrated with the website, Discord and WhatsApp, among other demands where I had knowledge or 'learned by doing' to develop my seniority and deliver value to the client. I also created projects on my own for profit or simply to help while improving my coding skills.",
+                    "success_cases": "Success cases: La Luna Luana (logo design), 'Mi Loja, Tu Loja' (WordPress), Deltavese (server)...",
+                    "technologies": ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "MySQL", "MongoDB", "Node.js", "Photoshop", "InDesign", "React", "C#", "Oracle Cloud", "AWS", "Java", "Spring Boot", "Vue", "Nuxt3", "WordPress"]
+                }
+            ]
+        }
+    ],
+    "recommendations": [
+        {
+            "author": "Thúlio Gamarano",
+            "context": "worked on the same team and was senior to Wellington",
+            "text": "I had the opportunity to work with Wellington for just over a year at Reserva, in a dynamic team with a high level of technical and aesthetic demand. From the beginning, he demonstrated excellent mastery of CSS and a keen eye for visual details, ensuring his deliveries were always true to the design, responsive, and high-performing. He has a very sharp aesthetic sense and technical care that goes beyond the ordinary. [...] Besides the technical part, Wellington is a calm, respectful, and reliable person who brings lightness to the team and delivers with responsibility. [...] I highly recommend Wellington to any company looking for a professional committed to quality, usability, performance, and who values constant learning. Without a doubt, he is a professional with much to add."
+        },
+        {
+            "author": "Vanessa Vargas",
+            "context": "worked with Wellington on the same team",
+            "text": "I worked with Wellington on the MAG Capitalização project, and it was an excellent experience. With analytical capacity and autonomy, he faces challenges strategically, always seeking the best solutions. He is very curious, constantly learning, and always willing to share his knowledge. In addition, he has a natural talent for creating a light and collaborative environment. His communication and relaxed manner strengthen the team spirit, making day-to-day life more pleasant. Without a doubt, a professional who adds value to any team."
+        },
+        {
+            "author": "Janilson Coimbra",
+            "context": "worked with Wellington on the same team",
+            "text": "I had the pleasure of working with Wellington do Nascimento at ESX/DevLand, and I can say that his technical expertise is an impressive differentiator. He is a highly skilled programmer, with good approaches to problem-solving and an incredible ability to turn complex challenges into efficient solutions. I highly recommend Wellington for any challenge in the technology field, as I know he always delivers exceptional results."
+        }
+    ],
+    "final_thoughts": {
+        "text": "In summary, I have always been driven by curiosity to understand how things work, especially in the world of technology. For many years, I programmed just for passion, without imagining I could turn it into a career, given the limitations of my context. Life took me down different paths until I finally found my purpose again: bringing ideas to life through programming. I am open to opportunities that allow me to resume this journey that drives me. Regardless of the outcome, all constructive feedback is welcome. Thank you in advance for your attention.",
+        "author": "Wellington N.",
+        "last_updated": "CV updated on 06/03/2025"
+    }
+}

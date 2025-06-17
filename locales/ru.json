@@ -1,0 +1,55 @@
+{
+  "language": {
+    "code": "ru",
+    "name": "Русский",
+    "nativeName": "Русский язык",
+    "region": "RU"
+  },
+  "menu": {
+    "home": "Главная",
+    "blog": "Блог",
+    "projects": "Проекты",
+    "contact": "Контакты",
+    "about": "Обо мне"
+  },
+  "commons": {
+    "actions": {
+      "close": "Закрыть",
+      "back": "Назад"
+    },
+    "languages": {
+      "pt": "Португальский",
+      "en": "Английский",
+      "es": "Испанский",
+      "fr": "Французский",
+      "de": "Немецкий",
+      "ru": "Русский"
+    },
+    "themes": {
+      "light": "Светлая",
+      "dark": "Тёмная"
+    }
+  },
+  "footer[0]": "Веб -сайт, построенный с ❤ in nut3. ({Год})",
+  "footer[1]": "",
+  "html": {
+    "contact": {
+      "cv": {
+        "traditional": "Традиционный",
+        "europass": "Европейская модель (Europass)",
+        "chooseModel": "Выберите стиль учебного плана",
+        "selectLanguage": "Файл Язык",
+        "traditionalDescription": "",
+        "popup": {
+          "description": "При выборе языка вы будете перенаправлены для просмотра и загрузки файла."
+        }
+      },
+      "form": {
+        "submitting": "Подготовка формы ..."
+      },
+      "phone": {
+        "description": "(WhatsApp, звонки и смс)"
+      }
+    }
+  }
+}

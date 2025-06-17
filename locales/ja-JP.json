@@ -1,197 +1,210 @@
-{
+﻿{
   "html": {
     "home": {
-      "greetings": "こんにちは！私は <span>{name}</span> です",
+      "greetings": "ã“ã‚“ã«ã¡ã¯ï¼ç§ã¯ <span>{name}</span> ã§ã™",
       "description": [
-        "私は {years} 歳で、現在 <span>{occupation}</span> として <span>ブラジル</span> で活動しています。",
-        "私の主なスキルは <span>{profession1}</span> と <span>{profession2}</span> です。",
-        "現在 <span>{business}</span> で働いて {time}。",
-        "アイデアを実現したいですか？"
+        "ç§ã¯ {years} æ­³ã§ã€ç¾åœ¨ <span>{occupation}</span> ã¨ã—ã¦ <span>ãƒ–ãƒ©ã‚¸ãƒ«</span> ã§æ´»å‹•ã—ã¦ã„ã¾ã™ã€‚",
+        "ç§ã®ä¸»ãªã‚¹ã‚­ãƒ«ã¯ <span>{profession1}</span> ã¨ <span>{profession2}</span> ã§ã™ã€‚",
+        "ç¾åœ¨ <span>{business}</span> ã§åƒã„ã¦ {time}ã€‚",
+        "ã‚¢ã‚¤ãƒ‡ã‚¢ã‚’å®Ÿç¾ã—ãŸã„ã§ã™ã‹ï¼Ÿ"
       ],
-      "skillsTitle": "スキル",
-      "projectsTitle": "ハイライト",
+      "skillsTitle": "ã‚¹ã‚­ãƒ«",
+      "projectsTitle": "ãƒã‚¤ãƒ©ã‚¤ãƒˆ",
       "actions": [
         {
-          "label": "プロジェクトを見る",
+          "label": "ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’è¦‹ã‚‹",
           "url": "/projects"
         },
         {
-          "label": "連絡先",
+          "label": "é€£çµ¡å…ˆ",
           "url": "https://api.whatsapp.com/send?phone=5511942018873"
         },
         {
-          "label": "自己紹介",
+          "label": "è‡ªå·±ç´¹ä»‹",
           "url": "/about"
         }
       ],
       "projects": {
-        "title": "プロジェクト"
+        "title": "ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ"
       }
     },
     "projects": {
-      "title": "プロジェクト",
-      "description": "私のプロジェクトのいくつかを見てください。",
+      "title": "ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ",
+      "description": "ç§ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ã„ãã¤ã‹ã‚’è¦‹ã¦ãã ã•ã„ã€‚",
       "miniDisplay": {
         "button": {
-          "details": "詳細",
-          "quickView": "クイックビュー",
-          "website": "ウェブサイトを訪問",
-          "invite": "招待",
-          "join": "参加",
-          "watch": "見る"
+          "details": "è©³ç´°",
+          "quickView": "ã‚¯ã‚¤ãƒƒã‚¯ãƒ“ãƒ¥ãƒ¼",
+          "website": "ã‚¦ã‚§ãƒ–ã‚µã‚¤ãƒˆã‚’è¨ªå•",
+          "invite": "æ‹›å¾…",
+          "join": "å‚åŠ ",
+          "watch": "è¦‹ã‚‹"
         }
       },
       "messages": {
-        "not-found": "Oops! \nプロジェクトが見つかりませんでした。"
+        "not-found": "Oops! \nãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚"
       }
     },
     "footer": [
-      "サイトは <b>Nuxt3</b> (Vue) で構築されています。開発中です。 | {year}",
-      "私の <a href=\"{url}\" target=\"_blank\">GitHub</a> を訪問して、私のプロジェクトについてもっと見てください（これも含まれます）。"
+      "ã‚µã‚¤ãƒˆã¯ <b>Nuxt3</b> (Vue) ã§æ§‹ç¯‰ã•ã‚Œã¦ã„ã¾ã™ã€‚é–‹ç™ºä¸­ã§ã™ã€‚ | {year}",
+      "ç§ã® <a href=\"{url}\" target=\"_blank\">GitHub</a> ã‚’è¨ªå•ã—ã¦ã€ç§ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã«ã¤ã„ã¦ã‚‚ã£ã¨è¦‹ã¦ãã ã•ã„ï¼ˆã“ã‚Œã‚‚å«ã¾ã‚Œã¾ã™ï¼‰ã€‚"
     ],
     "blog": {
-      "title": "ブログ"
+      "title": "ãƒ–ãƒ­ã‚°"
     },
     "commons": {
       "underConstruction": {
-        "description": "このセッションを作成するには、まだ少し時間がかかります。\n後で確認するか、私に連絡してください。",
-        "title": "建設中"
+        "description": "ã“ã®ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ä½œæˆã™ã‚‹ã«ã¯ã€ã¾ã å°‘ã—æ™‚é–“ãŒã‹ã‹ã‚Šã¾ã™ã€‚\nå¾Œã§ç¢ºèªã™ã‚‹ã‹ã€ç§ã«é€£çµ¡ã—ã¦ãã ã•ã„ã€‚",
+        "title": "å»ºè¨­ä¸­"
       }
     },
     "project": {
       "buttons": {
-        "return": "戻る"
+        "return": "æˆ»ã‚‹"
       }
     },
     "about": {
-      "title": "自己紹介",
-      "description": "私の職歴、スキル、性格についてもっと知る。",
+      "title": "è‡ªå·±ç´¹ä»‹",
+      "description": "ç§ã®è·æ­´ã€ã‚¹ã‚­ãƒ«ã€æ€§æ ¼ã«ã¤ã„ã¦ã‚‚ã£ã¨çŸ¥ã‚‹ã€‚",
       "personal": {
-        "title": "個人情報",
+        "title": "å€‹äººæƒ…å ±",
         "name": {
-          "label": "名前"
+          "label": "åå‰"
         },
         "location": {
-          "label": "場所"
+          "label": "å ´æ‰€"
         },
         "education": {
-          "label": "学歴"
+          "label": "å­¦æ­´"
         },
         "occupation": {
-          "label": "職業"
+          "label": "è·æ¥­"
         },
         "age": {
-          "label": "生年月日",
+          "label": "ç”Ÿå¹´æœˆæ—¥",
           "value": "{date} ({age} years)"
         }
       },
       "experience": {
-        "title": "職務経験",
+        "title": "è·å‹™çµŒé¨“",
         "company": {
-          "button": "ウェブ"
+          "button": "ã‚¦ã‚§ãƒ–"
         }
       },
       "skills": {
-        "title": "技術スキル"
+        "title": "æŠ€è¡“ã‚¹ã‚­ãƒ«"
       },
       "personality": {
-        "title": "性格",
-        "description": "私は論理的で創造的、分析的な人間です。INTP-Tの性格プロフィールについてもっと知る。",
-        "button": "テスト結果を見る"
+        "title": "æ€§æ ¼",
+        "description": "ç§ã¯è«–ç†çš„ã§å‰µé€ çš„ã€åˆ†æžçš„ãªäººé–“ã§ã™ã€‚INTP-Tã®æ€§æ ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã«ã¤ã„ã¦ã‚‚ã£ã¨çŸ¥ã‚‹ã€‚",
+        "button": "ãƒ†ã‚¹ãƒˆçµæžœã‚’è¦‹ã‚‹"
       }
     },
     "contact": {
-      "title": "連絡先",
-      "description": "プロジェクトや仕事の機会について話し合うために連絡してください。",
+      "title": "é€£çµ¡å…ˆ",
+      "description": "ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚„ä»•äº‹ã®æ©Ÿä¼šã«ã¤ã„ã¦è©±ã—åˆã†ãŸã‚ã«é€£çµ¡ã—ã¦ãã ã•ã„ã€‚",
       "buttons": {
-        "sendEmail": "メールを送る",
-        "sendMessage": "メッセージを送る",
-        "downloadCV": "履歴書をダウンロード",
-        "whatsapp": "WhatsAppでチャット"
+        "sendEmail": "ãƒ¡ãƒ¼ãƒ«ã‚’é€ã‚‹",
+        "sendMessage": "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹",
+        "downloadCV": "å±¥æ­´æ›¸ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰",
+        "whatsapp": "WhatsAppã§ãƒãƒ£ãƒƒãƒˆ"
       },
       "cv": {
-        "title": "履歴書",
-        "description": "最新の履歴書をダウンロード"
+        "title": "å±¥æ­´æ›¸",
+        "description": "æœ€æ–°ã®å±¥æ­´æ›¸ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰",
+        "traditional": "伝統的",
+        "europass": "ヨーロッパモデル（Europass）",
+        "chooseModel": "カリキュラムスタイルを選択します",
+        "selectLanguage": "ファイル言語",
+        "traditionalDescription": "",
+        "popup": {
+          "description": "言語を選択すると、ファイルを表示およびダウンロードするようにリダイレクトされます。"
+        }
       },
       "form": {
-        "title": "メッセージを送る",
-        "name": "名前",
-        "namePlaceholder": "あなたの名前",
-        "email": "メール",
+        "title": "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹",
+        "name": "åå‰",
+        "namePlaceholder": "ã‚ãªãŸã®åå‰",
+        "email": "ãƒ¡ãƒ¼ãƒ«",
         "emailPlaceholder": "your.email@example.com",
-        "subject": "件名",
-        "subjectPlaceholder": "連絡の理由",
-        "message": "メッセージ",
-        "messagePlaceholder": "ここにメッセージを入力...",
-        "submit": "メッセージを送信",
-        "success": "メッセージが正常に送信されました！近日中にご連絡いたします。",
-        "error": "メッセージの送信中にエラーが発生しました。もう一度お試しください。",
-        "or": "または",
-        "divider": "または"
+        "subject": "ä»¶å",
+        "subjectPlaceholder": "é€£çµ¡ã®ç†ç”±",
+        "message": "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸",
+        "messagePlaceholder": "ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥åŠ›...",
+        "submit": "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡",
+        "success": "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ­£å¸¸ã«é€ä¿¡ã•ã‚Œã¾ã—ãŸï¼è¿‘æ—¥ä¸­ã«ã”é€£çµ¡ã„ãŸã—ã¾ã™ã€‚",
+        "error": "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®é€ä¿¡ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚",
+        "or": "ã¾ãŸã¯",
+        "submitting": "フォームの準備..."
       },
       "social": {
-        "title": "ソーシャルメディア"
+        "title": "ã‚½ãƒ¼ã‚·ãƒ£ãƒ«ãƒ¡ãƒ‡ã‚£ã‚¢"
+      },
+      "phone": {
+        "description": "（WhatsApp、Calls、SMS）"
       }
     }
   },
   "menu": {
-    "home": "ホーム",
-    "blog": "ブログ",
-    "projects": "プロジェクト",
-    "contact": "連絡先",
-    "about": "私について"
+    "home": "ãƒ›ãƒ¼ãƒ ",
+    "blog": "ãƒ–ãƒ­ã‚°",
+    "projects": "ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ",
+    "contact": "é€£çµ¡å…ˆ",
+    "about": "ç§ã«ã¤ã„ã¦"
   },
   "commons": {
     "actions": {
-      "close": "閉じる",
-      "back": "戻る"
+      "close": "é–‰ã˜ã‚‹",
+      "back": "æˆ»ã‚‹"
     },
     "languages": {
-      "pt": "ポルトガル語",
-      "en": "英語",
-      "es": "スペイン語"
+      "pt": "ãƒãƒ«ãƒˆã‚¬ãƒ«èªž",
+      "en": "è‹±èªž",
+      "es": "ã‚¹ãƒšã‚¤ãƒ³èªž"
     },
     "themes": {
-      "light": "明るい",
-      "dark": "暗い"
+      "light": "æ˜Žã‚‹ã„",
+      "dark": "æš—ã„"
     },
     "timings": {
-      "morning": "おはようございます",
-      "afternoon": "こんにちは",
-      "night": "こんばんは",
-      "dawn": "お早うございます",
+      "morning": "ãŠã¯ã‚ˆã†ã”ã–ã„ã¾ã™",
+      "afternoon": "ã“ã‚“ã«ã¡ã¯",
+      "night": "ã“ã‚“ã°ã‚“ã¯",
+      "dawn": "ãŠæ—©ã†ã”ã–ã„ã¾ã™",
       "periodOf": {
         "day": {
-          "singular": "{periodOf}日",
-          "plural": "{periodOf}日"
+          "singular": "{periodOf}æ—¥",
+          "plural": "{periodOf}æ—¥"
         },
         "month": {
-          "singular": "{periodOf}ヶ月",
-          "plural": "{periodOf}ヶ月"
+          "singular": "{periodOf}ãƒ¶æœˆ",
+          "plural": "{periodOf}ãƒ¶æœˆ"
         },
         "year": {
-          "singular": "{periodOf}年",
-          "plural": "{periodOf}年"
+          "singular": "{periodOf}å¹´",
+          "plural": "{periodOf}å¹´"
         },
         "week": {
-          "singular": "{periodOf}週間",
-          "plural": "{periodOf}週間"
+          "singular": "{periodOf}é€±é–“",
+          "plural": "{periodOf}é€±é–“"
         },
-        "concat": "と"
+        "concat": "ã¨"
       }
     }
   },
   "comemorations": {
     "pride": {
-      "title": "LGBTQIA+の月",
-      "message": "LGBTQIA+の月おめでとうございます！ 🏳️‍🌈"
+      "title": "LGBTQIA+ã®æœˆ",
+      "message": "LGBTQIA+ã®æœˆãŠã‚ã§ã¨ã†ã”ã–ã„ã¾ã™ï¼ ðŸ³ï¸â€ðŸŒˆ"
     }
   },
   "language": {
     "code": "jp",
     "name": "Japanese",
-    "nativeName": "日本語",
+    "nativeName": "æ—¥æœ¬èªž",
     "region": "JP"
   },
-  "theme": "テーマ"
+  "theme": "ãƒ†ãƒ¼ãƒž",
+  "footer[0]": "",
+  "footer[1]": ""
 }

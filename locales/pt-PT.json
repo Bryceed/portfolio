@@ -1,0 +1,55 @@
+{
+  "language": {
+    "code": "pt",
+    "name": "Português (Portugal)",
+    "nativeName": "Português (Portugal)",
+    "region": "PT"
+  },
+  "menu": {
+    "home": "Início",
+    "blog": "Blogue",
+    "projects": "Projetos",
+    "contact": "Contacto",
+    "about": "Sobre mim"
+  },
+  "commons": {
+    "actions": {
+      "close": "Fechar",
+      "back": "Voltar"
+    },
+    "languages": {
+      "pt": "Português",
+      "en": "Inglês",
+      "es": "Espanhol",
+      "fr": "Francês",
+      "de": "Alemão",
+      "ru": "Russo"
+    },
+    "themes": {
+      "light": "Claro",
+      "dark": "Escuro"
+    }
+  },
+  "footer[0]": "",
+  "footer[1]": "",
+  "html": {
+    "contact": {
+      "cv": {
+        "traditional": "Tradicional",
+        "europass": "Modelo europeu (Europass)",
+        "chooseModel": "Selecione o estilo do currículo",
+        "selectLanguage": "Idioma do arquivo",
+        "traditionalDescription": "",
+        "popup": {
+          "description": "Ao selecionar o idioma, você será redirecionado para visualização e download do arquivo."
+        }
+      },
+      "form": {
+        "submitting": "Preparando formulário..."
+      },
+      "phone": {
+        "description": "(WhatsApp, ligações e SMS)"
+      }
+    }
+  }
+}

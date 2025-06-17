@@ -135,32 +135,49 @@ div[class$="-mode"] {
 }
 
 /* Flags */
-.flag.flag-pt { /*svg with png fallback*/
+.flag.flag-pt_BR {
+  background-image: url('/assets/images/icons/Flag_Brazil.png');
   background-image: url('/assets/images/icons/Flag_Brazil.svg');
 }
-.flag.flag-en {
+.flag.flag-en_US {
+  background-image: url('/assets/images/icons/Flag_USA.png');
   background-image: url('/assets/images/icons/Flag_USA.svg');
 }
-.flag.flag-es {
+.flag.flag-es_ES {
+  background-image: url('/assets/images/icons/Flag_Spain.png');
   background-image: url('/assets/images/icons/Flag_Spain.svg');
 }
-.flag.flag-fr {
+.flag.flag-fr_FR {
+  background-image: url('/assets/images/icons/Flag_France.png');
   background-image: url('/assets/images/icons/Flag_France.svg');
 }
-.flag.flag-jp {
+.flag.flag-ja_JP {
+  background-image: url('/assets/images/icons/Flag_Japan.png');
   background-image: url('/assets/images/icons/Flag_Japan.svg');
 }
-.flag.flag-ch {
+.flag.flag-zh_CN {
+  background-image: url('/assets/images/icons/Flag_China.png');
   background-image: url('/assets/images/icons/Flag_Chinese.svg');
 }
-.flag.flag-it {
+.flag.flag-it_IT {
+  background-image: url('/assets/images/icons/Flag_Italy.png');
   background-image: url('/assets/images/icons/Flag_Italy.svg');
 }
-.flag.flag-ru {
+.flag.flag-ru_RU {
+  background-image: url('/assets/images/icons/Flag_Russia.png');
   background-image: url('/assets/images/icons/Flag_Russia.svg');
 }
-.flag.flag-ko {
+.flag.flag-ko_KR {
+  background-image: url('/assets/images/icons/Flag_SouthKorea.png');
   background-image: url('/assets/images/icons/Flag_SouthKorea.svg');
+}
+.flag.flag-de_DE {
+  background-image: url('/assets/images/icons/Flag_Germany.png');
+  background-image: url('/assets/images/icons/Flag_Germany.svg');
+}
+.flag.flag-pt_PT {
+  background-image: url('/assets/images/icons/Flag_Portugal.png');
+  background-image: url('/assets/images/icons/Flag_Portugal.svg');
 }
 .flag {
   position: relative;

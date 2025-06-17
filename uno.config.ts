@@ -17,5 +17,17 @@ export default defineConfig({
                 'fill': 'currentColor',
             }
         })
+    ],
+    theme: {
+        colors: {
+            primary: '#6a4caf',  // Cor roxa
+            secondary: '#ff4081', // Cor rosa/pink
+            accent: '#03dac6',    // Cor teal/verde água
+        }
+    },
+    // Habilitar transformers para diretivas @apply
+    transformers: [
+        transformerDirectives(),
+        transformerVariantGroup(),
     ]
 })

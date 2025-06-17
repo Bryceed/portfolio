@@ -7,31 +7,29 @@
   "studyAndResult": "Estudo e",
   "result": "resultado",
   "basedOn": "baseado no teste Myers-Briggs Type Indicator (MBTI). Saiba mais em",
+  "footer": [
+    "Site construído em <b>Nuxt3</b>. por Wellington N. ({year})",
+    "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
+  ],
+  "footer[0]": "Site construído com ❤️ em Nuxt3. ({year})",
+  "footer[1]": "Visite meu <a href=\"{github}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este).",
   "html": {
     "contact": {
-      "title": "Contato",
-      "description": "Entre em contato comigo para conversarmos sobre seu projeto ou oportunidade de trabalho.",
-      "form": {
-        "title": "Envie uma mensagem",
-        "name": "Nome",
-        "namePlaceholder": "Seu nome",
-        "email": "E-mail",
-        "emailPlaceholder": "seu.email@exemplo.com",
-        "subject": "Assunto",
-        "subjectPlaceholder": "Motivo do contato",
-        "message": "Mensagem",
-        "messagePlaceholder": "Digite sua mensagem aqui...",
-        "submit": "Enviar mensagem",
-        "divider": "OU"
-      },
-      "social": {
-        "title": "Redes Sociais"
-      },
       "cv": {
-        "description": "Baixe meu CV atualizado"
+        "traditional": "Tradicional",
+        "europass": "Modelo europeu (Europass)",
+        "chooseModel": "Selecione o estilo do currículo",
+        "selectLanguage": "Idioma do arquivo",
+        "traditionalDescription": "",
+        "popup": {
+          "description": "Ao selecionar o idioma, você será redirecionado para visualização e download do arquivo."
+        }
       },
-      "buttons": {
-        "downloadCV": "Baixar CV"
+      "form": {
+        "submitting": "Preparando formulário..."
+      },
+      "phone": {
+        "description": "(WhatsApp, ligações e SMS)"
       }
     }
   }

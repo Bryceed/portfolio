@@ -202,17 +202,29 @@ export default {
         age--;
       }
       return age;
-    },
-    personalBirthDate() {
+    },    personalBirthDate() {
       if (!this.about || !this.about.birth) {
         return null;
       }
       const { day, month, year } = this.about.birth;
-      return new Date(year, month - 1, day).toLocaleDateString(this.$i18n.locale, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
+      // Extrair o código do idioma como string e garantir que seja válido
+      const locale = typeof this.$i18n.locale === 'string' ? this.$i18n.locale : 'en-US';
+      
+      try {
+        return new Date(year, month - 1, day).toLocaleDateString(locale, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      } catch (error) {
+        console.warn('Error formatting date with locale', locale, error);
+        // Fallback para o formato padrão se houver erro
+        return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      }
     }
   },
   mounted() {
