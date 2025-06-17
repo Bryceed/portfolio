@@ -58,7 +58,8 @@
         "submit": "Enviar mensaje",
         "success": "¡Mensaje enviado con éxito! Te responderé pronto.",
         "error": "Ocurrió un error al enviar tu mensaje. Por favor, intenta de nuevo.",
-        "or": "o"
+        "or": "o",
+        "divider": "O"
       },
       "social": {
         "title": "Redes Sociales"

@@ -15,12 +15,14 @@
         "city": "São Paulo"
     },
     "gender": "Male",
-    "email": "wellington.tvd@outlook.com.br",
+    "email": "dev.wellnascimento@gmail.com",
     "phone": "+55 (11) 94201-8873",
     "links": {
         "github": "https://github.com/Bryceed",
-        "linkedin": "https://www.linkedin.com/in/wellington-do-nascimento/"
+        "linkedin": "https://www.linkedin.com/in/wellington-do-nascimento/",
+        "whatsapp": "https://wa.me/5511942018873",
+        "instagram": "https://www.instagram.com/wellnas.dev/"
     },
     "picture": "https://avatars.githubusercontent.com/u/42657376?v=4",
-    "lastUpdate": "2023-07-09"
+    "lastUpdate": "2025-06-17"
 }

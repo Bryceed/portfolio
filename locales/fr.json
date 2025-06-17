@@ -75,7 +75,8 @@
         "submit": "Envoyer le message",
         "success": "Message envoyé avec succès ! Je vous répondrai bientôt.",
         "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
-        "or": "ou"
+        "or": "ou",
+        "divider": "OU"
       },
       "social": {
         "title": "Médias Sociaux"

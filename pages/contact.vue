@@ -88,6 +88,14 @@
                 <i class="material-icons">work</i>
                 LinkedIn
               </a>
+              <a v-if="contactInfo.links?.whatsapp" :href="contactInfo.links.whatsapp" target="_blank" class="social-btn whatsapp">
+                <i class="material-icons">chat</i>
+                WhatsApp
+              </a>
+              <a v-if="contactInfo.links?.instagram" :href="contactInfo.links.instagram" target="_blank" class="social-btn instagram">
+                <i class="material-icons">camera_alt</i>
+                Instagram
+              </a>
             </div>
           </div>
         </div>
@@ -366,6 +374,22 @@ export default {
           
           &:hover {
             background: #005d8f;
+          }
+        }
+
+        &.whatsapp {
+          background: #25D366;
+          
+          &:hover {
+            background: #128C7E;
+          }
+        }
+
+        &.instagram {
+          background: linear-gradient(45deg, #E1306C, #F77737);
+          
+          &:hover {
+            background: linear-gradient(45deg, #C13584, #E1306C);
           }
         }
         

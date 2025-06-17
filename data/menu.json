@@ -26,12 +26,6 @@
                 }
             }
         },
-        "blog": {
-            "name": "Blog",
-            "description": "This is a blog",
-            "image": "http://placehold.it/350x150",
-            "link": "/blog"
-        },
         "about": {
             "name": "About",
             "description": "This is the about page",
