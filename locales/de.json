@@ -50,6 +50,9 @@
       "phone": {
         "description": "(WhatsApp, Anrufe und SMS)"
       }
+    },
+    "blog": {
+      "soon": "Diese Sitzung wird neu formuliert. Nachrichten bald."
     }
   }
 }

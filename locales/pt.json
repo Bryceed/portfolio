@@ -31,6 +31,9 @@
       "phone": {
         "description": "(WhatsApp, ligações e SMS)"
       }
+    },
+    "blog": {
+      "soon": "Essa sessão está sendo reformulada. Novidades em breve."
     }
   }
 }

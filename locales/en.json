@@ -8,6 +8,9 @@
           "description": "When selecting the language, you will be redirected to view and download the file."
         }
       }
+    },
+    "blog": {
+      "soon": "This session is being reformulated. \nNews soon."
     }
   }
 }

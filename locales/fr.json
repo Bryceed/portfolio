@@ -8,6 +8,9 @@
           "description": "Lors de la sélection de la langue, vous serez redirigé pour afficher et télécharger le fichier."
         }
       }
+    },
+    "blog": {
+      "soon": "Cette session est reformulée. Nouvelles bientôt."
     }
   }
 }

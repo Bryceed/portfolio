@@ -50,6 +50,9 @@
       "phone": {
         "description": "(WhatsApp, ligações e SMS)"
       }
+    },
+    "blog": {
+      "soon": "Essa sessão está sendo reformulada. \nNovidades em breve."
     }
   }
 }
