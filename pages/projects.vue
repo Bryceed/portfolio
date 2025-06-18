@@ -1,5 +1,4 @@
 <template>
-    <ProjectsHighlightsDisplay />
     <div class="projects">
         <div class="project-item" v-for="project in projects" :key="project.id"
             :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">

@@ -2,6 +2,7 @@
     <div>
         <CommonAlertsPride v-if="isPrideMonth" />
         <HomeAboutMe />
+        <ProjectsHighlightsDisplay />
         <HomeSkills />
     </div>
     
@@ -25,362 +26,10 @@
 </template>
 
 <style scoped lang="scss">
-.projects-carousel {
-    margin: 2rem 20px ;
-    position: relative;
-
-    .carousel-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding: 0 10px;
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #fff;
-            margin: 0;
-        }
-
-        .carousel-controls {
-            display: flex;
-            gap: 10px;
-
-            .control-btn {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background: #2a2a2a;
-                border: none;
-                color: #fff;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                transition: all 0.25s ease;
-
-                &:hover {
-                    background: #3a3a3a;
-                    transform: scale(1.05);
-                }
-
-                &:disabled {
-                    opacity: 0.5;
-                    cursor: not-allowed;
-                }
-
-                .arrow {
-                    font-size: 1.5rem;
-                    line-height: 1;
-                }
-            }
-        }
-    }
-
-    .carousel-wrapper {
-        position: relative;
-        overflow: hidden;
-        margin: 0 -10px;
-    }
-
-    .carousel-container {
-        display: flex;
-        padding: 10px;
-    }
-
-    .carousel-item {
-        flex: 0 0 calc(100% / var(--slides-per-view));
-        padding: 0 10px;
-        transition: transform 0.5s ease;
-    }
-
-    .project-card {
-        border-radius: 12px;
-        background: #1d1d1d;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        height: 100%;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-
-            .project-overlay {
-                opacity: 1;
-            }
-        }
-    }
-
-    .project-image {
-        position: relative;
-        height: 200px;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-actions {
-            display: flex;
-            gap: 10px;
-
-            .action-btn {
-                padding: 8px 16px;
-                border-radius: 4px;
-                font-weight: 500;
-                text-decoration: none;
-                transition: all 0.3s ease;
-                background: #333;
-                color: #fff;
-
-                &.primary {
-                    background: #007bff;
-
-                    &:hover {
-                        background: #0069d9;
-                    }
-                }
-
-                &:hover {
-                    transform: scale(1.05);
-                    background: #444;
-                }
-            }
-        }
-    }
-
-    .project-content {
-        padding: 20px;
-
-        h3 {
-            margin: 0 0 10px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        p {
-            margin: 0;
-            color: #b0b0b0;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-    }
-
-    .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 20px;
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #555;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-
-            &.active {
-                background: #007bff;
-                transform: scale(1.2);
-            }
-
-            &:hover {
-                background: #666;
-            }
-        }
-    }
-}
-
-// Estilos para as novas seções
-.section {
-    padding: 3rem 20px;
-    margin: 0 auto;
-    max-width: 1340px;
-    
-    &:nth-child(odd) {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    
-    h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 0;
-    }
-    
-    .view-more-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--dark-primary-color, #9871F6);
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        
-        &:hover {
-            transform: translateX(5px);
-        }
-        
-        i {
-            font-size: 1.2rem;
-        }
-    }
-}
-
-// Estilos para a seção de Timeline
-.timeline-section {
-    position: relative;
-}
-
-.timeline-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    
-    .timeline-card {
-        background-color: rgba(34, 34, 34, 0.4);
-        border-radius: 12px;
-        padding: 1.5rem;
-        flex: 1 1 300px;
-        max-width: calc(50% - 1.5rem);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border-top: 3px solid var(--card-color);
-        backdrop-filter: blur(10px);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .timeline-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            
-            .company-info {
-                display: flex;
-                gap: 1rem;
-                align-items: center;
-                
-                .company-logo {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    overflow: hidden;
-                    background-color: #fff;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                }
-                
-                .company-details {
-                    h3 {
-                        font-size: 1.2rem;
-                        margin: 0 0 0.3rem;
-                        font-weight: 700;
-                    }
-                    
-                    h4 {
-                        font-size: 1rem;
-                        margin: 0;
-                        color: var(--card-color);
-                        font-weight: 600;
-                    }
-                }
-            }
-            
-            .date-badge {
-                font-size: 0.9rem;
-                background-color: rgba(255, 255, 255, 0.1);
-                padding: 0.4rem 0.8rem;
-                border-radius: 20px;
-                white-space: nowrap;
-                color: var(--card-color);
-                font-weight: 600;
-            }
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #b0b0b0;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 4.5rem;
-        }
-        
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            
-            .tech-tag {
-                background-color: rgba(255, 255, 255, 0.1);
-                padding: 0.3rem 0.6rem;
-                border-radius: 20px;
-                font-size: 0.8rem;
-                color: #e0e0e0;
-            }
-            
-            .more-tags {
-                background-color: var(--card-color);
-                color: #fff;
-                padding: 0.3rem 0.6rem;
-                border-radius: 20px;
-                font-size: 0.8rem;
-                font-weight: 600;
-            }
-        }
-    }
-}
 
 // CTA Section
 .cta-section {
     padding: 5rem 20px;
-    background: linear-gradient(135deg, var(--dark-primary-color, #9871F6) 0%, var(--dark-secondary-color, #7F58E2) 100%);
     text-align: center;
     border-radius: 12px;
     margin: 3rem auto;
@@ -395,7 +44,7 @@
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
-        color: #fff;
+        color: var(--dark-text-color, #9871F6);
     }
     
     p {
@@ -448,45 +97,36 @@
 
 // Tema claro
 html.light {
-    .projects-carousel {
+    .cta-section {
+        background-color: #f5f5f5;
+        color: #333;
+        
         h2 {
-            color: #333;
+            color: #9871F6;
         }
-        
-        .project-card {
-            background: #f5f5f5;
-            
-            .project-content {
-                h3 {
-                    color: #333;
-                }
-                
-                p {
-                    color: #555;
-                }
-            }
-        }
-        
-        .control-btn {
-            background: #e0e0e0;
-            color: #333;
-            
-            &:hover {
-                background: #d0d0d0;
-            }
-        }
-    }
-    
-    .timeline-preview .timeline-card {
-        background-color: rgba(255, 255, 255, 0.7);
         
         p {
-            color: #555;
+            color: rgba(0, 0, 0, 0.8);
         }
         
-        .tech-tag {
-            background-color: rgba(0, 0, 0, 0.05);
-            color: #333;
+        .cta-buttons {
+            .btn--primary {
+                background-color: #9871F6;
+                color: #fff;
+                
+                &:hover {
+                    background-color: #8459d3;
+                }
+            }
+            
+            .btn--secondary {
+                background-color: rgba(255, 255, 255, 0.3);
+                color: #fff;
+                
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.4);
+                }
+            }
         }
     }
     

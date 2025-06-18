@@ -68,40 +68,42 @@ export default defineNuxtPlugin(({ vueApp }) => {
 
         // Tentar todas as abordagens possíveis para definir o locale
         const safeLocale = isValidLocale(newLocale) ? newLocale : 'en';
-        
-        // Atualizar o localStorage primeiro
+          // Atualizar o localStorage primeiro
         localStorage.setItem('lang', safeLocale);
         
         // Método 1: Vue I18n 9.x com composables
         if (i18n.global && typeof i18n.global.locale === 'object' && i18n.global.locale !== null) {
           if ('value' in i18n.global.locale) {
             i18n.global.locale.value = safeLocale;
+            // Notificar componentes sobre a mudança
+            emitLanguageChangeEvent(safeLocale);
             return;
           }
-        }
-          // Método 2: Vue I18n 9.x com global diretamente (usando any para evitar erros de tipo)
+        }        // Método 2: Vue I18n 9.x com global diretamente (usando any para evitar erros de tipo)
         if (i18n.global && typeof i18n.global.locale !== 'undefined') {
           // Usando type assertion para evitar erro de compilação
           (i18n.global as any).locale = safeLocale;
+          emitLanguageChangeEvent(safeLocale);
           return;
         }
         
         // Método 3: Fallback para versões anteriores ou acesso direto (usando any para evitar erros de tipo)
         if ((i18n as any).locale) {
           (i18n as any).locale = safeLocale;
+          emitLanguageChangeEvent(safeLocale);
           return;
         }
         
         // Se chegou aqui, não conseguimos definir o locale
         console.warn('Não foi possível definir o locale via i18n. Tentando outras abordagens.');
-        
-        // Método 4: Acesso via vueApp
+          // Método 4: Acesso via vueApp
         if (vueApp.config.globalProperties.$i18n) {
           if (vueApp.config.globalProperties.$i18n.global) {
             vueApp.config.globalProperties.$i18n.global.locale = safeLocale;
           } else {
             vueApp.config.globalProperties.$i18n.locale = safeLocale;
           }
+          emitLanguageChangeEvent(safeLocale);
         }
       } catch (error) {
         console.error('Erro ao definir locale:', error);
@@ -171,7 +173,35 @@ export default defineNuxtPlugin(({ vueApp }) => {
     };
     
     // Executar depuração apenas uma vez na inicialização
-    setTimeout(debugI18n, 500);
+    setTimeout(debugI18n, 500);    // Função para emitir evento de mudança de idioma para os componentes
+    const emitLanguageChangeEvent = (locale: string) => {
+      // Criar um evento customizado no document para comunicação entre componentes
+      document.dispatchEvent(new CustomEvent('i18n:localeChanged', { 
+        detail: { locale } 
+      }));
+      
+      // Notificar componentes via globalProperties 
+      if (!vueApp.config.globalProperties.$i18nBus) {
+        vueApp.config.globalProperties.$i18nBus = {
+          notifyLocaleChange: (locale: string) => {
+            vueApp.config.globalProperties.$forceUpdate?.();
+          }
+        };
+      }
+      
+      // Notificar mudança
+      vueApp.config.globalProperties.$i18nBus.notifyLocaleChange(locale);
+      
+      // Para Debug
+      console.log('Idioma alterado para:', locale);
+    };
+
+    // Sobrescrever a função setLocale para incluir a emissão do evento
+    const originalSetLocale = setLocale;
+    (window as any).setLocale = (newLocale: string) => {
+      originalSetLocale(newLocale);
+      emitLanguageChangeEvent(newLocale);
+    };
   }
 
   return {

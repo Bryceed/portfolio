@@ -236,10 +236,18 @@ export default {
             // Fechar o popup
             this.langPopupOpen = false;
             
-            // Disparar evento de mudança de idioma com a string do locale
+            // Disparar evento de mudança de idioma com a string do locale            // Disparar ambos os eventos para compatibilidade
             document.dispatchEvent(new CustomEvent('languageChanged', {
-                detail: { locale: locale } // Garantir que apenas a string seja enviada
+                detail: { locale: locale } // Compatibilidade com o sistema antigo
             }));
+            
+            // Novo evento para o sistema de atualização
+            document.dispatchEvent(new CustomEvent('i18n:localeChanged', {
+                detail: { locale: locale, source: 'menu' }
+            }));
+            
+            // Forçar atualização deste componente também
+            this.$forceUpdate();
             
             console.log('Idioma alterado para:', locale);
         } catch (error) {
@@ -325,8 +333,7 @@ export default {
                 console.error('Erro ao inicializar idioma:', error);
             }
         },
-        
-        // Método para lidar com evento de mudança de idioma
+          // Método para lidar com evento de mudança de idioma
         handleLanguageChangeEvent(event) {
             try {
                 if (event.detail && event.detail.locale) {
@@ -338,6 +345,12 @@ export default {
                     
                     if (found) {
                         this.currentLang = { ...found };
+                        
+                        // Forçar atualização do menu quando o idioma mudar
+                        this.$nextTick(() => {
+                            this.$forceUpdate();
+                            console.log('Menu atualizado após mudança de idioma');
+                        });
                     }
                 }
             } catch (error) {
