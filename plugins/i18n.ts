@@ -12,16 +12,21 @@ import de from '../locales/de.json'
 
 export default defineNuxtPlugin(({ vueApp }) => {
   const defaultLocale = 'pt-BR'
-    // Determinar o locale a ser usado de forma segura
+  // Determinar o locale a ser usado de forma segura
   let initialLocale = defaultLocale;
   if (process.client) {
     try {
+      console.log('[i18n] Inicializando plugin, verificando localStorage');
       const storedLocale = localStorage.getItem('lang');
+      console.log('[i18n] Valor encontrado no localStorage:', storedLocale);
       if (storedLocale) {
         initialLocale = storedLocale;
+        console.log('[i18n] Usando locale do localStorage:', initialLocale);
+      } else {
+        console.log('[i18n] Nenhum locale encontrado no localStorage, usando padrão:', defaultLocale);
       }
     } catch (error) {
-      console.error('Erro ao acessar localStorage:', error);
+      console.error('[i18n] Erro ao acessar localStorage:', error);
     }
   }
 
