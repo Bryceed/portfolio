@@ -12,5 +12,12 @@
     "blog": {
       "soon": "Esta sesión está siendo reformulada. Noticias pronto."
     }
+  },
+  "menu": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "about": "Sobre mí"
   }
 }

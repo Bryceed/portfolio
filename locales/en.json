@@ -35,5 +35,12 @@
     "blog": {
       "soon": "This session is being reformulated. \nNews soon."
     }
+  },
+  "menu": {
+    "home": "Home",
+    "blog": "Blog",
+    "projects": "Projects",
+    "contact": "Contact",
+    "about": "About me"
   }
 }

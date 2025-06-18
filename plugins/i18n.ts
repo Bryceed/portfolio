@@ -6,7 +6,7 @@ import pt_BR from '../locales/pt-BR.json'
 import fr from '../locales/fr.json'
 import ja_JP from '../locales/ja-JP.json'
 import ko from '../locales/ko.json'
-import pt_PT from '../locales/pt-PT.json'
+import pt from '../locales/pt.json'
 import ru from '../locales/ru.json'
 import de from '../locales/de.json'
 
@@ -38,7 +38,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
       'fr': fr,
       'ja-JP': ja_JP,
       'ko': ko,
-      'pt-PT': pt_PT,
+      'pt': pt,
       'ru': ru,
       'de': de
     }
@@ -50,7 +50,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
   // Configurar manipuladores de eventos apenas no cliente
   if (process.client) {
     // Definir tipos válidos de locale
-    type ValidLocale = 'pt-BR' | 'en' | 'es' | 'fr' | 'ja-JP' | 'ko' | 'pt-PT' | 'ru' | 'de';
+    type ValidLocale = 'pt-BR' | 'en' | 'es' | 'fr' | 'ja-JP' | 'ko' | 'pt' | 'ru' | 'de';
     
     // Função para validar locale
     const isValidLocale = (locale: string): locale is ValidLocale => {
@@ -59,7 +59,10 @@ export default defineNuxtPlugin(({ vueApp }) => {
     const setLocale = (newLocale: string) => {
       try {
         if (!isValidLocale(newLocale)) {
-          console.warn(`Locale inválido "${newLocale}" recebido. Usando fallback para "en".`);
+          console.warn(`Locale inválido "${newLocale}" recebido. Tentando desregionalizar o idioma se possível.`);
+
+          // Tentar desregionalizar o idioma se possível
+          // Pegue 
           newLocale = 'en';
         }
 

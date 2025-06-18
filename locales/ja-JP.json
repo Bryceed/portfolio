@@ -207,5 +207,12 @@
   },
   "theme": "ãƒ†ãƒ¼ãƒž",
   "footer[0]": "",
-  "footer[1]": ""
+  "footer[1]": "",
+  "menu": {
+    "home": "ホーム",
+    "blog": "ブログ",
+    "projects": "プロジェクト",
+    "contact": "コンタクト",
+    "about": "私について"
+  }
 }
