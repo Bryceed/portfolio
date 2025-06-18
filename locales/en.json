@@ -1,5 +1,28 @@
 {
   "html": {
+    "home": {
+      "greetings": "Hello! I'm <span>{name}</span>",
+      "description": [
+        "I'm {years} years old and currently work as a <span>{occupation}</span> in <span>Brazil</span>.",
+        "My main skills are in <span>{profession1}</span> and <span>{profession2}</span>.",
+        "Currently working for <span>{business}</span>, for {time}.",
+        "<b>Let's bring your project to life?</b>"
+      ],
+      "skillsTitle": "Skills",
+      "skillsClickInfo": "Click on a skill to see more details",
+      "projectsTitle": "Highlights",
+      "featuredProjects": "Featured Projects",
+      "experience": "Professional Experience",
+      "certifications": "Certifications",
+      "ctaTitle": "Let's Work Together?",
+      "ctaText": "Have a project in mind? Looking for a developer for your team? Let's talk!",
+      "contactMe": "Contact Me",
+      "viewProjects": "View Projects",
+      "viewMore": "View More",
+      "view": "View",
+      "details": "Details",
+      "visit": "Visit"
+    },
     "contact": {
       "cv": {
         "selectLanguage": "File Language",

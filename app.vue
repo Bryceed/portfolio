@@ -52,19 +52,8 @@ export default {
         scriptElement.setAttribute(key, script[key])
       })
       document.head.appendChild(scriptElement)
-    });
-
-
-    if (localStorage.getItem('lang')) {
-      try {
-        this.$i18n.locale = localStorage.getItem('lang')
-      } catch (e) {
-        localStorage.removeItem('lang');
-      }
-    } else {
-      localStorage.setItem('lang', this.$i18n.locale)
-      this.$i18n.locale = localStorage.getItem('lang')
-    }
+    });    // Nota: A inicialização do idioma foi movida para o plugin i18n.ts
+    // Isso evita conflitos de inicialização e garante consistência
   }
 }
 </script>

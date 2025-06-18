@@ -6,63 +6,131 @@
         "items": [
             {
                 "name": "HTML",
-                "value": 5
+                "value": 5,
+                "description": {
+                    "pt": "Linguagem de marcação para criar a estrutura das páginas web.",
+                    "en": "Markup language for creating the structure of web pages."
+                }
             },
             {
                 "name": "CSS",
-                "value": 5
+                "value": 5,
+                "description": {
+                    "pt": "Linguagem de estilização para controlar a aparência das páginas web.",
+                    "en": "Styling language to control the appearance of web pages."
+                }
             },
             {
                 "name": "SASS",
-                "value": 4
+                "value": 4,
+                "description": {
+                    "pt": "Pré-processador CSS que permite usar variáveis, funções e outras estruturas avançadas.",
+                    "en": "CSS preprocessor that allows using variables, functions, and other advanced structures."
+                }
             },
             {
                 "name": "Bootstrap",
-                "value": 4
+                "value": 4,
+                "description": {
+                    "pt": "Framework CSS para criar interfaces responsivas e modernas.",
+                    "en": "CSS framework for creating responsive and modern interfaces."
+                }
             },
             {
                 "name": "Tailwind",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Framework CSS utilitário para construção rápida de interfaces personalizadas.",
+                    "en": "Utility-first CSS framework for quickly building custom interfaces."
+                }
             },
             {
                 "name": "Bulma",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Framework CSS modular baseado em Flexbox.",
+                    "en": "Modular CSS framework based on Flexbox."
+                }
             },
             {
                 "name": "Vuetify",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Framework de componentes Vue.js com design Material.",
+                    "en": "Vue.js component framework with Material Design."
+                }
             },
             {
                 "name": "Materialize",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Framework CSS baseado no Material Design da Google.",
+                    "en": "CSS framework based on Google's Material Design."
+                }
             },
             {
                 "name": "jQuery",
-                "value": 4
+                "value": 4,
+                "description": {
+                    "pt": "Biblioteca JavaScript que simplifica a manipulação do DOM e eventos.",
+                    "en": "JavaScript library that simplifies DOM manipulation and events."
+                }
             },
             {
                 "name": "Angular",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Framework JavaScript completo para desenvolvimento de aplicações web.",
+                    "en": "Complete JavaScript framework for web application development."
+                }
             },
             {
                 "name": "JavaScript",
-                "value": 4
+                "value": 4,
+                "description": {
+                    "pt": "Linguagem de programação que permite criar conteúdo dinâmico nas páginas web.",
+                    "en": "Programming language that allows creating dynamic content on web pages."
+                }
             },
             {
                 "name": "TypeScript",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Superset do JavaScript que adiciona tipagem estática e outros recursos.",
+                    "en": "JavaScript superset that adds static typing and other features."
+                }
             },
             {
                 "name": "Vue",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Framework JavaScript progressivo para construção de interfaces de usuário.",
+                    "en": "Progressive JavaScript framework for building user interfaces."
+                }
             },
             {
                 "name": "Nuxt3",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Framework Vue.js para criação de aplicações universais e SSR.",
+                    "en": "Vue.js framework for creating universal and SSR applications."
+                }
             },
             {
                 "name": "React",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Biblioteca JavaScript para construir interfaces de usuário baseadas em componentes.",
+                    "en": "JavaScript library for building component-based user interfaces."
+                }
+            },
+            {
+                "name": "VTEX.IO",
+                "value": 4,
+                "description": {
+                    "pt": "Plataforma de desenvolvimento para criar e personalizar lojas online VTEX.",
+                    "en": "Development platform for creating and customizing VTEX online stores."
+                }
             }
         ]
     },
@@ -73,55 +141,107 @@
         "items": [
             {
                 "name": "Node.js",
-                "value": 4
+                "value": 4,
+                "description": {
+                    "pt": "Ambiente de execução JavaScript do lado do servidor.",
+                    "en": "Server-side JavaScript runtime environment."
+                }
             },
             {
                 "name": "Express.js",
-                "value": 4
+                "value": 4,
+                "description": {
+                    "pt": "Framework web rápido e minimalista para Node.js.",
+                    "en": "Fast, unopinionated, minimalist web framework for Node.js."
+                }
             },
             {
                 "name": "MongoDB",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Banco de dados NoSQL orientado a documentos.",
+                    "en": "NoSQL document-oriented database."
+                }
             },
             {
                 "name": "MySQL",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Sistema de gerenciamento de banco de dados relacional.",
+                    "en": "Relational database management system."
+                }
             },
             {
                 "name": "Firebase Firestore",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Banco de dados NoSQL em nuvem do Firebase.",
+                    "en": "Firebase's cloud-based NoSQL database."
+                }
             },
             {
                 "name": "PHP",
-                "value": 5
+                "value": 5,
+                "description": {
+                    "pt": "Linguagem de script server-side para desenvolvimento web.",
+                    "en": "Server-side scripting language for web development."
+                }
             },
             {
                 "name": "Laravel",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Framework PHP elegante para desenvolvimento web rápido e organizado.",
+                    "en": "Elegant PHP framework for fast and organized web development."
+                }
             },
             {
                 "name": "Python",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Linguagem de programação versátil usada em web, dados e automação.",
+                    "en": "Versatile programming language used in web, data and automation."
+                }
             },
             {
                 "name": "Java",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Linguagem de programação orientada a objetos de uso geral.",
+                    "en": "General-purpose object-oriented programming language."
+                }
             },
             {
                 "name": "Java Spring",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Framework Java para criação de aplicações empresariais.",
+                    "en": "Java framework for creating enterprise applications."
+                }
             },
             {
                 "name": "C#",
-                "value": 1
+                "value": 1,
+                "description": {
+                    "pt": "Linguagem de programação moderna e orientada a objetos da Microsoft.",
+                    "en": "Modern, object-oriented programming language by Microsoft."
+                }
             },
             {
                 "name": "ASP.NET MVC",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Framework web para desenvolvimento de aplicações usando C#.",
+                    "en": "Web framework for developing applications using C#."
+                }
             },
             {
                 "name": "Blazor",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Framework web que permite criar aplicações interativas usando C# em vez de JavaScript.",
+                    "en": "Web framework that allows building interactive applications using C# instead of JavaScript."
+                }
             }
         ]
     },
@@ -132,63 +252,123 @@
         "items": [
             {
                 "name": "Apache",
-                "value": 5
+                "value": 5,
+                "description": {
+                    "pt": "Servidor web HTTP de código aberto.",
+                    "en": "Open-source HTTP web server."
+                }
             },
             {
                 "name": "Nginx",
-                "value": 5
+                "value": 5,
+                "description": {
+                    "pt": "Servidor web de alto desempenho, também usado como proxy reverso.",
+                    "en": "High-performance web server, also used as a reverse proxy."
+                }
             },
             {
                 "name": "Apache Tomcat",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Servidor web Java para hospedar aplicações Java EE.",
+                    "en": "Java web server for hosting Java EE applications."
+                }
             },
             {
                 "name": "Docker",
-                "value": 1
+                "value": 1,
+                "description": {
+                    "pt": "Plataforma para desenvolvimento e implantação de aplicações em contêineres.",
+                    "en": "Platform for developing and deploying applications in containers."
+                }
             },
             {
                 "name": "Kubernetes",
-                "value": 1
+                "value": 1,
+                "description": {
+                    "pt": "Sistema de orquestração de contêineres para automatizar a implantação e o escalonamento.",
+                    "en": "Container orchestration system for automating deployment and scaling."
+                }
             },
             {
                 "name": "AWS",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Plataforma de serviços em nuvem da Amazon.",
+                    "en": "Amazon's cloud services platform."
+                }
             },
             {
                 "name": "Oracle Cloud",
-                "value": 2
+                "value": 2,
+                "description": {
+                    "pt": "Plataforma de serviços em nuvem da Oracle.",
+                    "en": "Oracle's cloud services platform."
+                }
             },
             {
                 "name": "Google Cloud",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Plataforma de serviços em nuvem do Google.",
+                    "en": "Google's cloud services platform."
+                }
             },
             {
                 "name": "Firebase",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Plataforma de desenvolvimento móvel e web do Google.",
+                    "en": "Google's mobile and web application development platform."
+                }
             },
             {
                 "name": "Heroku",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Plataforma como serviço (PaaS) para implantação rápida de aplicações.",
+                    "en": "Platform as a Service (PaaS) for quick application deployment."
+                }
             },
             {
                 "name": "Netlify",
-                "value": 5
+                "value": 5,
+                "description": {
+                    "pt": "Plataforma para hospedagem e automação de sites estáticos e aplicações JAMstack.",
+                    "en": "Platform for hosting and automating static sites and JAMstack applications."
+                }
             },
             {
                 "name": "Vercel",
-                "value": 5
+                "value": 5,
+                "description": {
+                    "pt": "Plataforma para hospedagem de sites estáticos e aplicações JAMstack, focada em React.",
+                    "en": "Platform for hosting static sites and JAMstack applications, focused on React."
+                }
             },
             {
                 "name": "GitHub",
-                "value": 4
+                "value": 4,
+                "description": {
+                    "pt": "Plataforma de hospedagem de código-fonte com controle de versão Git.",
+                    "en": "Source code hosting platform with Git version control."
+                }
             },
             {
                 "name": "GitLab",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Plataforma completa de DevOps com controle de versão Git.",
+                    "en": "Complete DevOps platform with Git version control."
+                }
             },
             {
                 "name": "Bitbucket",
-                "value": 3
+                "value": 3,
+                "description": {
+                    "pt": "Plataforma de hospedagem de código-fonte com controle de versão Git da Atlassian.",
+                    "en": "Atlassian's source code hosting platform with Git version control."
+                }
             }
         ]
     },
@@ -198,171 +378,52 @@
         "color": "#f7df1e",
         "items": [
             {
-                "name": "Jenkins",
-                "value": 4
-            },
-            {
-                "name": "CircleCI",
-                "value": 5
-            },
-            {
-                "name": "TravisCI",
-                "value": 5
+                "name": "Git",
+                "value": 5,
+                "description": {
+                    "pt": "Sistema de controle de versão distribuído.",
+                    "en": "Distributed version control system."
+                }
             },
             {
                 "name": "GitHub Actions",
-                "value": 5
+                "value": 4,
+                "description": {
+                    "pt": "Ferramenta de automação de fluxo de trabalho CI/CD do GitHub.",
+                    "en": "GitHub's CI/CD workflow automation tool."
+                }
             },
             {
                 "name": "GitLab CI/CD",
-                "value": 5
+                "value": 3,
+                "description": {
+                    "pt": "Solução de integração e entrega contínua do GitLab.",
+                    "en": "GitLab's continuous integration and delivery solution."
+                }
             },
             {
                 "name": "Bitbucket Pipelines",
-                "value": 5
+                "value": 3,
+                "description": {
+                    "pt": "Sistema de integração contínua do Bitbucket.",
+                    "en": "Bitbucket's continuous integration system."
+                }
             },
             {
-                "name": "AWS CodePipeline",
-                "value": 5
+                "name": "Jenkins",
+                "value": 2,
+                "description": {
+                    "pt": "Servidor de automação de código aberto para CI/CD.",
+                    "en": "Open-source automation server for CI/CD."
+                }
             },
             {
-                "name": "AWS CodeBuild",
-                "value": 5
-            },
-            {
-                "name": "AWS CodeDeploy",
-                "value": 5
-            },
-            {
-                "name": "Oracle Cloud DevOps",
-                "value": 5
-            }
-        ]
-    },
-    {
-        "name": "Productivity",
-        "emoji": "📊",
-        "color": "#f7df1e",
-        "items": [
-            {
-                "name": "Microsoft Office",
-                "value": 5
-            },
-            {
-                "name": "Word",
-                "value": 5
-            },
-            {
-                "name": "Excel",
-                "value": 5
-            },
-            {
-                "name": "PowerPoint",
-                "value": 5
-            },
-            {
-                "name": "Access",
-                "value": 5
-            },
-            {
-                "name": "Notion",
-                "value": 5
-            },
-            {
-                "name": "Trello",
-                "value": 5
-            },
-            {
-                "name": "Jira",
-                "value": 5
-            },
-            {
-                "name": "Slack",
-                "value": 5
-            }
-        ]
-    },
-    {
-        "name": "Design",
-        "emoji": "🖼️",
-        "items": [
-            {
-                "name": "Adobe Photoshop",
-                "value": 5
-            },
-            {
-                "name": "Adobe Illustrator",
-                "value": 3
-            },
-            {
-                "name": "Adobe XD",
-                "value": 4
-            },
-            {
-                "name": "Adobe InDesign",
-                "value": 4
-            },
-            {
-                "name": "Adobe After Effects",
-                "value": 2
-            },
-            {
-                "name": "Adobe Premiere Pro",
-                "value": 1
-            },
-            {
-                "name": "Figma",
-                "value": 5
-            },
-            {
-                "name": "Canva",
-                "value": 5
-            },
-            {
-                "name": "Pixlr X",
-                "value": 5
-            },
-            {
-                "name": "Inkscape",
-                "value": 3
-            },
-            {
-                "name": "Gimp",
-                "value": 2
-            },
-            {
-                "name": "Blender",
-                "value": 2
-            }
-        ]
-    },
-    {
-        "name": "Others",
-        "emoji": "👨‍💻",
-        "items": [
-            {
-                "name": "Windows",
-                "value": 5
-            },
-            {
-                "name": "Linux",
-                "value": 4
-            },
-            {
-                "name": "MacOS",
-                "value": 1
-            },
-            {
-                "name": "Android",
-                "value": 3
-            },
-            {
-                "name": "iOS",
-                "value": 1
-            },
-            {
-                "name": "Git",
-                "value": 4
+                "name": "Ansible",
+                "value": 2,
+                "description": {
+                    "pt": "Ferramenta de automação de TI para gerenciamento de configurações.",
+                    "en": "IT automation tool for configuration management."
+                }
             }
         ]
     }

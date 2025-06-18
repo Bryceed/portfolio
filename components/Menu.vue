@@ -122,10 +122,9 @@ export default {
             langPopupOpen,
             languages: availableLanguages,
             currentLang: initialLang
-        }    },
-    watch: {
+        }    },    watch: {
         '$i18n.locale': {
-            immediate: false, // Mudamos para false para evitar execução durante SSR
+            immediate: false,
             handler(newVal) {
                 // Atualiza currentLang ao trocar o locale
                 const found = this.languages.find(l => {
@@ -133,37 +132,24 @@ export default {
                   return locale.toLowerCase() === newVal.toLowerCase();
                 });
                 
-                if (found) {
-                  // No cliente, fazemos uma atualização completa para garantir reatividade
-                  if (process.client) {
-                    // Usando JSON.parse/stringify para criar uma cópia profunda
-                    this.currentLang = JSON.parse(JSON.stringify(found));
-                    
-                    // Forçar atualização depois que o idioma mudar
-                    this.$nextTick(() => {
-                        // Forçar atualização do componente
-                        this.$forceUpdate();
-                    });
-                  }
+                if (found && process.client) {
+                    this.currentLang = { ...found };
                 }
             }
         }
     },mounted() {
         // Inicializa o idioma somente no cliente após a hidratação
         if (process.client) {
-            // Verificar se estamos voltando de uma troca de idioma
-            const justChangedLang = sessionStorage.getItem('justChangedLang');
-            
-            if (justChangedLang === 'true') {
-                // Limpar o flag
-                sessionStorage.removeItem('justChangedLang');
-                console.log('Página recarregada após troca de idioma');
-            }
-            
             // Esperamos a hidratação estar completa antes de inicializar o idioma
             setTimeout(() => {
                 this.initializeLanguageFromLocalStorage();
             }, 100);
+            
+            // Adicionar ouvinte para o evento de mudança de idioma
+            document.addEventListener('languageChanged', this.handleLanguageChangeEvent);
+            
+            // Adicionar ouvinte para mudanças no localStorage de outras guias/frames
+            window.addEventListener('storage', this.handleStorageEvent);
         }
         
         // Configurações do logo
@@ -224,16 +210,8 @@ export default {
         activateSpans();
 
         setInterval(updateSuffix, 4000);
-    },
-
-    beforeMount() {
-        if (!process.client) return;
-
-        const savedLocale = localStorage.getItem('lang');
-        if (savedLocale) {
-            this.$i18n.locale = savedLocale;
-        }
-    },
+    },    // Removido beforeMount que estava quebrando a reatividade do i18n
+    // A inicialização do idioma já é feita pelo plugin i18n.ts
 
     methods: {
         toggleMenu() {
@@ -247,43 +225,27 @@ export default {
         toggleLangPopup() {
             this.langPopupOpen = !this.langPopupOpen;
             console.log('Popup estado:', this.langPopupOpen);
-        },          selectLang(lang) {
+        },    selectLang(lang) {
+        try {
             // Construir o locale no formato correto (pt-BR, en, etc)
             const locale = lang.region && lang.region !== lang.code ? `${lang.code}-${lang.region}` : lang.code;
             
-            console.log('Alterando idioma para:', locale);
+            // Atualizar o estado local do componente
+            this.currentLang = { ...lang };
             
-            try {
-              // Salvar no localStorage para persistência entre sessões
-              localStorage.setItem('lang', locale);
-              
-              // Atualizar o i18n locale no Vue 3 (forma correta)
-              if (this.$i18n.global) {
-                // Usar global.locale.value para Vue I18n 9
-                this.$i18n.global.locale.value = locale;
-              } else {
-                // Fallback para versões anteriores
-                this.$i18n.locale = locale;
-              }
-              
-              // Atualizar o estado local do componente
-              this.currentLang = JSON.parse(JSON.stringify(lang));
-              
-              // Fechar o popup
-              this.langPopupOpen = false;
-                // Definir flag para indicar que a página está sendo recarregada após troca de idioma
-              sessionStorage.setItem('justChangedLang', 'true');
-              
-              // Forçar um reload completo da página para garantir que todas as traduções sejam atualizadas
-              // Esta é uma solução mais robusta para problemas de atualização de i18n
-              window.location.reload();
-              
-            } catch (error) {
-              console.error('Erro ao alterar o idioma:', error);
-            }
+            // Fechar o popup
+            this.langPopupOpen = false;
             
-            console.log('Idioma selecionado manualmente:', lang.code, lang.region, this.getLangFlagClass());
-        },
+            // Disparar evento de mudança de idioma com a string do locale
+            document.dispatchEvent(new CustomEvent('languageChanged', {
+                detail: { locale: locale } // Garantir que apenas a string seja enviada
+            }));
+            
+            console.log('Idioma alterado para:', locale);
+        } catch (error) {
+            console.error('Erro ao alterar o idioma:', error);
+        }
+    },
 
         getLangKey(lang) {
             return `${lang.code}_${lang.region.toUpperCase() || ''}`;
@@ -362,7 +324,45 @@ export default {
             } catch (error) {
                 console.error('Erro ao inicializar idioma:', error);
             }
-        }
+        },
+        
+        // Método para lidar com evento de mudança de idioma
+        handleLanguageChangeEvent(event) {
+            try {
+                if (event.detail && event.detail.locale) {
+                    // Encontrar o objeto de idioma correspondente
+                    const found = this.languages.find(l => {
+                        const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
+                        return locale.toLowerCase() === event.detail.locale.toLowerCase();
+                    });
+                    
+                    if (found) {
+                        this.currentLang = { ...found };
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao processar evento de mudança de idioma:', error);
+            }
+        },
+        
+        // Método para lidar com mudanças no localStorage
+        handleStorageEvent(event) {
+            try {
+                if (event.key === 'lang' && event.newValue) {
+                    // Encontrar o objeto de idioma correspondente
+                    const found = this.languages.find(l => {
+                        const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
+                        return locale.toLowerCase() === event.newValue.toLowerCase();
+                    });
+                    
+                    if (found) {
+                        this.currentLang = { ...found };
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao processar evento de armazenamento:', error);
+            }
+        },
     }
 }
 </script>

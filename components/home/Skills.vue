@@ -1,6 +1,9 @@
 <template>
     <div class="skills">
         <h2>{{ $t('html.home.skillsTitle') }}</h2>
+        <div class="skills__info-message">
+            {{ $t('html.home.skillsClickInfo') }}
+        </div>
         <div class="skills__container" :class="{ active: selectedItem }">
             <div v-for="category in skills" :key="category.name" class="skills__container__carousel__category">
                 <h2><span class="emoji">{{ category.emoji }}</span>{{ category.name }} <span>({{ category.items.length
@@ -22,9 +25,12 @@
         </div>
         <div class="side-panel" :class="{ open: selectedItem }">
             <button class="close-button" @click="closeDetails">X</button>
-            <div v-if="selectedItem">
+            <div v-if="selectedItem" class="skill-details">
                 <h2>{{ selectedItem.name }}</h2>
                 <CommonMeter :value="selectedItem.value" />
+                <div v-if="selectedItem.description" class="skill-description">
+                    {{ getSkillDescription(selectedItem) }}
+                </div>
             </div>
         </div>
     </div>
@@ -98,6 +104,28 @@ export default {
             carousel.classList.remove('dragging');
             document.removeEventListener('mousemove', this.onDrag);
             document.removeEventListener('mouseup', this.stopDrag);
+        },
+        getSkillDescription(skill) {
+            if (!skill.description) return '';
+            
+            // Tenta obter a descrição na linguagem atual do usuário
+            const locale = this.$i18n.locale.toLowerCase();
+            const lang = locale.split('-')[0]; // Extrai apenas o código da língua (pt, en, etc.)
+            
+            // Tenta encontrar a descrição na linguagem atual, ou usa uma alternativa
+            if (skill.description[locale]) {
+                return skill.description[locale];
+            } else if (skill.description[lang]) {
+                return skill.description[lang];
+            } else if (skill.description['pt']) {
+                return skill.description['pt']; // Fallback para português
+            } else if (skill.description['en']) {
+                return skill.description['en']; // Fallback para inglês
+            }
+            
+            // Retorna a primeira descrição disponível se nada for encontrado
+            const availableLang = Object.keys(skill.description)[0];
+            return availableLang ? skill.description[availableLang] : '';
         }
     },
     mounted() {
@@ -138,6 +166,26 @@ export default {
 
 html.light h2 {
     color: #000;
+}
+
+.skills__info-message {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    color: #ffffff8c;
+    font-style: italic;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+html.light .skills__info-message {
+    color: #0000008c;
 }
 
 .skills__container {
@@ -350,5 +398,28 @@ html.light .side-panel::before {
     font-size: 1.5rem;
     cursor: pointer;
     align-self: flex-end;
+}
+
+.skill-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.skill-description {
+    margin-top: 15px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+html.light .skill-description {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #333;
 }
 </style>

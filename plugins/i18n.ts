@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n'
+import { watch } from 'vue'
 import en from '../locales/en.json'
 import es from '../locales/es.json'
 import pt_BR from '../locales/pt-BR.json'
@@ -9,117 +10,170 @@ import pt_PT from '../locales/pt-PT.json'
 import ru from '../locales/ru.json'
 import de from '../locales/de.json'
 
-const datetimeFormats = {
-  'en-US': {
-    short: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
-    },
-    long: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
-      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
-    }
-  },
-  'pt-BR': {
-    short: {
-      year: 'numeric' as const, month: 'numeric' as const, day: 'numeric' as const,
-      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const,
-      hour12: false
-      },
-    long: {
-      year: 'numeric' as const, month: 'numeric' as const, day: 'numeric' as const,
-      weekday: 'long' as const, hour: 'numeric' as const, minute: 'numeric' as const,
-      hour12: false
-    }
-  },
-  'ja-JP': {
-    short: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
-    },
-    long: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
-      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
-    }
-  },
-  'ko-KR': {
-    short: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
-    },
-    long: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
-      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
-    }
-  },
-  'pt-PT': {
-    short: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
-    },
-    long: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
-      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
-    }
-  },
-  'ru': {
-    short: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
-    },
-    long: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
-      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
-    }
-  },
-  'de': {
-    short: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const
-    },
-    long: {
-      year: 'numeric' as const, month: 'short' as const, day: 'numeric' as const,
-      weekday: 'short' as const, hour: 'numeric' as const, minute: 'numeric' as const
+export default defineNuxtPlugin(({ vueApp }) => {
+  const defaultLocale = 'pt-BR'
+    // Determinar o locale a ser usado de forma segura
+  let initialLocale = defaultLocale;
+  if (process.client) {
+    try {
+      const storedLocale = localStorage.getItem('lang');
+      if (storedLocale) {
+        initialLocale = storedLocale;
+      }
+    } catch (error) {
+      console.error('Erro ao acessar localStorage:', error);
     }
   }
-}
 
-export default defineNuxtPlugin(({ vueApp }) => {
-    const langSettings = {
-      locale: 'pt-BR',
-      fallbackLocale: 'en',
-    }
-    
-    // Use o modo Composition API (importante para compatibilidade)
-    const i18n = createI18n({
-      legacy: false,
-      globalInjection: true,
-      locale: langSettings.locale,
-      fallbackLocale: langSettings.fallbackLocale,      messages: {
-        'en': en,
-        'es': es,
-        'pt-BR': pt_BR,
-        'fr': fr,
-        'ja-JP': ja_JP,
-        'ko': ko,
-        'pt-PT': pt_PT,
-        'ru': ru,
-        'de': de
-      },
-      datetimeFormats,
-      allowComposition: true // permite uso do useI18n() na Composition API
-    });
-
-    vueApp.use(i18n)
-      // Para compatibilidade com SSR
-    if (process.client) {
-      const savedLocale = localStorage.getItem('lang');
-      if (savedLocale) {
-        // Verificar se o locale é válido e fazer uma conversão segura do tipo
-        const validLocales = ['en', 'es', 'pt-BR', 'fr', 'ja-JP', 'ko', 'pt-PT', 'ru', 'de'];
-        if (validLocales.includes(savedLocale)) {
-          i18n.global.locale.value = savedLocale as any; // Type assertion necessária
-        }
-      }
-    }
-    
-    return {
-      provide: {
-        i18n: i18n.global
-      }
+  // Criar instância do i18n com configurações simplificadas
+  const i18n = createI18n({
+    legacy: false, // Usar apenas o modo de composição do Vue 3
+    globalInjection: true, // Injetar funções globalmente
+    locale: initialLocale,
+    fallbackLocale: 'en',
+    messages: {
+      'en': en,
+      'es': es,
+      'pt-BR': pt_BR,
+      'fr': fr,
+      'ja-JP': ja_JP,
+      'ko': ko,
+      'pt-PT': pt_PT,
+      'ru': ru,
+      'de': de
     }
   })
+
+  // Registrar o plugin no app
+  vueApp.use(i18n)
+
+  // Configurar manipuladores de eventos apenas no cliente
+  if (process.client) {
+    // Definir tipos válidos de locale
+    type ValidLocale = 'pt-BR' | 'en' | 'es' | 'fr' | 'ja-JP' | 'ko' | 'pt-PT' | 'ru' | 'de';
+    
+    // Função para validar locale
+    const isValidLocale = (locale: string): locale is ValidLocale => {
+      return ['pt-BR', 'en', 'es', 'fr', 'ja-JP', 'ko', 'pt-PT', 'ru', 'de'].includes(locale);
+    };    // Interceptar mudanças de locale com abordagem robusta para diferentes versões do Vue I18n
+    const setLocale = (newLocale: string) => {
+      try {
+        if (!isValidLocale(newLocale)) {
+          console.warn(`Locale inválido "${newLocale}" recebido. Usando fallback para "en".`);
+          newLocale = 'en';
+        }
+
+        // Tentar todas as abordagens possíveis para definir o locale
+        const safeLocale = isValidLocale(newLocale) ? newLocale : 'en';
+        
+        // Atualizar o localStorage primeiro
+        localStorage.setItem('lang', safeLocale);
+        
+        // Método 1: Vue I18n 9.x com composables
+        if (i18n.global && typeof i18n.global.locale === 'object' && i18n.global.locale !== null) {
+          if ('value' in i18n.global.locale) {
+            i18n.global.locale.value = safeLocale;
+            return;
+          }
+        }
+          // Método 2: Vue I18n 9.x com global diretamente (usando any para evitar erros de tipo)
+        if (i18n.global && typeof i18n.global.locale !== 'undefined') {
+          // Usando type assertion para evitar erro de compilação
+          (i18n.global as any).locale = safeLocale;
+          return;
+        }
+        
+        // Método 3: Fallback para versões anteriores ou acesso direto (usando any para evitar erros de tipo)
+        if ((i18n as any).locale) {
+          (i18n as any).locale = safeLocale;
+          return;
+        }
+        
+        // Se chegou aqui, não conseguimos definir o locale
+        console.warn('Não foi possível definir o locale via i18n. Tentando outras abordagens.');
+        
+        // Método 4: Acesso via vueApp
+        if (vueApp.config.globalProperties.$i18n) {
+          if (vueApp.config.globalProperties.$i18n.global) {
+            vueApp.config.globalProperties.$i18n.global.locale = safeLocale;
+          } else {
+            vueApp.config.globalProperties.$i18n.locale = safeLocale;
+          }
+        }
+      } catch (error) {
+        console.error('Erro ao definir locale:', error);
+      }
+    };    // Configurar o watch de uma forma mais segura
+    try {
+      if (i18n.global && i18n.global.locale && typeof i18n.global.locale === 'object') {
+        // Apenas configurar o watch se locale for um objeto reativo
+        watch(i18n.global.locale, (newLocale) => {
+          if (isValidLocale(newLocale)) {
+            localStorage.setItem('lang', newLocale);
+          }
+        });
+      } else {
+        console.warn('Não foi possível configurar watch em i18n.global.locale - não é um objeto reativo');
+      }
+    } catch (error) {
+      console.error('Erro ao configurar watch para o locale:', error);
+    }
+
+    // Garantir que o localStorage tenha um valor inicial
+    if (!localStorage.getItem('lang')) {
+      localStorage.setItem('lang', defaultLocale);
+    }
+
+    // Sincronização entre abas
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'lang' && event.newValue) {
+        setLocale(event.newValue)
+      }
+    });
+
+    // Evento customizado para mudança de idioma
+    document.addEventListener('languageChanged', ((event: CustomEvent) => {
+      const localeFromEvent = event.detail?.locale;
+      if (localeFromEvent && typeof localeFromEvent === 'string') {
+        setLocale(localeFromEvent);
+      } else {
+        console.warn('Recebido um locale inválido (não-string) do evento:', localeFromEvent);
+      }
+    }) as EventListener);
+
+    // Função de depuração para investigar a estrutura do i18n
+    const debugI18n = () => {
+      try {
+        console.group('Depuração do objeto i18n');
+        console.log('Tipo do i18n:', typeof i18n);
+        console.log('i18n tem global?', 'global' in i18n);
+        if ('global' in i18n) {
+          console.log('Tipo do i18n.global:', typeof i18n.global);
+          console.log('i18n.global tem locale?', 'locale' in i18n.global);
+          if ('locale' in i18n.global) {
+            console.log('Tipo do i18n.global.locale:', typeof i18n.global.locale);
+            if (typeof i18n.global.locale === 'object' && i18n.global.locale !== null) {
+              console.log('i18n.global.locale tem value?', 'value' in i18n.global.locale);
+              if ('value' in i18n.global.locale) {
+                console.log('Valor atual do locale:', i18n.global.locale.value);
+              }
+            }
+          }
+        }
+        console.log('i18n tem locale diretamente?', 'locale' in i18n);
+        console.groupEnd();
+      } catch (error) {
+        console.error('Erro ao depurar i18n:', error);
+      }
+    };
+    
+    // Executar depuração apenas uma vez na inicialização
+    setTimeout(debugI18n, 500);
+  }
+
+  return {
+    provide: {
+      i18n: i18n.global
+    }
+  }
+})
