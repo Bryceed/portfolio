@@ -29,8 +29,8 @@ export default defineNuxtPlugin(({ vueApp }) => {
       console.error('[i18n] Erro ao acessar localStorage:', error);
     }
   }
-
   // Criar instância do i18n com configurações simplificadas
+  console.log('[i18n] Criando instância i18n com locale inicial:', initialLocale);
   const i18n = createI18n({
     legacy: false, // Usar apenas o modo de composição do Vue 3
     globalInjection: true, // Injetar funções globalmente
