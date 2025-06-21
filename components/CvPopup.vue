@@ -96,7 +96,7 @@ export default {
         'fr': 'Français',
         'ja-JP': '日本語',
         'ko': '한국어',
-        'pt-PT': 'Português (Portugal)',
+        'pt': 'Português (Portugal)',
         'ru': 'Русский'
       };
       

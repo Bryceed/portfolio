@@ -13,20 +13,38 @@
             color: #333;
             background-color: #f5f5f5;
         }
-        
-        @media print {
+          @media print {
             body {
                 background-color: white;
                 margin: 0;
                 padding: 0;
+                width: 100%;
+                height: 100%;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                /* color-adjust é uma propriedade legada, mas mantemos para navegadores antigos */
+            }
+            
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
             
             .cv-container {
                 box-shadow: none !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                width: 210mm !important;
-                height: 297mm !important;
+                width: 100% !important;
+                max-width: 210mm !important;
+                min-height: 297mm !important;
+                overflow: visible !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                position: relative;
+                left: 0;
+                right: 0;
             }
             
             .no-print {
@@ -36,11 +54,49 @@
             .page-break {
                 page-break-before: always;
             }
-        }
-        
+            
+            .europass-header {
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+                background-color: #0e4a84 !important;
+                color: white !important;
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+            
+            /* Garantir que a imagem fique à direita */
+            .europass-header > div:last-child {
+                margin-left: auto !important;
+            }
+            
+            .section-title {
+                border-bottom: 2px solid #0e4a84 !important;
+            }
+            
+            /* Garantir que as cores e elementos visuais sejam preservados */
+            .bg-gray-50, .bg-gray-100, .bg-blue-600, .bg-blue-800, .bg-white {
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            
+            /* Garantir que links sejam impressos com suas URLs */
+            a[href]:after {
+                content: " (" attr(href) ")";
+                font-size: 80%;
+                color: #666;
+            }
+            
+            /* Exceção para links de email e telefone */
+            a[href^="mailto:"]:after, a[href^="tel:"]:after {
+                content: "";
+            }
+        }        
         @page {
-            size: A4;
+            size: A4 portrait;
             margin: 0;
+            padding: 0;
         }
         
         .europass-header {
@@ -100,9 +156,8 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto p-4">
-        <div class="flex justify-between items-center mb-4 no-print">
-            <button onclick="window.print()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+    <div class="container mx-auto p-4">        <div class="flex justify-between items-center mb-4 no-print">
+            <button onclick="window.print(); forceFullPrint();" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
                 <span data-i18n="print">Imprimir CV</span>
             </button>
             
@@ -154,9 +209,8 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
+    </div>    <script>
+        let LANG = 'pt-BR'; // Idioma padrão
         // Inicializar com valores padrão para evitar erros
         let cvData = {
             personal_info: {},
@@ -169,6 +223,43 @@
             courses: [],
             roles: []
         };
+        
+        // Função auxiliar para forçar a impressão completa do CV
+        function forceFullPrint() {
+            // Verificar se estamos no modo de impressão
+            if (window.matchMedia('print').matches) {
+                console.log('Estamos no modo de impressão, ajustando layout...');
+                
+                // Forçar largura e altura dos containers
+                const cvContainer = document.querySelector('.cv-container');
+                if (cvContainer) {
+                    cvContainer.style.width = '100%';
+                    cvContainer.style.maxWidth = '210mm';
+                    cvContainer.style.minHeight = '297mm';
+                    cvContainer.style.overflow = 'visible';
+                    cvContainer.style.position = 'relative';
+                }
+                
+                // Garantir que cores e imagens sejam impressas
+                document.querySelectorAll('img').forEach(img => {
+                    img.style.maxWidth = '100%';
+                });
+                
+                // Garantir que o cabeçalho Europass mantenha o flexbox na impressão
+                const europassHeader = document.querySelector('.europass-header');
+                if (europassHeader) {
+                    europassHeader.style.display = 'flex';
+                    europassHeader.style.flexDirection = 'row';
+                    europassHeader.style.justifyContent = 'space-between';
+                    europassHeader.style.alignItems = 'center';
+                }
+                
+                // Remover quaisquer limites de altura que possam cortar o conteúdo
+                document.querySelectorAll('.p-6').forEach(div => {
+                    div.style.maxHeight = 'none';
+                });
+            }
+        }
           // Função para carregar os dados do JSON via API segura
         async function loadCvData(lang = 'pt-BR') {
             try {
@@ -199,11 +290,11 @@
                 // Mostrar mensagem de erro
                 document.querySelector('.cv-container').innerHTML = `
                     <div class="p-6 text-center">
-                        <h1 class="text-xl font-bold text-red-500 mb-4">Erro ao carregar currículo</h1>
-                        <p class="mb-4">Não foi possível carregar o currículo no momento.</p>
-                        <p>Por favor, entre em contato através dos outros meios disponíveis no site.</p>
-                        <button onclick="window.history.back()" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded">
-                            Voltar
+                        <h1 class="text-xl font-bold text-red-500 mb-4">Failed to load CV data</h1>
+                        <p class="mb-4">Currently, we are unable to load the CV data. This may be due to a temporary issue with the server or the API.</p>
+                        <p>Please contact us through the other means available on the site or <a href="https://api.whatsapp.com/send?phone=5511942018873">contact me on WhatsApp</a> (+55 11 94201-8873).</p>
+                        <button onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = '/'; }" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded">
+                            < Home
                         </button>
                     </div>
                 `;
@@ -215,25 +306,155 @@
         const translations = {
             'pt-BR': {
                 'print': 'Imprimir CV',
-                'personal-info': 'INFORMAÇÕES PESSOAIS'
+                'personal-info': 'INFORMAÇÕES PESSOAIS',
+                'email': 'E-mail',
+                'phone': 'Telefone',
+                'linkedin': 'LinkedIn',
+                'location': 'Localização',
+                'age': 'Idade/Data de Nasc.',
+                'nationality': 'Nacionalidade',
+                'qualifications': 'QUALIFICAÇÕES',
+                'work_experience': 'EXPERIÊNCIA PROFISSIONAL',
+                'certifications': 'CERTIFICAÇÕES',
+                'education': 'Educação e Formação',
+                'languages': 'Idiomas',
+                'recommendations': 'RECOMENDAÇÕES',
+                'final_thoughts': 'Considerações Finais',
             },
             'en-US': {
                 'print': 'Print CV',
-                'personal-info': 'PERSONAL INFORMATION'
+                'personal-info': 'PERSONAL INFORMATION',
+                'email': 'Email',
+                'phone': 'Phone',
+                'linkedin': 'LinkedIn',
+                'location': 'Location',
+                'age': 'Age/Date of Birth',
+                'nationality': 'Nationality',
+                'qualifications': 'Qualifications',
+                'work_experience': 'Work Experience',
+                'certifications': 'Certifications',
+                'education': 'Education',
+                'languages': 'Languages',
+                'recommendations': 'Recommendations',
+                'final_thoughts': 'Final Thoughts',
             },
             'de-DE': {
                 'print': 'Lebenslauf drucken',
-                'personal-info': 'PERSÖNLICHE ANGABEN'
+                'personal-info': 'PERSÖNLICHE ANGABEN',
+                'email': 'E-Mail',
+                'phone': 'Telefon',
+                'linkedin': 'LinkedIn',
+                'location': 'Standort',
+                'age': 'Alter/Geburtsdatum',
+                'nationality': 'Nationalität',
+                'qualifications': 'QUALIFIKATIONEN',
+                'work_experience': 'BERUFSERFAHRUNG',
+                'recommendations': 'EMPFEHLUNGEN',
+                'certifications': 'ZERTIFIKATE',
+                'education': 'Bildung',
+            },
+            'pt': { // Português de Portugal
+                'print': 'Imprimir CV',
+                'personal-info': 'INFORMAÇÕES PESSOAIS',
+                'email': 'E-mail',
+                'phone': 'Telefone',
+                'linkedin': 'LinkedIn',
+                'location': 'Localização',
+                'age': 'Idade/Data de Nasc.',
+                'nationality': 'Nacionalidade',
+                'qualifications': 'QUALIFICAÇÕES',
+                'work_experience': 'EXPERIÊNCIA PROFISSIONAL',
+                'certifications': 'CERTIFICAÇÕES',
+                'education': 'Educação e Formação',
+                'languages': 'Idiomas',
+                'recommendations': 'RECOMENDAÇÕES',
+                'final_thoughts': 'Considerações Finais',
+            },
+            'es-ES': {
+                'print': 'Imprimir CV',
+                'personal-info': 'INFORMACIÓN PERSONAL',
+                'email': 'Correo electrónico',
+                'phone': 'Teléfono',
+                'linkedin': 'LinkedIn',
+                'location': 'Ubicación',
+                'age': 'Edad/Fecha de Nacimiento',
+                'nationality': 'Nacionalidad',
+                'qualifications': 'CUALIFICACIONES',
+                'work_experience': 'EXPERIENCIA LABORAL',
+                'certifications': 'CERTIFICACIONES',
+                'education': 'Educación e Formação',
+                'languages': 'Idiomas',
+                'recommendations': 'RECOMENDACIONES',
+                'final_thoughts': 'Consideraciones Finales',
+            },
+            'fr-FR': {
+                'print': 'Imprimer le CV',
+                'personal-info': 'INFORMATIONS PERSONNELLES',
+                'email': 'E-mail',
+                'phone': 'Téléphone',
+                'linkedin': 'LinkedIn',
+                'location': 'Emplacement',
+                'age': 'Âge/Date de Naissance',
+                'nationality': 'Nationalité',
+                'qualifications': 'QUALIFICATIONS',
+                'work_experience': 'EXPÉRIENCE PROFESSIONNELLE',
+                'certifications': 'CERTIFICATIONS',
+                'education': 'Éducation et Formation',
+                'languages': 'Langues',
+                'recommendations': 'RECOMMANDATIONS',
+                'final_thoughts': 'Réflexions Finales',
+            },
+            'ko-KR': {
+                'print': '이력서 인쇄',
+                'personal-info': '개인 정보',
+                'email': '이메일',
+                'phone': '전화',
+                'linkedin': 'LinkedIn',
+                'location': '위치',
+                'age': '나이/생년월일',
+                'nationality': '국적',
+                'qualifications': '자격',
+                'work_experience': '경력',
+                'certifications': '자격증',
+                'education': '학력',
+                'languages': '언어',
+                'recommendations': '추천서',
+                'final_thoughts': '최종 생각',
+            },
+            'zh-CN': {
+                'print': '打印简历',
+                'personal-info': '个人信息',
+                'email': '电子邮件',
+                'phone': '电话',
+                'linkedin': 'LinkedIn',
+                'location': '位置',
+                'age': '年龄/出生日期',
+                'nationality': '国籍',
+                'qualifications': '资格',
+                'work_experience': '工作经验',
+                'certifications': '证书',
+                'education': '教育',
+                'languages': '语言',
+                'recommendations': '推荐信',
+                'final_thoughts': '最后的想法',
             }
         };
 
-        document.addEventListener('DOMContentLoaded', async function() {            // Pegar a língua a partir da URL se disponível (formato ?lang=pt-BR)
+        document.addEventListener('DOMContentLoaded', async function() {            
+            // Pegar a língua a partir da URL se disponível (formato ?lang=pt-BR)
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
             
             // Inicializar com pt-BR ou o idioma da URL
             const initialLang = langParam || 'pt-BR';
+            LANG = initialLang; // Atualizar a variável LANG global
             console.log(`Idioma inicial: ${initialLang}`);
+            
+            // Adicionar listener para evento de impressão
+            window.addEventListener('beforeprint', function() {
+                console.log('Preparando para impressão...');
+                forceFullPrint();
+            });
               // Carregar a lista de idiomas disponíveis a partir da API
             let availableLangs = ['pt-BR']; // Valor padrão
             
@@ -277,6 +498,9 @@
                 option.addEventListener('click', async function() {
                     const lang = this.getAttribute('data-lang');
                     
+                    // Primeiro, atualize a variável global LANG
+                    LANG = lang;
+                    
                     // Atualiza a URL para refletir o idioma selecionado
                     const url = new URL(window.location);
                     url.searchParams.set('lang', lang);
@@ -286,6 +510,7 @@
                     const data = await loadCvData(lang);
                     if (data) {
                         cvData = data;
+                        // Agora que LANG já foi atualizado, populateCV usará o valor correto
                         populateCV(data);
                     }
                     
@@ -297,7 +522,7 @@
                     // Update current language display
                     document.getElementById('current-language').textContent = this.textContent;
                     
-                    // Apply translations
+                    // Apply translations para elementos com data-i18n
                     applyTranslations(lang);
                     
                     // Close dropdown
@@ -323,6 +548,8 @@
             function applyTranslations(lang) {
                 const elements = document.querySelectorAll('[data-i18n]');
                 
+                LANG = lang;
+
                 elements.forEach(element => {
                     const key = element.getAttribute('data-i18n');
                     if (translations[lang] && translations[lang][key]) {
@@ -334,21 +561,25 @@
                 document.documentElement.lang = lang;
             }
             
-            // Function to populate the CV with data from our JSON format
+            // Modifique a função populateCV para garantir que usa o idioma correto
             function populateCV(data) {
                 if (!data) return;
+
+                // Garantindo que estamos usando o idioma correto
+                const currentLang = LANG;
+                console.log(`Populando CV com idioma: ${currentLang}`);
                 
                 // Header / Personal Info
                 const header = document.querySelector('.europass-header');
                 header.innerHTML = `
-                    <div class="mb-4 md:mb-0">
+                    <div class="mb-4 md:mb-0 flex-grow">
                         <h1 class="text-2xl font-bold mb-1">${data.personal_info.name}</h1>
                         <p class="text-lg">${data.objective}</p>
                         <div class="mt-2 flex flex-wrap gap-2">
                             ${data.roles ? data.roles.map(role => `<span class="bg-white text-blue-800 px-2 py-1 text-xs font-bold rounded">${role}</span>`).join('') : ''}
                         </div>
                     </div>
-                    <div class="flex items-center">
+                    <div class="flex items-center justify-end ml-4">
                         <img src="${data.personal_info.photo_url || '/avatar.jpg'}" alt="${data.personal_info.name}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
                     </div>
                 `;
@@ -357,14 +588,15 @@
                 const personalInfoSection = document.querySelector('.p-6 .grid');
                 personalInfoSection.innerHTML = `
                     <div>
-                        <p class="mb-2"><strong>Email:</strong> <a href="mailto:${data.personal_info.email}" class="text-blue-600 hover:underline">${data.personal_info.email}</a></p>
-                        <p class="mb-2"><strong>Telefone:</strong> <a href="tel:${data.personal_info.phone}" class="text-blue-600 hover:underline">${data.personal_info.phone}</a></p>
-                        <p class="mb-2"><strong>LinkedIn:</strong> <a href="${data.personal_info.linkedin}" target="_blank" class="text-blue-600 hover:underline">Perfil LinkedIn</a></p>
+                        <p class="mb-2"><strong>${translations[currentLang]['email']}</strong> <a href="mailto:${data.personal_info.email}" class="text-blue-600 hover:underline">${data.personal_info.email}</a></p>
+                        <p class="mb-2"><strong>${translations[currentLang]['phone']}</strong> <a href="tel:${data.personal_info.phone}" class="text-blue-600 hover:underline">${data.personal_info.phone}</a></p>
+                        <p class="mb-2"><strong>${translations[currentLang]['linkedin']}</strong> <a href="${data.personal_info.linkedin}" target="_blank" class="text-blue-600
+                            //  hover:underline">${data.personal_info.linkedin.split('/')[3]}/${data.personal_info.linkedin.split('/')[4]}</a></p>
                     </div>
                     <div>
-                        <p class="mb-2"><strong>Localização:</strong> ${data.personal_info.location}</p>
-                        <p class="mb-2"><strong>Idade/Data de Nasc.:</strong> ${data.personal_info.age}</p>
-                        <p class="mb-2"><strong>Nacionalidade:</strong> ${data.personal_info.nationality}</p>
+                        <p class="mb-2"><strong>${translations[currentLang]['location']}</strong> ${data.personal_info.location}</p>
+                        <p class="mb-2"><strong>${translations[currentLang]['age']}</strong> ${data.personal_info.age}</p>
+                        <p class="mb-2"><strong>${translations[currentLang]['nationality']}</strong> ${data.personal_info.nationality}</p>
                     </div>
                 `;
                 
@@ -372,7 +604,7 @@
                 const objective = document.querySelector('.mt-6:nth-child(2)');
                 if (objective && data.qualifications) {
                     objective.innerHTML = `
-                        <h2 class="section-title text-xl font-bold pb-2 mb-4">QUALIFICAÇÕES</h2>
+                        <h2 class="section-title text-xl font-bold pb-2 mb-4">${translations[currentLang]['qualifications']}</h2>
                         <p class="mb-2">${data.qualifications.summary}</p>
                         <ul class="list-disc ml-5 mt-2 text-sm">
                             ${data.qualifications.skills ? data.qualifications.skills.map(skill => `<li>${skill}</li>`).join('') : ''}
@@ -384,7 +616,7 @@
                 const experienceSection = document.querySelector('.mt-6:nth-child(3)');
                 if (experienceSection && data.experience) {
                     let experienceHTML = `
-                        <h2 class="section-title text-xl font-bold pb-2 mb-4">EXPERIÊNCIA PROFISSIONAL</h2>
+                        <h2 class="section-title text-xl font-bold pb-2 mb-4">${translations[currentLang]['work_experience']}</h2>
                         <div class="ml-6 relative" id="experience-container">`;
                     
                     data.experience.forEach(exp => {
@@ -419,16 +651,16 @@
                 const certificationSection = document.querySelector('.mt-6:nth-child(4)');
                 if (certificationSection && data.certifications) {
                     certificationSection.innerHTML = `
-                        <h2 class="section-title text-xl font-bold pb-2 mb-4">CERTIFICAÇÕES E FORMAÇÃO</h2>
+                        <h2 class="section-title text-xl font-bold pb-2 mb-4">${translations[currentLang]['certifications']}</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <h3 class="font-bold mb-2">Formação</h3>
+                                <h3 class="font-bold mb-2">${translations[currentLang]['education']}</h3>
                                 <p class="text-sm">${data.about?.education || ''}</p>
-                                <h3 class="font-bold mb-2 mt-4">Idiomas</h3>
+                                <h3 class="font-bold mb-2 mt-4">${translations[currentLang]['languages']}</h3>
                                 <p class="text-sm">${data.about?.languages || ''}</p>
                             </div>
                             <div>
-                                <h3 class="font-bold mb-2">Certificações</h3>
+                                <h3 class="font-bold mb-2">${translations[currentLang]['certifications']}</h3>
                                 <ul class="list-disc ml-5 text-sm">
                                     ${data.certifications.map(cert => `
                                     <li>${cert.title} - ${cert.provider} (${cert.hours})</li>
@@ -444,7 +676,7 @@
                     const recSection = document.querySelector('.mt-6:nth-child(5)');
                     if (recSection) {
                         recSection.innerHTML = `
-                            <h2 class="section-title text-xl font-bold pb-2 mb-4">RECOMENDAÇÕES</h2>
+                            <h2 class="section-title text-xl font-bold pb-2 mb-4">${translations[currentLang]['recommendations']}</h2>
                             <div class="space-y-4">
                                 ${data.recommendations.map(rec => `
                                 <div class="bg-gray-50 p-4 rounded-lg">

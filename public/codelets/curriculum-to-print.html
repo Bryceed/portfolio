@@ -114,13 +114,16 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
-                </button>
-                <div id="language-dropdown" class="language-dropdown">
+                </button>                <div id="language-dropdown" class="language-dropdown">
                     <div class="language-option active" data-lang="pt-BR">Português (Brasil)</div>
-                    <div class="language-option" data-lang="pt-PT">Português (Portugal)</div>
+                    <div class="language-option" data-lang="pt">Português (Portugal)</div>
                     <div class="language-option" data-lang="en">English</div>
                     <div class="language-option" data-lang="es">Español</div>
                     <div class="language-option" data-lang="de">Deutsch</div>
+                    <div class="language-option" data-lang="fr">Français</div>
+                    <div class="language-option" data-lang="ja-JP">日本語</div>
+                    <div class="language-option" data-lang="ko">한국어</div>
+                    <div class="language-option" data-lang="ru">Русский</div>
                 </div>
             </div>
         </div>
@@ -384,7 +387,8 @@
                 </div>
             </div>
         </div>
-    </div>    <script>
+    </div>    
+    <script>
         // Inicializar com valores padrão para evitar erros
         let cvData = {
             personal_info: {},
@@ -395,29 +399,679 @@
             digital_skills: [],
             certifications: [],
             courses: [],
-            roles: []
+            roles: []        
         };
           // Função para carregar os dados do JSON
         async function loadCvData(lang = 'pt-BR') {
             try {
                 console.log(`Carregando dados do currículo para o idioma: ${lang}`);
-                const response = await fetch(`/data/cv/${lang}.json`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Tenta carregar dados específicos do idioma
+                try {
+                    const response = await fetch(`/data/cv/${lang}.json`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('Dados do currículo carregados com sucesso:', data);
+                        return data;
+                    }
+                } catch (specificError) {
+                    console.warn(`Arquivo específico para idioma ${lang} não encontrado, usando dados padrão com tradução`);
                 }
-                const data = await response.json();
-                console.log('Dados do currículo carregados com sucesso:', data);
-                return data;
+                
+                // Se não encontrou arquivo específico, usa os dados padrão e traduz o conteúdo
+                console.log('Usando dados padrão com tradução do conteúdo');
+                
+                // Obtem os dados padrão (em português)
+                const defaultData = getDefaultCVData();
+                
+                // Traduz os dados para o idioma selecionado
+                const translatedData = translateCVData(defaultData, lang);
+                return translatedData;
             } catch (error) {
-                console.error('Erro ao carregar CV:', error);
-                // Fallback para o CV pt-BR se houver erro
-                if (lang !== 'pt-BR') {
-                    console.log('Tentando fallback para pt-BR');
-                    return loadCvData('pt-BR');
+                console.error(`Erro ao carregar CV para idioma ${lang}:`, error);
+                
+                // Ordem de fallback para idiomas
+                const fallbackOrder = {
+                    'pt': 'pt-BR',
+                    'pt-BR': 'en',
+                    'en': 'pt-BR',
+                    'es': 'en',
+                    'de': 'en',
+                    'fr': 'en',
+                    'ja-JP': 'en',
+                    'ko': 'en',
+                    'ru': 'en'
+                };
+                
+                // Se existe um fallback para este idioma e não estamos em loop de fallback
+                if (fallbackOrder[lang]) {
+                    console.log(`Tentando fallback para ${fallbackOrder[lang]}`);
+                    return loadCvData(fallbackOrder[lang]);
+                } else {
+                    // Último recurso: fallback para inglês
+                    if (lang !== 'en') {
+                        console.log('Tentando fallback para inglês como último recurso');
+                        return loadCvData('en');
+                    }
+                    
+                    console.error('Não foi possível carregar os dados em nenhum idioma');
+                    return getDefaultCVData(); // Retornar dados padrão em último caso
                 }
-                return null;            }
+            }
         }
-            education: [
+        
+        // Função que retorna dados padrão do CV em português
+        function getDefaultCVData() {
+            return {
+                personal_info: {
+                    name: "João da Silva",
+                    email: "dev.wellnascimento@gmail.com",
+                    phone: "+55 (11) 94201-8873",
+                    address: "Cavalcanti, Rio de Janeiro/RJ",
+                    location: "Cavalcanti, Rio de Janeiro/RJ",
+                    age: "26 anos (10/05/1999)",
+                    nationality: "Brasileiro nato",
+                    linkedin: "https://linkedin.com/in/joao-silva"
+                },
+                objective: "Desenvolvedor Full Stack",
+                qualifications: {
+                    summary: "Profissional especializado em desenvolvimento web com sólidos conhecimentos em múltiplas linguagens e frameworks.",
+                    skills: [
+                        "Desenvolvimento front-end com HTML, CSS, JavaScript, React e Angular",
+                        "Desenvolvimento back-end com .NET, Node.js e PHP",
+                        "Banco de dados SQL e NoSQL",
+                        "Metodologias ágeis e controle de versão"
+                    ]
+                },
+                experience: [
+                    {
+                        company: "DevLand (by ESX)",
+                        period: "07/2022 - 03/2025",
+                        location: "São Paulo, SP, Brasil – Remoto",
+                        summary: "Atuação em consultoria, prestando serviços de desenvolvimento de software.",
+                        roles: [
+                            {
+                                title: "Desenvolvedor Back-end (.NET C# / Angular) – Grupo MAG",
+                                period: "05/2024-03/2025",
+                                technologies: [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]
+                            },
+                            {
+                                title: "Desenvolvedor VTEX IO – Grupo Reserva",
+                                period: "01/2023-05/2024",
+                                technologies: ["React", "Node.js", "VTEX IO", "SASS", "TypeScript", "GraphQL", "REST API", "VTEX Headless"]
+                            },
+                            {
+                                title: "Desenvolvedor Full Stack – Amaro",
+                                period: "07/2022-01/2023",
+                                technologies: ["PHP", "Magento", "Vue.js", "JavaScript", "CSS", "MySQL"]
+                            }
+                        ]
+                    }
+                ],
+                education: [
+                    {
+                        degree: "Análise e Desenvolvimento de Sistemas",
+                        institution: "Universidade Estácio de Sá",
+                        location: "Rio de Janeiro, Brasil",
+                        period: "2022 – Cursando",
+                        details: "Bacharelado em Tecnologia da Informação com foco em desenvolvimento de sistemas"
+                    }
+                ],
+                languages: [
+                    {
+                        name: "Português",
+                        level: "Nativo",
+                        percentage: 100
+                    },
+                    {
+                        name: "Inglês",
+                        level: "Avançado (C1)",
+                        percentage: 90
+                    },
+                    {
+                        name: "Espanhol",
+                        level: "Intermediário (B1)",
+                        percentage: 70
+                    }
+                ],
+                digital_skills: [
+                    {
+                        name: "JavaScript/TypeScript",
+                        percentage: 95
+                    },
+                    {
+                        name: "React",
+                        percentage: 90
+                    },
+                    {
+                        name: "Node.js",
+                        percentage: 85
+                    },
+                    {
+                        name: ".NET/C#",
+                        percentage: 80
+                    },
+                    {
+                        name: "SQL",
+                        percentage: 85
+                    },
+                    {
+                        name: "DevOps",
+                        percentage: 75
+                    }
+                ],
+                certifications: [
+                    {
+                        title: "Azure Fundamentals (AZ-900)",
+                        provider: "Microsoft",
+                        hours: "2023"
+                    },
+                    {
+                        title: "VTEX IO Developer",
+                        provider: "VTEX",
+                        hours: "2023"
+                    },
+                    {
+                        title: "JavaScript Professional",
+                        provider: "Udemy",
+                        hours: "2022"
+                    }
+                ],
+                courses: [
+                    {
+                        title: "Desenvolvimento Web Completo",
+                        provider: "Udemy",
+                        year: "2022"
+                    },
+                    {
+                        title: "React Avançado",
+                        provider: "Alura",
+                        year: "2023"
+                    },
+                    {
+                        title: "Arquitetura de Software",
+                        provider: "Pluralsight",
+                        year: "2024"
+                    }
+                ],
+                about: {
+                    education: "Graduando em Análise e Desenvolvimento de Sistemas, com foco em desenvolvimento web e aplicações empresariais.",
+                    languages: "Fluente em português e inglês, com capacidade de comunicação eficaz em contextos técnicos e de negócios."
+                },
+                recommendations: [
+                    {
+                        text: "João demonstrou excelentes habilidades técnicas e capacidade de resolver problemas complexos. Sua dedicação e proatividade foram fundamentais para o sucesso dos projetos em que trabalhou.",
+                        author: "Ana Silva",
+                        context: "Gerente de Projetos, DevLand"
+                    }
+                ],
+                final_thoughts: {
+                    last_updated: "Atualizado em Maio de 2024",
+                    text: "Busco constantemente aprimorar minhas habilidades e conhecimentos na área de desenvolvimento de software, com foco em criar soluções eficientes e escaláveis.",
+                    author: "João da Silva"
+                }
+            };
+        }
+        
+        // Função para traduzir os dados do CV para o idioma especificado
+        function translateCVData(data, lang) {
+            // Se o idioma for português, retorna os dados originais
+            if (lang === 'pt-BR' || lang === 'pt') {
+                return data;
+            }
+            
+            // Clone os dados para não modificar o original
+            const translatedData = JSON.parse(JSON.stringify(data));
+            
+            // Mapeamento de campos e suas traduções
+            const fieldTranslations = {
+                'en': {
+                    // Informações pessoais
+                    'location': 'Location',
+                    'age': data.personal_info.age.replace('anos', 'years').replace('/', '/'),
+                    'nationality': 'Brazilian',
+                    
+                    // Objetivo
+                    'objective': 'Full Stack Developer',
+                    
+                    // Qualificações
+                    'qualifications': {
+                        'summary': 'Professional specialized in web development with solid knowledge in multiple languages and frameworks.',
+                        'skills': [
+                            'Front-end development with HTML, CSS, JavaScript, React and Angular',
+                            'Back-end development with .NET, Node.js and PHP',
+                            'SQL and NoSQL databases',
+                            'Agile methodologies and version control'
+                        ]
+                    },
+                    
+                    // Experiência
+                    'experience': [
+                        {
+                            'summary': 'Working in consulting, providing software development services.',
+                            'roles': [
+                                {
+                                    'title': 'Backend Developer (.NET C# / Angular) – MAG Group',
+                                },
+                                {
+                                    'title': 'VTEX IO Developer – Reserva Group',
+                                },
+                                {
+                                    'title': 'Full Stack Developer – Amaro',
+                                }
+                            ]
+                        }
+                    ],
+                    
+                    // Educação
+                    'education': [
+                        {
+                            'degree': 'Systems Analysis and Development',
+                            'institution': 'Estácio de Sá University',
+                            'location': 'Rio de Janeiro, Brazil',
+                            'period': '2022 – Ongoing',
+                            'details': 'Bachelor\'s Degree in Information Technology focusing on systems development'
+                        }
+                    ],
+                    
+                    // Idiomas
+                    'languages': [
+                        {
+                            'name': 'Portuguese',
+                            'level': 'Native',
+                        },
+                        {
+                            'name': 'English',
+                            'level': 'Advanced (C1)',
+                        },
+                        {
+                            'name': 'Spanish',
+                            'level': 'Intermediate (B1)',
+                        }
+                    ],
+                    
+                    // Sobre
+                    'about': {
+                        'education': 'Graduating in Systems Analysis and Development, focusing on web development and enterprise applications.',
+                        'languages': 'Fluent in Portuguese and English, with ability to communicate effectively in technical and business contexts.'
+                    },
+                    
+                    // Recomendações
+                    'recommendations': [
+                        {
+                            'text': 'João demonstrated excellent technical skills and ability to solve complex problems. His dedication and proactivity were key to the success of the projects he worked on.',
+                            'author': 'Ana Silva',
+                            'context': 'Project Manager, DevLand'
+                        }
+                    ],
+                    
+                    // Pensamentos finais
+                    'final_thoughts': {
+                        'last_updated': 'Updated on May 2024',
+                        'text': 'I constantly seek to improve my skills and knowledge in software development, focusing on creating efficient and scalable solutions.',
+                        'author': 'João da Silva'
+                    }
+                },
+                'es': {
+                    'location': 'Ubicación',
+                    'age': data.personal_info.age.replace('anos', 'años').replace('/', '/'),
+                    'nationality': 'Brasileño',
+                    'objective': 'Desarrollador Full Stack',
+                    'qualifications': {
+                        'summary': 'Profesional especializado en desarrollo web con sólidos conocimientos en múltiples lenguajes y frameworks.',
+                        'skills': [
+                            'Desarrollo front-end con HTML, CSS, JavaScript, React y Angular',
+                            'Desarrollo back-end con .NET, Node.js y PHP',
+                            'Bases de datos SQL y NoSQL',
+                            'Metodologías ágiles y control de versiones'
+                        ]
+                    },
+                    'experience': [
+                        {
+                            'summary': 'Trabajo en consultoría, prestando servicios de desarrollo de software.',
+                            'roles': [
+                                {
+                                    'title': 'Desarrollador Backend (.NET C# / Angular) – Grupo MAG',
+                                },
+                                {
+                                    'title': 'Desarrollador VTEX IO – Grupo Reserva',
+                                },
+                                {
+                                    'title': 'Desarrollador Full Stack – Amaro',
+                                }
+                            ]
+                        }
+                    ],
+                    'education': [
+                        {
+                            'degree': 'Análisis y Desarrollo de Sistemas',
+                            'institution': 'Universidad Estácio de Sá',
+                            'location': 'Río de Janeiro, Brasil',
+                            'period': '2022 – En curso',
+                            'details': 'Licenciatura en Tecnologías de la Información con enfoque en desarrollo de sistemas'
+                        }
+                    ],
+                    'languages': [
+                        {
+                            'name': 'Portugués',
+                            'level': 'Nativo',
+                        },
+                        {
+                            'name': 'Inglés',
+                            'level': 'Avanzado (C1)',
+                        },
+                        {
+                            'name': 'Español',
+                            'level': 'Intermedio (B1)',
+                        }
+                    ],
+                    'about': {
+                        'education': 'Estudiando Análisis y Desarrollo de Sistemas, con enfoque en desarrollo web y aplicaciones empresariales.',
+                        'languages': 'Fluido en portugués e inglés, con capacidad de comunicación efectiva en contextos técnicos y de negocios.'
+                    }
+                },
+                'de': {
+                    'location': 'Standort',
+                    'age': '26 Jahre (10.05.1999)',
+                    'nationality': 'Gebürtiger Brasilianer',
+                    'objective': 'Full-Stack-Entwickler',
+                    'qualifications': {
+                        'summary': 'Fachmann für Webentwicklung mit fundierten Kenntnissen in mehreren Sprachen und Frameworks.',
+                        'skills': [
+                            'Front-End-Entwicklung mit HTML, CSS, JavaScript, React und Angular',
+                            'Back-End-Entwicklung mit .NET, Node.js und PHP',
+                            'SQL- und NoSQL-Datenbanken',
+                            'Agile Methoden und Versionskontrolle'
+                        ]
+                    },
+                    'experience': [
+                        {
+                            'summary': 'Tätigkeit in der Beratung, Erbringung von Softwareentwicklungsdienstleistungen.',
+                            'roles': [
+                                {
+                                    'title': 'Backend-Entwickler (.NET C# / Angular) – Grupo MAG',
+                                },
+                                {
+                                    'title': 'VTEX IO-Entwickler – Grupo Reserva',
+                                },
+                                {
+                                    'title': 'Full-Stack-Entwickler – Amaro',
+                                }
+                            ]
+                        }
+                    ],
+                    'education': [
+                        {
+                            'degree': 'Systemanalyse und -entwicklung',
+                            'institution': 'Universität Estácio de Sá',
+                            'location': 'Rio de Janeiro, Brasilien',
+                            'period': '2022 – Laufend',
+                            'details': 'Bachelor in Informationstechnologie mit Schwerpunkt Systementwicklung'
+                        }
+                    ],
+                    'languages': [
+                        {
+                            'name': 'Portugiesisch',
+                            'level': 'Muttersprache',
+                        },
+                        {
+                            'name': 'Englisch',
+                            'level': 'Fortgeschritten (C1)',
+                        },
+                        {
+                            'name': 'Spanisch',
+                            'level': 'Mittelstufe (B1)',
+                        }
+                    ],
+                    'about': {
+                        'education': 'Studium der Systemanalyse und -entwicklung mit Schwerpunkt auf Webentwicklung und Unternehmensanwendungen.',
+                        'languages': 'Fließend in Portugiesisch und Englisch, mit der Fähigkeit, in technischen und geschäftlichen Kontexten effektiv zu kommunizieren.'
+                    }
+                },
+                'fr': {
+                    'location': 'Emplacement',
+                    'age': '26 ans (10/05/1999)',
+                    'nationality': 'Brésilien',
+                    'objective': 'Développeur Full Stack',
+                    'experience': [
+                        {
+                            'summary': 'Travail de conseil, fournissant des services de développement de logiciels.',
+                            'roles': [
+                                {
+                                    'title': 'Développeur Backend (.NET C# / Angular) – Groupe MAG',
+                                },
+                                {
+                                    'title': 'Développeur VTEX IO – Groupe Reserva',
+                                },
+                                {
+                                    'title': 'Développeur Full Stack – Amaro',
+                                }
+                            ]
+                        }
+                    ],
+                    'education': [
+                        {
+                            'degree': 'Analyse et Développement de Systèmes',
+                            'institution': 'Université Estácio de Sá',
+                            'location': 'Rio de Janeiro, Brésil',
+                            'period': '2022 – En cours',
+                            'details': 'Licence en Technologie de l\'Information avec concentration sur le développement de systèmes'
+                        }
+                    ]
+                },
+                'ja-JP': {
+                    'location': '所在地',
+                    'age': '26歳 (1999/05/10)',
+                    'nationality': 'ブラジル人',
+                    'objective': 'フルスタック開発者',
+                    'experience': [
+                        {
+                            'summary': 'コンサルティング業務、ソフトウェア開発サービスの提供。',
+                            'roles': [
+                                {
+                                    'title': 'バックエンド開発者 (.NET C# / Angular) – MAGグループ',
+                                },
+                                {
+                                    'title': 'VTEX IO開発者 – Reservaグループ',
+                                },
+                                {
+                                    'title': 'フルスタック開発者 – Amaro',
+                                }
+                            ]
+                        }
+                    ]
+                },
+                'ko': {
+                    'location': '위치',
+                    'age': '26세 (1999/05/10)',
+                    'nationality': '브라질인',
+                    'objective': '풀스택 개발자',
+                    'experience': [
+                        {
+                            'summary': '컨설팅 작업, 소프트웨어 개발 서비스 제공.',
+                            'roles': [
+                                {
+                                    'title': '백엔드 개발자 (.NET C# / Angular) – MAG 그룹',
+                                },
+                                {
+                                    'title': 'VTEX IO 개발자 – Reserva 그룹',
+                                },
+                                {
+                                    'title': '풀스택 개발자 – Amaro',
+                                }
+                            ]
+                        }
+                    ]
+                },
+                'ru': {
+                    'location': 'Местоположение',
+                    'age': '26 лет (10.05.1999)',
+                    'nationality': 'Бразилец',
+                    'objective': 'Full Stack разработчик',
+                    'experience': [
+                        {
+                            'summary': 'Консультационная работа, предоставление услуг по разработке программного обеспечения.',
+                            'roles': [
+                                {
+                                    'title': 'Backend-разработчик (.NET C# / Angular) – Группа MAG',
+                                },
+                                {
+                                    'title': 'VTEX IO разработчик – Группа Reserva',
+                                },
+                                {
+                                    'title': 'Full Stack разработчик – Amaro',
+                                }
+                            ]
+                        }
+                    ]
+                }
+            };
+            
+            // Verifica se há traduções para o idioma selecionado
+            if (!fieldTranslations[lang]) {
+                console.warn(`Não há traduções específicas para o idioma ${lang}, usando inglês como fallback`);
+                lang = 'en'; // Fallback para inglês se o idioma não tiver traduções
+            }
+            
+            // Aplica as traduções específicas de idioma
+            const translations = fieldTranslations[lang];
+            
+            // Traduz informações pessoais
+            if (translations.location) {
+                translatedData.personal_info.location = translations.location;
+            }
+            if (translations.age) {
+                translatedData.personal_info.age = translations.age;
+            }
+            if (translations.nationality) {
+                translatedData.personal_info.nationality = translations.nationality;
+            }
+            
+            // Traduz objetivo
+            if (translations.objective) {
+                translatedData.objective = translations.objective;
+            }
+            
+            // Traduz qualificações
+            if (translations.qualifications) {
+                translatedData.qualifications.summary = translations.qualifications.summary;
+                if (translations.qualifications.skills) {
+                    translatedData.qualifications.skills = translations.qualifications.skills;
+                }
+            }
+            
+            // Traduz experiência
+            if (translations.experience) {
+                translations.experience.forEach((expTranslation, index) => {
+                    if (index < translatedData.experience.length) {
+                        if (expTranslation.summary) {
+                            translatedData.experience[index].summary = expTranslation.summary;
+                        }
+                        if (expTranslation.roles) {
+                            expTranslation.roles.forEach((roleTranslation, roleIndex) => {
+                                if (roleIndex < translatedData.experience[index].roles.length) {
+                                    if (roleTranslation.title) {
+                                        translatedData.experience[index].roles[roleIndex].title = roleTranslation.title;
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+            
+            // Traduz educação
+            if (translations.education) {
+                translations.education.forEach((eduTranslation, index) => {
+                    if (index < translatedData.education.length) {
+                        if (eduTranslation.degree) {
+                            translatedData.education[index].degree = eduTranslation.degree;
+                        }
+                        if (eduTranslation.institution) {
+                            translatedData.education[index].institution = eduTranslation.institution;
+                        }
+                        if (eduTranslation.location) {
+                            translatedData.education[index].location = eduTranslation.location;
+                        }
+                        if (eduTranslation.period) {
+                            translatedData.education[index].period = eduTranslation.period;
+                        }
+                        if (eduTranslation.details) {
+                            translatedData.education[index].details = eduTranslation.details;
+                        }
+                    }
+                });
+            }
+            
+            // Traduz idiomas
+            if (translations.languages) {
+                translations.languages.forEach((langTranslation, index) => {
+                    if (index < translatedData.languages.length) {
+                        if (langTranslation.name) {
+                            translatedData.languages[index].name = langTranslation.name;
+                        }
+                        if (langTranslation.level) {
+                            translatedData.languages[index].level = langTranslation.level;
+                        }
+                    }
+                });
+            }
+            
+            // Traduz sobre
+            if (translations.about) {
+                if (translations.about.education) {
+                    translatedData.about.education = translations.about.education;
+                }
+                if (translations.about.languages) {
+                    translatedData.about.languages = translations.about.languages;
+                }
+            }
+            
+            // Traduz recomendações
+            if (translations.recommendations) {
+                translations.recommendations.forEach((recTranslation, index) => {
+                    if (index < translatedData.recommendations.length) {
+                        if (recTranslation.text) {
+                            translatedData.recommendations[index].text = recTranslation.text;
+                        }
+                        if (recTranslation.author) {
+                            translatedData.recommendations[index].author = recTranslation.author;
+                        }
+                        if (recTranslation.context) {
+                            translatedData.recommendations[index].context = recTranslation.context;
+                        }
+                    }
+                });
+            }
+            
+            // Traduz pensamentos finais
+            if (translations.final_thoughts) {
+                if (translations.final_thoughts.last_updated) {
+                    translatedData.final_thoughts.last_updated = translations.final_thoughts.last_updated;
+                }
+                if (translations.final_thoughts.text) {
+                    translatedData.final_thoughts.text = translations.final_thoughts.text;
+                }
+            }
+            
+            console.log(`Dados traduzidos para ${lang}:`, translatedData);
+            return translatedData;
+        }
+        
+        // Função para atualizar o currículo com os dados carregados
+        function updateCv(cvData) {
+            if (!cvData) {
+                console.error('Nenhum dado de currículo disponível para atualizar.');
+                return;
+            }
+            // Atualizar informações pessoais
+            cvData.personal_info = {
+                name: "João da Silva",
+                email: "joao.silva@example.com",
+                phone: "+55 11 91234-5678",
+                address: "Rua Exemplo, 123 - São Paulo, SP"
+            };
+            // Atualizar formação acadêmica
+            cvData.education = [
                 {
                     degree: "Bacharel em Marketing",
                     institution: "Universidade de São Paulo",
@@ -433,7 +1087,7 @@
                     details: ""
                 }
             ],
-            languages: [
+            cvData.languages = [
                 {
                     name: "Português",
                     level: "Língua materna",
@@ -455,7 +1109,7 @@
                     percentage: 40
                 }
             ],
-            digital_skills: [
+            cvData.digital_skills = [
                 {
                     name: "Google Analytics",
                     percentage: 95
@@ -481,7 +1135,7 @@
                     percentage: 85
                 }
             ],
-            certifications: [
+            cvData.certifications = [
                 {
                     title: "Google Analytics Individual Qualification",
                     provider: "Google",
@@ -498,7 +1152,7 @@
                     year: "2018"
                 }
             ],
-            courses: [
+            cvData.courses = [
                 {
                     title: "Marketing de Conteúdo",
                     provider: "Escola de Marketing Digital",
@@ -574,7 +1228,7 @@
                 'course-3': 'Design Thinking - Workshop Presencial (2018)',
                 'european-union': 'União Europeia'
             },
-            'pt-PT': {
+            'pt': {
                 'print': 'Imprimir CV',
                 'cv-title': 'CURRICULUM VITAE',
                 'personal-info': 'INFORMAÇÕES PESSOAIS',
@@ -738,7 +1392,7 @@
                 'course-2': 'SEO Avanzado - Curso Online (2019)',
                 'course-3': 'Design Thinking - Taller Presencial (2018)',
                 'european-union': 'Unión Europea'
-            },
+            },            
             'de': {
                 'print': 'Lebenslauf drucken',
                 'cv-title': 'LEBENSLAUF',
@@ -793,6 +1447,226 @@
                 'course-2': 'Fortgeschrittenes SEO - Online-Kurs (2019)',
                 'course-3': 'Design Thinking - Präsenz-Workshop (2018)',
                 'european-union': 'Europäische Union'
+            },
+            'fr': {
+                'print': 'Imprimer CV',
+                'cv-title': 'CURRICULUM VITAE',
+                'personal-info': 'INFORMATIONS PERSONNELLES',
+                'birth-date': 'Date de naissance',
+                'nationality': 'Nationalité',
+                'nationality-value': 'Brésilienne',
+                'gender': 'Genre',
+                'gender-value': 'Féminin',
+                'job-position': 'POSTE VISÉ',
+                'objective-value': 'Analyste de Marketing Digital',
+                'work-experience': 'EXPÉRIENCE PROFESSIONNELLE',
+                'job-title-1': 'Analyste de Marketing Junior',
+                'present': 'Présent',
+                'company-1': 'Société ABC SARL',
+                'location-1': 'São Paulo, Brésil',
+                'responsibility-1-1': 'Gestion des campagnes de marketing digital',
+                'responsibility-1-2': 'Analyse des métriques et KPIs',
+                'responsibility-1-3': 'Création de contenu pour les réseaux sociaux',
+                'responsibility-1-4': 'Optimisation SEO pour le site web de l\'entreprise',
+                'job-title-2': 'Stagiaire en Marketing',
+                'company-2': 'Société XYZ SA',
+                'location-2': 'São Paulo, Brésil',
+                'responsibility-2-1': 'Soutien à la création de matériels promotionnels',
+                'responsibility-2-2': 'Assistance dans l\'organisation d\'événements corporatifs',
+                'responsibility-2-3': 'Surveillance des réseaux sociaux',
+                'responsibility-2-4': 'Études de marché et de la concurrence',
+                'education': 'ÉDUCATION ET FORMATION',
+                'degree-1': 'Licence en Marketing',
+                'university-1': 'Université de São Paulo',
+                'edu-location-1': 'São Paulo, Brésil',
+                'thesis': 'Mémoire',
+                'thesis-title': 'Stratégies de Marketing Digital pour les Petites Entreprises',
+                'degree-2': 'Baccalauréat',
+                'school-1': 'Lycée Modelo',
+                'edu-location-2': 'São Paulo, Brésil',
+                'personal-skills': 'COMPÉTENCES PERSONNELLES',
+                'languages': 'Langues',
+                'language-1': 'Portugais',
+                'native-language': 'Langue maternelle',
+                'language-2': 'Anglais',
+                'language-3': 'Espagnol',
+                'language-4': 'Français',
+                'digital-skills': 'Compétences Numériques',
+                'additional-info': 'INFORMATIONS SUPPLÉMENTAIRES',
+                'certifications': 'Certifications',
+                'certification-1': 'Google Analytics Individual Qualification (2020)',
+                'certification-2': 'Facebook Blueprint Certification (2019)',
+                'certification-3': 'HubSpot Inbound Marketing Certification (2018)',
+                'courses': 'Cours',
+                'course-1': 'Marketing de Contenu - École de Marketing Digital (2020)',
+                'course-2': 'SEO Avancé - Cours En Ligne (2019)',
+                'course-3': 'Design Thinking - Atelier Présentiel (2018)',
+                'european-union': 'Union Européenne'
+            },
+            'ja-JP': {
+                'print': '履歴書を印刷',
+                'cv-title': '履歴書',
+                'personal-info': '個人情報',
+                'birth-date': '生年月日',
+                'nationality': '国籍',
+                'nationality-value': 'ブラジル人',
+                'gender': '性別',
+                'gender-value': '女性',
+                'job-position': '応募職種',
+                'objective-value': 'デジタルマーケティングアナリスト',
+                'work-experience': '職務経験',
+                'job-title-1': 'ジュニアマーケティングアナリスト',
+                'present': '現在',
+                'company-1': 'ABC株式会社',
+                'location-1': 'サンパウロ、ブラジル',
+                'responsibility-1-1': 'デジタルマーケティングキャンペーンの管理',
+                'responsibility-1-2': '指標とKPIの分析',
+                'responsibility-1-3': 'ソーシャルメディア向けのコンテンツ作成',
+                'responsibility-1-4': '会社ウェブサイトのSEO最適化',
+                'job-title-2': 'マーケティングインターン',
+                'company-2': 'XYZ株式会社',
+                'location-2': 'サンパウロ、ブラジル',
+                'responsibility-2-1': 'プロモーション資料作成のサポート',
+                'responsibility-2-2': '企業イベント運営の支援',
+                'responsibility-2-3': 'ソーシャルメディアの監視',
+                'responsibility-2-4': '市場と競合調査',
+                'education': '学歴',
+                'degree-1': 'マーケティング学士',
+                'university-1': 'サンパウロ大学',
+                'edu-location-1': 'サンパウロ、ブラジル',
+                'thesis': '卒業論文',
+                'thesis-title': '中小企業向けデジタルマーケティング戦略',
+                'degree-2': '高等学校卒業',
+                'school-1': 'モデロ高校',
+                'edu-location-2': 'サンパウロ、ブラジル',
+                'personal-skills': '個人的なスキル',
+                'languages': '言語',
+                'language-1': 'ポルトガル語',
+                'native-language': '母国語',
+                'language-2': '英語',
+                'language-3': 'スペイン語',
+                'language-4': 'フランス語',
+                'digital-skills': 'デジタルスキル',
+                'additional-info': '追加情報',
+                'certifications': '資格',
+                'certification-1': 'Google Analytics Individual Qualification (2020)',
+                'certification-2': 'Facebook Blueprint Certification (2019)',
+                'certification-3': 'HubSpot Inbound Marketing Certification (2018)',
+                'courses': 'コース',
+                'course-1': 'コンテンツマーケティング - デジタルマーケティングスクール (2020)',
+                'course-2': '上級SEO - オンラインコース (2019)',
+                'course-3': 'デザイン思考 - 対面ワークショップ (2018)',
+                'european-union': '欧州連合'
+            },
+            'ko': {
+                'print': '이력서 인쇄',
+                'cv-title': '이력서',
+                'personal-info': '개인 정보',
+                'birth-date': '생년월일',
+                'nationality': '국적',
+                'nationality-value': '브라질인',
+                'gender': '성별',
+                'gender-value': '여성',
+                'job-position': '지원 직무',
+                'objective-value': '디지털 마케팅 분석가',
+                'work-experience': '경력',
+                'job-title-1': '주니어 마케팅 분석가',
+                'present': '현재',
+                'company-1': 'ABC 회사',
+                'location-1': '상파울루, 브라질',
+                'responsibility-1-1': '디지털 마케팅 캠페인 관리',
+                'responsibility-1-2': '지표 및 KPI 분석',
+                'responsibility-1-3': '소셜 미디어용 콘텐츠 제작',
+                'responsibility-1-4': '회사 웹사이트의 SEO 최적화',
+                'job-title-2': '마케팅 인턴',
+                'company-2': 'XYZ 회사',
+                'location-2': '상파울루, 브라질',
+                'responsibility-2-1': '홍보 자료 제작 지원',
+                'responsibility-2-2': '기업 행사 조직 지원',
+                'responsibility-2-3': '소셜 미디어 모니터링',
+                'responsibility-2-4': '시장 및 경쟁사 조사',
+                'education': '교육 및 훈련',
+                'degree-1': '마케팅 학사',
+                'university-1': '상파울루 대학교',
+                'edu-location-1': '상파울루, 브라질',
+                'thesis': '졸업 논문',
+                'thesis-title': '중소기업을 위한 디지털 마케팅 전략',
+                'degree-2': '고등학교 졸업',
+                'school-1': '모델로 고등학교',
+                'edu-location-2': '상파울루, 브라질',
+                'personal-skills': '개인 역량',
+                'languages': '언어',
+                'language-1': '포르투갈어',
+                'native-language': '모국어',
+                'language-2': '영어',
+                'language-3': '스페인어',
+                'language-4': '프랑스어',
+                'digital-skills': '디지털 기술',
+                'additional-info': '추가 정보',
+                'certifications': '자격증',
+                'certification-1': 'Google Analytics Individual Qualification (2020)',
+                'certification-2': 'Facebook Blueprint Certification (2019)',
+                'certification-3': 'HubSpot Inbound Marketing Certification (2018)',
+                'courses': '교육 과정',
+                'course-1': '콘텐츠 마케팅 - 디지털 마케팅 학교 (2020)',
+                'course-2': '고급 SEO - 온라인 과정 (2019)',
+                'course-3': '디자인 씽킹 - 대면 워크샵 (2018)',
+                'european-union': '유럽 연합'
+            },
+            'ru': {
+                'print': 'Печать резюме',
+                'cv-title': 'РЕЗЮМЕ',
+                'personal-info': 'ЛИЧНАЯ ИНФОРМАЦИЯ',
+                'birth-date': 'Дата рождения',
+                'nationality': 'Национальность',
+                'nationality-value': 'Бразильская',
+                'gender': 'Пол',
+                'gender-value': 'Женский',
+                'job-position': 'ДОЛЖНОСТЬ',
+                'objective-value': 'Аналитик цифрового маркетинга',
+                'work-experience': 'ОПЫТ РАБОТЫ',
+                'job-title-1': 'Младший маркетинговый аналитик',
+                'present': 'Настоящее время',
+                'company-1': 'Компания ABC Ltd.',
+                'location-1': 'Сан-Паулу, Бразилия',
+                'responsibility-1-1': 'Управление кампаниями цифрового маркетинга',
+                'responsibility-1-2': 'Анализ показателей и KPI',
+                'responsibility-1-3': 'Создание контента для социальных сетей',
+                'responsibility-1-4': 'SEO-оптимизация веб-сайта компании',
+                'job-title-2': 'Стажер по маркетингу',
+                'company-2': 'Компания XYZ Inc.',
+                'location-2': 'Сан-Паулу, Бразилия',
+                'responsibility-2-1': 'Поддержка в создании рекламных материалов',
+                'responsibility-2-2': 'Помощь в организации корпоративных мероприятий',
+                'responsibility-2-3': 'Мониторинг социальных сетей',
+                'responsibility-2-4': 'Исследование рынка и конкурентов',
+                'education': 'ОБРАЗОВАНИЕ',
+                'degree-1': 'Степень бакалавра в области маркетинга',
+                'university-1': 'Университет Сан-Паулу',
+                'edu-location-1': 'Сан-Паулу, Бразилия',
+                'thesis': 'Дипломная работа',
+                'thesis-title': 'Стратегии цифрового маркетинга для малого бизнеса',
+                'degree-2': 'Среднее образование',
+                'school-1': 'Школа Модело',
+                'edu-location-2': 'Сан-Паулу, Бразилия',
+                'personal-skills': 'ЛИЧНЫЕ НАВЫКИ',
+                'languages': 'Языки',
+                'language-1': 'Португальский',
+                'native-language': 'Родной язык',
+                'language-2': 'Английский',
+                'language-3': 'Испанский',
+                'language-4': 'Французский',
+                'digital-skills': 'Цифровые навыки',
+                'additional-info': 'ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ',
+                'certifications': 'Сертификаты',
+                'certification-1': 'Google Analytics Individual Qualification (2020)',
+                'certification-2': 'Facebook Blueprint Certification (2019)',
+                'certification-3': 'HubSpot Inbound Marketing Certification (2018)',
+                'courses': 'Курсы',
+                'course-1': 'Контент-маркетинг - Школа цифрового маркетинга (2020)',
+                'course-2': 'Продвинутый SEO - Онлайн курс (2019)',
+                'course-3': 'Дизайн-мышление - Очный воркшоп (2018)',
+                'european-union': 'Европейский союз'
             }
         };        document.addEventListener('DOMContentLoaded', async function() {
             // Pegar a língua a partir da URL se disponível (formato ?lang=pt-BR)
@@ -801,9 +1675,8 @@
             
             // Inicializar com pt-BR ou o idioma da URL
             const initialLang = langParam || 'pt-BR';
-            
-            // Popular a seleção de idiomas
-            const availableLangs = ['pt-BR', 'pt-PT', 'en', 'es', 'fr', 'de', 'ja-JP', 'ko', 'ru']; 
+              // Popular a seleção de idiomas
+            const availableLangs = ['pt-BR', 'pt', 'en', 'es', 'de', 'fr', 'ja-JP', 'ko', 'ru']; 
             const languageButton = document.getElementById('language-button');
             const languageDropdown = document.getElementById('language-dropdown');
             
@@ -815,62 +1688,143 @@
                 </svg>
             `;
             
-            // Criar o dropdown de idiomas
-            availableLangs.forEach(lang => {
+            // Criar o dropdown de idiomas            availableLangs.forEach(lang => {
                 const option = document.createElement('div');
                 option.className = 'language-option';
                 option.setAttribute('data-lang', lang);
-                option.textContent = lang;
+                option.textContent = getLanguageDisplay(lang);
                 if (lang === initialLang) option.classList.add('active');
-                
-                option.addEventListener('click', async function() {
+                  option.addEventListener('click', async function() {
                     const lang = this.getAttribute('data-lang');
+                    
+                    console.log(`Idioma selecionado: ${lang}`);
                     
                     // Atualiza a URL para refletir o idioma selecionado
                     const url = new URL(window.location);
                     url.searchParams.set('lang', lang);
                     window.history.pushState({}, '', url);
-                    
-                    // Carregar o CV deste idioma
+                    console.log(`URL atualizada: ${url.toString()}`);
+                      // Carregar o CV deste idioma
+                    console.log(`Solicitando dados do CV para idioma: ${lang}`);
                     const data = await loadCvData(lang);
                     if (data) {
+                        console.log(`Dados do CV recebidos com sucesso para ${lang}`);
                         cvData = data;
-                        populateCV(data);
+                        populateCV(data, lang);
+                    } else {
+                        console.error(`Não foi possível carregar os dados do CV para ${lang}`);
                     }
                     
-                    // Update active class
+                    // Atualiza a classe ativa
                     const options = document.querySelectorAll('.language-option');
                     options.forEach(opt => opt.classList.remove('active'));
                     this.classList.add('active');
+                    console.log(`Classe ativa atualizada para o idioma ${lang}`);
                     
-                    // Update current language display
-                    document.getElementById('current-language').textContent = this.textContent;
-                    
-                    // Apply translations
+                    // Aplica as traduções
                     applyTranslations(lang);
                     
-                    // Close dropdown
+                    // Fecha o dropdown
                     languageDropdown.classList.remove('show');
+                    console.log(`Dropdown de idioma fechado`);
                 });
-            });
-              // Function to apply translations
+            });            // Function to apply translations
             function applyTranslations(lang) {
+                console.log(`Aplicando traduções para o idioma: ${lang}`);
+                
+                // Verificar se o idioma existe no objeto de traduções
+                if (!translations[lang]) {
+                    console.warn(`O idioma ${lang} não foi encontrado no objeto de traduções. Usando fallback para inglês.`);
+                    lang = 'en';
+                }
+                
                 const elements = document.querySelectorAll('[data-i18n]');
+                console.log(`Total de elementos a traduzir: ${elements.length}`);
+                
+                let traduzidos = 0;
+                let naoTraduzidos = 0;
                 
                 elements.forEach(element => {
                     const key = element.getAttribute('data-i18n');
+                    
                     if (translations[lang] && translations[lang][key]) {
                         element.textContent = translations[lang][key];
+                        traduzidos++;
+                    } else {
+                        console.warn(`Chave de tradução não encontrada: ${key} para o idioma ${lang}`);
+                        naoTraduzidos++;
+                        
+                        // Tenta aplicar a tradução em inglês como fallback
+                        if (lang !== 'en' && translations['en'] && translations['en'][key]) {
+                            element.textContent = translations['en'][key];
+                            console.log(`Aplicado fallback em inglês para a chave: ${key}`);
+                        }
                     }
                 });
                 
-                // Update document language
+                console.log(`Tradução concluída: ${traduzidos} elementos traduzidos, ${naoTraduzidos} não encontrados.`);
+                
+                // Atualiza o idioma do documento
                 document.documentElement.lang = lang;
+                console.log(`Idioma do documento atualizado para: ${lang}`);
+                
+                // Atualiza o texto do botão de idioma atual
+                document.getElementById('current-language').textContent = getLanguageDisplay(lang);
+            }            // Função auxiliar para obter o nome de exibição do idioma
+            function getLanguageDisplay(langCode) {
+                const displayNames = {
+                    'pt-BR': 'Português (Brasil)',
+                    'pt': 'Português (Portugal)',
+                    'en': 'English',
+                    'es': 'Español',
+                    'de': 'Deutsch',
+                    'fr': 'Français',
+                    'ja-JP': '日本語',
+                    'ko': '한국어',
+                    'ru': 'Русский'
+                };
+                
+                return displayNames[langCode] || langCode;
             }
             
-            // Function to populate the CV with data from our JSON format
-            function populateCV(data) {
+            // Função para verificar se todas as chaves de tradução estão presentes em todos os idiomas            function verificarTraducoes() {
+                console.log('Verificando completude das traduções...');
+                
+                // Primeiro encontre todas as chaves usadas em todos os idiomas
+                const todasAsChaves = new Set();
+                
+                for (const lang in translations) {
+                    for (const key in translations[lang]) {
+                        todasAsChaves.add(key);
+                    }
+                }
+                
+                console.log(`Total de ${todasAsChaves.size} chaves de tradução encontradas`);
+                
+                // Agora verifique cada idioma para ver se tem todas as chaves
+                for (const lang in translations) {
+                    const chavesFaltantes = [];
+                    
+                    todasAsChaves.forEach(key => {
+                        if (!translations[lang][key]) {
+                            chavesFaltantes.push(key);
+                        }
+                    });
+                    
+                    if (chavesFaltantes.length > 0) {
+                        console.warn(`Idioma ${lang} está faltando ${chavesFaltantes.length} traduções:`);
+                        console.warn(chavesFaltantes.join(', '));
+                    } else {
+                        console.log(`Idioma ${lang}: todas as ${todasAsChaves.size} chaves estão traduzidas!`);
+                    }
+                }
+              // Function to populate the CV with data from our JSON format
+            function populateCV(data, currentLang = 'pt-BR') {
+                console.log(`Populando CV com dados para idioma: ${currentLang}`);
+                // Garantir que temos dados traduzidos para o idioma atual
+                const translatedData = (currentLang === 'pt-BR' || currentLang === 'pt') ? data : translateCVData(data, currentLang);
                 if (!data) return;
+                  if (!data) return;
                 
                 // Header / Personal Info
                 const header = document.querySelector('.europass-header');
@@ -883,42 +1837,39 @@
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <img src="${data.personal_info.photo_url || '/avatar.jpg'}" alt="${data.personal_info.name}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
+                        <img src="https://avatars.githubusercontent.com/u/42657376?v=4'}" alt="${data.personal_info.name}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
                     </div>
                 `;
-                
-                // Personal info section
+                  // Personal info section
                 const personalInfoSection = document.querySelector('.p-6 .grid');
                 personalInfoSection.innerHTML = `
                     <div>
                         <p class="mb-2"><strong>Email:</strong> <a href="mailto:${data.personal_info.email}" class="text-blue-600 hover:underline">${data.personal_info.email}</a></p>
-                        <p class="mb-2"><strong>Telefone:</strong> <a href="tel:${data.personal_info.phone}" class="text-blue-600 hover:underline">${data.personal_info.phone}</a></p>
-                        <p class="mb-2"><strong>LinkedIn:</strong> <a href="${data.personal_info.linkedin}" target="_blank" class="text-blue-600 hover:underline">Perfil LinkedIn</a></p>
+                        <p class="mb-2"><strong><span data-i18n="phone">Telefone</span>:</strong> <a href="tel:${data.personal_info.phone}" class="text-blue-600 hover:underline">${data.personal_info.phone}</a></p>
+                        <p class="mb-2"><strong>LinkedIn:</strong> <a href="${data.personal_info.linkedin}" target="_blank" class="text-blue-600 hover:underline"><span data-i18n="linkedin-profile">Perfil LinkedIn</span></a></p>
                     </div>
                     <div>
-                        <p class="mb-2"><strong>Localização:</strong> ${data.personal_info.location}</p>
-                        <p class="mb-2"><strong>Idade/Data de Nasc.:</strong> ${data.personal_info.age}</p>
-                        <p class="mb-2"><strong>Nacionalidade:</strong> ${data.personal_info.nationality}</p>
+                        <p class="mb-2"><strong><span data-i18n="location-label">Localização</span>:</strong> ${data.personal_info.location}</p>
+                        <p class="mb-2"><strong><span data-i18n="age-label">Idade/Data de Nasc.</span>:</strong> ${data.personal_info.age}</p>
+                        <p class="mb-2"><strong><span data-i18n="nationality-label">Nacionalidade</span>:</strong> ${data.personal_info.nationality}</p>
                     </div>
                 `;
-                
-                // Qualificações
+                  // Qualificações
                 const objective = document.querySelector('.mt-6:nth-child(2)');
                 if (objective && data.qualifications) {
                     objective.innerHTML = `
-                        <h2 class="section-title text-xl font-bold pb-2 mb-4">QUALIFICAÇÕES</h2>
+                        <h2 class="section-title text-xl font-bold pb-2 mb-4" data-i18n="qualifications">QUALIFICAÇÕES</h2>
                         <p class="mb-2">${data.qualifications.summary}</p>
                         <ul class="list-disc ml-5 mt-2 text-sm">
                             ${data.qualifications.skills ? data.qualifications.skills.map(skill => `<li>${skill}</li>`).join('') : ''}
                         </ul>
                     `;
                 }
-                
-                // Experiência Profissional
+                      // Experiência Profissional
                 const experienceSection = document.querySelector('.mt-6:nth-child(3)');
                 if (experienceSection && data.experience) {
                     let experienceHTML = `
-                        <h2 class="section-title text-xl font-bold pb-2 mb-4">EXPERIÊNCIA PROFISSIONAL</h2>
+                        <h2 class="section-title text-xl font-bold pb-2 mb-4" data-i18n="work-experience">EXPERIÊNCIA PROFISSIONAL</h2>
                         <div class="ml-6 relative" id="experience-container">`;
                     
                     data.experience.forEach(exp => {
@@ -1001,19 +1952,37 @@
                         <p class="text-center font-semibold text-xs mt-1">${data.final_thoughts.author}</p>
                     `;
                 }
-            }
+            }            // Verifica a completude de todas as traduções
+            verificarTraducoes();
             
-            // Carregar os dados do CV para o idioma inicial
-            loadCvData(initialLang).then(data => {
-                if (data) {
-                    cvData = data;
-                    populateCV(data);
-                    
-                    // Aplicar traduções iniciais após carregar os dados
-                    applyTranslations(initialLang);
+            // Configurar toggle do dropdown de idiomas
+            languageButton.addEventListener('click', function() {
+                languageDropdown.classList.toggle('show');
+            });
+            
+            // Fechar dropdown ao clicar fora
+            document.addEventListener('click', function(event) {
+                if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+                    languageDropdown.classList.remove('show');
                 }
             });
-        });
+            
+            // Carregar os dados do CV para o idioma inicial
+            console.log(`Iniciando carregamento inicial dos dados para o idioma: ${initialLang}`);            loadCvData(initialLang).then(data => {
+                if (data) {
+                    console.log(`Dados iniciais carregados com sucesso para ${initialLang}`);
+                    cvData = data;
+                    populateCV(data, initialLang);
+                    
+                    // Aplicar traduções iniciais após carregar os dados
+                    console.log(`Aplicando traduções iniciais para ${initialLang}`);
+                    applyTranslations(initialLang);
+                } else {
+                    console.error(`Falha ao carregar dados iniciais para ${initialLang}`);
+                }
+            }).catch(error => {
+                console.error(`Erro ao carregar dados iniciais: ${error.message}`);
+            });
     </script>
 </body>
 </html>
