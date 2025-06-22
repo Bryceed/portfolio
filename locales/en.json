@@ -21,7 +21,13 @@
       "viewMore": "View More",
       "view": "View",
       "details": "Details",
-      "visit": "Visit"
+      "visit": "Visit",
+      "actions[2]": {
+        "label": "About me"
+      },
+      "actions[1]": {
+        "label": "Contact"
+      }
     },
     "contact": {
       "cv": {

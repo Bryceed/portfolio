@@ -46,7 +46,10 @@
         "label": "Contact"
       },
       "skillsTitle": "Compétences",
-      "skillsClickInfo": "Cliquez sur une compétence pour voir plus de détails"
+      "skillsClickInfo": "Cliquez sur une compétence pour voir plus de détails",
+      "actions[2]": {
+        "label": "Sur moi"
+      }
     },
     "about": {
       "description": "En savoir plus sur ma carrière professionnelle, mes compétences et ma personnalité.",

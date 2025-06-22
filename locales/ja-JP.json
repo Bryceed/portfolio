@@ -17,6 +17,19 @@
       "buttons": {
         "downloadCV": "履歴書をダウンロードします"
       }
+    },
+    "home": {
+      "greetings": "こんにちは！私は<span> {name} </span>です",
+      "description[0]": "私は{年}年を過ごしており、現在は<span> {courdoce} </span> <span> Brazil </span>に行動しています。",
+      "description[1]": "私の主なスキルは、<span> {profession1} </span>および<span> {profession2} </span>です。",
+      "description[2]": "現在、<span> {Business} </span>で働いている、{時間}があります。",
+      "description[3]": "<b>あなたのプロジェクトを紙から取り出しましょうか？ </b>",
+      "actions[2]": {
+        "label": "私について"
+      },
+      "actions[1]": {
+        "label": "接触"
+      }
     }
   }
 }

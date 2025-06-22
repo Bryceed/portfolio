@@ -46,7 +46,10 @@
         "label": "연락하다"
       },
       "skillsTitle": "기술",
-      "skillsClickInfo": "자세한 내용을 보려면 기술을 클릭하십시오"
+      "skillsClickInfo": "자세한 내용을 보려면 기술을 클릭하십시오",
+      "actions[2]": {
+        "label": "나에 대해"
+      }
     },
     "about": {
       "description": "저의 전문 경력, 기술 및 성격에 대해 자세히 알아보십시오.",

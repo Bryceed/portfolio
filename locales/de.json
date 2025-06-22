@@ -83,7 +83,10 @@
         "label": "Kontakt"
       },
       "skillsTitle": "Fähigkeiten",
-      "skillsClickInfo": "Klicken Sie auf eine Fähigkeit, um weitere Details anzuzeigen"
+      "skillsClickInfo": "Klicken Sie auf eine Fähigkeit, um weitere Details anzuzeigen",
+      "actions[2]": {
+        "label": "Über mich"
+      }
     },
     "about": {
       "description": "Erfahren Sie mehr über meine berufliche Laufbahn, meine Fähigkeiten und meine Persönlichkeit.",

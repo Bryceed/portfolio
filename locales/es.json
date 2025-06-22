@@ -46,7 +46,10 @@
         "label": "Contacto"
       },
       "skillsTitle": "Habilidades",
-      "skillsClickInfo": "Haga clic en una habilidad para ver más detalles"
+      "skillsClickInfo": "Haga clic en una habilidad para ver más detalles",
+      "actions[2]": {
+        "label": "Acerca de mí"
+      }
     },
     "about": {
       "description": "Obtenga más información sobre mi carrera profesional, habilidades y personalidad.",
