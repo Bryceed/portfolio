@@ -42,13 +42,23 @@
         "traditionalDescription": "Wählen Sie die PDF -Sprache zum Download",
         "popup": {
           "description": "Bei der Auswahl der Sprache werden Sie zum Anzeigen und Herunterladen der Datei umgeleitet."
-        }
+        },
+        "title": "Lehrplan",
+        "description": "Laden Sie meinen aktualisierten Lebenslauf herunter"
       },
       "form": {
         "submitting": "Vorbereitung der Form..."
       },
       "phone": {
         "description": "(WhatsApp, Anrufe und SMS)"
+      },
+      "title": "Kontakt",
+      "description": "Kontaktieren Sie mich, um über Ihr Projekt oder Ihre Arbeitsmöglichkeit zu sprechen.",
+      "social": {
+        "title": "Social Media"
+      },
+      "buttons": {
+        "downloadCV": "CV herunterladen"
       }
     },
     "blog": {

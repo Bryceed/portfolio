@@ -30,7 +30,21 @@
         "popup": {
           "description": "When selecting the language, you will be redirected to view and download the file."
         },
-        "europass": "European"
+        "europass": "European",
+        "title": "Curriculum",
+        "traditional": "Traditional",
+        "description": "Download my updated CV"
+      },
+      "title": "Contact",
+      "description": "Contact me to talk about your project or job opportunity.",
+      "phone": {
+        "description": "(WhatsApp, calls and SMS)"
+      },
+      "social": {
+        "title": "Social media"
+      },
+      "buttons": {
+        "downloadCV": "Download cv"
       }
     },
     "blog": {

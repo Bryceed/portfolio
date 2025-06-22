@@ -7,7 +7,21 @@
         "popup": {
           "description": "Al seleccionar el idioma, será redirigido para ver y descargar el archivo."
         },
-        "europass": "europeo"
+        "europass": "europeo",
+        "title": "Plan de estudios",
+        "traditional": "Tradicional",
+        "description": "Descargar mi CV actualizado"
+      },
+      "title": "Contacto",
+      "description": "Contácteme para hablar sobre su proyecto o oportunidad de trabajo.",
+      "phone": {
+        "description": "(WhatsApp, llamadas y SMS)"
+      },
+      "social": {
+        "title": "Redes sociales"
+      },
+      "buttons": {
+        "downloadCV": "Descargar CV"
       }
     },
     "blog": {

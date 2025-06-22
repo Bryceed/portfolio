@@ -7,7 +7,21 @@
         "popup": {
           "description": "언어를 선택할 때 파일을보고 다운로드하도록 리디렉션됩니다."
         },
-        "europass": "유럽 ​​사람"
+        "europass": "유럽 ​​사람",
+        "title": "과정",
+        "traditional": "전통적인",
+        "description": "업데이트 된 이력서를 다운로드하십시오"
+      },
+      "title": "연락하다",
+      "description": "프로젝트 나 직업 기회에 대해 이야기하려면 저에게 연락하십시오.",
+      "phone": {
+        "description": "(WhatsApp, Call 및 SMS)"
+      },
+      "social": {
+        "title": "소셜 미디어"
+      },
+      "buttons": {
+        "downloadCV": "CV 다운로드"
       }
     },
     "blog": {
