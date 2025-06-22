@@ -48,8 +48,7 @@
 </template>
 
 <script>
-import cvData from '@/data/cv/index.json';
-
+// Remover import estático e usar fetch
 export default {
   name: 'CvPopup',
   props: {
@@ -62,24 +61,36 @@ export default {
       type: String,
       default: 'pt-BR'
     }
-  },  data() {
+  },
+  data() {
     return {
-      traditionalCvs: cvData.traditional || {},
-      europassLangs: cvData.europass || [],
-      selectedLang: this.currentLang
+      traditionalCvs: {},
+      europassLangs: [],
+      selectedLang: this.currentLang,
+      loading: true
     };
-  },  methods: {
+  },
+  async mounted() {
+    try {
+      const res = await fetch('/files/cv/index.json');
+      const cvData = await res.json();
+      this.traditionalCvs = cvData.traditional || {};
+      this.europassLangs = cvData.europass || [];
+    } finally {
+      this.loading = false;
+    }
+  },
+  methods: {
     openCv(lang, type) {
       if (type === 'traditional') {
-        // Para o currículo tradicional, abrir o PDF correspondente
         const url = this.traditionalCvs[lang];
         if (url) {
           window.open(url, '_blank');
           this.$emit('close');
-        }      } else {
+        }
+      } else {
         // Para o Europass, abrir o curriculum-clean.html com o idioma especificado
-        const url = `/codelets/curriculum-clean.html?lang=${lang}`;
-        console.log(`Abrindo currículo Europass em ${url}`);
+        const url = `/files/cv/${lang}.json`;
         window.open(url, '_blank');
         this.$emit('close');
       }

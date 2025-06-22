@@ -1,0 +1,76 @@
+{
+    "personal_info": {
+        "name": "Wellington do Nascimento",
+        "photo_url": "https://avatars.githubusercontent.com/u/42657376?v=4",
+        "linkedin_qr_code_url": "Das PDF enthält einen QR-Code, der wahrscheinlich zum LinkedIn-Profil führt.",
+        "linkedin": "https://linkedin.com/in/wellington-do-nascimento",
+        "website": "https://wellnas.dev",
+        "phone": "+55 (11) 94201-8873",
+        "email": "dev.wellnascimento@gmail.com",
+        "age": "26 Jahre (10.05.1999)",
+        "nationality": "Gebürtiger Brasilianer",
+        "location": "Cavalcanti, Rio de Janeiro/RJ"
+    },
+    "objective": "ENTWICKLER IM IT-BEREICH",
+    "roles": [
+        "FULL STACK ENTWICKLER",
+        "FRONT-END",
+        "BACK-END",
+        "MOBILE"
+    ],
+    "stack": [
+        "NODE",
+        "JAVASCRIPT",
+        "REACT",
+        "NEXT.JS",
+        "VUE",
+        "C#",
+        ".NET CORE",
+        "JAVA"
+    ],
+    "qualifications": {
+        "summary": "Mehr als 12 Jahre Berufserfahrung im Full-Stack-Entwicklungsbereich, in den Bereichen User Experience, Projektmanagement, Design, Prototyping, Datenbanken und Backend-Programmierung.",
+        "skills": [
+            "Schnelle Auffassungsgabe, autodidaktisch, proaktiv, aufgeschlossen, wertorientierte Ergebnisse und gewaltfreie Kommunikation.",
+            "Fundierte Kenntnisse und Erfahrung mit Node.js, React, Next.js und CSS/SASS.",
+            "Umfassende Kenntnisse in Webentwicklung, mobilen Apps, Benutzererfahrung und responsivem Design.",
+            "Umfangreiche Erfahrung und Fähigkeiten in Frontend- und Backend-Entwicklung."
+        ]
+    },
+    "about": {
+        "education": "Ausbildung: Hochschulabschluss – Computer Engineering (vorauss. 2027/Q2)",
+        "languages": "Portugiesisch, Englisch (C1), Spanisch (B1), Italienisch (A1) und Japanisch (A2)",
+        "development_areas": "Websites, responsives Design, Datenbanken, Server, Infrastruktur, Cloud, VM, Automatisierung, Mobile, UI/UX..."
+    },
+    "certifications": [
+        {"title": "Full Stack Entwickler","provider": "RECODE Pro","hours": "540h"},
+        {"title": "Computerarchitektur","provider": "Descomplica","hours": "160h"},
+        {"title": "Frontend Karrierepfad","provider": "Scrimba","hours": "72h"},
+        {"title": "The A.I. Career Path","provider": "Scrimba","hours": "72h"},
+        {"title": "Dart & Flutter","provider": "Alura","hours": "48h"},
+        {"title": "Unity 3D Spiele","provider": "Udemy","hours": "128h"},
+        {"title": "jQuery","provider": "Alura","hours": "10h"},
+        {"title": "The Full Stack Path","provider": "curso.dev","hours": "00"},
+        {"title": "UX Strategien","provider": "Alura","hours": "8h"},
+        {"title": "UX Grundlagen","provider": "Alura","hours": "32h"},
+        {"title": "React & TypeScript","provider": "Alura","hours": "12h"},
+        {"title": "Compliance und Risiken","provider": "MAG Group","hours": "12h"},
+        {"title": "IT-Sicherheit","provider": "Alura","hours": "12h"},
+        {"title": "LGPD Gesetz (DSGVO)","provider": "Bradesco","hours": "2h"},
+        {"title": "Marketing Management","provider": "SEST SENAT","hours": "30h"}
+    ],
+    "experience": [
+        {"company": "DevLand (by ESX)","period": "07/2022 - 03/2025","location": "São Paulo, SP, Brasilien – Remote","summary": "Tätigkeit in der Beratung, Erbringung von Softwareentwicklungsdienstleistungen.","roles": [{"title": "Backend-Entwickler (.NET C# / Angular) – Grupo MAG","period": "05/2024-03/2025","details": "Bericht an die Teamleitung beim Kunden und an den technischen Leiter in der Beratung. Verantwortlich für die Entwicklung von APIs zur Kommunikation mit der Kundendatenbank, Entwicklung von Schnittstellen für die Nutzung dieser Daten in einem integrierten Entwicklungsteam (ein einziges Team) mit ca. 10 Mitgliedern, tägliche Zeremonien nach der agilen SCRUM-Methode, proaktive Problemlösung, Ideenfindung, Teilnahme, Implementierung neuer Funktionen, Prozessautomatisierung, autodidaktisches Lernen, E-Commerce-Systeme, Entwicklungs- und Deployment-Prozesse.","technologies": [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]},{"title": "Frontend-Entwickler (VTEX / React) – RESERVA (Grupo AR&CO.)","period": "01/2023 - 04/2024","details": "Verantwortlich für die gesamte Navigation und Benutzererfahrung im E-Commerce der Textil-Einzelhandelskette Reserva, direkte Arbeit mit VTEX.IO, React und anderen Frameworks zur Sicherstellung der Qualität und Anforderungen der Lieferung. Direkte Arbeit an Hauptanforderungen der Website wie Startseite, Suchsystem und punktuelle Aufgaben wie Backend-Anpassungen, Prototyping in Figma usw. Arbeit mit Master Data, VTEX CLI, JavaScript ES6, React, SASS, APIs und Erweiterung von Funktionen für andere Geschäfte der AR&CO-Gruppe, wie BAW Clothing.","technologies": ["Google Analytics", "Serverless", "SQL Queries", "React", "JavaScript", "TypeScript", "Node", "Knockout.js", "Jest (Unit Tests)", "Webpack", "PWA", "React Native", "jQuery", "VTEX.IO", "VTEX CLI", "CSS/SASS", "Google Tag Manager", "Microsoft Clarity", "web:eyez"]},{"title": "Full Stack Entwickler – DevLand (by ESX)","details": "Tätigkeit in internen Bereichen des Unternehmens als einer der ersten Entwickler des Drittanbieterprojekts, alleiniger technischer Verantwortlicher für die Entwicklung des Websystems und der Landingpage zur Gewinnung potenzieller Kunden des Unternehmens, technischer Freiwilliger zur Unterstützung von Junior-/Mid-Level-Entwicklern in den Teams des Unternehmens sowie Teilnahme an Initiativen von DevLand wie den Apps boutSex und HYLA App.","technologies": ["Dart", "Flutter", "Google Firebase", "Google Analytics", "Serverless", "Vue", "Nuxt3", "React", "JavaScript", "jQuery", "CSS/SASS", "Google Tag Manager"]} ]},
+        {"company": "Freelance Entwickler","period": "2011-2022","location": "Guarulhos, SP, Brasilien – Remote","summary": "End-to-End-Tätigkeit zur Lösung verschiedener Kundenanforderungen.","roles": [{"title": "Full-Stack-Entwickler / Kundenbetreuung","period": "05/2011-06/2022","details": "Erstellung von Websites, Webdesign, Erstellung und Bearbeitung von Bildern, Beratung und Entwicklung von visuellen Identitäten und Marken, Automatisierungs- und Self-Service-Systeme integriert in die Website, Discord und WhatsApp, sowie andere Anforderungen, bei denen ich Kenntnisse hatte oder durch 'Learning by Doing' meine Seniorität und den Mehrwert für den Kunden entwickelte. Ich habe auch eigene Projekte zu Gewinnzwecken oder einfach zur Unterstützung erstellt, während ich meine Programmierkenntnisse verbesserte.","success_cases": "Erfolgsbeispiele: La Luna Luana (Logo-Design), 'Mi Loja, Tu Loja' (WordPress), Deltavese (Server)...","technologies": ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "MySQL", "MongoDB", "Node.js", "Photoshop", "InDesign", "React", "C#", "Oracle Cloud", "AWS", "Java", "Spring Boot", "Vue", "Nuxt3", "WordPress"]} ]}
+    ],
+    "recommendations": [
+        {"author": "Thúlio Gamarano","context": "arbeitete im selben Team und war Senior im Vergleich zu Wellington","text": "Ich hatte die Gelegenheit, etwas mehr als ein Jahr mit Wellington bei Reserva in einem dynamischen Team mit hohen technischen und ästhetischen Anforderungen zu arbeiten. Von Anfang an zeigte er ausgezeichnete Kenntnisse in CSS und ein scharfes Auge für visuelle Details, was sicherstellte, dass seine Ergebnisse immer dem Design entsprachen, responsiv und leistungsstark waren. Er hat einen sehr ausgeprägten Sinn für Ästhetik und eine technische Sorgfalt, die über das Übliche hinausgeht. [...] Neben den technischen Fähigkeiten ist Wellington eine ruhige, respektvolle und vertrauenswürdige Person, die dem Team Leichtigkeit bringt und verantwortungsbewusst liefert. [...] Ich empfehle Wellington jedem Unternehmen, das einen engagierten Profi sucht, der Wert auf Qualität, Usability, Performance legt und kontinuierliches Lernen schätzt. Ohne Zweifel ist er ein Profi, der viel beitragen kann."},
+        {"author": "Vanessa Vargas","context": "arbeitete mit Wellington im selben Team","text": "Ich habe mit Wellington am MAG Capitalização-Projekt gearbeitet, und es war eine ausgezeichnete Erfahrung. Mit analytischer Fähigkeit und Eigenständigkeit stellt er sich Herausforderungen strategisch und sucht immer nach den besten Lösungen. Er ist sehr neugierig, lernt ständig und ist immer bereit, sein Wissen zu teilen. Außerdem hat er ein natürliches Talent, eine angenehme und kollaborative Atmosphäre zu schaffen. Seine Kommunikation und seine entspannte Art stärken den Teamgeist und machen den Alltag angenehmer. Ohne Zweifel ein Profi, der jedem Team Mehrwert bringt."},
+        {"author": "Janilson Coimbra","context": "arbeitete mit Wellington im selben Team","text": "Ich hatte das Vergnügen, mit Wellington do Nascimento bei ESX/DevLand zu arbeiten, und ich kann sagen, dass sein technisches Know-how ein beeindruckender Unterschied ist. Er ist ein hochqualifizierter Programmierer mit guten Ansätzen zur Problemlösung und einer unglaublichen Fähigkeit, komplexe Herausforderungen in effiziente Lösungen zu verwandeln. Ich empfehle Wellington für jede Herausforderung im Technologiebereich, da ich weiß, dass er immer außergewöhnliche Ergebnisse liefert."}
+    ],
+    "final_thoughts": {
+        "text": "Zusammenfassend war ich immer von der Neugier getrieben, zu verstehen, wie Dinge funktionieren, insbesondere in der Welt der Technologie. Viele Jahre lang habe ich nur aus Leidenschaft programmiert, ohne zu ahnen, dass ich daraus eine Karriere machen könnte, angesichts der Einschränkungen meines Umfelds. Das Leben hat mich auf verschiedene Wege geführt, bis ich schließlich meinen Zweck wiedergefunden habe: Ideen durch Programmierung zum Leben zu erwecken. Ich bin offen für Möglichkeiten, die es mir ermöglichen, diesen Weg wieder aufzunehmen, der mich antreibt. Unabhängig vom Ergebnis ist jedes konstruktive Feedback willkommen. Vielen Dank im Voraus für Ihre Aufmerksamkeit.",
+        "author": "Wellington N.",
+        "last_updated": "Lebenslauf aktualisiert am 03.06.2025"
+    }
+}

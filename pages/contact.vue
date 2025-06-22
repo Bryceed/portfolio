@@ -89,7 +89,6 @@
 <script>
 import { getPageTitle } from '@/utils/pageTitle';
 import about from '@/data/about.json';
-import cvData from '@/data/cv/index.json';
 import { contactLinks } from '@/utils/contactLinks';
 import CvPopup from '@/components/CvPopup.vue';
 
@@ -119,16 +118,17 @@ export default {
         subject: "",
         message: ""
       },
-      isSubmitting: false,
-      formStatus: null,
-      showCvPopup: false,
-      cvPopupType: 'traditional',
-      selectedCvType: 'traditional',
-      traditionalCvs: cvData.traditionalCvs
+      cvData: null,
+      loadingCv: true
     };
   },
-  mounted() {
-    document.title = getPageTitle({ mainPage: this.$t('html.contact.title') });
+  async mounted() {
+    try {
+      const res = await fetch('/files/cv/index.json');
+      this.cvData = await res.json();
+    } finally {
+      this.loadingCv = false;
+    }
   },
   methods: {
     formatPhone(phone) {
