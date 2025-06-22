@@ -53,6 +53,55 @@
     },
     "blog": {
       "soon": "Эта сессия переформутируется. Новости скоро."
+    },
+    "certifications": {
+      "title": "Сертификаты",
+      "description": "Это некоторые из доказательств моих навыков",
+      "searchPlaceholder": "Чтобы искать ...",
+      "validUntil": "Действительно до",
+      "expired": "Истекший",
+      "noResults": "Сертификация не обнаружена с текущими фильтрами.",
+      "clearFilters": "Подача"
+    },
+    "home": {
+      "greetings": "Привет! Я <pan> {name} </span>",
+      "description[0]": "У меня есть {лет} лет, и я в настоящее время <pan> {Occountation} </span> действует на <pan> Бразилии </span>.",
+      "description[1]": "Мои основные навыки для <pan> {profession1} </span> и <pan> {profession2} </span>.",
+      "description[2]": "В настоящее время работает на <pan> {business} </span>, есть {время}.",
+      "description[3]": "<b> давайте вытащим ваш проект из бумаги? </b>",
+      "actions[1]": {
+        "label": "Контакт"
+      },
+      "skillsTitle": "Навыки",
+      "skillsClickInfo": "Нажмите на умение, чтобы увидеть более подробную информацию"
+    },
+    "about": {
+      "description": "Узнайте больше о моей профессиональной карьере, навыках и личности.",
+      "personal": {
+        "title": "Персональная информация",
+        "name": {
+          "label": "Имя"
+        },
+        "age": {
+          "label": "Дата рождения",
+          "value": "{Date} ({Age} Годы)"
+        },
+        "location": {
+          "label": "Расположение"
+        },
+        "education": {
+          "label": "Обучение"
+        },
+        "occupation": {
+          "label": "Профессия"
+        }
+      },
+      "experience": {
+        "title": "Профессиональный опыт"
+      },
+      "skills": {
+        "title": "Технические навыки"
+      }
     }
   }
 }

@@ -11,6 +11,55 @@
     },
     "blog": {
       "soon": "Esta sesión está siendo reformulada. Noticias pronto."
+    },
+    "certifications": {
+      "title": "Certificaciones",
+      "description": "Estas son algunas de las pruebas de mis habilidades",
+      "searchPlaceholder": "Para buscar ...",
+      "validUntil": "Válido hasta",
+      "expired": "Venció",
+      "noResults": "No se encontró certificación con los filtros actuales.",
+      "clearFilters": "Paso"
+    },
+    "home": {
+      "greetings": "¡Hola! Soy <span> {nombre} </span>",
+      "description[0]": "Tengo {años} años y actualmente soy <span> {ocupación} </span> actuando en <span> brasil </span>.",
+      "description[1]": "Mis habilidades principales son para <span> {profesión1} </span> y <span> {profesión2} </span>.",
+      "description[2]": "Actualmente trabajando para <span> {Business} </span>, hay {tiempo}.",
+      "description[3]": "<b> ¡Saquemos su proyecto de papel? </b>",
+      "actions[1]": {
+        "label": "Contacto"
+      },
+      "skillsTitle": "Habilidades",
+      "skillsClickInfo": "Haga clic en una habilidad para ver más detalles"
+    },
+    "about": {
+      "description": "Obtenga más información sobre mi carrera profesional, habilidades y personalidad.",
+      "personal": {
+        "title": "Información personal",
+        "name": {
+          "label": "Nombre"
+        },
+        "age": {
+          "label": "Fecha de nacimiento",
+          "value": "{Fecha} ({edad} años)"
+        },
+        "location": {
+          "label": "Ubicación"
+        },
+        "education": {
+          "label": "Capacitación"
+        },
+        "occupation": {
+          "label": "Profesión"
+        }
+      },
+      "experience": {
+        "title": "Experiencia profesional"
+      },
+      "skills": {
+        "title": "Habilidades técnicas"
+      }
     }
   },
   "menu": {

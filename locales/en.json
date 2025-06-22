@@ -34,6 +34,43 @@
     },
     "blog": {
       "soon": "This session is being reformulated. \nNews soon."
+    },
+    "certifications": {
+      "title": "Certifications",
+      "description": "These are some of the proof of my skills",
+      "searchPlaceholder": "To search for...",
+      "validUntil": "Valid until",
+      "expired": "Expired",
+      "noResults": "No certification found with current filters.",
+      "clearFilters": "Pitch"
+    },
+    "about": {
+      "description": "Learn more about my professional career, skills and personality.",
+      "personal": {
+        "title": "Personal information",
+        "name": {
+          "label": "Name"
+        },
+        "age": {
+          "label": "Date of birth",
+          "value": "{Date} ({age} years)"
+        },
+        "location": {
+          "label": "Location"
+        },
+        "education": {
+          "label": "Training"
+        },
+        "occupation": {
+          "label": "Profession"
+        }
+      },
+      "experience": {
+        "title": "Professional experience"
+      },
+      "skills": {
+        "title": "Technical skills"
+      }
     }
   },
   "menu": {

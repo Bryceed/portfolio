@@ -66,11 +66,11 @@
     },
     "about": {
       "title": "è‡ªå·±ç´¹ä»‹",
-      "description": "ç§ã®è·æ­´ã€ã‚¹ã‚­ãƒ«ã€æ€§æ ¼ã«ã¤ã„ã¦ã‚‚ã£ã¨çŸ¥ã‚‹ã€‚",
+      "description": "私のプロとしてのキャリア、スキル、性格について詳しく学んでください。",
       "personal": {
         "title": "å€‹äººæƒ…å ±",
         "name": {
-          "label": "åå‰"
+          "label": "名前"
         },
         "location": {
           "label": "å ´æ‰€"
@@ -79,21 +79,21 @@
           "label": "å­¦æ­´"
         },
         "occupation": {
-          "label": "è·æ¥­"
+          "label": "職業"
         },
         "age": {
-          "label": "ç”Ÿå¹´æœˆæ—¥",
-          "value": "{date} ({age} years)"
+          "label": "生年月日",
+          "value": "{date}（{age} years）"
         }
       },
       "experience": {
-        "title": "è·å‹™çµŒé¨“",
+        "title": "専門的な経験",
         "company": {
           "button": "ã‚¦ã‚§ãƒ–"
         }
       },
       "skills": {
-        "title": "æŠ€è¡“ã‚¹ã‚­ãƒ«"
+        "title": "技術的なスキル"
       },
       "personality": {
         "title": "æ€§æ ¼",

@@ -11,6 +11,55 @@
     },
     "blog": {
       "soon": "이 세션은 재구성되고 있습니다. 곧 뉴스."
+    },
+    "certifications": {
+      "title": "인증",
+      "description": "이것들은 내 기술의 증거 중 일부입니다",
+      "searchPlaceholder": "검색하기 위해 ...",
+      "validUntil": "최대 유효합니다",
+      "expired": "만료되었습니다",
+      "noResults": "현재 필터에서는 인증이 없습니다.",
+      "clearFilters": "정점"
+    },
+    "home": {
+      "greetings": "안녕하세요! 나는 <span> {name} </span>입니다",
+      "description[0]": "{년} 년이 있고 현재 <span> {Occupation} </span> <span> 브라질 </span>에서 행동합니다.",
+      "description[1]": "내 주요 기술은 <span> {profession1} </span> 및 <span> {profession2} </span>입니다.",
+      "description[2]": "현재 <span> {business} </span>에서 일하고 있으며 {time}이 있습니다.",
+      "description[3]": "<b> 프로젝트를 종이에서 꺼내겠습니다. </b>",
+      "actions[1]": {
+        "label": "연락하다"
+      },
+      "skillsTitle": "기술",
+      "skillsClickInfo": "자세한 내용을 보려면 기술을 클릭하십시오"
+    },
+    "about": {
+      "description": "저의 전문 경력, 기술 및 성격에 대해 자세히 알아보십시오.",
+      "personal": {
+        "title": "개인 정보",
+        "name": {
+          "label": "이름"
+        },
+        "age": {
+          "label": "생일",
+          "value": "{date} ({age} 년)"
+        },
+        "location": {
+          "label": "위치"
+        },
+        "education": {
+          "label": "훈련"
+        },
+        "occupation": {
+          "label": "직업"
+        }
+      },
+      "experience": {
+        "title": "전문적인 경험"
+      },
+      "skills": {
+        "title": "기술 기술"
+      }
     }
   },
   "menu": {
