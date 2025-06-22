@@ -25,7 +25,7 @@
             <h2>{{ $t('html.contact.cv.title') }}</h2>
             <div class="cv-button-group">
               <button
-                class="cv-btn left"
+                class="cv-btn"
                 :class="{ active: selectedCvType === 'traditional' }"
                 @click="openCvPopup('traditional')"
                 type="button"
@@ -34,7 +34,7 @@
               </button>
               <span class="cv-divider"></span>
               <button
-                class="cv-btn right"
+                class="cv-btn"
                 :class="{ active: selectedCvType === 'europass' }"
                 @click="openCvPopup('europass')"
                 type="button"
@@ -119,18 +119,23 @@ export default {
         message: ""
       },
       cvData: null,
-      loadingCv: true
+      loadingCv: true,
+      pendingCvType: null,
+      selectedCvType: null,
+      cvPopupType: null,
+      showCvPopup: false
     };
   },
-  async mounted() {
-    try {
-      const res = await fetch('/files/cv/index.json');
-      this.cvData = await res.json();
-    } finally {
-      this.loadingCv = false;
-    }
-  },
   methods: {
+    async fetchCvData() {
+      this.loadingCv = true;
+      try {
+        const res = await fetch('/files/cv/index.json?' + Date.now());
+        this.cvData = await res.json();
+      } finally {
+        this.loadingCv = false;
+      }
+    },
     formatPhone(phone) {
       // Remove todos os caracteres não numéricos
       return phone.replace(/\D/g, '');
@@ -161,21 +166,16 @@ export default {
           this.resetForm();
         }, 5000);
       }, 2000);
-    },    openCvPopup(type) {
+    },
+    async openCvPopup(type) {
       this.selectedCvType = type;
       this.cvPopupType = type;
-
-      if (type === 'traditional') {
-        // Para o currículo tradicional, mostrar popup para selecionar o PDF
-        this.showCvPopup = true;
-      } else if (type === 'europass') {
-        // Para o Europass, mostrar popup para selecionar o idioma e abrir a visualização HTML
-        this.showCvPopup = true;
-      }
+      this.showCvPopup = true;
+      await this.fetchCvData();
     },
     suggestedCvLang() {
       const locale = this.$i18n.locale;
-      const available = this.traditionalCvs.map(cv => cv.lang);
+      const available = this.cvData && this.cvData.traditional ? Object.keys(this.cvData.traditional) : [];
       
       if (available.includes(locale)) {
         return locale;
@@ -185,7 +185,18 @@ export default {
         return available[0] || 'en';
       }
     }
-  }
+  },
+  async mounted() {
+    await this.fetchCvData();
+  },
+  watch: {
+    loadingCv(newVal) {
+      if (!newVal && this.pendingCvType) {
+        this.openCvPopup(this.pendingCvType);
+        this.pendingCvType = null;
+      }
+    }
+  },
 };
 </script>
 

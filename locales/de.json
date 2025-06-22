@@ -36,10 +36,10 @@
     "contact": {
       "cv": {
         "traditional": "Traditionell",
-        "europass": "Europäisches Modell (Europas)",
+        "europass": "europäisch",
         "chooseModel": "Wählen Sie den Lehrplanstil aus",
         "selectLanguage": "Dateisprache",
-        "traditionalDescription": "",
+        "traditionalDescription": "Wählen Sie die PDF -Sprache zum Download",
         "popup": {
           "description": "Bei der Auswahl der Sprache werden Sie zum Anzeigen und Herunterladen der Datei umgeleitet."
         }
