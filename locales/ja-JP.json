@@ -114,10 +114,10 @@
         "title": "å±¥æ­´æ›¸",
         "description": "æœ€æ–°ã®å±¥æ­´æ›¸ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰",
         "traditional": "伝統的",
-        "europass": "ヨーロッパモデル（Europass）",
+        "europass": "ヨーロッパ",
         "chooseModel": "カリキュラムスタイルを選択します",
         "selectLanguage": "ファイル言語",
-        "traditionalDescription": "",
+        "traditionalDescription": "ダウンロードするにはPDF言語を選択してください",
         "popup": {
           "description": "言語を選択すると、ファイルを表示およびダウンロードするようにリダイレクトされます。"
         }
@@ -147,11 +147,11 @@
     }
   },
   "menu": {
-    "home": "ãƒ›ãƒ¼ãƒ ",
-    "blog": "ãƒ–ãƒ­ã‚°",
-    "projects": "ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ",
-    "contact": "é€£çµ¡å…ˆ",
-    "about": "ç§ã«ã¤ã„ã¦"
+    "home": "ホーム",
+    "blog": "ブログ",
+    "projects": "プロジェクト",
+    "contact": "コンタクト",
+    "about": "私について"
   },
   "commons": {
     "actions": {
@@ -207,12 +207,5 @@
   },
   "theme": "ãƒ†ãƒ¼ãƒž",
   "footer[0]": "",
-  "footer[1]": "",
-  "menu": {
-    "home": "ホーム",
-    "blog": "ブログ",
-    "projects": "プロジェクト",
-    "contact": "コンタクト",
-    "about": "私について"
-  }
+  "footer[1]": ""
 }

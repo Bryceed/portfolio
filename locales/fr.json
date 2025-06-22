@@ -3,10 +3,11 @@
     "contact": {
       "cv": {
         "selectLanguage": "Langue de fichier",
-        "traditionalDescription": "",
+        "traditionalDescription": "Choisissez la langue PDF à télécharger",
         "popup": {
           "description": "Lors de la sélection de la langue, vous serez redirigé pour afficher et télécharger le fichier."
-        }
+        },
+        "europass": "européen"
       }
     },
     "blog": {

@@ -26,10 +26,11 @@
     "contact": {
       "cv": {
         "selectLanguage": "File Language",
-        "traditionalDescription": "",
+        "traditionalDescription": "Choose the PDF language for download",
         "popup": {
           "description": "When selecting the language, you will be redirected to view and download the file."
-        }
+        },
+        "europass": "European"
       }
     },
     "blog": {

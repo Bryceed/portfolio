@@ -260,39 +260,22 @@
                 });
             }
         }
-          // Função para carregar os dados do JSON via API segura
+          // Função para carregar os dados do JSON via fetch direto do arquivo
         async function loadCvData(lang = 'pt-BR') {
             try {
                 console.log(`Carregando dados do currículo para o idioma: ${lang}`);
-                
-                // Usando POST para evitar exposição dos arquivos JSON
-                const response = await fetch('/api/cv', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ lang })
-                });
-                
-                const result = await response.json();
-                
-                if (!result.success) {
-                    throw new Error(result.error || 'Erro ao carregar currículo');
-                }
-                
-                console.log('Dados do currículo carregados com sucesso:', 
-                    result.fallback ? '(usando fallback)' : '');
-                    
-                return result.data;
+                // Busca direta do arquivo JSON estático
+                const response = await fetch(`/files/cv/${lang}.json?${Date.now()}`);
+                if (!response.ok) throw new Error('Arquivo não encontrado');
+                const data = await response.json();
+                return data;
             } catch (error) {
                 console.error('Erro ao carregar CV:', error);
-                
-                // Mostrar mensagem de erro
                 document.querySelector('.cv-container').innerHTML = `
                     <div class="p-6 text-center">
                         <h1 class="text-xl font-bold text-red-500 mb-4">Failed to load CV data</h1>
-                        <p class="mb-4">Currently, we are unable to load the CV data. This may be due to a temporary issue with the server or the API.</p>
-                        <p>Please contact us through the other means available on the site or <a href="https://api.whatsapp.com/send?phone=5511942018873">contact me on WhatsApp</a> (+55 11 94201-8873).</p>
+                        <p class="mb-4">Atualmente, não foi possível carregar os dados do CV. Isso pode ser um problema temporário.</p>
+                        <p>Entre em contato pelos outros meios disponíveis no site ou <a href="https://api.whatsapp.com/send?phone=5511942018873">fale comigo no WhatsApp</a> (+55 11 94201-8873).</p>
                         <button onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = '/'; }" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded">
                             < Home
                         </button>
@@ -478,33 +461,22 @@
             // Pegar a língua a partir da URL se disponível (formato ?lang=pt-BR)
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
-            
             // Inicializar com pt-BR ou o idioma da URL
             const initialLang = langParam || 'pt-BR';
             LANG = initialLang; // Atualizar a variável LANG global
             console.log(`Idioma inicial: ${initialLang}`);
-            
             // Adicionar listener para evento de impressão
             window.addEventListener('beforeprint', function() {
                 console.log('Preparando para impressão...');
                 forceFullPrint();
             });
-              // Carregar a lista de idiomas disponíveis a partir da API
+            // Carregar a lista de idiomas disponíveis a partir do index.json estático
             let availableLangs = ['pt-BR']; // Valor padrão
-            
             try {
-                const indexResponse = await fetch('/api/cv-languages', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ type: 'europass' })
-                });
-                
+                const indexResponse = await fetch('/files/cv/index.json?' + Date.now());
                 const result = await indexResponse.json();
-                
-                if (result.success && Array.isArray(result.languages)) {
-                    availableLangs = result.languages;
+                if (result.europass && Array.isArray(result.europass)) {
+                    availableLangs = result.europass;
                     console.log('Idiomas disponíveis carregados:', availableLangs);
                 }
             } catch (error) {

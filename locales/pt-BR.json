@@ -78,10 +78,10 @@
         "title": "Currículo",
         "description": "Baixe meu CV atualizado",
         "traditional": "Tradicional",
-        "europass": "Modelo europeu (Europass)",
+        "europass": "Europass",
         "chooseModel": "Selecione o estilo do currículo",
         "selectLanguage": "Idioma do arquivo",
-        "traditionalDescription": "",
+        "traditionalDescription": "Escolha o idioma do PDF para download",
         "popup": {
           "description": "Ao selecionar o idioma, você será redirecionado para visualização e download do arquivo."
         }

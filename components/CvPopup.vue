@@ -48,8 +48,7 @@
 </template>
 
 <script>
-import cvData from '@/data/cv/index.json';
-
+// Remover import estático e usar fetch
 export default {
   name: 'CvPopup',
   props: {
@@ -62,24 +61,50 @@ export default {
       type: String,
       default: 'pt-BR'
     }
-  },  data() {
+  },
+  data() {
     return {
-      traditionalCvs: cvData.traditional || {},
-      europassLangs: cvData.europass || [],
-      selectedLang: this.currentLang
+      traditionalCvs: {},
+      europassLangs: [],
+      selectedLang: this.currentLang,
+      loading: true
     };
-  },  methods: {
+  },
+  async mounted() {
+    try {
+      const res = await fetch('/files/cv/index.json?' + Date.now());
+      const cvData = await res.json();
+      this.traditionalCvs = cvData.traditional || {};
+      this.europassLangs = cvData.europass || [];
+      // Selecionar idioma sugerido
+      const availableLangs = this.type === 'traditional'
+        ? Object.keys(this.traditionalCvs)
+        : this.europassLangs;
+      console.log(`Idiomas disponíveis para ${this.type}:`, availableLangs);
+      console.log(`Idioma atual: ${this.currentLang}`);
+      if (availableLangs.includes(this.currentLang)) {
+        this.selectedLang = this.currentLang;
+      } else if (this.currentLang.startsWith('pt') && availableLangs.includes('pt-BR')) {
+        this.selectedLang = 'pt-BR';
+      } else {
+        this.selectedLang = availableLangs[0] || 'en-US';
+      }
+      console.log(`Idioma selecionado: ${this.selectedLang}`);
+    } finally {
+      this.loading = false;
+    }
+  },
+  methods: {
     openCv(lang, type) {
       if (type === 'traditional') {
-        // Para o currículo tradicional, abrir o PDF correspondente
         const url = this.traditionalCvs[lang];
         if (url) {
           window.open(url, '_blank');
           this.$emit('close');
-        }      } else {
-        // Para o Europass, abrir o curriculum-clean.html com o idioma especificado
+        }
+      } else {
+        // Para o Europass, abrir curriculum-clean.html passando o idioma como parâmetro
         const url = `/codelets/curriculum-clean.html?lang=${lang}`;
-        console.log(`Abrindo currículo Europass em ${url}`);
         window.open(url, '_blank');
         this.$emit('close');
       }
@@ -102,24 +127,6 @@ export default {
       
       return languageNames[langCode] || langCode;
     }
-  },  mounted() {
-    // Selecionar o idioma sugerido quando o componente é montado
-    const availableLangs = this.type === 'traditional' 
-      ? Object.keys(this.traditionalCvs)
-      : this.europassLangs;
-    
-    console.log(`Idiomas disponíveis para ${this.type}:`, availableLangs);
-    console.log(`Idioma atual: ${this.currentLang}`);
-    
-    if (availableLangs.includes(this.currentLang)) {
-      this.selectedLang = this.currentLang;
-    } else if (this.currentLang.startsWith('pt') && availableLangs.includes('pt-BR')) {
-      this.selectedLang = 'pt-BR';
-    } else {
-      this.selectedLang = availableLangs[0] || 'en-US';
-    }
-    
-    console.log(`Idioma selecionado: ${this.selectedLang}`);
   }
 }
 </script>
