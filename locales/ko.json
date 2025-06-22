@@ -3,10 +3,11 @@
     "contact": {
       "cv": {
         "selectLanguage": "파일 언어",
-        "traditionalDescription": "",
+        "traditionalDescription": "다운로드하려면 PDF 언어를 선택하십시오",
         "popup": {
           "description": "언어를 선택할 때 파일을보고 다운로드하도록 리디렉션됩니다."
-        }
+        },
+        "europass": "유럽 ​​사람"
       }
     },
     "blog": {

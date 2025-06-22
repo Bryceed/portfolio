@@ -36,10 +36,10 @@
     "contact": {
       "cv": {
         "traditional": "Традиционный",
-        "europass": "Европейская модель (Europass)",
+        "europass": "Европейский",
         "chooseModel": "Выберите стиль учебного плана",
         "selectLanguage": "Файл Язык",
-        "traditionalDescription": "",
+        "traditionalDescription": "Выберите язык PDF для скачивания",
         "popup": {
           "description": "При выборе языка вы будете перенаправлены для просмотра и загрузки файла."
         }
