@@ -29,7 +29,9 @@
       },
       "actions[1]": {
         "label": "接触"
-      }
+      },
+      "skillsTitle": "スキル",
+      "skillsClickInfo": "スキルをクリックして詳細を確認してください"
     }
   }
 }
