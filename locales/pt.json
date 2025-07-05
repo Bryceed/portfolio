@@ -12,7 +12,7 @@
     "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
   ],
   "footer[0]": "Site construído com ❤️ em Nuxt3. ({year})",
-  "footer[1]": "Visite meu <a href=\"{github}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este).",
+  "footer[1]": "<a href=\"{github}\" target=\"_blank\">GitHub</a> | https://www.counter12.com/img-x8waWZwzd7d5z839-26.gif",
   "html": {
     "contact": {
       "cv": {
@@ -67,7 +67,11 @@
       "skillsClickInfo": "Clique em uma habilidade para ver mais detalhes",
       "actions[2]": {
         "label": "Sobre mim"
-      }
+      },
+      "trajectoryTitle": "Minha Trajetória",
+      "trajectoryParagraph1": "Sou apaixonado por entregar soluções tecnológicas que combinam performance, práticas modernas e com boa experiência de usuário. Ao longo da minha carreira, liderei projetos de automação, criação e manutenção de sites em diversas tecnologias.",
+      "trajectoryParagraph2": "Tenho experiência com front-end, back-end, mobile, 3D, automação, cultura DevOps, nuvem (AWS, GCP e Azure), conteinerização com Docker e CI/CD. Valorizo boas práticas, código limpo e colaboração com equipes diversas. Meu objetivo é construir soluções modernas que realmente agreguem valor, onde, num ambiente com escuta ativa, possamos reunir as melhores ideias de todos para entregarmos um produto perfeito ao cliente.",
+      "skillsCount": "itens"
     },
     "about": {
       "description": "Conheça mais sobre minha trajetória profissional, habilidades e personalidade.",

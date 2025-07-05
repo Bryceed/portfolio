@@ -3,7 +3,11 @@
         <CommonAlertsPride v-if="isPrideMonth" />
         <HomeAboutMe />
         <ProjectsHighlightsDisplay />
-        <HomeSkills />
+        <div class="flex flex-row justify-between gap-4 h-80vh 
+            items-start flex-wrap mx-auto">
+            <HomeAboutTrajectory class="max-w-400px x2-sp h-full" />
+            <HomeSkills class="flex-1 max-w-400px pr-8" />
+        </div>
     </div>
     
     <!-- Call to Action -->

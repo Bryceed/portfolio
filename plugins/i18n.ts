@@ -164,19 +164,6 @@ export default defineNuxtPlugin(({ vueApp }) => {
           console.error('[i18n DEBUG] Erro ao definir via i18n.global.locale.value:', err);
         }
         
-        // Método 2: usando i18n.global.locale diretamente
-        if (!localeSet) {
-          try {
-            if (i18n.global) {
-              console.log('[i18n DEBUG] Tentando definir via i18n.global.locale diretamente');
-              (i18n.global as any).locale = safeLocale;
-              localeSet = true;
-            }
-          } catch (err) {
-            console.error('[i18n DEBUG] Erro ao definir via i18n.global.locale:', err);
-          }
-        }
-        
         // Método 3: usando vueApp.config.globalProperties.$i18n
         if (!localeSet) {
           try {
@@ -185,10 +172,8 @@ export default defineNuxtPlugin(({ vueApp }) => {
               console.log('[i18n DEBUG] Tentando definir via vueApp.config.globalProperties.$i18n');
               if (i18nInstance.global && typeof i18nInstance.global.locale === 'object' && 'value' in i18nInstance.global.locale) {
                 i18nInstance.global.locale.value = safeLocale;
-              } else {
-                (i18nInstance as any).locale = safeLocale;
+                localeSet = true;
               }
-              localeSet = true;
             }
           } catch (err) {
             console.error('[i18n DEBUG] Erro ao definir via globalProperties.$i18n:', err);

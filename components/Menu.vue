@@ -99,18 +99,16 @@ export default {
         // Durante o SSR, sempre inicializamos com o idioma padrão
         let initialLang = { code: 'pt', region: 'BR', name: 'Português (Brasil)' };
         
-        // Define as linguagens disponíveis
+        // Define as linguagens disponíveis (removido en-CA e pt-PT)
         const availableLanguages = [
             { code: 'pt', region: 'BR', name: 'Português (Brasil)' },
-            { code: 'pt', region: 'PT', name: 'Português (Portugal)' },
             { code: 'en', region: 'US', name: 'English' },
             { code: 'es', region: 'ES', name: 'Español' },
             { code: 'fr', region: 'FR', name: 'Français' },
             { code: 'de', region: 'DE', name: 'Deutsch' },
             { code: 'ru', region: 'RU', name: 'Русский' },
             { code: 'ja', region: 'JP', name: '日本語' },
-            { code: 'ko', region: 'KR', name: '한국어' },
-            { code: 'en', region: 'CA', name: 'English (Canada)' }
+            { code: 'ko', region: 'KR', name: '한국어' }
         ];
         
         // Durante o SSR, evitamos acessar localStorage
@@ -144,12 +142,16 @@ export default {
             setTimeout(() => {
                 this.initializeLanguageFromLocalStorage();
             }, 100);
-            
             // Adicionar ouvinte para o evento de mudança de idioma
             document.addEventListener('languageChanged', this.handleLanguageChangeEvent);
-            
             // Adicionar ouvinte para mudanças no localStorage de outras guias/frames
             window.addEventListener('storage', this.handleStorageEvent);
+            // OUVIR evento global de atualização de i18n
+            document.addEventListener('i18n:updateRequested', () => {
+                // Atualiza o idioma atual e força atualização do menu
+                this.initializeLanguageFromLocalStorage();
+                this.$forceUpdate();
+            });
         }
         
         // Configurações do logo
@@ -229,58 +231,26 @@ export default {
         try {
             // Construir o locale no formato correto (pt-BR, en, etc)
             const locale = lang.region && lang.region !== lang.code ? `${lang.code}-${lang.region}` : lang.code;
-            console.log('[Menu DEBUG] selectLang chamado com:', lang);
-            console.log('[Menu DEBUG] locale calculado:', locale);
-            
             // Atualizar o estado local do componente
             this.currentLang = { ...lang };
-            
+            // Salvar no localStorage imediatamente
+            if (process.client) {
+                localStorage.setItem('lang', locale);
+            }
             // Fechar o popup
             this.langPopupOpen = false;
-            
             // Disparar evento principal de mudança de idioma 
-            console.log('[Menu DEBUG] Disparando evento languageChanged com locale:', locale);
             document.dispatchEvent(new CustomEvent('languageChanged', {
                 detail: { locale: locale }
             }));
-            
-            // Verificar se o idioma foi alterado no i18n
-            console.log('[Menu DEBUG] Verificando $i18n após disparo de evento');
-            if (this.$i18n) {
-                if (this.$i18n.global) {
-                    console.log('[Menu DEBUG] $i18n.global está disponível');
-                    if (typeof this.$i18n.global.locale === 'object') {
-                        console.log('[Menu DEBUG] $i18n.global.locale é um objeto reativo, valor atual:', this.$i18n.global.locale.value);
-                    } else {
-                        console.log('[Menu DEBUG] $i18n.global.locale não é um objeto reativo, valor:', this.$i18n.global.locale);
-                    }
-                } else {
-                    console.log('[Menu DEBUG] $i18n.global não disponível, $i18n.locale =', this.$i18n.locale);
-                }
-            } else {
-                console.warn('[Menu DEBUG] this.$i18n não está disponível!');
+            // Atualizar diretamente o locale
+            if (this.$i18n && this.$i18n.global && typeof this.$i18n.global.locale === 'object' && this.$i18n.global.locale !== null) {
+                this.$i18n.global.locale.value = locale;
+            } else if (this.$i18n) {
+                this.$i18n.locale = locale;
             }
-            
-            // Atualizar diretamente o locale (redundância intencional para debug)
-            console.log('[Menu DEBUG] Tentando definir locale diretamente via Menu');
-            try {
-                if (this.$i18n && this.$i18n.global && typeof this.$i18n.global.locale === 'object' && this.$i18n.global.locale !== null) {
-                    this.$i18n.global.locale.value = locale;
-                    console.log('[Menu DEBUG] Locale definido via this.$i18n.global.locale.value');
-                } else if (this.$i18n) {
-                    // Fallback para métodos antigos
-                    this.$i18n.locale = locale;
-                    console.log('[Menu DEBUG] Locale definido via this.$i18n.locale');
-                }
-            } catch (innerError) {
-                console.error('[Menu DEBUG] Erro ao definir locale diretamente:', innerError);
-            }
-            
             // Forçar atualização deste componente
-            console.log('[Menu DEBUG] Forçando atualização do Menu com $forceUpdate()');
             this.$forceUpdate();
-            
-            console.log('Idioma alterado para:', locale);
         } catch (error) {
             console.error('Erro ao alterar o idioma:', error);
         }

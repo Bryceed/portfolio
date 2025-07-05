@@ -1,425 +1,355 @@
 <template>
-    <div class="skills">
-        <h2>{{ $t('html.home.skillsTitle') }}</h2>
-        <div class="skills__info-message">
-            {{ $t('html.home.skillsClickInfo') }}
+  <div class="skills-grid-wrapper">
+    <h2 class="skills__title">{{ $t('html.home.skillsTitle') }}</h2>
+    <div class="skills__info-message">{{ $t('html.home.skillsClickInfo') }}</div>
+    <div class="skills-grid-top">
+      <div class="tabs-wrapper relative">
+        <div class="tab">{{ currentCategory.name }}</div>
+        <button class="arrow" @click="navigate(1)">&#x25B6;</button>
+        <div class="bullets-group">
+          <button v-for="(cat, index) in categories" :key="cat.name" class="bullet"
+            :class="{ active: currentIdx === index }" @click="currentIdx = index">
+            </button>
         </div>
-        <div class="skills__container" :class="{ active: selectedItem }">
-            <div v-for="category in skills" :key="category.name" class="skills__container__carousel__category">
-                <h2><span class="emoji">{{ category.emoji }}</span>{{ category.name }} <span>({{ category.items.length
-                        }})</span></h2>
-                <button v-if="category.showLeftArrow" class="nav-button left"
-                    @click="scrollLeft(category)">&#9664;</button>
-                <div :ref="'carousel-' + category.name" class="skills__container__carousel"
-                    @scroll="handleScroll(category)" @mousedown="startDrag($event, category)">
-                    <div class="skills__container__carousel__items">
-                        <div v-for="item in category.items" :key="item.name" class="_item" @click="showDetails(item)">
-                            <div class="_item__name">{{ item.name }}</div>
-                            <CommonMeter :value="item.value" />
-                        </div>
-                    </div>
-                </div>
-                <button v-if="category.showRightArrow" class="nav-button right"
-                    @click="scrollRight(category)">&#9654;</button>
-            </div>
-        </div>
-        <div class="side-panel" :class="{ open: selectedItem }">
-            <button class="close-button" @click="closeDetails">X</button>
-            <div v-if="selectedItem" class="skill-details">
-                <h2>{{ selectedItem.name }}</h2>
-                <CommonMeter :value="selectedItem.value" />
-                <div v-if="selectedItem.description" class="skill-description">
-                    {{ getSkillDescription(selectedItem) }}
-                </div>
-            </div>
-        </div>
+      </div>
+      <aside class="inline-flex gap-4">
+        <span class="skills-total">{{ currentCategory.items.length }} {{ $t('html.home.skillsCount') }}</span>
+      <div class="skills-header">
+        <svg width="40" height="40" viewBox="0 0 40 40" class="timer-svg">
+          <circle cx="20" cy="20" r="16" fill="none" stroke="#e0e0e0" stroke-width="8" />
+          <circle cx="20" cy="20" r="16" fill="none" :stroke="timerColor" stroke-width="8" stroke-linecap="round"
+            :stroke-dasharray="circumference"
+            :stroke-dashoffset="timerDashOffset"
+            style="transition: stroke-dashoffset 0.2s linear;" />
+        </svg>
+        </div>    
+    </aside>
+
     </div>
+    <div class="grid-skills">
+      <div v-for="(item, i) in currentCategory.items" :key="item.name" class="skill-card" :style="{ animationDelay: (i*50)+'ms' }" @click="showDetails(item)">
+        <div class="skill-title">{{ item.name }}</div>
+        <CommonMeter :value="item.value" />
+      </div>
+    </div>
+    <div class="side-panel" :class="{ open: selectedItem }">
+      <button class="close-button" @click="closeDetails">X</button>
+      <div v-if="selectedItem" class="skill-details">
+        <h2>{{ selectedItem.name }}</h2>
+        <CommonMeter :value="selectedItem.value" />
+        <div v-if="selectedItem.description" class="skill-description">
+          {{ getSkillDescription(selectedItem) }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
 import skills from '@/data/skills.json';
+import CommonMeter from '../common/Meter.vue';
+
+const TIMER_DELAY = 8500
+const TIMER_INTERVAL = 50;
+const CIRCUMFERENCE = 2 * Math.PI * 16;
+let currentIdx = 0;
 
 export default {
-    name: 'Skills',
-    data() {
-        return {
-            skills: skills.map(category => ({
-                ...category,
-                showLeftArrow: false,
-                showRightArrow: true,
-                isDragging: false,
-                startX: 0,
-                scrollLeft: 0
-            })),
-            selectedItem: null
-        };
-    },
-    methods: {
-        scrollLeft(category) {
-            const carousel = this.$refs['carousel-' + category.name][0];
-            if (carousel) {
-                carousel.scrollBy({ left: -carousel.clientWidth * 0.75, behavior: 'smooth' });
-            }
-        },
-        scrollRight(category) {
-            const carousel = this.$refs['carousel-' + category.name][0];
-            if (carousel) {
-                carousel.scrollBy({ left: carousel.clientWidth * 0.75, behavior: 'smooth' });
-            }
-        },
-        showDetails(item) {
-            this.selectedItem = item;
-        },
-        closeDetails() {
-            this.selectedItem = null;
-        },
-        handleScroll(category) {
-            const carousel = this.$refs['carousel-' + category.name][0];
-            if (carousel) {
-                category.showLeftArrow = carousel.scrollLeft > 0;
-                category.showRightArrow = carousel.scrollLeft + carousel.clientWidth < carousel.scrollWidth;
-            }
-        },
-        startDrag(event, category) {
-            const carousel = this.$refs['carousel-' + category.name][0];
-            if (carousel) {
-                category.isDragging = true;
-                category.startX = event.pageX - carousel.offsetLeft;
-                category.scrollLeft = carousel.scrollLeft;
-                carousel.classList.add('dragging');
-                document.addEventListener('mousemove', this.onDrag.bind(this, category));
-                document.addEventListener('mouseup', this.stopDrag.bind(this, category));
-            }
-        },
-        onDrag(category, event) {
-            if (!category.isDragging) return;
-            const carousel = this.$refs['carousel-' + category.name][0];
-            const x = event.pageX - carousel.offsetLeft;
-            const walk = (x - category.startX) * 2; // scroll-fast
-            carousel.scrollLeft = category.scrollLeft - walk;
-        },
-        stopDrag(category) {
-            category.isDragging = false;
-            const carousel = this.$refs['carousel-' + category.name][0];
-            carousel.classList.remove('dragging');
-            document.removeEventListener('mousemove', this.onDrag);
-            document.removeEventListener('mouseup', this.stopDrag);
-        },
-        getSkillDescription(skill) {
-            if (!skill.description) return '';
-            
-            // Tenta obter a descrição na linguagem atual do usuário
-            const locale = this.$i18n.locale.toLowerCase();
-            const lang = locale.split('-')[0]; // Extrai apenas o código da língua (pt, en, etc.)
-            
-            // Tenta encontrar a descrição na linguagem atual, ou usa uma alternativa
-            if (skill.description[locale]) {
-                return skill.description[locale];
-            } else if (skill.description[lang]) {
-                return skill.description[lang];
-            } else if (skill.description['pt']) {
-                return skill.description['pt']; // Fallback para português
-            } else if (skill.description['en']) {
-                return skill.description['en']; // Fallback para inglês
-            }
-            
-            // Retorna a primeira descrição disponível se nada for encontrado
-            const availableLang = Object.keys(skill.description)[0];
-            return availableLang ? skill.description[availableLang] : '';
-        }
-    },
-    mounted() {
-        if (typeof VanillaTilt !== 'undefined') {
-            VanillaTilt.init(document.querySelectorAll(".skills__container__carousel__items ._item"), {
-                reverse: false,
-                max: 35,
-                speed: 400,
-                scale: 1.05,
-                glare: true,
-                axis: "x",
-                "max-glare": 0.5
-            });
-        }
-        this.$nextTick(() => {
-            this.skills.forEach(category => this.handleScroll(category));
-        });
+  name: 'Skills',
+  components: { CommonMeter },
+  setup() {
+    const categories = ref(skills.map(cat => ({ ...cat })));
+    const currentIdx = ref(0);
+    const selectedItem = ref(null);
+    const timer = ref(TIMER_DELAY);
+    let timerInterval = null;
+
+    const currentCategory = computed(() => categories.value[currentIdx.value]);
+    const timerColor = '#4a3aff';
+    const circumference = CIRCUMFERENCE;
+    const timerDashOffset = computed(() => (timer.value / TIMER_DELAY) * circumference);
+
+    function showDetails(item) { selectedItem.value = item; }
+    function closeDetails() { selectedItem.value = null; }
+    function navigate(dir) {
+      currentIdx.value = (currentIdx.value + dir + categories.value.length) % categories.value.length;
+      resetTimer();
     }
-}
+    function resetTimer() {
+      timer.value = TIMER_DELAY;
+    }
+    function tick() {
+      timer.value -= TIMER_INTERVAL;
+      if (timer.value <= 0) {
+        timer.value = TIMER_DELAY;
+        navigate(1);
+      }
+    }
+    function startTimer() {
+      timerInterval = setInterval(tick, TIMER_INTERVAL);
+
+      if (categories.value.length > 0) {
+          currentIdx.value = 0;
+        }
+    }
+    function stopTimer() {
+      clearInterval(timerInterval);
+    }
+
+    onMounted(() => {
+      startTimer();
+      nextTick(() => {
+        const grid = document.querySelector('.grid-skills');
+        if (grid) grid.addEventListener('mouseenter', stopTimer);
+        if (grid) grid.addEventListener('mouseleave', startTimer);
+      });
+    });
+    onUnmounted(() => { stopTimer(); });
+    watch(currentIdx, (newIdx) => {
+      const bullets = document.querySelectorAll('.bullet');
+      bullets.forEach((bullet, index) => {
+        bullet.classList.toggle('active', index === newIdx);
+      });
+    });
+    
+    return {
+      categories,
+      currentCategory,
+      selectedItem,
+      showDetails,
+      closeDetails,
+      navigate,
+      timerColor,
+      circumference,
+      timerDashOffset,
+      getSkillDescription(skill) {
+        if (!skill.description) return '';
+        const locale = (this.$i18n?.locale || 'pt').toLowerCase();
+        const lang = locale.split('-')[0];
+        if (skill.description[locale]) return skill.description[locale];
+        if (skill.description[lang]) return skill.description[lang];
+        if (skill.description['pt']) return skill.description['pt'];
+        if (skill.description['en']) return skill.description['en'];
+        const availableLang = Object.keys(skill.description)[0];
+        return availableLang ? skill.description[availableLang] : '';
+      }
+    };
+  }
+};
 </script>
 
 <style scoped>
-.skills {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 48px 0;
+.skills-grid-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 12px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80vh;
 }
-
-.skills h2 {
-    font-size: 3rem;
-    font-weight: 700;
+.skills__title {
+  font-size: 3rem;
+    font-weight: 900;
     color: #fff;
-    margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-
-html.light h2 {
-    color: #000;
-}
-
 .skills__info-message {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    color: #ffffff8c;
-    font-style: italic;
-    animation: pulse 2s infinite;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 24px;
+  text-align: center;
 }
-
-@keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
+.skills-grid-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 36px 20px;
 }
-
-html.light .skills__info-message {
-    color: #0000008c;
+.tabs-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
 }
-
-.skills__container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    flex-direction: row;
-    flex-wrap: wrap;
-    position: relative;
-    transition: margin-right 0.3s;
-    gap: 2.5rem;
+.arrow {
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 6px 12px;
+  background: transparent;
+  border-radius: 8px;
+  transition: background 0.2s;
+  border: none;
 }
-
-.skills__container.active {
-    margin-right: 300px;
+.arrow:hover {
+  background: #4a3aff;
+  color: #fff;
 }
-
-.skills__container__carousel {
-    width: 100%;
-    display: flex;
-    overflow-x: hidden;
-    align-items: flex-start;
-    flex-direction: row;
-    scroll-behavior: smooth;
-    cursor: grab;
-    user-select: none;
+.bullets-group {
+  display: flex;
+  gap: 8px;
 }
-
-.skills__container__carousel.dragging {
-    cursor: grabbing;
+.bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-
-.skills__container__carousel__category {
-    min-width: 200px;
-    margin: 0 10px;
-    position: relative;
+.bullet.active {
+  background: #4a3aff;
 }
-
-.skills__container__carousel__items {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+.tab {
+  padding: 10px 20px 10px 0;
+  color: #4a3aff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
-
-.skills__container__carousel__category h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ffffff9b;
-    margin-bottom: 5px;
-    margin-left: 20px;
+.skills-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #888;
+  font-size: 0.9rem;
 }
-
-.skills__container__carousel__category h2 span {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #ffffff2e;
+.timer-svg {
+  width: 24px;
+  height: 24px;
+  transform: rotate(-90deg);
 }
-
-.skills__container__carousel__category h2 span.emoji {
-    font-size: 2rem;
-    margin-right: 1.5rem;
+.skills-total {
+  font-size: 1rem;
+  color: #4a3aff;
+  font-weight: bold;
 }
-html.light .skills__container__carousel__category h2 {
-    color: #000;
+.grid-skills {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+  overflow-y: auto;
 }
-
-.skills__container__carousel__items ._item:first-of-type {
-    margin-left: 68px;
+/* Compensa o espaço da barra de rolagem para evitar layout shift */
+.grid-skills {
+    scrollbar-gutter: stable;
 }
-
-._item {
-    height: 100%;
-    width: 170px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    margin: 10px 0;
-    padding: 0px 7px 5px;
-    background-color: rgba(255, 255, 255, .03);
-    border-radius: 5px;
-    cursor: pointer;
+.skill-card {
+  background: #e0dfff;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: cardIn 0.4s ease forwards;
 }
-
-._item__name {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: .2rem 0 .3rem;
-    color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-html.light ._item {
-    background-color: rgba(255, 255, 255, 0.492);
+.skill-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4a3aff;
 }
-
-html.light ._item__name {
-    color: #777;
-}
-
-.nav-button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-}
-
-.nav-button.left {
-    left: 0;
-}
-
-.nav-button.right {
-    right: 0;
-}
-
 .side-panel {
-    position: fixed;
-    right: -300px;
-    top: 100px;
-    bottom: 10px;
-    max-width: 280px;
-    width: 100%;
-    overflow: visible;
-    background-color: rgba(0, 0, 0, 0.8);
-    transition: right 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 999;
-    backdrop-filter: blur(7px);
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  right: -300px;
+  top: 100px;
+  bottom: 10px;
+  max-width: 280px;
+  width: 100%;
+  overflow: visible;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: right 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 999;
+  backdrop-filter: blur(7px);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
 }
-
 .side-panel.open {
-    right: 20px;
-    transform-origin: 110% 50%;
-    animation: openSidePanel .4s;
+  right: 20px;
+  transform-origin: 110% 50%;
+  animation: openSidePanel .4s;
 }
-
 @keyframes openSidePanel {
-    0% {
-        right: -30px;
-        opacity: 1;
-        transform: perspective(800px) rotateY(90deg);
-    }
-
-    100% {
-        right: 20px;
-        opacity: 1;
-        transform: perspective(800px) rotateY(0deg);
-    }
+  0% {
+    right: -30px;
+    opacity: 1;
+    transform: perspective(800px) rotateY(90deg);
+  }
+  100% {
+    right: 20px;
+    opacity: 1;
+    transform: perspective(800px) rotateY(0deg);
+  }
 }
-
-/* when close, animate the side panel to the right */
 .side-panel:not(.open) {
-    animation: closeSidePanel 0.3s;
+  animation: closeSidePanel 0.3s;
 }
-
 @keyframes closeSidePanel {
-    0% {
-        opacity: 1;
-        transform: perspective(800px) rotateY(0deg);
-    }
-
-    100% {
-        opacity: 0;
-        transform: perspective(800px) rotateY(-60deg);
-    }
+  0% {
+    opacity: 1;
+    transform: perspective(800px) rotateY(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: perspective(800px) rotateY(-60deg);
+  }
 }
-
-/* add darker background to overlay the rest of the page when side panel is open */
-.side-panel::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(rgba(72, 72, 72, 0.63), rgba(27, 27, 27, 0.63));
-    z-index: -1;
-    border-radius: 6px;
-}
-
-html.light .side-panel {
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 10px rgba(73, 73, 73, 0.2), 0 0 40px rgba(0, 0, 0, 0.234), inset 0 0 0 2px #ffffff;
-}
-
-html.light .side-panel::before {
-    background: linear-gradient(rgba(255, 255, 255, 0.725), rgb(221, 221, 221));
-}
-
 .close-button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
-    align-self: flex-end;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  align-self: flex-end;
 }
-
 .skill-details {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
-
 .skill-description {
-    margin-top: 15px;
-    text-align: center;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    line-height: 1.6;
-    font-size: 0.95rem;
+  margin-top: 15px;
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
-
-html.light .skill-description {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: #333;
+@media (max-width: 768px) {
+  .skills-grid-wrapper {
+    padding: 20px;
+  }
+  .skills-grid-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .side-panel {
+    top: 60px;
+    right: 0;
+    left: 0;
+    max-width: 100vw;
+    border-radius: 0;
+  }
 }
 </style>

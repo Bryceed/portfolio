@@ -86,7 +86,11 @@
       "skillsClickInfo": "Klicken Sie auf eine Fähigkeit, um weitere Details anzuzeigen",
       "actions[2]": {
         "label": "Über mich"
-      }
+      },
+      "trajectoryTitle": "Meine Flugbahn",
+      "trajectoryParagraph1": "Ich bin verliebt, um technologische Lösungen zu liefern, die Leistung, moderne Praktiken und gute Benutzererfahrungen kombinieren. Während meiner Karriere leitete ich Projekte zur Automatisierung, Erstellung und Wartung von Websites in verschiedenen Technologien.",
+      "trajectoryParagraph2": "Ich habe Erfahrung mit Front End, Back End, Mobile, 3D, Automation, DevOps Culture, Cloud (AWS, GCP und Azure), Containerisierung mit Docker und CI/CD. Ich schätze gute Praktiken, saubere Code und Zusammenarbeit mit verschiedenen Teams. Mein Ziel ist es, moderne Lösungen aufzubauen, die wirklich einen Mehrwert bieten, in dem wir in einer Umgebung mit aktivem Zuhören die besten Ideen für alle sammeln können, um dem Kunden ein perfektes Produkt zu liefern.",
+      "skillsCount": "Artikel"
     },
     "about": {
       "description": "Erfahren Sie mehr über meine berufliche Laufbahn, meine Fähigkeiten und meine Persönlichkeit.",

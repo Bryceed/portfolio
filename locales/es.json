@@ -49,7 +49,11 @@
       "skillsClickInfo": "Haga clic en una habilidad para ver más detalles",
       "actions[2]": {
         "label": "Acerca de mí"
-      }
+      },
+      "trajectoryTitle": "Mi trayectoria",
+      "trajectoryParagraph1": "Estoy enamorado de la entrega de soluciones tecnológicas que combinan el rendimiento, las prácticas modernas y la buena experiencia de usuario. A lo largo de mi carrera, dirigí proyectos para la automatización, creación y mantenimiento de sitios web en varias tecnologías.",
+      "trajectoryParagraph2": "Tengo experiencia con front -end, back -end, móvil, 3D, automatización, cultura DevOps, nube (AWS, GCP y Azure), contenedores con Docker y CI/CD. Valoro buenas prácticas, código limpio y colaboración con varios equipos. Mi objetivo es crear soluciones modernas que realmente agregen valor, donde, en un entorno con escucha activa, podemos reunir las mejores ideas de todas para ofrecer un producto perfecto al cliente.",
+      "skillsCount": "elementos"
     },
     "about": {
       "description": "Obtenga más información sobre mi carrera profesional, habilidades y personalidad.",
@@ -86,5 +90,9 @@
     "projects": "Proyectos",
     "contact": "Contacto",
     "about": "Sobre mí"
-  }
+  },
+  "footer": [
+    null,
+    null
+  ]
 }
