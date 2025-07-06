@@ -94,5 +94,6 @@
   "footer": [
     null,
     null
-  ]
+  ],
+  "footer[0]": "Sitio Desbeado con ❤️ en Nuxt3 | Visitas: {Vistas}"
 }

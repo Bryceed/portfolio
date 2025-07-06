@@ -120,20 +120,11 @@ export default {
       showDetails,
       closeDetails,
       navigate,
+      timer,
       timerColor,
       circumference,
       timerDashOffset,
-      getSkillDescription(skill) {
-        if (!skill.description) return '';
-        const locale = (this.$i18n?.locale || 'pt').toLowerCase();
-        const lang = locale.split('-')[0];
-        if (skill.description[locale]) return skill.description[locale];
-        if (skill.description[lang]) return skill.description[lang];
-        if (skill.description['pt']) return skill.description['pt'];
-        if (skill.description['en']) return skill.description['en'];
-        const availableLang = Object.keys(skill.description)[0];
-        return availableLang ? skill.description[availableLang] : '';
-      }
+      currentIdx // <-- garantir que está retornando para o template
     };
   }
 };

@@ -1,20 +1,31 @@
 <template>
     <footer class="footer">
-        <p v-html="$t('footer[0]', { year: getYear() })"></p>
-        <p v-html="$t('footer[1]', { url: github })"></p>
+        <p ref="tiltView" v-html="$t('footer[0]')"></p>
+        <p v-html="$t('footer[1]', { url: github, views: '<img src=\'https://contador.s12.com.br/img-aB3b5638Y895w9Cx-2.gif\' width=\'24\' height=\'24\' alt=\'Views counter\' class=\'views-counter\' />' })"></p>
     </footer>
 </template>
 
 <script>
 import about from '../data/about.json';
+import VanillaTilt from 'vanilla-tilt';
 
 export default {
     data() {
         return {
-            github: about.links.github | ''
+            github: about.links.github || ''
         }
     },
-
+    mounted() {
+        if (this.$refs.tiltView) {
+            VanillaTilt.init(this.$refs.tiltView, {
+                max: 12,
+                speed: 400,
+                glare: true,
+                'max-glare': 0.18,
+                scale: 1.08
+            });
+        }
+    },
     methods: {
         getYear() {
             return new Date().getFullYear();

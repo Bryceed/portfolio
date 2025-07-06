@@ -53,17 +53,82 @@ export default defineComponent({
 
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      internalSelectedLanguage: null,
+      lastCheckedLocale: null,
+      refreshCounter: 0
     }
   },
 
   computed: {
     selectedLanguage() {
-      return this.modelValue || { code: 'en', region: 'US', name: 'English' };
+      // Usa o valor interno se disponível, senão usa o modelValue
+      return this.internalSelectedLanguage || this.modelValue || { code: 'en', region: 'US', name: 'English' };
     },
     
     availableLanguages() {
       return this.languages || [];
+    },
+    
+    currentLocale() {
+      // Obtém o locale atual do i18n, localStorage, ou props
+      let locale;
+      
+      // Tentativa 1: Verificar o i18n
+      if (this.$i18n?.locale) {
+        locale = this.$i18n.locale;
+      } else if (this.$i18n?.global?.locale?.value) {
+        locale = this.$i18n.global.locale.value;
+      }
+      
+      // Tentativa 2: Verificar localStorage
+      if (!locale && process.client) {
+        try {
+          locale = localStorage.getItem('lang');
+        } catch (e) {
+          console.error('Erro ao acessar localStorage:', e);
+        }
+      }
+      
+      // Tentativa 3: Usar o modelo atual
+      if (!locale && this.modelValue) {
+        const model = this.modelValue;
+        if (model.region) {
+          locale = `${model.code}-${model.region}`;
+        } else {
+          locale = model.code;
+        }
+      }
+      
+      // Fallback
+      return locale || 'en';
+    }
+  },
+  
+  watch: {
+    // Observa mudanças no locale do i18n
+    currentLocale: {
+      immediate: true,
+      handler(newLocale) {
+        if (newLocale && this.lastCheckedLocale !== newLocale) {
+          this.lastCheckedLocale = newLocale;
+          this.syncWithCurrentLocale(newLocale);
+          this.forceRefresh();
+        }
+      }
+    },
+    
+    // Observa mudanças no modelValue
+    modelValue: {
+      immediate: true,
+      handler(newValue) {
+        if (newValue && (!this.internalSelectedLanguage || 
+            (this.internalSelectedLanguage.code !== newValue.code || 
+             this.internalSelectedLanguage.region !== newValue.region))) {
+          this.internalSelectedLanguage = newValue;
+          this.forceRefresh();
+        }
+      }
     }
   },
 
@@ -76,9 +141,30 @@ export default defineComponent({
     
     selectLanguage(lang) {
       console.log('Idioma selecionado:', lang);
+      this.internalSelectedLanguage = lang;
       this.$emit('update:modelValue', lang);
       this.$emit('select', lang);
       this.isOpen = false;
+      
+      // Atualizar localStorage diretamente para garantir sincronização
+      try {
+        if (lang.region) {
+          localStorage.setItem('lang', `${lang.code}-${lang.region}`);
+        } else {
+          localStorage.setItem('lang', lang.code);
+        }
+        
+        // Emitir evento de mudança de idioma
+        document.dispatchEvent(new CustomEvent('languageChanged', { 
+          detail: { 
+            locale: lang.region ? `${lang.code}-${lang.region}` : lang.code 
+          } 
+        }));
+      } catch (e) {
+        console.error('Erro ao atualizar localStorage:', e);
+      }
+      
+      this.forceRefresh();
     },
     
     getLangKey(lang) {
@@ -101,15 +187,142 @@ export default defineComponent({
       if (this.isOpen && this.$refs.container && !this.$refs.container.contains(event.target)) {
         this.isOpen = false;
       }
+    },
+    
+    forceRefresh() {
+      // Força renderização do componente
+      this.refreshCounter++;
+      
+      // Forçar atualização do DOM
+      this.$nextTick(() => {
+        if (this.$forceUpdate) {
+          this.$forceUpdate();
+        }
+      });
+    },
+    
+    syncWithCurrentLocale(locale) {
+      if (!locale) return;
+      
+      console.log('LanguageSelector: Sincronizando com locale:', locale);
+      
+      // Normaliza o locale para comparações
+      const normalizedLocale = locale.toLowerCase();
+      const parts = normalizedLocale.split('-');
+      const langCode = parts[0];
+      const langRegion = parts[1];
+      
+      // Tenta encontrar correspondência exata e depois parcial
+      let matchingLang = null;
+      
+      // 1. Correspondência exata de código + região
+      if (langRegion) {
+        matchingLang = this.availableLanguages.find(lang => {
+          const code = lang.code?.toLowerCase();
+          const region = lang.region?.toLowerCase();
+          return code === langCode && region === langRegion;
+        });
+      }
+      
+      // 2. Correspondência apenas de código
+      if (!matchingLang) {
+        matchingLang = this.availableLanguages.find(lang => {
+          return lang.code?.toLowerCase() === langCode;
+        });
+      }
+      
+      // 3. Correspondência especial pt-BR -> pt
+      if (!matchingLang && langCode === 'pt' && langRegion === 'br') {
+        matchingLang = this.availableLanguages.find(lang => {
+          return lang.code?.toLowerCase() === 'pt' && (!lang.region || lang.region.toLowerCase() === 'br');
+        });
+      }
+      
+      // 4. Fallback para inglês se nada for encontrado
+      if (!matchingLang) {
+        matchingLang = this.availableLanguages.find(lang => {
+          return lang.code?.toLowerCase() === 'en';
+        });
+      }
+      
+      if (matchingLang) {
+        console.log('LanguageSelector: Idioma encontrado para locale', locale, ':', matchingLang);
+        this.internalSelectedLanguage = matchingLang;
+      } else {
+        console.warn('LanguageSelector: Nenhum idioma correspondente encontrado para locale:', locale);
+      }
+    },
+    
+    checkLocalStorage() {
+      try {
+        const storedLocale = localStorage.getItem('lang');
+        if (storedLocale && this.lastCheckedLocale !== storedLocale) {
+          console.log('LanguageSelector: Locale no localStorage:', storedLocale);
+          this.lastCheckedLocale = storedLocale;
+          this.syncWithCurrentLocale(storedLocale);
+          this.forceRefresh();
+        }
+      } catch (e) {
+        console.error('Erro ao verificar localStorage:', e);
+      }
+    },
+    
+    handleLocaleChange(event) {
+      if (event && event.detail) {
+        const newLocale = event.detail.locale || event.detail;
+        console.log('LanguageSelector: Evento de mudança de idioma detectado:', newLocale);
+        if (this.lastCheckedLocale !== newLocale) {
+          this.lastCheckedLocale = newLocale;
+          this.syncWithCurrentLocale(newLocale);
+          this.forceRefresh();
+        }
+      }
+      
+      // Verifica também o localStorage diretamente
+      this.checkLocalStorage();
     }
   },
   
   mounted() {
     document.addEventListener('click', this.handleClickOutside);
+    
+    // Adicionar listeners para eventos de mudança de idioma
+    document.addEventListener('i18n:localeChanged', this.handleLocaleChange);
+    document.addEventListener('languageChanged', this.handleLocaleChange);
+    document.addEventListener('i18n:refresh', this.handleLocaleChange);
+    
+    // Verificar mudanças no localStorage
+    if (process.client) {
+      window.addEventListener('storage', () => this.checkLocalStorage());
+      
+      // Verifica imediatamente
+      this.checkLocalStorage();
+      
+      // Configura um polling para verificar mudanças de idioma
+      this.pollingInterval = setInterval(() => {
+        this.checkLocalStorage();
+        if (this.$i18n) {
+          const currentI18nLocale = this.$i18n.locale || (this.$i18n.global?.locale?.value);
+          if (currentI18nLocale && this.lastCheckedLocale !== currentI18nLocale) {
+            console.log('LanguageSelector: Mudança de locale detectada no polling:', currentI18nLocale);
+            this.lastCheckedLocale = currentI18nLocale;
+            this.syncWithCurrentLocale(currentI18nLocale);
+            this.forceRefresh();
+          }
+        }
+      }, 2000); // Verificar a cada 2 segundos
+    }
   },
   
   beforeUnmount() {
     document.removeEventListener('click', this.handleClickOutside);
+    document.removeEventListener('i18n:localeChanged', this.handleLocaleChange);
+    document.removeEventListener('languageChanged', this.handleLocaleChange);
+    document.removeEventListener('i18n:refresh', this.handleLocaleChange);
+    
+    if (process.client && this.pollingInterval) {
+      clearInterval(this.pollingInterval);
+    }
   }
 })
 </script>

@@ -324,7 +324,7 @@
   },
   "theme": "Tema",
   "footer": [
-    "Site construído por mim com ❤️ em Nuxt3 | Visualizações: <img src=\"https://www.counter12.com/img-x8waWZwzd7d5z839-26.gif\" alt=\"Nuxt.js logo\" width=\"16\" height=\"16\" id=\"visitor-counter12\" />",
-    "Direitos autorais © {year} <a href=\"{author}\" target=\"_blank\">Wellington N</a>. Código aberto sob licença AGPL-4.0."
+    "Site construído com ❤️ e ☕ em Nuxt3",
+    "Código aberto </a> sob licença <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} visitas"
   ]
 }

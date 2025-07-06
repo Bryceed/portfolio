@@ -1,5 +1,6 @@
 <template>
   <div class="contact-page">
+    <ParticlesTriangles height="140" style="position:absolute;top:0;left:0;width:100vw;z-index:0;pointer-events:none;" />
     <div class="contact-header">
       <h1>{{ $t('html.contact.title') }}</h1>
       <p>{{ $t('html.contact.description') }}</p>

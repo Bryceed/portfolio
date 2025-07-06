@@ -1,15 +1,12 @@
 <template>
-    <div>
-        <CommonAlertsPride v-if="isPrideMonth" />
-        <HomeAboutMe />
-        <ProjectsHighlightsDisplay />
-        <div class="flex flex-row justify-between gap-4 h-80vh 
-            items-start flex-wrap mx-auto">
-            <HomeAboutTrajectory class="max-w-400px x2-sp h-full" />
-            <HomeSkills class="flex-1 max-w-400px pr-8" />
-        </div>
+    <CommonAlertsPride v-if="isPrideMonth" />
+    <HomeAboutMe />
+    <ProjectsHighlightsDisplay />
+    <div class="flex flex-row justify-between gap-4 h-80vh 
+        items-start flex-wrap mx-auto">
+        <HomeAboutTrajectory class="max-w-400px x2-sp h-full" />
+        <HomeSkills class="flex-1 max-w-400px pr-8" />
     </div>
-    
     <!-- Call to Action -->
     <div class="section cta-section">
         <div class="cta-container">
@@ -29,8 +26,21 @@
     </div>
 </template>
 
-<style scoped lang="scss">
+<script setup>
+const date = new Date();
+const isPrideMonth = date.getMonth() === 5;
 
+definePageMeta({
+  layout: 'default',
+  backgroundType: 'gradient',
+  backgroundGradient: 'linear-gradient(135deg, #f7b42c 0%, #fc575e 100%)',
+  backgroundColor: '', // pode ser usado se quiser cor sólida
+  backgroundSrc: '',   // pode ser usado se quiser imagem
+  backgroundTransitionDuration: 1200
+});
+</script>
+
+<style lang="scss">
 // CTA Section
 .cta-section {
     padding: 5rem 20px;
@@ -102,7 +112,6 @@
 // Tema claro
 html.light {
     .cta-section {
-        background-color: #f5f5f5;
         color: #333;
         
         h2 {
@@ -187,105 +196,4 @@ html.light {
     }
 }
 </style>
-
-<script>
-import { getPageTitle } from '../utils/pageTitle';
-import projects from '../data/projects.json';
-import timeline from '../data/timeline.json';
-import certifications from '../data/certifications.json';
-
-export default {
-    name: 'Home',
-
-    data() {
-        const date = new Date();
-        const isPrideMonth = date.getMonth() === 5;
-
-        return {
-            isPrideMonth,
-            minishelf: [],
-            currentIndex: 0,
-            slidesToShow: 4, // Default for desktop
-            recentExperience: [],
-            certifications: []
-        };
-    },
-
-    mounted() {
-        document.title = getPageTitle({ mainPage: 'Home' });
-
-        // Load projects
-        this.$nextTick(() => {
-            try {
-                this.minishelf = projects.projects || [];
-                
-                // Carregar experiências recentes (últimas 4)
-                if (timeline && timeline.events) {
-                    this.recentExperience = timeline.events
-                        .filter(event => event.jobRole) // Filtra apenas experiências profissionais
-                        .sort((a, b) => {
-                            // Ordena pela data de início mais recente
-                            const dateA = a.startDate ? new Date(a.startDate) : new Date(0);
-                            const dateB = b.startDate ? new Date(b.startDate) : new Date(0);
-                            return dateB - dateA;
-                        })
-                        .slice(0, 4); // Pega apenas as 4 mais recentes
-                }
-                
-                // Carregar certificações
-                if (certifications && certifications.items) {
-                    this.certifications = certifications.items;
-                }
-            } catch (error) {
-                console.error('Error loading data:', error);
-            }
-        });
-
-        // Set responsive slidesToShow based on screen size
-        this.updateSlidesPerView();
-        window.addEventListener('resize', this.updateSlidesPerView);
-    },
-
-    beforeUnmount() {
-        window.removeEventListener('resize', this.updateSlidesPerView);
-    },
-
-    methods: {
-        getDescription(project) {
-            return project.description[this.$i18n.locale] || project.description['en'];
-        },
-
-        nextSlide() {
-            if (this.currentIndex < this.minishelf.length - this.slidesToShow) {
-                this.currentIndex++;
-            }
-        },
-
-        prevSlide() {
-            if (this.currentIndex > 0) {
-                this.currentIndex--;
-            }
-        },
-
-        goToSlide(index) {
-            this.currentIndex = index;
-        },
-
-        updateSlidesPerView() {
-            if (window.innerWidth <= 480) {
-                this.slidesToShow = 1;
-            } else if (window.innerWidth <= 768) {
-                this.slidesToShow = 2;
-            } else if (window.innerWidth <= 1200) {
-                this.slidesToShow = 3;
-            } else {
-                this.slidesToShow = 4;
-            }
-            
-            // Update CSS variable for responsive design
-            document.documentElement.style.setProperty('--slides-per-view', this.slidesToShow);
-        }
-    }
-};
-</script>
 

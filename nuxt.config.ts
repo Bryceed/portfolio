@@ -41,7 +41,8 @@ export default defineNuxtConfig({
     "@unocss/nuxt",
     "dayjs-nuxt",
     "nuxt-jsonapi",
-    "@nuxt/fonts"
+    "@nuxt/fonts",
+    "@nuxt/icon"
   ],
 
   css: ["@/assets/css/main.css"],

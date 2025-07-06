@@ -108,5 +108,6 @@
   "footer": [
     null,
     null
-  ]
+  ],
+  "footer[0]": "Site Debreeed with ❤️ in NUXT3 | Visits: {views}"
 }

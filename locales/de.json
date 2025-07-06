@@ -30,7 +30,7 @@
       "dark": "Dunkel"
     }
   },
-  "footer[0]": "Website erstellt mit ❤️ in Mut3. ({Jahr})",
+  "footer[0]": "Site Debreeed mit ❤️ in nuxt3 | Besuche: {Ansichten}",
   "footer[1]": "Besuchen Sie meine <a href = \"{github}\" target = \"_ leer\"> github </a> Um mehr über meine Projekte zu erfahren (einschließlich dieser).",
   "html": {
     "contact": {

@@ -1,44 +1,59 @@
 <template>
-    <div class="projects">
-        <div class="project-item" v-for="project in projects" :key="project.id"
-            :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">
-            <div class="_left">
-                <img :src="project.placeholder" :alt="project.name" />
-            </div>
-            <div class="_underneath"
-                :style="{ 'background': project.colors.primary ? `linear-gradient(90deg, ${project.colors.primary}, transparent)` : 'transparent', 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
-                <h3>{{ project.title }}</h3>
-                <p>{{ getDescription(project) }}</p>
-            </div>
-            <div class="_right"
-                :style="{ 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
-                <div class="actions"
-                    :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }">
-                    <template v-if="project.page" class="project-page">
-                        <NuxtLink :to="`/project/${project.id}`"><i class="material-icons">arrow_forward</i></NuxtLink>
-                    </template>
-                    <template v-if="project.code" class="project-code">
-                        <a :href="project.code" target="_blank"><i class="material-icons">code</i></a>
-                    </template>
-                    <template v-if="project.link" class="project-link">
-                        <a :href="project.link" target="_blank"><i class="material-icons">launch</i></a>
-                    </template>
-                </div>
-            </div>
-        </div>
+  <section class="projects-hero-section">
+    <div class="projects-hero-bg">
+        <MenuOverlay scoop-size="24px" />
+      <div class="projects-hero-gradient"></div>
     </div>
+    <div class="projects-hero-content">
+      <Icon name="hugeicons:computer-programming-01" class="projects-hero-logo" />
+      <h1 class="projects-hero-title">{{ $t('html.projets.title') }}</h1>
+      <p class="projects-hero-desc">{{ $t('html.projects.intro') }}</p>
+
+    </div>
+  </section>
+  <div class="projects projects-bg-wrapper">
+    <div class="project-item" v-for="project in projects" :key="project.id"
+        :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">
+      <div class="_left">
+        <img :src="project.placeholder" :alt="project.name" />
+      </div>
+      <div class="_underneath"
+        :style="{ 'background': project.colors.primary ? `linear-gradient(90deg, ${project.colors.primary}, transparent)` : 'transparent', 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
+        <h3>{{ project.title }}</h3>
+        <p>{{ getDescription(project) }}</p>
+      </div>
+      <div class="_right"
+        :style="{ 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
+        <div class="actions"
+          :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }">
+          <template v-if="project.page" class="project-page">
+            <NuxtLink :to="`/project/${project.id}`"><i class="material-icons">arrow_forward</i></NuxtLink>
+          </template>
+          <template v-if="project.code" class="project-code">
+            <a :href="project.code" target="_blank"><i class="material-icons">code</i></a>
+          </template>
+          <template v-if="project.link" class="project-link">
+            <a :href="project.link" target="_blank"><i class="material-icons">launch</i></a>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { projects } from "../data/projects.json";
 import { getPageTitle } from '../utils/pageTitle';
+import ParticlesTriangles from '@/components/common/ParticlesTriangles.vue';
+import MenuOverlay from '@/components/common/MenuOverlay.vue';
 
 export default {
     name: 'Projects',
+    components: { ParticlesTriangles, MenuOverlay },
     data() {
         return {
             projects
-        }
+        };
     },
 
     methods: {
@@ -90,6 +105,25 @@ p {
     max-width: 1340px;
     padding: 0 20px;
     gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.projects-bg-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+}
+
+.projects-bg-particles {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  min-width: 100vw;
+  z-index: 0;
+  pointer-events: none;
+  height: 160px !important;
 }
 
 .project-item {
@@ -286,4 +320,92 @@ html.light .project-item:hover ._right .actions {
     top: -4px;
 }
 
+.projects-hero-section {
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+}
+.projects-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 2rem;
+}
+.projects-hero-particles {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 180px !important;
+  z-index: 1;
+}
+.projects-hero-gradient {
+  position: absolute;
+  inset: 0;
+  width: 100dvw;
+  background: linear-gradient(0deg, #067E87FF 0%, #1FAE0CFF 100%);
+  opacity: 0.85;
+  z-index: 0;
+  border-radius: 2rem;
+}
+.projects-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  padding-top: 4rem;
+  gap: .5rem;
+}
+.projects-hero-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  color: #fff;
+}
+.projects-hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #111;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  text-shadow: 0 2px 16px #00000044;
+}
+html.light .projects-hero-title {
+  color: #fff;
+  text-shadow: 0 2px 16px #00000044;
+}
+.projects-hero-desc {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  text-align: center;
+  max-width: 600px;
+  margin: 0.5rem 0 1rem;
+}
+@media (max-width: 700px) {
+  .projects-hero-section {
+    min-height: 160px;
+  }
+  .projects-hero-bg, .projects-hero-gradient {
+    height: 160px;
+  }
+  .projects-hero-logo {
+    width: 60px;
+    height: 60px;
+  }
+  .projects-hero-title {
+    font-size: 1.5rem;
+  }
+}
 </style>

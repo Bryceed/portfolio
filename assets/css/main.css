@@ -218,3 +218,16 @@ div[class$="-mode"] {
   cursor: default;
 }
 
+.footer p{
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+.footer p a {
+  color: inherit;
+  font-weight: 500;
+  opacity: 0.6;
+}
+.light .footer .views-counter {
+  filter: invert(1) !important;
+}

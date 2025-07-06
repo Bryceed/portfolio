@@ -1,6 +1,9 @@
 <template>
     <div class="projects-highlight-container">
-        <h2>{{ $t('html.home.projectsTitle') }}</h2>
+        <div class="particles-title-wrapper">
+          <ParticlesTriangles height="90" style="margin-bottom: -2.5rem;" />
+          <h2 class="projects-title">{{ $t('html.home.projectsTitle') }}</h2>
+        </div>
         <div class="projects-highlight">
             <template v-for="(project, index) in projects.slice(0, 6)" :key="project.id">
                 <div class="project-item" :class="{ active: project.active }" @click="toggleActive(project)"
@@ -23,6 +26,36 @@
 </template>
 
 <style scoped>
+.particles-title-wrapper {
+  position: relative;
+  width: 100%;
+  align-items: center;
+  min-height: 90px;
+  margin-bottom: 1.5rem;
+}
+.projects-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 90vw;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  text-shadow: 0 2px 16px #00000044;
+}
+html.light .projects-title {
+  color: #111;
+  text-shadow: 0 2px 16px #ffffff44;
+}
+
 h2 {
     font-size: 3rem;
     font-weight: 900;
@@ -483,8 +516,11 @@ html.light .project-item.active .info-overlay {
 
 <script>
 import { projects } from "../../data/projects.json";
+import VanillaTilt from 'vanilla-tilt';
+import ParticlesTriangles from '@/components/common/ParticlesTriangles.vue';
 
 export default {
+    components: { ParticlesTriangles },
     data() {
         return {
             projects
@@ -502,18 +538,15 @@ export default {
         }
     },
     mounted() {
-
-        if (typeof VanillaTilt !== 'undefined') {
-            VanillaTilt.init(document.querySelectorAll(".project-item"), {
-                max: 15,
-                reverse: true,
-                speed: 300,
-                glare: true,
-                "max-glare": 0.5,
-                "glare-prerender": false,
-                "gyroscope": true
-            });
-        }
+        VanillaTilt.init(this.$el.querySelectorAll(".project-item"), {
+            max: 15,
+            reverse: true,
+            speed: 300,
+            glare: true,
+            "max-glare": 0.5,
+            "glare-prerender": false,
+            "gyroscope": true
+        });
     }
 }
 </script>

@@ -15,6 +15,7 @@
 
 <script>
 import { projects } from "../../data/projects.json";
+import VanillaTilt from 'vanilla-tilt';
 
 export default {
     data() {
@@ -22,5 +23,16 @@ export default {
             projects
         }
     },
+    mounted() {
+        VanillaTilt.init(this.$el.querySelectorAll(".project-item"), {
+            max: 15,
+            reverse: true,
+            speed: 300,
+            glare: true,
+            "max-glare": 0.5,
+            "glare-prerender": false,
+            "gyroscope": true
+        });
+    }
 }
 </script>
