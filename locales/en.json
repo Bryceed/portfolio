@@ -21,7 +21,6 @@
       "viewMore": "View More",
       "view": "View",
       "details": "Details",
-      "visit": "Visit",
       "actions[2]": {
         "label": "About me"
       },
@@ -31,7 +30,9 @@
       "trajectoryTitle": "My trajectory",
       "trajectoryParagraph1": "I am in love with delivering technological solutions that combine performance, modern practices and good user experience. \nThroughout my career, I led projects for automation, creation and maintenance of websites in various technologies.",
       "trajectoryParagraph2": "I have experience with front end, back end, mobile, 3D, automation, Devops culture, cloud (AWS, GCP and Azure), containerization with docker and CI/CD. \nI value good practices, clean code and collaboration with various teams. \nMy goal is to build modern solutions that really add value, where, in an environment with active listening, we can gather the best ideas of all to deliver a perfect product to the customer.",
-      "skillsCount": "items"
+      "skillsCount": "items",
+      "action": "Visit",
+      "action[1]": ""
     },
     "contact": {
       "cv": {
@@ -95,6 +96,14 @@
       },
       "skills": {
         "title": "Technical skills"
+      }
+    },
+    "projects": {
+      "miniDisplay": {
+        "button": {
+          "details": "+",
+          "website": "Access"
+        }
       }
     }
   },

@@ -20,11 +20,11 @@
         <div class="about-modern__buttons">
           <NuxtLink to="/about" class="btn btn--primary">
             <i class="material-icons">person</i>
-            <span v-html="getTranslation('html.home.actions[2].label')"></span>
+            <span v-html="getTranslation('html.home.actions[0]')"></span>
           </NuxtLink>
           <NuxtLink to="/contact" class="btn btn--secondary">
             <i class="material-icons">email</i>
-            <span v-html="getTranslation('html.home.actions[1].label')"></span>
+            <span v-html="getTranslation('html.home.actions[1]')"></span>
           </NuxtLink>
         </div>
       </div>
@@ -224,14 +224,92 @@ export default {
     generateTextJobPeriod(startDate, endDate, lang = this.currentLocale) {
       try {
         if (!startDate) throw new Error('Start date is required');
+        const start = new Date(startDate);
+        const end = endDate ? new Date(endDate) : new Date();
+
+        let years = end.getFullYear() - start.getFullYear();
+        let months = end.getMonth() - start.getMonth();
+
+        if (end.getDate() < start.getDate()) {
+          months--;
+        }
+        if (months < 0) {
+          years--;
+          months += 12;
+        }
+
+        // Idiomas suportados: pt, en, es (pode expandir conforme necessário)
+        const translations = {
+          'pt': (y, m) => {
+            if (y === 0 && m === 0) return 'menos de 1 mês';
+            if (y === 0) return `${m} ${m === 1 ? 'mês' : 'meses'}`;
+            if (m === 0) return `${y} ${y === 1 ? 'ano' : 'anos'}`;
+            return `${y} ${y === 1 ? 'ano' : 'anos'} e ${m} ${m === 1 ? 'mês' : 'meses'}`;
+          },
+          'en': (y, m) => {
+            if (y === 0 && m === 0) return 'less than 1 month';
+            if (y === 0) return `${m} ${m === 1 ? 'month' : 'months'}`;
+            if (m === 0) return `${y} ${y === 1 ? 'year' : 'years'}`;
+            return `${y} ${y === 1 ? 'year' : 'years'} and ${m} ${m === 1 ? 'month' : 'months'}`;
+          },
+          'es': (y, m) => {
+            if (y === 0 && m === 0) return 'menos de 1 mes';
+            if (y === 0) return `${m} ${m === 1 ? 'mes' : 'meses'}`;
+            if (m === 0) return `${y} ${y === 1 ? 'año' : 'años'}`;
+            return `${y} ${y === 1 ? 'año' : 'años'} y ${m} ${m === 1 ? 'mes' : 'meses'}`;
+          },
+          'fr': (y, m) => {
+            if (y === 0 && m === 0) return 'moins d\'1 mois';
+            if (y === 0) return `${m} ${m === 1 ? 'mois' : 'mois'}`;
+            if (m === 0) return `${y} ${y === 1 ? 'an' : 'ans'}`;
+            return `${y} ${y === 1 ? 'an' : 'ans'} et ${m} ${m === 1 ? 'mois' : 'mois'}`;
+          },
+          'it': (y, m) => {
+            if (y === 0 && m === 0) return 'meno di 1 mese';
+            if (y === 0) return `${m} ${m === 1 ? 'mese' : 'mesi'}`;
+            if (m === 0) return `${y} ${y === 1 ? 'anno' : 'anni'}`;
+            return `${y} ${y === 1 ? 'anno' : 'anni'} e ${m} ${m === 1 ? 'mese' : 'mesi'}`;
+          },
+            'de': (y, m) => {
+                if (y === 0 && m === 0) return 'weniger als 1 Monat';
+                if (y === 0) return `${m} ${m === 1 ? 'Monat' : 'Monate'}`;
+                if (m === 0) return `${y} ${y === 1 ? 'Jahr' : 'Jahre'}`;
+                return `${y} ${y === 1 ? 'Jahr' : 'Jahre'} und ${m} ${m === 1 ? 'Monat' : 'Monate'}`;
+            },
+            'ru': (y, m) => {
+                if (y === 0 && m === 0) return 'менее 1 месяца';
+                if (y === 0) return `${m} ${m === 1 ? 'месяц' : 'месяца'}`;
+                if (m === 0) return `${y} ${y === 1 ? 'год' : 'года'}`;
+                return `${y} ${y === 1 ? 'год' : 'года'} и ${m} ${m === 1 ? 'месяц' : 'месяца'}`;
+            },
+            'ja': (y, m) => {
+                if (y === 0 && m === 0) return '1ヶ月未満';
+                if (y === 0) return `${m} ${m === 1 ? 'ヶ月' : 'ヶ月'}`;
+                if (m === 0) return `${y} ${y === 1 ? '年' : '年'}`;
+                return `${y} ${y === 1 ? '年' : '年'}と${m} ${m === 1 ? 'ヶ月' : 'ヶ月'}`;
+            },
+            'zh': (y, m) => {
+                if (y === 0 && m === 0) return '少于1个月';
+                if (y === 0) return `${m} ${m === 1 ? '个月' : '个月'}`;
+                if (m === 0) return `${y} ${y === 1 ? '年' : '年'}`;
+                return `${y} ${y === 1 ? '年' : '年'}和${m} ${m === 1 ? '个月' : '个月'}`;
+            },
+            'ko': (y, m) => {
+                if (y === 0 && m === 0) return '1개월 미만';
+                if (y === 0) return `${m} ${m === 1 ? '개월' : '개월'}`;
+                if (m === 0) return `${y} ${y === 1 ? '년' : '년'}`;
+                return `${y} ${y === 1 ? '년' : '년'}과 ${m} ${m === 1 ? '개월' : '개월'}`;
+            }
+        };
+
+        // Detecta idioma base (pt, en, es)
+        const baseLang = (lang || 'en').split('-')[0];
+        const fn = translations[baseLang] || translations['en'];
+        return fn(years, months);
       } catch (error) {
         console.error('Error generating job period text:', error);
         return '-';
       }
-      const start = new Date(startDate);
-      const end = endDate ? new Date(endDate) : new Date();
-      const options = { year: 'numeric', month: 'short' };
-      return `${start.toLocaleDateString(lang, options)} - ${end.toLocaleDateString(lang, options)}`;
     }
   }
 };

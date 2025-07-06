@@ -71,7 +71,8 @@
       "trajectoryTitle": "Minha Trajetória",
       "trajectoryParagraph1": "Sou apaixonado por entregar soluções tecnológicas que combinam performance, práticas modernas e com boa experiência de usuário. Ao longo da minha carreira, liderei projetos de automação, criação e manutenção de sites em diversas tecnologias.",
       "trajectoryParagraph2": "Tenho experiência com front-end, back-end, mobile, 3D, automação, cultura DevOps, nuvem (AWS, GCP e Azure), conteinerização com Docker e CI/CD. Valorizo boas práticas, código limpo e colaboração com equipes diversas. Meu objetivo é construir soluções modernas que realmente agreguem valor, onde, num ambiente com escuta ativa, possamos reunir as melhores ideias de todos para entregarmos um produto perfeito ao cliente.",
-      "skillsCount": "itens"
+      "skillsCount": "itens",
+      "action[1]": ""
     },
     "about": {
       "description": "Conheça mais sobre minha trajetória profissional, habilidades e personalidade.",
@@ -105,7 +106,13 @@
       "title": "Projetos"
     },
     "projects": {
-      "intro": "Alguns dos projetos que desenvolvi ao longo da minha jornada de aprendizado e trabalho."
+      "intro": "Alguns dos projetos que desenvolvi ao longo da minha jornada de aprendizado e trabalho.",
+      "miniDisplay": {
+        "button": {
+          "details": "+",
+          "website": "Visitar"
+        }
+      }
     }
   }
 }

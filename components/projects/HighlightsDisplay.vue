@@ -265,7 +265,7 @@ html.light .project-item:hover .info-overlay {
     font-weight: bold;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: absolute;
-    top: 40%;
+    top: 33%;
     color: rgba(189, 189, 189, 0.25) !important;
     transition: all 0.2s ease-out;
     text-align: center;

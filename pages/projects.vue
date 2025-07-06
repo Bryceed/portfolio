@@ -1,16 +1,14 @@
 <template>
-  <section class="projects-hero-section">
-    <div class="projects-hero-bg">
-        <MenuOverlay scoop-size="24px" />
-      <div class="projects-hero-gradient"></div>
-    </div>
-    <div class="projects-hero-content">
-      <Icon name="hugeicons:computer-programming-01" class="projects-hero-logo" />
-      <h1 class="projects-hero-title">{{ $t('html.projets.title') }}</h1>
-      <p class="projects-hero-desc">{{ $t('html.projects.intro') }}</p>
-
-    </div>
-  </section>
+  <ProjectsHero
+    :title="$t('html.projets.title')"
+    :description="$t('html.projects.intro')"
+    icon="hugeicons:computer-programming-01"
+    :gradient="'linear-gradient(0deg, #067E87FF 0%, #1FAE0CFF 100%)'"
+    baseClass="projects-hero"
+    :showMenuOverlay="true"
+    :showParticles="true"
+    :particlesHeight="180"
+  />
   <div class="projects projects-bg-wrapper">
     <div class="project-item" v-for="project in projects" :key="project.id"
         :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">
@@ -44,18 +42,16 @@
 <script>
 import { projects } from "../data/projects.json";
 import { getPageTitle } from '../utils/pageTitle';
-import ParticlesTriangles from '@/components/common/ParticlesTriangles.vue';
-import MenuOverlay from '@/components/common/MenuOverlay.vue';
+import ProjectsHero from '@/components/common/ProjectsHero.vue';
 
 export default {
     name: 'Projects',
-    components: { ParticlesTriangles, MenuOverlay },
+    components: { ProjectsHero },
     data() {
         return {
             projects
         };
     },
-
     methods: {
         getDescription(project) {
             return project.description[this.$i18n.locale] || project.description['en'];
@@ -66,17 +62,13 @@ export default {
             }
         }
     },
-
     mounted() {
         document.title = getPageTitle({ mainPage: 'Projects' });
-        //for all cards click, navigate to the project page
         document.querySelectorAll('.project-item').forEach(item => {
             item.addEventListener('click', () => {
                 this.linkTo(`/project/${item.id}`);
             });
         });
-
-        // resize observer to fit cards
     }
 }
 </script>
