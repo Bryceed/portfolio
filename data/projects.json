@@ -1,6 +1,105 @@
 {
     "projects": [
         {
+            "id": "singalong",
+            "title": "SingAlong!",
+            "description": {
+                "pt-BR": "Plataforma PWA de karaokê online multiplayer com foco em trazer uma experiência divertida e interativa.",
+                "en": "PWA platform for online multiplayer karaoke focused on providing a fun and interactive experience.",
+                "es": "Plataforma PWA de karaoke en línea multijugador centrada en proporcionar una experiencia divertida e interactiva.",
+                "fr": "Plateforme PWA de karaoké en ligne multijoueur axée sur la fourniture d'une expérience amusante et interactive.",
+                "ja-JP": "オンラインマルチプレイヤーカラオケのPWAプラットフォームで、楽しくインタラクティブな体験を提供することに焦点を当てています。",
+                "ko": "온라인 멀티플레이어 노래방을 위한 PWA 플랫폼으로, 재미있고 인터랙티브한 경험을 제공하는 데 중점을 둡니다.",
+                "de": "PWA-Plattform für Online-Multiplayer-Karaoke, die sich auf die Bereitstellung eines unterhaltsamen und interaktiven Erlebnisses konzentriert."
+            },
+            "dueDate": "2025-02-20",
+            "priority": "High",
+            "colors": {
+                "primary": "#40AD4B",
+                "secondary": "#003B1F",
+                "surface": {
+                    "light": {
+                        "primary": "#40AD4B",
+                        "secondary": "#000000"
+                    },
+                    "dark": {
+                        "primary": "#FFFFFF",
+                        "secondary": "#000000"
+                    }
+                },
+                "text": "#FFFFFF"
+            },
+            "status": "Open",
+            "placeholder": "/assets/images/projects/singAlong/placeholder.jpg",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "https://www.youtube.com/watch?v=FS8gVW_XwWY&list=PL6VzpIVyxDzf-zCnv4shDtla_1n6AL7V2&index=1/",
+            "website": "https://www.youtube.com/watch?v=FS8gVW_XwWY&list=PL6VzpIVyxDzf-zCnv4shDtla_1n6AL7V2&index=1/",
+            "page": "/project/singalong"
+        },
+        {
+            "id": "cedes",
+            "title": "CEDES",
+            "description": {
+                "pt-BR": "Website insticional religioso, abrangendo informações sobre a instituição, seus projetos e atividades.",
+                "en": "Institutional religious website, covering information about the institution, its projects, and activities.",
+                "es": "Sitio web institucional religioso, abarcando información sobre la institución, sus proyectos y actividades.",
+                "fr": "Site web institutionnel religieux, couvrant des informations sur l'institution, ses projets et activités.",
+                "ja-JP": "宗教的な機関の公式ウェブサイトで、機関の情報、プロジェクト、および活動を網羅しています。",
+                "ko": "종교 기관의 공식 웹사이트로, 기관의 정보, 프로젝트 및 활동을 다룹니다.",
+                "de": "Religiöse institutionelle Website, die Informationen über die Institution, ihre Projekte und Aktivitäten abdeckt."
+            },
+            "dueDate": "2025-06-24",
+            "priority": "High",
+            "colors": {
+                "primary": "#E0A535",
+                "secondary": "#5D442B",
+                "surface": {
+                    "light": {
+                        "primary": "#FFFFFF",
+                        "secondary": "#000000"
+                    },
+                    "dark": {
+                        "primary": "#FFFFFF",
+                        "secondary": "#000000"
+                    }
+                },
+                "text": "#FFFFFF"
+            },
+            "status": "Open",
+            "placeholder": "/assets/images/projects/cedes/cedes_placeholder.png",
+            "media": [
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                },
+                {
+                    "type": "image",
+                    "url": "http://test.com/123"
+                }
+            ],
+            "link": "https://website-cedes.vercel.app/",
+            "website": "https://website-cedes.vercel.app/",
+            "page": "/project/cedes",
+            "code": "https://github.com/Bryceed/website-cedes"
+        },
+        {
             "id": "rydermais",
             "title": "RYDERMAIS",
             "description": {
