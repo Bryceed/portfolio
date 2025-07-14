@@ -1,5 +1,7 @@
 <template>
     <div class="menuHandler">
+        <!-- Overlay para mobile menu -->
+        <div v-if="menuOpen && isMobile" class="mobile-menu-overlay" @click="closeMenu()"></div>
         <nav>
             <a href="/"><!-- guarantee full reload ("panic button" for bugs) -->
                 <div class="logo">
@@ -80,6 +82,7 @@ import { menu } from "../data/menu.json";
 import LanguageSelector from './common/LanguageSelector.vue';
 import ThemeSwitcher from './theme/Switcher.vue';
 import { onMounted } from 'vue';
+
 let menuOpen = false;
 let langPopupOpen = false;
 
@@ -95,7 +98,8 @@ export default {
                 this.initializeLanguageFromLocalStorage();
             });
         }
-    },data() {
+    },
+    data() {
         // Durante o SSR, sempre inicializamos com o idioma padrão
         let initialLang = { code: 'pt', region: 'BR', name: 'Português (Brasil)' };
         
@@ -118,6 +122,7 @@ export default {
             menu,
             menuOpen,
             langPopupOpen,
+            isMobile: typeof window !== 'undefined' ? window.innerWidth <= 1024 : false,
             languages: availableLanguages,
             currentLang: initialLang
         }    },    watch: {
@@ -377,11 +382,42 @@ export default {
                 console.error('Erro ao processar evento de armazenamento:', error);
             }
         },
-    }
+    },
+    mounted() {
+        // Atualiza isMobile ao redimensionar
+        if (typeof window !== 'undefined') {
+            window.addEventListener('resize', this.updateIsMobile);
+        }
+    },
+    beforeUnmount() {
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('resize', this.updateIsMobile);
+        }
+    },
+    methods: {
+        ...((typeof window !== 'undefined') ? {
+            updateIsMobile() {
+                this.isMobile = window.innerWidth <= 1024;
+            },
+        } : {}),
+        closeMenu() {
+            this.menuOpen = false;
+        },
+    },
 }
 </script>
 
 <style scoped lang="scss">
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 19;
+  display: block;
+}
 .menuHandler {
     padding: 20px;
     position: sticky;
