@@ -13,16 +13,18 @@
         "description": "Descargar mi CV actualizado"
       },
       "title": "Contacto",
-      "description": "Contácteme para hablar sobre su proyecto o oportunidad de trabajo.",
+      "description": "¿Hablemos de su proyecto o oportunidad de trabajo?",
       "phone": {
-        "description": "(WhatsApp, llamadas y SMS)"
+        "description": "(WhatsApp, llamadas y SMS)",
+        "title": ""
       },
       "social": {
         "title": "Redes sociales"
       },
       "buttons": {
         "downloadCV": "Descargar CV"
-      }
+      },
+      "contactInfo": "Contactos"
     },
     "blog": {
       "soon": "Esta sesión está siendo reformulada. Noticias pronto."

@@ -13,16 +13,18 @@
         "description": "업데이트 된 이력서를 다운로드하십시오"
       },
       "title": "연락하다",
-      "description": "프로젝트 나 직업 기회에 대해 이야기하려면 저에게 연락하십시오.",
+      "description": "프로젝트 나 직업 기회에 대해 이야기합시다.",
       "phone": {
-        "description": "(WhatsApp, Call 및 SMS)"
+        "description": "(WhatsApp, Call 및 SMS)",
+        "title": ""
       },
       "social": {
         "title": "소셜 미디어"
       },
       "buttons": {
         "downloadCV": "CV 다운로드"
-      }
+      },
+      "contactInfo": "콘택트 렌즈"
     },
     "blog": {
       "soon": "이 세션은 재구성되고 있습니다. 곧 뉴스."

@@ -70,7 +70,7 @@
     ],
     "contact": {
       "title": "Contato",
-      "description": "Entre em contato comigo para conversarmos sobre seu projeto ou oportunidade de trabalho.",
+      "description": "Vamos conversar sobre seu projeto ou oportunidade de trabalho?",
       "buttons": {
         "sendEmail": "Enviar E-mail",
         "sendMessage": "Enviar Mensagem",
@@ -111,7 +111,13 @@
         "title": "Redes Sociais"
       },
       "phone": {
-        "description": "(WhatsApp, ligações e SMS)"
+        "description": "(WhatsApp, ligações e SMS)",
+        "title": "Telefone"
+      },
+      "contactInfo": "Contatos",
+      "hero": {
+        "title": "Vamos conversar?",
+        "description": "Seja para concretizar o seu projeto, ou uma proposta para atuar na equipe da sua empresa, fico à disposição para transformar sua idealização em ação."
       }
     },
     "blog": {

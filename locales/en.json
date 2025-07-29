@@ -47,16 +47,18 @@
         "description": "Download my updated CV"
       },
       "title": "Contact",
-      "description": "Contact me to talk about your project or job opportunity.",
+      "description": "Let's talk about your project or job opportunity?",
       "phone": {
-        "description": "(WhatsApp, calls and SMS)"
+        "description": "(WhatsApp, calls and SMS)",
+        "title": ""
       },
       "social": {
         "title": "Social media"
       },
       "buttons": {
         "downloadCV": "Download cv"
-      }
+      },
+      "contactInfo": "Contacts"
     },
     "blog": {
       "soon": "This session is being reformulated. \nNews soon."

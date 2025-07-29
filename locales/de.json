@@ -50,16 +50,18 @@
         "submitting": "Vorbereitung der Form..."
       },
       "phone": {
-        "description": "(WhatsApp, Anrufe und SMS)"
+        "description": "(WhatsApp, Anrufe und SMS)",
+        "title": ""
       },
       "title": "Kontakt",
-      "description": "Kontaktieren Sie mich, um über Ihr Projekt oder Ihre Arbeitsmöglichkeit zu sprechen.",
+      "description": "Sprechen wir über Ihr Projekt oder Ihre Arbeitsmöglichkeit?",
       "social": {
         "title": "Social Media"
       },
       "buttons": {
         "downloadCV": "CV herunterladen"
-      }
+      },
+      "contactInfo": "Kontakte"
     },
     "blog": {
       "soon": "Diese Sitzung wird neu formuliert. Nachrichten bald."

@@ -31,16 +31,18 @@
         "submitting": "Preparando formulário..."
       },
       "phone": {
-        "description": "(WhatsApp, ligações e SMS)"
+        "description": "(WhatsApp, ligações e SMS)",
+        "title": ""
       },
       "title": "Contato",
-      "description": "Entre em contato comigo para conversarmos sobre seu projeto ou oportunidade de trabalho.",
+      "description": "Vamos conversar sobre seu projeto ou oportunidade de trabalho?",
       "social": {
         "title": "Redes Sociais"
       },
       "buttons": {
         "downloadCV": "Baixar CV"
-      }
+      },
+      "contactInfo": "Contatos"
     },
     "blog": {
       "soon": "Essa sessão está sendo reformulada. Novidades em breve."

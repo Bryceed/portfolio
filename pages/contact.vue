@@ -1,84 +1,108 @@
 <template>
-  <ProjectsHero
-    :title="$t('html.contact.title')"
-    :description="$t('html.contact.description')"
-    :img="'/avatar.jpg'"
-    :gradient="'linear-gradient(120deg, #470de4 0%, #cbb2ef 100%)'"
-    baseClass="contact-hero"
-    :showParticles="true"
-    :particlesHeight="160"
-  />
-  <div class="contact-page contact-main-content">
-    <div class="contact-cards">
-      <div class="contact-card">
-        <h2>Email</h2>
-        <a :href="'mailto:' + contactInfo.email" class="contact-link">{{ contactInfo.email }}</a>
+  <div class="contact-page">
+    <!-- Hero Card mais elaborado -->
+    <div class="hero-card">
+      <!-- Background com máscara de gradiente -->
+      <div class="hero-card__bg">
+        <div class="hero-card__bg-image"></div>
       </div>
-      <div class="contact-card">
-        <h2>Phone</h2>
-        <a :href="'https://api.whatsapp.com/send?phone=' + formatPhone(contactInfo.phone)" target="_blank" class="contact-link">
-          {{ contactInfo.phone }}
-        </a>
-        <span class="contact-note">{{ $t('html.contact.phone.description') }}</span>
-      </div>
-      <div class="contact-card">
-        <h2>{{ $t('html.contact.cv.title') }}</h2>
-        <div class="cv-button-group">
-          <button
-            class="cv-btn"
-            :class="{ active: selectedCvType === 'traditional' }"
-            @click="openCvPopup('traditional')"
-            type="button"
-          >
-            {{ $t('html.contact.cv.traditional') }}
-          </button>
-          <span class="cv-divider"></span>
-          <button
-            class="cv-btn"
-            :class="{ active: selectedCvType === 'europass' }"
-            @click="openCvPopup('europass')"
-            type="button"
-          >
-            {{ $t('html.contact.cv.europass') }}
-          </button>
+      
+      <!-- Menu overlay separado -->
+      <div class="hero-card__menu-overlay"></div>
+
+      <!-- Título -->
+      <div class="hero-card__profile hero-card__profile-info text-center">
+        <div class="icons" 
+          style="font-size: 2rem; 
+          color: var(--text-dark, #eee);">
+          <span class="material-icons !text-[6rem]">mail</span>
         </div>
-        <CvPopup
-          v-if="showCvPopup"
-          :type="cvPopupType"
-          :current-lang="$i18n.locale"
-          @close="showCvPopup = false"
-        />
+        <h1 class="text-4xl text-bold mb-12">{{ $t('html.contact.hero.title') || 'Entre em Contato' }}</h1>
       </div>
-      <div class="contact-card">
-        <h2>{{ $t('html.contact.social.title') }}</h2>
-        <div class="social-buttons">
-          <a v-if="contactInfo.links?.github" :href="contactInfo.links.github" target="_blank" class="social-btn github">
-            <i class="material-icons">code</i>
-            GitHub
-          </a>
-          <a v-if="contactInfo.links?.linkedin" :href="contactInfo.links.linkedin" target="_blank" class="social-btn linkedin">
-            <i class="material-icons">work</i>
-            LinkedIn
-          </a>
-          <a v-if="contactInfo.links?.whatsapp" :href="contactInfo.links.whatsapp" target="_blank" class="social-btn whatsapp">
-            <i class="material-icons">chat</i>
-            WhatsApp
-          </a>
-          <a v-if="contactInfo.links?.instagram" :href="contactInfo.links.instagram" target="_blank" class="social-btn instagram">
-            <i class="material-icons">camera_alt</i>
-            Instagram
-          </a>
-        </div>
+
+
+    <div class="contact-section cv-section">
+      <h2 class="text-left">{{ $t('html.contact.cv.title') }} (CV)</h2>
+      <p>{{ $t('html.contact.cv.description') || 'Veja meu currículo nos formatos disponíveis' }}</p>
+      <div class="cv-buttons">
+        <button
+          class="btn btn-primary"
+          :class="{ active: selectedCvType === 'traditional' }"
+          @click="openCvPopup('traditional')"
+          type="button"
+        >
+          <i class="material-icons">description</i>
+          {{ $t('html.contact.cv.traditional') }}
+        </button>
+        
+        <button
+          class="btn btn-primary"
+          :class="{ active: selectedCvType === 'europass' }"
+          @click="openCvPopup('europass')"
+          type="button"
+        >
+          <i class="material-icons">assignment</i>
+          {{ $t('html.contact.cv.europass') }}
+        </button>
       </div>
-      <div v-if="contactInfo.cvFile" class="contact-card contact-card-download">
-        <h3>{{ $t('html.contact.cv.title') }}</h3>
-        <p>{{ $t('html.contact.cv.description') }}</p>
-        <a :href="contactInfo.cvFile" download class="btn btn-secondary">
-          <i class="material-icons">download</i>
-          {{ $t('html.contact.buttons.downloadCV') }}
-        </a>
-      </div>
+      <CvPopup
+        v-if="showCvPopup"
+        :type="cvPopupType"
+        :current-lang="$i18n.locale"
+        @close="showCvPopup = false"
+        class="z-index: 99"
+      />
     </div>
+
+    <div class="personal-info contact-section">
+      <h2>{{ $t('html.contact.contactInfo') || 'Informações de Contato' }}</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <i class="material-icons">email</i>
+          <div>
+            <h3>Email</h3>
+            <a :href="'mailto:' + contactInfo.email" class="contact-link">{{ contactInfo.email }}</a>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <i class="material-icons">phone</i>
+          <div>
+            <h3>{{ $t('html.contact.phone.title') || 'Telefone' }}</h3>
+            <a :href="'https://api.whatsapp.com/send?phone=' + formatPhone(contactInfo.phone)" target="_blank" class="contact-link">
+              {{ contactInfo.phone }}
+            </a>
+            <p class="contact-note">{{ $t('html.contact.phone.description') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-content">
+        <div class="social-section">
+          <div class="social-grid">
+            <a v-if="contactInfo.links?.github" :href="contactInfo.links.github" target="_blank" class="social-card github">
+              <i class="material-icons">code</i>
+              <span class="social-name">GitHub</span>
+              <span class="social-username">@Bryceed</span>
+            </a>
+            <a v-if="contactInfo.links?.linkedin" :href="contactInfo.links.linkedin" target="_blank" class="social-card linkedin">
+              <i class="material-icons">work</i>
+              <span class="social-name">LinkedIn</span>
+              <span class="social-username">wellington-do-nascimento</span>
+            </a>
+            <a v-if="contactInfo.links?.whatsapp" :href="contactInfo.links.whatsapp" target="_blank" class="social-card whatsapp">
+              <i class="material-icons">chat</i>
+              <span class="social-name">WhatsApp</span>
+              <span class="social-username">+55 11 94201-8873</span>
+            </a>
+            <a v-if="contactInfo.links?.instagram" :href="contactInfo.links.instagram" target="_blank" class="social-card instagram">
+              <i class="material-icons">camera_alt</i>
+              <span class="social-name">Instagram</span>
+              <span class="social-username">@wellnas.dev</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div></div>
   </div>
 </template>
 
@@ -195,166 +219,457 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .contact-page {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 400px;
-  margin-top: 0;
-}
-.contact-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 0 3rem 0;
-}
-.contact-card {
-  background: rgba(34, 34, 34, 0.92);
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
-  padding: 2.2rem 2rem 1.5rem 2rem;
-  min-width: 260px;
-  max-width: 340px;
-  flex: 1 1 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.1rem;
-  color: #fff;
   position: relative;
+  padding: 4rem 0;
+  z-index: 2;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 20px 4rem;
+}
+
+/* Estilo do hero card - similar à página about */
+.hero-card {
+  overflow: visible;
+  position: relative;
+  padding-top: 3rem;
   z-index: 1;
-  transition: box-shadow 0.2s, background 0.2s;
 }
-.contact-card:hover {
-  box-shadow: 0 12px 48px 0 #5f0de444;
-  background: rgba(95, 13, 228, 0.12);
+
+.hero-card__bg {
+  position: absolute;
+  top: 0.1rem;
+  width: calc(100dvw);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100vmax;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 0.5rem;
 }
-.contact-card h2, .contact-card h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #5f0de4;
-  margin-bottom: 0.5rem;
+
+.hero-card__bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://pixabay.com/get/gdee54b61b4b588857b9b8a08730d7957bb0c775aaa4b40a8bf7991f0d546dfa081f2e9b51b4498a1d6f0b8732f385b673d6374c62d4d23fb00a94a0c33538eacbb777fcc729f686d0ee6e7ab896d3e5c_1920.jpg?attachment=');
+  background-size: cover;
+  background-position: center;
+  
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.3) 85%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.3) 85%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-size: cover;
+  -webkit-mask-size: cover;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
 }
-.contact-link {
-  color: #a084fa;
-  font-size: 1.1rem;
-  font-weight: 600;
-  word-break: break-all;
-  text-decoration: underline;
+
+.hero-card__menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(34px + 4rem);
+  background: linear-gradient(
+    to right,
+    var(--dark-background-color, #222222) 0%,
+    rgba(34, 34, 34, 0.5) 50%,
+    var(--dark-background-color, #222222) 100%
+  );
+  border-bottom: thin solid var(--dark-background-color, #222222);
+  z-index: 8;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
-.contact-note {
-  font-size: 0.95rem;
-  color: #bbb;
-  opacity: 0.7;
-  margin-top: 0.2rem;
+
+.hero-card__menu-overlay:before,
+.hero-card__menu-overlay:after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  transform: translateY(100%);
+  background-size: 100% 100%;
+  z-index: inherit;
 }
-.cv-button-group {
+
+.hero-card__menu-overlay:before {
+  color: var(--dark-background-color, #222222);
+  left: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0 1V0h1A1 1 0 0 0 0 1Z" fill="%23222222"/></svg>');
+}
+
+.hero-card__menu-overlay:after {
+  color: var(--dark-background-color, #222222);
+  right: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M1 1V0H0A1 1 0 0 1 1 1Z" fill="%23222222"/></svg>');
+}
+
+.hero-card__profile {
   display: flex;
-  gap: 0.7rem;
+  flex-direction: column;
   align-items: center;
-}
-.cv-btn {
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0.7rem 1.6rem;
-  border-radius: 2rem;
-  box-shadow: 0 2px 8px rgba(95, 13, 228, 0.08);
-  transition: all 0.2s;
-  background: linear-gradient(90deg, #5f0de4 0%, #a084fa 100%);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-.cv-btn.active, .cv-btn:hover {
-  background: linear-gradient(90deg, #a084fa 0%, #5f0de4 100%);
-  color: #fff;
-  transform: translateY(-2px) scale(1.04);
-}
-.cv-divider {
-  width: 2px;
-  height: 28px;
-  background: #a084fa;
-  border-radius: 2px;
-  margin: 0 0.5rem;
-}
-.social-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 0.5rem;
-}
-.social-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 1.2rem;
-  background: #232323;
-  color: #fff;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-.social-btn.github { background: #232323; }
-.social-btn.linkedin { background: #0a66c2; }
-.social-btn.whatsapp { background: #25d366; color: #222; }
-.social-btn.instagram { background: linear-gradient(45deg, #fd5d5d, #fcb045, #833ab4); }
-.social-btn:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 2px 12px #5f0de444;
-}
-.contact-card-download {
-  background: rgba(34, 34, 34, 0.82);
-  border: 2px dashed #a084fa;
-  align-items: center;
+  padding: 6rem 1rem 3rem;
+  position: relative;
+  z-index: 2;
   text-align: center;
 }
-.btn.btn-secondary {
-  background: #fff;
-  color: #5f0de4;
-  border: 2px solid #5f0de4;
-  font-weight: 700;
-  border-radius: 2rem;
-  padding: 0.7rem 1.6rem;
-  margin-top: 1rem;
-  transition: all 0.2s;
-}
-.btn.btn-secondary:hover {
-  background: #f3f3f3;
-  color: #5f0de4;
-  border: 2px solid #a084fa;
-  transform: translateY(-2px) scale(1.04);
-}
-@media (max-width: 900px) {
-  .contact-cards {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.2rem 0 2rem 0;
-  }
-  .contact-card {
-    min-width: 0;
-    max-width: 98vw;
+
+.hero-card__profile-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 4px solid var(--primary-color, #5f0de4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+
+  img {
     width: 100%;
-    padding: 1.5rem 1rem 1rem 1rem;
+    height: 100%;
+    object-fit: cover;
   }
-  .contact-hero-section, .contact-hero-bg, .contact-hero-gradient {
-    min-height: 120px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hero-card__profile-info h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.hero-card__profile-info p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.5;
+  margin: 0 auto;
+}
+
+/* Conteúdo principal */
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 3rem;
+  z-index: 1;
+  position: relative;
+}
+
+.contact-section {
+  margin-bottom: 1rem;
+  padding: 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  z-index: 0;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(95, 13, 228, 0.2);
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color, #5f0de4);
+    color: var(--dark-text-color, #ffffff);
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+}
+
+/* Informações pessoais */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+
+  i {
+    font-size: 2rem;
+    color: var(--primary-color, #5f0de4);
+    background-color: rgba(95, 13, 228, 0.1);
+    padding: 0.8rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--secondary-color, #a084fa);
+  }
+
+  .contact-link {
+    color: #a084fa;
+    font-size: 1.1rem;
+    font-weight: 600;
+    word-break: break-word;
+    text-decoration: none;
+    transition: color 0.2s;
+    
+    &:hover {
+      color: #5f0de4;
+      text-decoration: underline;
+    }
+  }
+
+  .contact-note {
+    font-size: 0.95rem;
+    color: #bbb;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Seção CV */
+.cv-section {
+  text-align: center;
+}
+
+.cv-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+  
+  i {
+    font-size: 1.4rem;
+  }
+
+  &.btn-primary {
+    background: linear-gradient(90deg, #5f0de4 0%, #a084fa 100%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(95, 13, 228, 0.3);
+    
+    &:hover, &.active {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(95, 13, 228, 0.5);
+      background: linear-gradient(90deg, #6818fc 0%, #b39dff 100%);
+    }
+  }
+}
+
+/* Seção Social */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.social-card {
+  display: flex;jj
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  i {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .social-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
+  }
+  
+  .social-username {
+    opacity: 0.8;
+    font-size: 0.9rem;
+  }
+  
+  &.github { 
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    
+    &:hover {
+      background: linear-gradient(145deg, #333333, #222222);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  &.linkedin { 
+    background: linear-gradient(145deg, #0a66c2, #0077b5);
+    
+    &:hover {
+      background: linear-gradient(145deg, #0d78e4, #0088d1);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(10, 102, 194, 0.3);
+    }
+  }
+  
+  &.whatsapp { 
+    background: linear-gradient(145deg, #25d366, #128c7e);
+    
+    &:hover {
+      background: linear-gradient(145deg, #2ce072, #14a18f);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+    }
+  }
+  
+  &.instagram { 
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d, #f56040, #f77737, #fcaf45, #ffdc80);
+    
+    &:hover {
+      background: linear-gradient(45deg, #4c6efc, #6360e0, #9747c7, #d14894, #f34178, #ff3a3a, #ff7254, #ff8949, #ffbc5e, #ffe599);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(193, 53, 132, 0.3);
+    }
+  }
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .hero-card__profile {
+    padding: 5rem 1rem 2rem;
+  }
+  
+  .hero-card__profile-image {
+    width: 120px;
     height: 120px;
   }
-  .contact-hero-logo {
-    width: 48px;
-    height: 48px;
+  
+  .hero-card__profile-info h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-card__profile-info p {
+    font-size: 1.1rem;
+  }
+  
+  .contact-section {
+    padding: 1.5rem;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .cv-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tema claro */
+html.light {
+  .hero-card__bg-image {
+    background-image: url('https://pixabay.com/get/gdee54b61b4b588857b9b8a08730d7957bb0c775aaa4b40a8bf7991f0d546dfa081f2e9b51b4498a1d6f0b8732f385b673d6374c62d4d23fb00a94a0c33538eacbb777fcc729f686d0ee6e7ab896d3e5c_1920.jpg?attachment=');
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  .hero-card__menu-overlay {
+    background: linear-gradient(
+      to right,
+      var(--light-background-color, #D1D1D1) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      var(--light-background-color, #D1D1D1) 100%
+    );
+    border-bottom: thin solid var(--light-background-color, #D1D1D1);
+    
+    &:before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0 1V0h1A1 1 0 0 0 0 1Z" fill="%23D1D1D1"/></svg>');
+    }
+    
+    &:after {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M1 1V0H0A1 1 0 0 1 1 1Z" fill="%23D1D1D1"/></svg>');
+    }
+  }
+  
+  .contact-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    h2 {
+      color: var(--light-text-color, #333);
+    }
+  }
+  
+  .info-item {
+    .contact-link {
+      color: #5f0de4;
+      
+      &:hover {
+        color: #a084fa;
+      }
+    }
+    
+    .contact-note {
+      color: #666;
+    }
   }
 }
 </style>

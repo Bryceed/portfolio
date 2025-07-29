@@ -7,16 +7,18 @@
         "description": "更新された履歴書をダウンロードしてください"
       },
       "title": "接触",
-      "description": "あなたのプロジェクトや仕事の機会について話すために私に連絡してください。",
+      "description": "あなたのプロジェクトや仕事の機会について話しましょうか？",
       "phone": {
-        "description": "（WhatsApp、Calls、SMS）"
+        "description": "（WhatsApp、Calls、SMS）",
+        "title": ""
       },
       "social": {
         "title": "ソーシャルメディア"
       },
       "buttons": {
         "downloadCV": "履歴書をダウンロードします"
-      }
+      },
+      "contactInfo": "連絡先"
     },
     "home": {
       "greetings": "こんにちは！私は<span> {name} </span>です",
