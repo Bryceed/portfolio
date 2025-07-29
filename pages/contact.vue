@@ -510,7 +510,7 @@ export default {
 }
 
 .social-card {
-  display: flex;jj
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
