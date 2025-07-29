@@ -12,13 +12,6 @@ export default defineNuxtConfig({
         content: process.env.npm_package_description || "",
       },
     ],
-    script: [
-      {
-        src: '/js/vanilla-tilt.min.js',
-        async: true,
-        defer: true,
-      },
-    ],
     title: "Hello",
   },
 

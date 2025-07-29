@@ -266,7 +266,30 @@
                 console.log(`Carregando dados do currículo para o idioma: ${lang}`);
                 // Busca direta do arquivo JSON estático
                 const response = await fetch(`/files/cv/${lang}.json?${Date.now()}`);
-                if (!response.ok) throw new Error('Arquivo não encontrado');
+                if (!response.ok) {
+                    // Se o idioma solicitado não estiver disponível, tenta carregar o pt-BR como fallback
+                    if (lang !== 'pt-BR') {
+                        console.warn(`Arquivo não encontrado para o idioma ${lang}. Tentando usar pt-BR como fallback.`);
+                        const fallbackResponse = await fetch(`/files/cv/pt-BR.json?${Date.now()}`);
+                        if (fallbackResponse.ok) {
+                            const fallbackData = await fallbackResponse.json();
+                            // Mostrar mensagem para o usuário que estamos usando o idioma de fallback
+                            const statusMessage = document.createElement('div');
+                            statusMessage.className = 'bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 no-print';
+                            statusMessage.innerHTML = `
+                                <p>O currículo não está disponível em ${getLanguageName(lang, lang)}. Mostrando versão em Português (Brasil).</p>
+                                <p class="mt-2">Este idioma está em desenvolvimento.</p>
+                            `;
+                            // Inserir antes do container CV
+                            const container = document.querySelector('.container');
+                            const cvContainer = document.querySelector('.cv-container');
+                            container.insertBefore(statusMessage, cvContainer);
+                            
+                            return fallbackData;
+                        }
+                    }
+                    throw new Error('Arquivo não encontrado');
+                }
                 const data = await response.json();
                 return data;
             } catch (error) {
@@ -286,6 +309,109 @@
         }
 
         // Translations for different languages
+        // Objeto para armazenar os nomes dos idiomas em cada idioma
+        const languageNames = {
+            'pt-BR': {
+                'pt-BR': 'Português do Brasil [pt-BR]',
+                'en-US': 'Inglês [en-US]',
+                'de-DE': 'Alemão (Alemanha) [de-DE]',
+                'es': 'Espanhol [es]',
+                'fr': 'Francês [fr]',
+                'ja-JP': 'Japonês [ja-JP]',
+                'ko': 'Coreano [ko]',
+                'pt': 'Português de Portugal [pt]',
+                'ru': 'Russo [ru]'
+            },
+            'en-US': {
+                'pt-BR': 'Portuguese (Brazil) [pt-BR]',
+                'en-US': 'English (US) [en-US]',
+                'de-DE': 'German [de-DE]',
+                'es': 'Spanish [es]',
+                'fr': 'French [fr]',
+                'ja-JP': 'Japanese [ja-JP]',
+                'ko': 'Korean [ko]',
+                'pt': 'Portuguese (Portugal) [pt]',
+                'ru': 'Russian [ru]'
+            },
+            'de-DE': {
+                'pt-BR': 'Portugiesisch (Brasilien) [pt-BR]',
+                'en-US': 'Englisch (US) [en-US]',
+                'de-DE': 'Deutsch [de-DE]',
+                'es': 'Spanisch [es]',
+                'fr': 'Französisch [fr]',
+                'ja-JP': 'Japanisch [ja-JP]',
+                'ko': 'Koreanisch [ko]',
+                'pt': 'Portugiesisch (Portugal) [pt]',
+                'ru': 'Russisch [ru]'
+            },
+            'es': {
+                'pt-BR': 'Portugués (Brasil) [pt-BR]',
+                'en-US': 'Inglés (EE.UU.) [en-US]',
+                'de-DE': 'Alemán [de-DE]',
+                'es': 'Español [es]',
+                'fr': 'Francés [fr]',
+                'ja-JP': 'Japonés [ja-JP]',
+                'ko': 'Coreano [ko]',
+                'pt': 'Portugués (Portugal) [pt]',
+                'ru': 'Ruso [ru]'
+            },
+            'fr': {
+                'pt-BR': 'Portugais (Brésil) [pt-BR]',
+                'en-US': 'Anglais (États-Unis) [en-US]',
+                'de-DE': 'Allemand [de-DE]',
+                'es': 'Espagnol [es]',
+                'fr': 'Français [fr]',
+                'ja-JP': 'Japonais [ja-JP]',
+                'ko': 'Coréen [ko]',
+                'pt': 'Portugais (Portugal) [pt]',
+                'ru': 'Russe [ru]'
+            },
+            'ja-JP': {
+                'pt-BR': 'ポルトガル語（ブラジル） [pt-BR]',
+                'en-US': '英語（米国） [en-US]',
+                'de-DE': 'ドイツ語 [de-DE]',
+                'es': 'スペイン語 [es]',
+                'fr': 'フランス語 [fr]',
+                'ja-JP': '日本語 [ja-JP]',
+                'ko': '韓国語 [ko]',
+                'pt': 'ポルトガル語（ポルトガル） [pt]',
+                'ru': 'ロシア語 [ru]'
+            },
+            'ko': {
+                'pt-BR': '포르투갈어(브라질) [pt-BR]',
+                'en-US': '영어(미국) [en-US]',
+                'de-DE': '독일어 [de-DE]',
+                'es': '스페인어 [es]',
+                'fr': '프랑스어 [fr]',
+                'ja-JP': '일본어 [ja-JP]',
+                'ko': '한국어 [ko]',
+                'pt': '포르투갈어(포르투갈) [pt]',
+                'ru': '러시아어 [ru]'
+            },
+            'pt': {
+                'pt-BR': 'Português (Brasil) [pt-BR]',
+                'en-US': 'Inglês (EUA) [en-US]',
+                'de-DE': 'Alemão [de-DE]',
+                'es': 'Espanhol [es]',
+                'fr': 'Francês [fr]',
+                'ja-JP': 'Japonês [ja-JP]',
+                'ko': 'Coreano [ko]',
+                'pt': 'Português (Portugal) [pt]',
+                'ru': 'Russo [ru]'
+            },
+            'ru': {
+                'pt-BR': 'Португальский (Бразилия) [pt-BR]',
+                'en-US': 'Английский (США) [en-US]',
+                'de-DE': 'Немецкий [de-DE]',
+                'es': 'Испанский [es]',
+                'fr': 'Французский [fr]',
+                'ja-JP': 'Японский [ja-JP]',
+                'ko': 'Корейский [ko]',
+                'pt': 'Португальский (Португалия) [pt]',
+                'ru': 'Русский [ru]'
+            }
+        };
+
         const translations = {
             'pt-BR': {
                 'print': 'Imprimir CV',
@@ -335,6 +461,8 @@
                 'recommendations': 'EMPFEHLUNGEN',
                 'certifications': 'ZERTIFIKATE',
                 'education': 'Bildung',
+                'languages': 'Sprachen',
+                'final_thoughts': 'Abschließende Gedanken',
             },
             'pt': { // Português de Portugal
                 'print': 'Imprimir CV',
@@ -365,7 +493,7 @@
                 'qualifications': 'CUALIFICACIONES',
                 'work_experience': 'EXPERIENCIA LABORAL',
                 'certifications': 'CERTIFICACIONES',
-                'education': 'Educación y Formação',
+                'education': 'Educación y Formación',
                 'languages': 'Idiomas',
                 'recommendations': 'RECOMENDACIONES',
                 'final_thoughts': 'Consideraciones Finales',
@@ -421,23 +549,6 @@
                 'recommendations': '추천서',
                 'final_thoughts': '최종 생각',
             },
-            'pt': {
-                'print': 'Imprimir CV',
-                'personal-info': 'INFORMAÇÕES PESSOAIS',
-                'email': 'E-mail',
-                'phone': 'Telefone',
-                'linkedin': 'LinkedIn',
-                'location': 'Localização',
-                'age': 'Idade/Data de Nasc.',
-                'nationality': 'Nacionalidade',
-                'qualifications': 'QUALIFICAÇÕES',
-                'work_experience': 'EXPERIÊNCIA PROFISSIONAL',
-                'certifications': 'CERTIFICAÇÕES',
-                'education': 'Educação e Formação',
-                'languages': 'Idiomas',
-                'recommendations': 'RECOMENDAÇÕES',
-                'final_thoughts': 'Considerações Finais',
-            },
             'ru': {
                 'print': 'Распечатать резюме',
                 'personal-info': 'ЛИЧНАЯ ИНФОРМАЦИЯ',
@@ -470,35 +581,73 @@
                 console.log('Preparando para impressão...');
                 forceFullPrint();
             });
+            // Lista de todos os idiomas suportados (mesmo que alguns não tenham arquivo JSON ainda)
+            const allSupportedLanguages = ['pt-BR', 'en-US', 'de-DE', 'es', 'fr', 'ja-JP', 'ko', 'pt', 'ru'];
+            
             // Carregar a lista de idiomas disponíveis a partir do index.json estático
             let availableLangs = ['pt-BR']; // Valor padrão
             try {
                 const indexResponse = await fetch('/files/cv/index.json?' + Date.now());
                 const result = await indexResponse.json();
                 if (result.europass && Array.isArray(result.europass)) {
-                    availableLangs = result.europass;
-                    console.log('Idiomas disponíveis carregados:', availableLangs);
+                    // Usar a lista do index.json como referência para arquivos existentes
+                    const existingFiles = result.europass;
+                    console.log('Idiomas com arquivos disponíveis:', existingFiles);
+                    
+                    // Mostrar todos os idiomas suportados no dropdown, mesmo que alguns ainda não tenham arquivo
+                    availableLangs = allSupportedLanguages;
+                    
+                    // Mas marcar quais têm arquivo para facilitar o debugging
+                    window.languagesWithFiles = existingFiles;
                 }
             } catch (error) {
                 console.error('Erro ao carregar idiomas disponíveis:', error);
+                // Mesmo com erro, vamos mostrar todos os idiomas suportados
+                availableLangs = allSupportedLanguages;
             }
             const languageButton = document.getElementById('language-button');
             const languageDropdown = document.getElementById('language-dropdown');
             
-            // Criar o botão de idiomas
+            // Função para obter o nome traduzido do idioma
+            function getLanguageName(languageCode, currentLanguage) {
+                if (languageNames[currentLanguage] && languageNames[currentLanguage][languageCode]) {
+                    return languageNames[currentLanguage][languageCode];
+                }
+                return languageCode; // Fallback para o código do idioma se não houver tradução
+            }
+
+            // Criar o botão de idiomas com o nome traduzido
+            const currentLanguageName = getLanguageName(initialLang, initialLang);
             languageButton.innerHTML = `
-                <span id="current-language">${initialLang}</span>
+                <span id="current-language">${currentLanguageName}</span>
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
             `;
             
-            // Criar o dropdown de idiomas
+            // Criar o dropdown de idiomas com os nomes traduzidos
             availableLangs.forEach(lang => {
                 const option = document.createElement('div');
                 option.className = 'language-option';
                 option.setAttribute('data-lang', lang);
-                option.textContent = lang;
+                
+                // Verificar se este idioma tem arquivo JSON
+                const hasJsonFile = window.languagesWithFiles ? window.languagesWithFiles.includes(lang) : (lang === 'pt-BR' || lang === 'en-US' || lang === 'de-DE');
+                
+                // Criar estrutura para mostrar se o idioma está disponível ou em desenvolvimento
+                if (hasJsonFile) {
+                    option.textContent = getLanguageName(lang, initialLang);
+                } else {
+                    // Para idiomas em desenvolvimento, mostrar indicador visual
+                    option.innerHTML = `
+                        <div class="flex justify-between items-center w-full">
+                            <span>${getLanguageName(lang, initialLang)}</span>
+                            <span class="text-xs px-1 py-0.5 bg-yellow-100 text-yellow-800 rounded">Em breve</span>
+                        </div>
+                    `;
+                    option.style.opacity = '0.7';
+                }
+                
                 if (lang === initialLang) option.classList.add('active');
                 
                 option.addEventListener('click', async function() {
@@ -522,11 +671,16 @@
                     
                     // Update active class
                     const options = document.querySelectorAll('.language-option');
-                    options.forEach(opt => opt.classList.remove('active'));
+                    options.forEach(opt => {
+                        opt.classList.remove('active');
+                        // Atualizar o texto para o idioma selecionado
+                        const langCode = opt.getAttribute('data-lang');
+                        opt.textContent = getLanguageName(langCode, lang);
+                    });
                     this.classList.add('active');
                     
                     // Update current language display
-                    document.getElementById('current-language').textContent = this.textContent;
+                    document.getElementById('current-language').textContent = getLanguageName(lang, lang);
                     
                     // Apply translations para elementos com data-i18n
                     applyTranslations(lang);
@@ -567,6 +721,39 @@
                 document.documentElement.lang = lang;
             }
             
+            // Função para verificar idiomas faltantes
+            function checkMissingLanguages() {
+                const supportedInTranslations = Object.keys(translations);
+                const supportedInLanguageNames = Object.keys(languageNames);
+                const availableJsonFiles = availableLangs;
+                
+                console.log("Idiomas com traduções de interface:", supportedInTranslations);
+                console.log("Idiomas com nomes traduzidos:", supportedInLanguageNames);
+                console.log("Idiomas com arquivos JSON disponíveis:", availableJsonFiles);
+                
+                // Idiomas que têm traduções mas não têm arquivos JSON
+                const missingJsonFiles = supportedInTranslations.filter(
+                    lang => !availableJsonFiles.includes(lang)
+                );
+                
+                if (missingJsonFiles.length > 0) {
+                    console.warn("Idiomas com traduções mas sem arquivos JSON:", missingJsonFiles);
+                    console.warn("É necessário criar os arquivos JSON para esses idiomas em /files/cv/");
+                }
+                
+                // Idiomas listados no índice mas sem traduções completas
+                const incompleteTranslations = availableJsonFiles.filter(
+                    lang => !supportedInTranslations.includes(lang)
+                );
+                
+                if (incompleteTranslations.length > 0) {
+                    console.warn("Idiomas com arquivos JSON mas sem traduções completas:", incompleteTranslations);
+                }
+            }
+            
+            // Executar verificação de idiomas faltantes
+            setTimeout(checkMissingLanguages, 2000); // Executa após 2 segundos para garantir que tudo já foi carregado
+            
             // Modifique a função populateCV para garantir que usa o idioma correto
             function populateCV(data) {
                 if (!data) return;
@@ -596,8 +783,7 @@
                     <div>
                         <p class="mb-2"><strong>${translations[currentLang]['email']}</strong> <a href="mailto:${data.personal_info.email}" class="text-blue-600 hover:underline">${data.personal_info.email}</a></p>
                         <p class="mb-2"><strong>${translations[currentLang]['phone']}</strong> <a href="tel:${data.personal_info.phone}" class="text-blue-600 hover:underline">${data.personal_info.phone}</a></p>
-                        <p class="mb-2"><strong>${translations[currentLang]['linkedin']}</strong> <a href="${data.personal_info.linkedin}" target="_blank" class="text-blue-600
-                            //  hover:underline">${data.personal_info.linkedin.split('/')[3]}/${data.personal_info.linkedin.split('/')[4]}</a></p>
+                        ${data.personal_info.linkedin ? `<p class="mb-2"><strong>${translations[currentLang]['linkedin']}</strong> <a href="${data.personal_info.linkedin}" target="_blank" class="text-blue-600 hover:underline">${(() => { try { const parts = data.personal_info.linkedin.split('/'); return parts[3] && parts[4] ? parts[3] + '/' + parts[4] : data.personal_info.linkedin; } catch { return data.personal_info.linkedin; } })()}</a></p>` : ''}
                     </div>
                     <div>
                         <p class="mb-2"><strong>${translations[currentLang]['location']}</strong> ${data.personal_info.location}</p>

@@ -10,21 +10,13 @@
             "name": "Projects",
             "description": "This is a project",
             "image": "http://placehold.it/350x150",
-            "link": "/projects",
-            "child": {
-                "project1": {
-                    "name": "BeatUP",
-                    "description": "This is project 1",
-                    "image": "http://placehold.it/350x150",
-                    "link": "/projects/beatup"
-                },
-                "project2": {
-                    "name": "Deltaverse",
-                    "description": "This is project 2",
-                    "image": "http://placehold.it/350x150",
-                    "link": "/projects/deltaverse"
-                }
-            }
+            "link": "/projects"
+        },
+        "blog": {
+            "name": "Blog",
+            "description": "This is the blog page",
+            "image": "http://placehold.it/350x150",
+            "link": "/blog"
         },
         "about": {
             "name": "About",
