@@ -88,7 +88,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { projects } from "../../data/projects.json";
 import ProjectInfo from '@/components/ProjectInfo.vue';
 import ProjectUpdates from '@/components/ProjectUpdates.vue';
-import { getPageTitle } from '@/utils/pageTitle';
+import { getPageTitle } from '@/utils/page/pageTitle';
 
 export default {
     name: "Project",

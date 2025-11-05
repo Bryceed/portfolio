@@ -153,8 +153,8 @@
 
 <script>
 import skills from '@/data/skills.json';
-import { getPageTitle } from '@/utils/pageTitle';
-import { contactLinks } from '@/utils/contactLinks';
+import { getPageTitle } from '@/utils/page/pageTitle';
+import { contactLinks } from '@/utils/contact/contactLinks';
 import about from '@/data/about.json';
 import timeline from '@/data/timeline.json';
 

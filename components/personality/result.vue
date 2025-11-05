@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import table from '~/data/mbti.js';
+import table from '~/data/mbti';
 export default {
     props: {
         primaryColor: {

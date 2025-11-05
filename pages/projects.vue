@@ -41,7 +41,7 @@
 
 <script>
 import { projects } from "../data/projects.json";
-import { getPageTitle } from '../utils/pageTitle';
+import { getPageTitle } from '@/utils/page/pageTitle';
 import ProjectsHero from '@/components/common/ProjectsHero.vue';
 
 export default {
