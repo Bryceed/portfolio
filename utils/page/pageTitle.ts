@@ -13,8 +13,10 @@ interface PageTitleOptions {
 export function getPageTitle(options: PageTitleOptions = {}): string {
   const { mainPage, title } = options
 
-  if (title) {
+  if (title && mainPage) {
     return `${title} - ${mainPage} | ${siteName}`
+  } else if (title) {
+    return `${title} | ${siteName}`
   } else if (mainPage) {
     return `${mainPage} | ${siteName}`
   } else {

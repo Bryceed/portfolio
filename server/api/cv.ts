@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
   if (!lang) {
     return {
-      error: 'Language not specified',
+      error: 'Language not specified. Please provide a "lang" parameter (e.g., pt-BR, en-US, es, fr, de, ru, ja-JP, ko).',
       success: false
     }
   }
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   // CV files are now served as static files in /files/cv/
   // This endpoint is kept for backwards compatibility but returns an error
   return {
-    error: 'CV file not found. Please use the static file endpoint at /files/cv/',
+    error: `CV file not found for language "${lang}". CV files are now served as static files. Please access them at /files/cv/index.json to see available formats and languages.`,
     success: false
   }
 })

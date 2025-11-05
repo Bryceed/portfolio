@@ -1,3 +1,12 @@
+/**
+ * MBTI (Myers-Briggs Type Indicator) personality test data
+ * 
+ * Note: The 'T' abbreviation appears in two contexts:
+ * - 'T' for Thinking (vs Feeling) - used in the Nature dimension
+ * - 'T' for Turbulent (vs Assertive) - used in the Identity dimension
+ * These are separate dimensions and do not conflict in practice.
+ */
+
 interface Translation {
   en: string
   es: string
