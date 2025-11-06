@@ -73,6 +73,7 @@
       "clearFilters": "Pitch"
     },
     "about": {
+      "title": "About",
       "description": "Learn more about my professional career, skills and personality.",
       "personal": {
         "title": "Personal information",
@@ -117,8 +118,7 @@
     "about": "About me"
   },
   "footer": [
-    null,
-    null
-  ],
-  "footer[0]": "Site Debreeed with ❤️ in NUXT3 | Visits: {views}"
+    "Built with ❤️ and ☕ in {nuxt3}",
+    "Open source code under <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> license <span class=\"divider\">•</span> {views} visits"
+  ]
 }

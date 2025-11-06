@@ -107,9 +107,9 @@
 </template>
 
 <script>
-import { getPageTitle } from '@/utils/pageTitle';
+import { getPageTitle } from '@/utils/page/pageTitle';
 import about from '@/data/about.json';
-import { contactLinks } from '@/utils/contactLinks';
+import { contactLinks } from '@/utils/contact/contactLinks';
 import CvPopup from '@/components/CvPopup.vue';
 import ProjectsHero from '@/components/common/ProjectsHero.vue';
 

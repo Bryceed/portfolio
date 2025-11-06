@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { getPageTitle } from '../utils/pageTitle';
+import { getPageTitle } from '@/utils/page/pageTitle';
 import certifications from '../data/certifications.json';
 
 export default {

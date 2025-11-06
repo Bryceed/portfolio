@@ -1,13 +1,40 @@
-# Nuxt 3 Minimal Starter
+# Wellington N. - Portfolio
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern, multilingual portfolio website built with Nuxt 3, Vue 3, and TypeScript.
+
+## Features
+
+- 🌍 Multi-language support (English, Portuguese, Spanish, French, German, Russian, Japanese, Korean)
+- 🎨 Dark/Light theme toggle
+- 📱 Fully responsive design
+- ⚡ Built with Nuxt 3 and Vue 3
+- 🔒 TypeScript for type safety
+- 🎯 Clean architecture with composables and utilities
+- 📄 Dynamic CV generation in multiple formats
+- 🧪 MBTI personality test integration
+
+## Project Structure
+
+```
+portfolio/
+├── composables/     # Reusable Vue composables
+├── components/      # Vue components (auto-imported)
+├── pages/          # File-based routing
+├── utils/          # Utility functions organized by domain
+├── types/          # TypeScript type definitions
+├── data/           # Static data and content
+├── locales/        # i18n translation files
+└── plugins/        # Nuxt plugins
+```
+
+See [ARCHITECTURE.md](./docs/ARCHITECTURE.md) for detailed documentation.
 
 ## Setup
 
 Make sure to install the dependencies:
 
 ```bash
-# yarn
+# yarn (recommended)
 yarn install
 
 # npm
@@ -39,4 +66,21 @@ Locally preview production build:
 npm run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Technology Stack
+
+- **Framework**: Nuxt 3
+- **Language**: TypeScript
+- **Styling**: UnoCSS, SCSS
+- **i18n**: Vue I18n
+- **Content**: Nuxt Content
+- **Icons**: Nuxt Icon
+- **UI**: Custom components
+
+## Documentation
+
+- [Architecture Documentation](./docs/ARCHITECTURE.md) - Detailed project structure and patterns
+- [Nuxt 3 Documentation](https://nuxt.com/docs) - Official Nuxt documentation
+
+## License
+
+See [LICENSE.txt](./public/LICENSE.txt)

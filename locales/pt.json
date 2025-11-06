@@ -8,8 +8,8 @@
   "result": "resultado",
   "basedOn": "baseado no teste Myers-Briggs Type Indicator (MBTI). Saiba mais em",
   "footer": [
-    "Site construído em <b>Nuxt3</b>. por Wellington N. ({year})",
-    "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
+    "Construído com ❤️ e ☕ em {nuxt3}",
+    "Código aberto sob licença <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} visitas"
   ],
   "footer[0]": "Site deesenvolvido com ❤️ em Nuxt3 | Visitas: {views}",
   "footer[1]": "<a href=\"{github}\" target=\"_blank\">GitHub</a> | https://www.counter12.com/img-x8waWZwzd7d5z839-26.gif",
@@ -74,7 +74,9 @@
       "trajectoryParagraph1": "Sou apaixonado por entregar soluções tecnológicas que combinam performance, práticas modernas e com boa experiência de usuário. Ao longo da minha carreira, liderei projetos de automação, criação e manutenção de sites em diversas tecnologias.",
       "trajectoryParagraph2": "Tenho experiência com front-end, back-end, mobile, 3D, automação, cultura DevOps, nuvem (AWS, GCP e Azure), conteinerização com Docker e CI/CD. Valorizo boas práticas, código limpo e colaboração com equipes diversas. Meu objetivo é construir soluções modernas que realmente agreguem valor, onde, num ambiente com escuta ativa, possamos reunir as melhores ideias de todos para entregarmos um produto perfeito ao cliente.",
       "skillsCount": "itens",
-      "action[1]": ""
+      "action[1]": "",
+      "ctaTitle": "Vamos Trabalhar Juntos?",
+      "contactMe": "Entre em Contato"
     },
     "about": {
       "description": "Conheça mais sobre minha trajetória profissional, habilidades e personalidade.",
@@ -102,7 +104,8 @@
       },
       "skills": {
         "title": "Habilidades Técnicas"
-      }
+      },
+      "title": "Sobre"
     },
     "projets": {
       "title": "Projetos"
@@ -116,5 +119,12 @@
         }
       }
     }
+  },
+  "menu": {
+    "home": "Início",
+    "blog": "Blog",
+    "projects": "Projetos",
+    "contact": "Contacto",
+    "about": "Sobre mim"
   }
 }

@@ -102,13 +102,13 @@ export default {
         // Define as linguagens disponíveis (removido en-CA e pt-PT)
         const availableLanguages = [
             { code: 'pt', region: 'BR', name: 'Português (Brasil)' },
-            { code: 'en', region: 'US', name: 'English' },
-            { code: 'es', region: 'ES', name: 'Español' },
-            { code: 'fr', region: 'FR', name: 'Français' },
-            { code: 'de', region: 'DE', name: 'Deutsch' },
-            { code: 'ru', region: 'RU', name: 'Русский' },
+            { code: 'en', region: '', name: 'English' },
+            { code: 'es', region: '', name: 'Español' },
+            { code: 'fr', region: '', name: 'Français' },
+            { code: 'de', region: '', name: 'Deutsch' },
+            { code: 'ru', region: '', name: 'Русский' },
             { code: 'ja', region: 'JP', name: '日本語' },
-            { code: 'ko', region: 'KR', name: '한국어' }
+            { code: 'ko', region: '', name: '한국어' }
         ];
         
         // Durante o SSR, evitamos acessar localStorage
@@ -243,14 +243,12 @@ export default {
             document.dispatchEvent(new CustomEvent('languageChanged', {
                 detail: { locale: locale }
             }));
-            // Atualizar diretamente o locale
+            // Atualizar diretamente o locale (Vue I18n reatividade cuidará do resto)
             if (this.$i18n && this.$i18n.global && typeof this.$i18n.global.locale === 'object' && this.$i18n.global.locale !== null) {
                 this.$i18n.global.locale.value = locale;
             } else if (this.$i18n) {
                 this.$i18n.locale = locale;
             }
-            // Forçar atualização deste componente
-            this.$forceUpdate();
         } catch (error) {
             console.error('Erro ao alterar o idioma:', error);
         }
@@ -266,7 +264,18 @@ export default {
         },          getFlagClassForLang(lang) {
             if (!lang) return 'flag flag-en_US'; 
             let code = (lang.code || 'en').toLowerCase();
-            let region = lang.region ? lang.region.toUpperCase() : 'US'; // 
+            // Map language codes to proper flag regions
+            const flagRegionMap = {
+                'pt': 'BR',
+                'en': 'US',
+                'es': 'ES',
+                'fr': 'FR',
+                'de': 'DE',
+                'ru': 'RU',
+                'ja': 'JP',
+                'ko': 'KR'
+            };
+            let region = lang.region ? lang.region.toUpperCase() : (flagRegionMap[code] || 'US');
             return `flag flag-${code}_${region}`;
         },        isMobile() {
             return window.innerWidth <= 1024

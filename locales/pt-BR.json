@@ -1,4 +1,4 @@
-﻿{
+{
   "html": {
     "home": {
       "greetings": "Olá! Sou o <span>{name}</span>",
@@ -173,6 +173,9 @@
         "description": "Sou uma pessoa lógica, criativa e analítica. Descubra mais sobre meu perfil de personalidade INTP-T.",
         "button": "Ver resultado do teste"
       }
+    },
+    "certifications": {
+      "title": "Certificações"
     }
   },
   "menu": {
@@ -330,7 +333,7 @@
   },
   "theme": "Tema",
   "footer": [
-    "Site construído com ❤️ e ☕ em Nuxt3",
-    "Código aberto </a> sob licença <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} visitas"
+    "Site construído com ❤️ e ☕ em {nuxt3}",
+    "Código aberto sob licença <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} visitas"
   ]
 }
