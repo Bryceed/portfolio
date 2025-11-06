@@ -103,8 +103,7 @@
     "about": "À propos"
   },
   "footer": [
-    null,
-    null
-  ],
-  "footer[0]": "Le site est débranché avec ❤️ dans nuxt3 | Visites: {vues}"
+    "Construit avec ❤️ et ☕ en Nuxt3",
+    "Code open source sous licence <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} visites"
+  ]
 }

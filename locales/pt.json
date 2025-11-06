@@ -8,8 +8,8 @@
   "result": "resultado",
   "basedOn": "baseado no teste Myers-Briggs Type Indicator (MBTI). Saiba mais em",
   "footer": [
-    "Site construído em <b>Nuxt3</b>. por Wellington N. ({year})",
-    "Visite meu <a href=\"{url}\" target=\"_blank\">GitHub</a> para ver mais sobre meus projetos (incluindo este)."
+    "Construído com ❤️ e ☕ em Nuxt3",
+    "Código aberto sob licença <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} visitas"
   ],
   "footer[0]": "Site deesenvolvido com ❤️ em Nuxt3 | Visitas: {views}",
   "footer[1]": "<a href=\"{github}\" target=\"_blank\">GitHub</a> | https://www.counter12.com/img-x8waWZwzd7d5z839-26.gif",

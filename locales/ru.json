@@ -30,8 +30,10 @@
       "dark": "Тёмная"
     }
   },
-  "footer[0]": "Сайт дебайт с ❤ в nuxt3 | Посещения: {Просмотры}",
-  "footer[1]": "",
+  "footer": [
+    "Создано с ❤️ и ☕ на Nuxt3",
+    "Открытый исходный код под лицензией <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} посещений"
+  ],
   "html": {
     "contact": {
       "cv": {

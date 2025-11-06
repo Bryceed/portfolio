@@ -30,8 +30,10 @@
       "dark": "Dunkel"
     }
   },
-  "footer[0]": "Site Debreeed mit ❤️ in nuxt3 | Besuche: {Ansichten}",
-  "footer[1]": "Besuchen Sie meine <a href = \"{github}\" target = \"_ leer\"> github </a> Um mehr über meine Projekte zu erfahren (einschließlich dieser).",
+  "footer": [
+    "Erstellt mit ❤️ und ☕ in Nuxt3",
+    "Open-Source-Code unter <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> Lizenz <span class=\"divider\">•</span> {views} Besuche"
+  ],
   "html": {
     "contact": {
       "cv": {

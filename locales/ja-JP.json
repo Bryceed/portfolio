@@ -49,5 +49,15 @@
       }
     }
   },
-  "footer[0]": "nuxt3 |でdebreeed embreeがdebreeされました訪問：{ビュー}"
+  "menu": {
+    "home": "ホーム",
+    "blog": "ブログ",
+    "projects": "プロジェクト",
+    "contact": "お問い合わせ",
+    "about": "私について"
+  },
+  "footer": [
+    "❤️と☕でNuxt3で構築",
+    "<a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a>ライセンスのオープンソースコード <span class=\"divider\">•</span> {views} 訪問"
+  ]
 }

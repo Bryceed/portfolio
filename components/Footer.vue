@@ -2,17 +2,20 @@
     <footer class="footer">
         <p ref="tiltView" v-html="$t('footer[0]')"></p>
         <p v-html="$t('footer[1]', { url: github, views: '<img src=\'https://contador.s12.com.br/img-aB3b5638Y895w9Cx-2.gif\' width=\'24\' height=\'24\' alt=\'Views counter\' class=\'views-counter\' />' })"></p>
+        <p class="version">v{{ version }}</p>
     </footer>
 </template>
 
 <script>
 import about from '../data/about.json';
 import VanillaTilt from 'vanilla-tilt';
+import { getVersion } from '@/utils/version';
 
 export default {
     data() {
         return {
-            github: about.links.github || ''
+            github: about.links.github || '',
+            version: getVersion()
         }
     },
     mounted() {
@@ -55,5 +58,11 @@ html.light .footer {
 }
 .footer p:first-child {
     font-weight: 700;
+}
+.footer .version {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    margin-top: 0.5rem;
+    font-family: monospace;
 }
 </style>
