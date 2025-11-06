@@ -1,4 +1,4 @@
-﻿{
+{
   "html": {
     "home": {
       "greetings": "Olá! Sou o <span>{name}</span>",
@@ -173,6 +173,9 @@
         "description": "Sou uma pessoa lógica, criativa e analítica. Descubra mais sobre meu perfil de personalidade INTP-T.",
         "button": "Ver resultado do teste"
       }
+    },
+    "certifications": {
+      "title": "Certificações"
     }
   },
   "menu": {

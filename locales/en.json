@@ -73,6 +73,7 @@
       "clearFilters": "Pitch"
     },
     "about": {
+      "title": "About",
       "description": "Learn more about my professional career, skills and personality.",
       "personal": {
         "title": "Personal information",
