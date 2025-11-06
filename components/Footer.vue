@@ -1,8 +1,9 @@
 <template>
     <footer class="footer">
         <p ref="tiltView" v-html="$t('footer[0]')"></p>
-        <p v-html="$t('footer[1]', { url: github, views: '<img src=\'https://contador.s12.com.br/img-aB3b5638Y895w9Cx-2.gif\' width=\'24\' height=\'24\' alt=\'Views counter\' class=\'views-counter\' />' })"></p>
-        <p class="version">v{{ version }}</p>
+        <p>
+            <span v-html="$t('footer[1]', { url: github, nuxt3: '<span class=\'nuxt3-version\' title=\'v' + version + '\'>Nuxt3</span>', views: '<img src=\'https://contador.s12.com.br/img-aB3b5638Y895w9Cx-2.gif\' width=\'24\' height=\'24\' alt=\'Views counter\' class=\'views-counter\' />' })"></span>
+        </p>
     </footer>
 </template>
 
@@ -59,10 +60,11 @@ html.light .footer {
 .footer p:first-child {
     font-weight: 700;
 }
-.footer .version {
-    font-size: 0.7rem;
-    opacity: 0.5;
-    margin-top: 0.5rem;
-    font-family: monospace;
+.footer :deep(.nuxt3-version) {
+    cursor: help;
+    border-bottom: 1px dotted currentColor;
+}
+.footer :deep(.nuxt3-version:hover) {
+    text-decoration: none;
 }
 </style>

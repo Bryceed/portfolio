@@ -57,7 +57,7 @@
     "about": "私について"
   },
   "footer": [
-    "❤️と☕でNuxt3で構築",
+    "❤️と☕で{nuxt3}で構築",
     "<a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a>ライセンスのオープンソースコード <span class=\"divider\">•</span> {views} 訪問"
   ]
 }

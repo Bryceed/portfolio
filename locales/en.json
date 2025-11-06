@@ -117,7 +117,7 @@
     "about": "About me"
   },
   "footer": [
-    "Built with ❤️ and ☕ in Nuxt3",
+    "Built with ❤️ and ☕ in {nuxt3}",
     "Open source code under <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> license <span class=\"divider\">•</span> {views} visits"
   ]
 }

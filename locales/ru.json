@@ -31,7 +31,7 @@
     }
   },
   "footer": [
-    "Создано с ❤️ и ☕ на Nuxt3",
+    "Создано с ❤️ и ☕ на {nuxt3}",
     "Открытый исходный код под лицензией <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> <span class=\"divider\">•</span> {views} посещений"
   ],
   "html": {

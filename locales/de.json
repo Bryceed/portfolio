@@ -31,7 +31,7 @@
     }
   },
   "footer": [
-    "Erstellt mit ❤️ und ☕ in Nuxt3",
+    "Erstellt mit ❤️ und ☕ in {nuxt3}",
     "Open-Source-Code unter <a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> Lizenz <span class=\"divider\">•</span> {views} Besuche"
   ],
   "html": {

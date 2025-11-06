@@ -103,7 +103,7 @@
     "about": "내 소개"
   },
   "footer": [
-    "❤️와 ☕로 Nuxt3에서 제작",
+    "❤️와 ☕로 {nuxt3}에서 제작",
     "<a href=\"https://opensource.org/license/agpl-v3\" target=\"_blank\">AGPL-3.0</a> 라이선스의 오픈 소스 코드 <span class=\"divider\">•</span> {views} 방문"
   ]
 }
