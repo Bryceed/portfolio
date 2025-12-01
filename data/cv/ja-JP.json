@@ -3,7 +3,7 @@
     "name": "Wellington do Nascimento",
     "photo_url": "https://avatars.githubusercontent.com/u/42657376?v=4",
     "linkedin_qr_code_url": "PDFにはLinkedInプロフィールにリンクするQRコードが含まれています。",
-    "linkedin": "https://linkedin.com/in/wellington-do-nascimento",
+    "linkedin": "https://linkedin.com/in/wellnas",
     "website": "https://wellnas.dev",
     "phone": "+55 (11) 94201-8873",
     "email": "dev.wellnascimento@gmail.com",
@@ -130,18 +130,59 @@
           "title": "バックエンド開発者 (.NET C# / Angular) - MAGグループ",
           "period": "2024年5月～2025年3月",
           "details": "コンサルタント会社でのチームリーダーとクライアントのチームリーダーに報告。クライアントのデータベースと通信するためのAPI開発、約10名のメンバーで構成された統合開発チーム（単一チーム）でのデータ使用インターフェースの開発、スクラムのアジャイル方法論に従った日々のセレモニー、問題解決への積極性、新機能の構想・参加・実装、プロセスの自動化、独学、eコマースシステム、開発・デプロイプロセスを担当。",
-          "technologies": [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]
+          "technologies": [
+            ".NET Framework",
+            "Selenium",
+            "SQL Server",
+            "Azure",
+            "MS Power Automate",
+            "C#",
+            "Angular.js"
+          ]
         },
         {
           "title": "フロントエンド開発者 (VTEX / React) - RESERVA (AR&COグループ)",
           "period": "2023年1月～2024年4月",
           "details": "繊維小売店Reservaのeコマースでのユーザーナビゲーションとエクスペリエンスの全責任を負い、VTEX.IO、React、その他のフレームワークを使用して、品質と納品要件を確保。ホームページ、検索システム、バックエンド調整、Figmaでのプロトタイピングなどのサイトの主要な要求に直接関わる。Master Data、VTEX CLI、JavaScript ES6、React、SASS、API、BAW Clothingなど、AR&COグループの他の店舗への機能拡張に携わる。",
-          "technologies": ["Google Analytics", "Serverless", "SQL Queries", "React", "JavaScript", "TypeScript", "Node", "Knockout.js", "Jest (単体テスト)", "Webpack", "PWA", "React Native", "jQuery", "VTEX.IO", "VTEX CLI", "CSS/SASS", "Google Tag Manager", "Microsoft Clarity", "web:eyez"]
+          "technologies": [
+            "Google Analytics",
+            "Serverless",
+            "SQL Queries",
+            "React",
+            "JavaScript",
+            "TypeScript",
+            "Node",
+            "Knockout.js",
+            "Jest (単体テスト)",
+            "Webpack",
+            "PWA",
+            "React Native",
+            "jQuery",
+            "VTEX.IO",
+            "VTEX CLI",
+            "CSS/SASS",
+            "Google Tag Manager",
+            "Microsoft Clarity",
+            "web:eyez"
+          ]
         },
         {
           "title": "フルスタック開発者 - DevLand (by ESX)",
           "details": "第三者向けプロジェクトの最初の開発者の一人として会社の内部フロントで活動、会社の見込み顧客獲得のためのウェブシステムとランディングページの開発の唯一の技術責任者、会社のチームでジュニア/ミッドレベル開発者のテクニカルボランティア、さらにboutSexとHYLA AppなどのDevLandのイニシアチブに参加。",
-          "technologies": ["Dart", "Flutter", "Google Firebase", "Google Analytics", "Serverless", "Vue", "Nuxt3", "React", "JavaScript", "jQuery", "CSS/SASS", "Google Tag Manager"]
+          "technologies": [
+            "Dart",
+            "Flutter",
+            "Google Firebase",
+            "Google Analytics",
+            "Serverless",
+            "Vue",
+            "Nuxt3",
+            "React",
+            "JavaScript",
+            "jQuery",
+            "CSS/SASS",
+            "Google Tag Manager"
+          ]
         }
       ]
     },
@@ -156,7 +197,27 @@
           "period": "2011年5月～2022年6月",
           "details": "ウェブサイト作成、ウェブデザイン、画像作成と操作、ビジュアルアイデンティティとブランドのコンサルティングと開発、ウェブサイト、Discord、WhatsAppと統合された自動化と自己サービスシステム、その他私の知識があった、または「実践して学習」した要求に対応し、自分の経験を向上させ、クライアントに価値を提供。また、利益目的または単に私がコーディングスキルを向上させながら助けるために、自分自身のプロジェクトも作成。",
           "success_cases": "成功例：La Luna Luana（ロゴデザイン）、「Mi Loja, Tu Loja」（WordPress）、Deltavese（サーバー）など...",
-          "technologies": ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "MySQL", "MongoDB", "Node.js", "Photoshop", "InDesign", "React", "C#", "Oracle Cloud", "AWS", "Java", "Spring Boot", "Vue", "Nuxt3", "WordPress"]
+          "technologies": [
+            "HTML",
+            "CSS",
+            "PHP",
+            "JavaScript",
+            "jQuery",
+            "MySQL",
+            "MongoDB",
+            "Node.js",
+            "Photoshop",
+            "InDesign",
+            "React",
+            "C#",
+            "Oracle Cloud",
+            "AWS",
+            "Java",
+            "Spring Boot",
+            "Vue",
+            "Nuxt3",
+            "WordPress"
+          ]
         }
       ]
     }

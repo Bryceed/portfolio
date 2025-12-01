@@ -3,7 +3,7 @@
     "name": "Wellington do Nascimento",
     "photo_url": "https://avatars.githubusercontent.com/u/42657376?v=4",
     "linkedin_qr_code_url": "The PDF contains a QR code that likely links to the LinkedIn profile.",
-    "linkedin": "https://linkedin.com/in/wellington-do-nascimento",
+    "linkedin": "https://linkedin.com/in/wellnas",
     "website": "https://wellnas.dev",
     "phone": "+55 (11) 94201-8873",
     "email": "dev.wellnascimento@gmail.com",
@@ -43,30 +43,201 @@
     "development_areas": "Websites, design responsivo, banco de dados, servidores, infra, cloud, VM, automação, mobile, UI/UX..."
   },
   "certifications": [
-    {"title": "Developer Full Stack","provider": "RECODE Pro","hours": "540h"},
-    {"title": "Computer Architecture","provider": "Descomplica","hours": "160h"},
-    {"title": "Frontend Career Path","provider": "Scrimba","hours": "72h"},
-    {"title": "The A.I. Career Path","provider": "Scrimba","hours": "72h"},
-    {"title": "Dart & Flutter","provider": "Alura","hours": "48h"},
-    {"title": "Unity 3D Games","provider": "Udemy","hours": "128h"},
-    {"title": "jQuery","provider": "Alura","hours": "10h"},
-    {"title": "The Full Stack Path","provider": "curso.dev","hours": "00"},
-    {"title": "UX Strategies","provider": "Alura","hours": "8h"},
-    {"title": "UX Basic","provider": "Alura","hours": "32h"},
-    {"title": "React & TypeScript","provider": "Alura","hours": "12h"},
-    {"title": "Compliance and risks","provider": "MAG Group","hours": "12h"},
-    {"title": "IT Security","provider": "Alura","hours": "12h"},
-    {"title": "LGPD Law (GDPR)","provider": "Bradesco","hours": "2h"},
-    {"title": "Marketing Management","provider": "SEST SENAT","hours": "30h"}
+    {
+      "title": "Developer Full Stack",
+      "provider": "RECODE Pro",
+      "hours": "540h"
+    },
+    {
+      "title": "Computer Architecture",
+      "provider": "Descomplica",
+      "hours": "160h"
+    },
+    {
+      "title": "Frontend Career Path",
+      "provider": "Scrimba",
+      "hours": "72h"
+    },
+    {
+      "title": "The A.I. Career Path",
+      "provider": "Scrimba",
+      "hours": "72h"
+    },
+    {
+      "title": "Dart & Flutter",
+      "provider": "Alura",
+      "hours": "48h"
+    },
+    {
+      "title": "Unity 3D Games",
+      "provider": "Udemy",
+      "hours": "128h"
+    },
+    {
+      "title": "jQuery",
+      "provider": "Alura",
+      "hours": "10h"
+    },
+    {
+      "title": "The Full Stack Path",
+      "provider": "curso.dev",
+      "hours": "00"
+    },
+    {
+      "title": "UX Strategies",
+      "provider": "Alura",
+      "hours": "8h"
+    },
+    {
+      "title": "UX Basic",
+      "provider": "Alura",
+      "hours": "32h"
+    },
+    {
+      "title": "React & TypeScript",
+      "provider": "Alura",
+      "hours": "12h"
+    },
+    {
+      "title": "Compliance and risks",
+      "provider": "MAG Group",
+      "hours": "12h"
+    },
+    {
+      "title": "IT Security",
+      "provider": "Alura",
+      "hours": "12h"
+    },
+    {
+      "title": "LGPD Law (GDPR)",
+      "provider": "Bradesco",
+      "hours": "2h"
+    },
+    {
+      "title": "Marketing Management",
+      "provider": "SEST SENAT",
+      "hours": "30h"
+    }
   ],
   "experience": [
-    {"company": "DevLand (by ESX)","period": "07/2022 - 03/2025","location": "São Paulo, SP, Brasil - Remoto","summary": "Atuação em consultoria, prestando serviços de desenvolvimento de software. ","roles": [{"title": "Desenvolvedor back-end (.NET C# / Angular) - Grupo MAG","period": "05/2024-03/2025","details": "Reporte às lideranças da equipe no cliente, e ao líder técnico na consultoria. Responsável pelo desenvolvimento de APIs para comunicação com o banco de dados do cliente, desenvolvimento de interfaces para o uso desses dados em uma equipe integrada de desenvolvimento (única equipe) composta por aproximadamente 10 membros, com cerimônias diárias seguindo a metodologia ágil SCRUM, proatividade em resolução de problemas, idealização, participação, implementação de novas funcionalidades, automação de processos, autodidatismo, sistemas de e-commerce, processo de desenvolvimento e deploy. ","technologies": [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]},{"title": "Desenvolvedor front-end (VTEX / React) - RESERVA (Grupo AR&CO.)","period": "01/2023 - 04/2024","details": "Responsável por toda a navegação e experiência do usuário no e-commerce da loja de varejo têxtil Reserva, atuando diretamente com VTEX.IO, React e outras frameworks para garantir a qualidade e exigências da entrega.  Atuando diretamente em demandas principais do site como página inicial, sistema de pesquisa e atividades pontuais, como ajustes no back-end, prototipagem no Figma, etc.  Atuação com Master Data, VTEX CLI, JavaScript ES6, React, SASS, APIs e ampliação de funcionalidades para outras lojas do grupo AR&CO, como a BAW Clothing.","technologies": ["Google Analytics", "Serverless", "SQL Queries", "React", "JavaScript", "TypeScript", "Node", "Knockout.js", "Jest (Testes Unitários)", "Webpack", "PWA", "React Native", "jQuery", "VTEX.IO", "VTEX CLI", "CSS/SASS", "Google Tag Manager", "Microsoft Clarity", "web:eyez"]},{"title": "Desenvolvedor Full Stack - DevLand (by ESX)","details": "Atuação em frentes internas da empresa como um dos primeiros desenvolvedores do projeto para terceiros, único responsável técnico pelo desenvolvimento do sistema web e landing page de obtenção de clientes em potencial da empresa, voluntário técnico para desimpedimento de desenvolvedores juniores/plenos nas equipes da empresa, além de participar de iniciativas da DevLand como os apps boutSex e HYLA App.","technologies": ["Dart", "Flutter", "Google Firebase", "Google Analytics", "Serverless", "Vue", "Nuxt3", "React", "JavaScript", "jQuery", "CSS/SASS", "Google Tag Manager"]} ]},
-    {"company": "Desenvolvedor Freelancer","period": "2011-2022","location": "Guarulhos, SP, Brasil - Remoto","summary": "Atuação ponta-a-ponta para resolução de demandas diversas de clientes. ","roles": [{"title": "Desenvolvedor full-stack / Atendimento","period": "05/2011-06/2022","details": "Criação de sites, web design, criação e manipulação de imagens, consultoria e desenvolvimento de identidades visuais e marcas, sistemas de automação e autoatendimento integrados ao site, Discord e WhatsApp, dentre outras demandas onde possuía conhecimento ou \"aprendia fazendo\" em prol do desenvolvimento da minha senioridade e da entrega de valor ao cliente.  Também criei projetos por conta própria para fins lucrativos ou simplesmente ajudar enquanto me aprimorava codificando. ","success_cases": "Cases de sucesso: La Luna Luana (design de logo), \"Mi Loja, Tu Loja\" (WordPress), Deltavese (server)... ","technologies": ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "MySQL", "MongoDB", "Node.js", "Photoshop", "InDesign", "React", "C#", "Oracle Cloud", "AWS", "Java", "Spring Boot", "Vue", "Nuxt3", "WordPress"]} ]}
+    {
+      "company": "DevLand (by ESX)",
+      "period": "07/2022 - 03/2025",
+      "location": "São Paulo, SP, Brasil - Remoto",
+      "summary": "Atuação em consultoria, prestando serviços de desenvolvimento de software. ",
+      "roles": [
+        {
+          "title": "Desenvolvedor back-end (.NET C# / Angular) - Grupo MAG",
+          "period": "05/2024-03/2025",
+          "details": "Reporte às lideranças da equipe no cliente, e ao líder técnico na consultoria. Responsável pelo desenvolvimento de APIs para comunicação com o banco de dados do cliente, desenvolvimento de interfaces para o uso desses dados em uma equipe integrada de desenvolvimento (única equipe) composta por aproximadamente 10 membros, com cerimônias diárias seguindo a metodologia ágil SCRUM, proatividade em resolução de problemas, idealização, participação, implementação de novas funcionalidades, automação de processos, autodidatismo, sistemas de e-commerce, processo de desenvolvimento e deploy. ",
+          "technologies": [
+            ".NET Framework",
+            "Selenium",
+            "SQL Server",
+            "Azure",
+            "MS Power Automate",
+            "C#",
+            "Angular.js"
+          ]
+        },
+        {
+          "title": "Desenvolvedor front-end (VTEX / React) - RESERVA (Grupo AR&CO.)",
+          "period": "01/2023 - 04/2024",
+          "details": "Responsável por toda a navegação e experiência do usuário no e-commerce da loja de varejo têxtil Reserva, atuando diretamente com VTEX.IO, React e outras frameworks para garantir a qualidade e exigências da entrega.  Atuando diretamente em demandas principais do site como página inicial, sistema de pesquisa e atividades pontuais, como ajustes no back-end, prototipagem no Figma, etc.  Atuação com Master Data, VTEX CLI, JavaScript ES6, React, SASS, APIs e ampliação de funcionalidades para outras lojas do grupo AR&CO, como a BAW Clothing.",
+          "technologies": [
+            "Google Analytics",
+            "Serverless",
+            "SQL Queries",
+            "React",
+            "JavaScript",
+            "TypeScript",
+            "Node",
+            "Knockout.js",
+            "Jest (Testes Unitários)",
+            "Webpack",
+            "PWA",
+            "React Native",
+            "jQuery",
+            "VTEX.IO",
+            "VTEX CLI",
+            "CSS/SASS",
+            "Google Tag Manager",
+            "Microsoft Clarity",
+            "web:eyez"
+          ]
+        },
+        {
+          "title": "Desenvolvedor Full Stack - DevLand (by ESX)",
+          "details": "Atuação em frentes internas da empresa como um dos primeiros desenvolvedores do projeto para terceiros, único responsável técnico pelo desenvolvimento do sistema web e landing page de obtenção de clientes em potencial da empresa, voluntário técnico para desimpedimento de desenvolvedores juniores/plenos nas equipes da empresa, além de participar de iniciativas da DevLand como os apps boutSex e HYLA App.",
+          "technologies": [
+            "Dart",
+            "Flutter",
+            "Google Firebase",
+            "Google Analytics",
+            "Serverless",
+            "Vue",
+            "Nuxt3",
+            "React",
+            "JavaScript",
+            "jQuery",
+            "CSS/SASS",
+            "Google Tag Manager"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Desenvolvedor Freelancer",
+      "period": "2011-2022",
+      "location": "Guarulhos, SP, Brasil - Remoto",
+      "summary": "Atuação ponta-a-ponta para resolução de demandas diversas de clientes. ",
+      "roles": [
+        {
+          "title": "Desenvolvedor full-stack / Atendimento",
+          "period": "05/2011-06/2022",
+          "details": "Criação de sites, web design, criação e manipulação de imagens, consultoria e desenvolvimento de identidades visuais e marcas, sistemas de automação e autoatendimento integrados ao site, Discord e WhatsApp, dentre outras demandas onde possuía conhecimento ou \"aprendia fazendo\" em prol do desenvolvimento da minha senioridade e da entrega de valor ao cliente.  Também criei projetos por conta própria para fins lucrativos ou simplesmente ajudar enquanto me aprimorava codificando. ",
+          "success_cases": "Cases de sucesso: La Luna Luana (design de logo), \"Mi Loja, Tu Loja\" (WordPress), Deltavese (server)... ",
+          "technologies": [
+            "HTML",
+            "CSS",
+            "PHP",
+            "JavaScript",
+            "jQuery",
+            "MySQL",
+            "MongoDB",
+            "Node.js",
+            "Photoshop",
+            "InDesign",
+            "React",
+            "C#",
+            "Oracle Cloud",
+            "AWS",
+            "Java",
+            "Spring Boot",
+            "Vue",
+            "Nuxt3",
+            "WordPress"
+          ]
+        }
+      ]
+    }
   ],
   "recommendations": [
-    {"author": "Thúlio Gamarano","context": "trabalhava na mesma equipe e era sênior em relação a Wellington ","text": "Tive a oportunidade de trabalhar com o Wellington por pouco mais de um ano na Reserva, em um time dinâmico e com alto nível de exigência técnica e estética. Desde o início, ele demonstrou um excelente domínio em CSS e um olhar apurado para detalhes visuais, garantindo que suas entregas fossem sempre fiéis ao design, responsivas e com ótima performance. Ele tem um senso estético muito apurado e um cuidado técnico que vai além do comum. [...] Além da parte técnica, o Wellington é uma pessoa tranquila, respeitosa e confiável, que traz leveza para o time e entrega com responsabilidade.  [...] Recomendo fortemente o Wellington para qualquer empresa que busque um profissional comprometido com qualidade, usabilidade, performance e que valorize o aprendizado constante. Sem dúvida, ele é um profissional com muito a agregar."},
-    {"author": "Vanessa Vargas","context": "trabalhava com Wellington na mesma equipe ","text": "Trabalhei com Wellington no projeto MAG Capitalização, e foi uma experiência excelente. Com capacidade analítica e autonomia, ele enfrenta desafios de forma estratégica, sempre buscando as melhores soluções. Tem grande curiosidade, está constantemente aprendendo e sempre disposto a compartilhar seu conhecimento. Além disso, tem um talento natural para criar um ambiente leve e colaborativo. Sua comunicação e seu jeito descontraído fortalecem o espírito do time, tornando o dia a dia mais agradável. Sem dúvida, um profissional que agrega valor a qualquer equipe."},
-    {"author": "Janilson Coimbra","context": "trabalhava com Wellington na mesma equipe ","text": "Tive o prazer de trabalhar com Wellington do Nascimento na ESX/DevLand, e posso dizer que seu domínio técnico é um diferencial impressionante. Ele é um programador altamente capacitado, com boas abordagens para resolver problemas e uma habilidade incrível de transformar desafios complexos em soluções eficientes. Recomendo fortemente o Wellington para qualquer desafio na área de tecnologia, pois sei que ele sempre entrega resultados excepcionais."}
+    {
+      "author": "Thúlio Gamarano",
+      "context": "trabalhava na mesma equipe e era sênior em relação a Wellington ",
+      "text": "Tive a oportunidade de trabalhar com o Wellington por pouco mais de um ano na Reserva, em um time dinâmico e com alto nível de exigência técnica e estética. Desde o início, ele demonstrou um excelente domínio em CSS e um olhar apurado para detalhes visuais, garantindo que suas entregas fossem sempre fiéis ao design, responsivas e com ótima performance. Ele tem um senso estético muito apurado e um cuidado técnico que vai além do comum. [...] Além da parte técnica, o Wellington é uma pessoa tranquila, respeitosa e confiável, que traz leveza para o time e entrega com responsabilidade.  [...] Recomendo fortemente o Wellington para qualquer empresa que busque um profissional comprometido com qualidade, usabilidade, performance e que valorize o aprendizado constante. Sem dúvida, ele é um profissional com muito a agregar."
+    },
+    {
+      "author": "Vanessa Vargas",
+      "context": "trabalhava com Wellington na mesma equipe ",
+      "text": "Trabalhei com Wellington no projeto MAG Capitalização, e foi uma experiência excelente. Com capacidade analítica e autonomia, ele enfrenta desafios de forma estratégica, sempre buscando as melhores soluções. Tem grande curiosidade, está constantemente aprendendo e sempre disposto a compartilhar seu conhecimento. Além disso, tem um talento natural para criar um ambiente leve e colaborativo. Sua comunicação e seu jeito descontraído fortalecem o espírito do time, tornando o dia a dia mais agradável. Sem dúvida, um profissional que agrega valor a qualquer equipe."
+    },
+    {
+      "author": "Janilson Coimbra",
+      "context": "trabalhava com Wellington na mesma equipe ",
+      "text": "Tive o prazer de trabalhar com Wellington do Nascimento na ESX/DevLand, e posso dizer que seu domínio técnico é um diferencial impressionante. Ele é um programador altamente capacitado, com boas abordagens para resolver problemas e uma habilidade incrível de transformar desafios complexos em soluções eficientes. Recomendo fortemente o Wellington para qualquer desafio na área de tecnologia, pois sei que ele sempre entrega resultados excepcionais."
+    }
   ],
   "final_thoughts": {
     "text": "Em resumo, sempre fui movido pela curiosidade de entender como as coisas funcionam, especialmente no universo da tecnologia. Por muitos anos, programei apenas por paixão, sem imaginar que poderia transformar isso em carreira, dadas as limitações do meu contexto.  A vida me levou por diferentes caminhos até que, enfim, reencontrei meu propósito: dar vida a ideias por meio da programação.  Estou aberta a oportunidades que me permitam retomar essa trajetória que me move.  Independentemente do resultado, todo feedback construtivo é bem-vindo. Desde já, agradeço pela atenção. ",

@@ -1,863 +1,607 @@
 <template>
-    <div class="menuHandler">
-        <nav>
-            <a href="/"><!-- guarantee full reload ("panic button" for bugs) -->
-                <div class="logo">
-                    <span>W</span>
-                    <span>e</span>
-                    <span>l</span>
-                    <span>l</span>
-                    <div class="typing">
-                        
-                    </div>
-                    <div class="code-selector active"></div>
-                </div>
-            </a>
-            <div class="menu-canMobile">
-                <button class="menu-btn" @click="menuOpen = !menuOpen" :class="{ 'menu-open': menuOpen }">
-                    <i class="material-icons">menu</i>
-                </button>
-                <ul class="menu" :class="{ 'menu-open': menuOpen }">
-                    <li v-for="item in menu" :key="item.id">
-                        <template v-if="item.submenu">
-                            <a href="javascript:void(0)" @click="item.open = !item.open" class="menu-item">
-                                <i class="material-icons expand-icon" v-if="!item.open">expand_more</i>
-                                <i class="material-icons collapse-icon" v-if="item.open">expand_less</i>
-                                <span v-if="$t(`menu.${item.name}`) != item.name">{{ $t(`menu.${item.name}`) }}</span>
-                                <span v-else>{{ item.name }}</span>
-                            </a>
-                            <ul v-if="item.open" class="submenu">
-                                <li v-for="subitem in item.submenu" :key="subitem.id">
-                                    <a :href="subitem.link" target="_blank">{{ subitem.name }}</a>
-                                </li>
-                            </ul>
-                        </template>
-                        <template v-else>
-                            <NuxtLink :to="item.link" class="menu-item" @click="closeMenu()">
-                                <span v-if="$t(`menu.${item.name.toLowerCase()}`) != item.name.toLowerCase()">{{
-                                    $t(`menu.${item.name.toLowerCase()}`) }}</span>
-                                <span v-else>{{ item.name }}</span>
-                            </NuxtLink>
-                        </template>
-                    </li>
-                    <li class="menu-item lang-switcher" :class="{ 'menu-open': langPopupOpen }" style="position:relative;" v-if="currentLang">                      <div class="lang-display" @click="toggleLangPopup()">
-                        <span :class="getFlagClassForLang(currentLang)" class="flag rounded language-flag" :title="currentLang.name"></span>
-                        <span class="flag-text">{{ currentLang.region || $t('language.region') }}</span>
-                      </div>
+  <header class="site-header" :class="{ 'menu-open': isMenuOpen }">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-container">
+        <!-- Logo -->
+        <NuxtLink to="/" class="logo-link" @click="closeMenu" aria-label="Go to homepage">
+          <div class="logo">
+            <span class="logo-text">Well</span>
+            <span class="logo-cursor"></span>
+          </div>
+        </NuxtLink>
 
-                      <!-- Popup inline em vez de componente -->
-                      <div v-if="langPopupOpen" class="lang-popup">
-                        <div class="lang-grid">
-                          <div 
-                            v-for="lang in languages" 
-                            :key="getLangKey(lang)" 
-                            class="lang-item"
-                            :class="{ 'active': currentLang.code === lang.code && currentLang.region === lang.region }"
-                            @click="selectLang(lang)"
-                          >
-                            <span :class="getFlagClassForLang(lang)" class="flag rounded"></span>
-                            <div class="lang-info">
-                              <div class="lang-code">
-                                {{ lang.code }}<span v-if="lang.region && lang.region !== lang.code">-{{ lang.region }}</span>
-                              </div>
-                              <div class="lang-name">{{ lang.name }}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                        <ThemeSwitcher />
-                    </li>
-                </ul>
-            </div>
+        <!-- Desktop Navigation -->
+        <ul class="nav-menu desktop-menu" role="menubar">
+          <li v-for="item in menuItems" :key="item.id" role="none">
+            <NuxtLink
+              :to="item.link"
+              class="nav-item"
+              :class="{ 'active': isActiveRoute(item.link) }"
+              role="menuitem"
+            >
+              {{ t(`menu.${item.name.toLowerCase()}`, {}, item.name) }}
+            </NuxtLink>
+          </li>
+        </ul>
+
+        <!-- Right Side Actions -->
+        <div class="nav-actions">
+          <!-- Language Selector -->
+          <div class="lang-selector" ref="langSelector">
+            <button
+              class="lang-button"
+              @click="toggleLangMenu"
+              :aria-expanded="isLangMenuOpen"
+              aria-haspopup="true"
+              aria-label="Select language"
+            >
+              <span :class="getCurrentFlagClass()" class="flag-icon"></span>
+              <span class="lang-code">{{ currentLangCode }}</span>
+              <i class="material-icons dropdown-icon">
+                {{ isLangMenuOpen ? 'expand_less' : 'expand_more' }}
+              </i>
+            </button>
+
+            <!-- Language Dropdown -->
+            <transition name="dropdown">
+              <div v-if="isLangMenuOpen" class="lang-dropdown" role="menu">
+                <button
+                  v-for="lang in languages"
+                  :key="getLangKey(lang)"
+                  class="lang-option"
+                  :class="{ 'active': isCurrentLang(lang) }"
+                  @click="selectLanguage(lang)"
+                  role="menuitem"
+                >
+                  <span :class="getFlagClass(lang)" class="flag-icon"></span>
+                  <div class="lang-info">
+                    <span class="lang-name">{{ lang.name }}</span>
+                    <span class="lang-locale">{{ getLangKey(lang) }}</span>
+                  </div>
+                  <i v-if="isCurrentLang(lang)" class="material-icons check-icon">check</i>
+                </button>
+              </div>
+            </transition>
+          </div>
+
+          <!-- Theme Switcher -->
+          <ThemeSwitcher />
+
+          <!-- Mobile Menu Button -->
+          <button
+            class="mobile-menu-button"
+            @click="toggleMobileMenu"
+            :aria-expanded="isMenuOpen"
+            aria-label="Toggle mobile menu"
+            aria-controls="mobile-navigation"
+          >
+            <span class="menu-icon" :class="{ 'open': isMenuOpen }">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <transition name="mobile-menu">
+      <div v-if="isMenuOpen" class="mobile-nav-overlay" @click="closeMenu">
+        <nav 
+          class="mobile-nav" 
+          id="mobile-navigation"
+          role="navigation"
+          aria-label="Mobile navigation"
+          @click.stop
+        >
+          <ul class="mobile-menu" role="menubar">
+            <li v-for="item in menuItems" :key="item.id" role="none">
+              <NuxtLink
+                :to="item.link"
+                class="mobile-nav-item"
+                :class="{ 'active': isActiveRoute(item.link) }"
+                @click="closeMenu"
+                role="menuitem"
+              >
+                {{ t(`menu.${item.name.toLowerCase()}`, {}, item.name) }}
+              </NuxtLink>
+            </li>
+          </ul>
         </nav>
-    </div>
+      </div>
+    </transition>
+  </header>
 </template>
 
-<script>
-import { menu } from "../data/menu.json";
-import LanguageSelector from './common/LanguageSelector.vue';
+<script setup>
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { useRoute } from '#app';
+import { useTranslation } from '@/composables/useTranslation';
 import ThemeSwitcher from './theme/Switcher.vue';
-import { onMounted } from 'vue';
-let menuOpen = false;
-let langPopupOpen = false;
+import { menu } from '@/data/menu.json';
 
-export default {
-    name: 'Menu',
-    components: {
-        LanguageSelector,
-        ThemeSwitcher
-    },    created() {
-        // Vamos usar um método específico para lidar com a inicialização do idioma
-        if (process.client) {
-            this.$nextTick(() => {
-                this.initializeLanguageFromLocalStorage();
-            });
-        }
-    },data() {
-        // Durante o SSR, sempre inicializamos com o idioma padrão
-        let initialLang = { code: 'pt', region: 'BR', name: 'Português (Brasil)' };
-        
-        // Define as linguagens disponíveis (removido en-CA e pt-PT)
-        const availableLanguages = [
-            { code: 'pt', region: 'BR', name: 'Português (Brasil)' },
-            { code: 'en', region: 'US', name: 'English' },
-            { code: 'es', region: 'ES', name: 'Español' },
-            { code: 'fr', region: 'FR', name: 'Français' },
-            { code: 'de', region: 'DE', name: 'Deutsch' },
-            { code: 'ru', region: 'RU', name: 'Русский' },
-            { code: 'ja', region: 'JP', name: '日本語' },
-            { code: 'ko', region: 'KR', name: '한국어' }
-        ];
-        
-        // Durante o SSR, evitamos acessar localStorage
-        // A atualização para o idioma salvo acontecerá no cliente (mounted e created)
-        
-        return {
-            menu,
-            menuOpen,
-            langPopupOpen,
-            languages: availableLanguages,
-            currentLang: initialLang
-        }    },    watch: {
-        '$i18n.locale': {
-            immediate: false,
-            handler(newVal) {
-                // Atualiza currentLang ao trocar o locale
-                const found = this.languages.find(l => {
-                  const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
-                  return locale.toLowerCase() === newVal.toLowerCase();
-                });
-                
-                if (found && process.client) {
-                    this.currentLang = { ...found };
-                }
-            }
-        }
-    },mounted() {
-        // Inicializa o idioma somente no cliente após a hidratação
-        if (process.client) {
-            // Esperamos a hidratação estar completa antes de inicializar o idioma
-            setTimeout(() => {
-                this.initializeLanguageFromLocalStorage();
-            }, 100);
-            // Adicionar ouvinte para o evento de mudança de idioma
-            document.addEventListener('languageChanged', this.handleLanguageChangeEvent);
-            // Adicionar ouvinte para mudanças no localStorage de outras guias/frames
-            window.addEventListener('storage', this.handleStorageEvent);
-            // OUVIR evento global de atualização de i18n
-            document.addEventListener('i18n:updateRequested', () => {
-                // Atualiza o idioma atual e força atualização do menu
-                this.initializeLanguageFromLocalStorage();
-                this.$forceUpdate();
-            });
-        }
-        
-        // Configurações do logo
-        const logo = document.querySelector('.logo');
-        const codeSelector = document.querySelector('.code-selector');
-        const spans = document.querySelectorAll('.logo span');
-        const typingContainer = document.querySelector('.typing');
-        const suffixes = ['ington N.', 'Nas.dev'];
-        let currentSuffixIndex = 0;
+// Composables
+const route = useRoute();
+const { t, setLocale, currentLocale, refresh } = useTranslation();
 
-        const activateSpans = () => {
-            spans.forEach((span, idx) => {
-                setTimeout(() => {
-                    span.classList.add('active');
-                }, 100 * (idx + 1));
-            });
+// State
+const isMenuOpen = ref(false);
+const isLangMenuOpen = ref(false);
+const langSelector = ref(null);
 
-            setTimeout(() => {
-                codeSelector.classList.add('active');
-            }, 1000);
+// Languages configuration
+const languages = ref([
+  { code: 'pt', region: 'BR', name: 'Português' },
+  { code: 'en', region: 'US', name: 'English' },
+  { code: 'es', region: 'ES', name: 'Español' },
+  { code: 'fr', region: 'FR', name: 'Français' },
+  { code: 'de', region: 'DE', name: 'Deutsch' },
+  { code: 'ru', region: 'RU', name: 'Русский' },
+  { code: 'ja', region: 'JP', name: '日本語' },
+  { code: 'ko', region: 'KR', name: '한국어' }
+]);
 
-            setTimeout(() => {
-                codeSelector.classList.remove('active');
-            }, 1500);
-        };
+// Menu items (filtrados para remover submenu se necessário)
+const menuItems = computed(() => {
+  return menu.filter(item => !item.submenu);
+});
 
-        const updateSuffix = () => {
-            const currentSuffix = suffixes[currentSuffixIndex];
-            const nextSuffix = suffixes[(currentSuffixIndex + 1) % suffixes.length];
-            currentSuffixIndex = (currentSuffixIndex + 1) % suffixes.length;
+// Current language code para display
+const currentLangCode = computed(() => {
+  const locale = currentLocale.value;
+  const parts = locale.split('-');
+  return parts[0].toUpperCase();
+});
 
-            // Remove current suffix
-            Array.from(typingContainer.children).forEach((span, idx) => {
-                setTimeout(() => {
-                    span.classList.add('remove');
-                    setTimeout(() => span.remove(), 300);
-                }, idx * 100);
-            });
+// Methods
+const toggleMobileMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+  if (isMenuOpen.value) {
+    isLangMenuOpen.value = false;
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+};
 
-            // Add new suffix
-            setTimeout(() => {
-                codeSelector.classList.add('active');
-                nextSuffix.split('').forEach((char, idx) => {
-                    setTimeout(() => {
-                        const span = document.createElement('span');
-                        span.textContent = char;
-                        span.classList.add('active');
-                        typingContainer.appendChild(span);
-                    }, idx * 100);
-                });
+const closeMenu = () => {
+  isMenuOpen.value = false;
+  document.body.style.overflow = '';
+};
 
-                setTimeout(() => {
-                    codeSelector.classList.remove('active');
-                }, nextSuffix.length * 100 + 500);
-            }, currentSuffix.length * 100 + 500);
-        };
+const toggleLangMenu = () => {
+  isLangMenuOpen.value = !isLangMenuOpen.value;
+};
 
-        activateSpans();
+const selectLanguage = (lang) => {
+  const locale = lang.region && lang.region !== lang.code 
+    ? `${lang.code}-${lang.region}` 
+    : lang.code;
+  
+  setLocale(locale);
+  isLangMenuOpen.value = false;
+  
+  // Força re-render de componentes
+  setTimeout(() => {
+    refresh();
+  }, 100);
+};
 
-        setInterval(updateSuffix, 4000);
-    },    // Removido beforeMount que estava quebrando a reatividade do i18n
-    // A inicialização do idioma já é feita pelo plugin i18n.ts
+const getLangKey = (lang) => {
+  return lang.region && lang.region !== lang.code 
+    ? `${lang.code}-${lang.region}` 
+    : lang.code;
+};
 
-    methods: {
-        toggleMenu() {
-            this.menuOpen = !this.menuOpen
-        },
+const getFlagClass = (lang) => {
+  const code = (lang.code || 'en').toLowerCase();
+  const region = (lang.region || 'US').toUpperCase();
+  return `flag flag-${code}_${region}`;
+};
 
-        closeMenu() {
-            this.menuOpen = false
-        },
+const getCurrentFlagClass = () => {
+  const locale = currentLocale.value;
+  const parts = locale.split('-');
+  const code = parts[0].toLowerCase();
+  const region = (parts[1] || code).toUpperCase();
+  return `flag flag-${code}_${region}`;
+};
 
-        toggleLangPopup() {
-            this.langPopupOpen = !this.langPopupOpen;
-            console.log('Popup estado:', this.langPopupOpen);
-        },    selectLang(lang) {
-        try {
-            // Construir o locale no formato correto (pt-BR, en, etc)
-            const locale = lang.region && lang.region !== lang.code ? `${lang.code}-${lang.region}` : lang.code;
-            // Atualizar o estado local do componente
-            this.currentLang = { ...lang };
-            // Salvar no localStorage imediatamente
-            if (process.client) {
-                localStorage.setItem('lang', locale);
-            }
-            // Fechar o popup
-            this.langPopupOpen = false;
-            // Disparar evento principal de mudança de idioma 
-            document.dispatchEvent(new CustomEvent('languageChanged', {
-                detail: { locale: locale }
-            }));
-            // Atualizar diretamente o locale
-            if (this.$i18n && this.$i18n.global && typeof this.$i18n.global.locale === 'object' && this.$i18n.global.locale !== null) {
-                this.$i18n.global.locale.value = locale;
-            } else if (this.$i18n) {
-                this.$i18n.locale = locale;
-            }
-            // Forçar atualização deste componente
-            this.$forceUpdate();
-        } catch (error) {
-            console.error('Erro ao alterar o idioma:', error);
-        }
-    },
+const isCurrentLang = (lang) => {
+  const locale = currentLocale.value;
+  const langLocale = getLangKey(lang);
+  return locale.toLowerCase() === langLocale.toLowerCase();
+};
 
-        getLangKey(lang) {
-            return `${lang.code}_${lang.region.toUpperCase() || ''}`;
-        },
-        
-        getLangFlagClass() {
-            const lang = this.currentLang;
-            return this.getFlagClassForLang(lang);
-        },          getFlagClassForLang(lang) {
-            if (!lang) return 'flag flag-en_US'; 
-            let code = (lang.code || 'en').toLowerCase();
-            let region = lang.region ? lang.region.toUpperCase() : 'US'; // 
-            return `flag flag-${code}_${region}`;
-        },        isMobile() {
-            return window.innerWidth <= 1024
-        },
-          // Método para inicializar o idioma do localStorage
-        initializeLanguageFromLocalStorage() {
-            if (!process.client) return; // Executar apenas no cliente
-            
-            try {
-                const savedLocale = localStorage.getItem('lang');
-                console.log('Locale salvo recuperado:', savedLocale);
-                
-                if (!savedLocale) return;
-                
-                // Encontrar o objeto de idioma correspondente
-                const found = this.languages.find(l => {
-                    const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
-                    return locale.toLowerCase() === savedLocale.toLowerCase();
-                });
-                
-                if (!found) {
-                    console.warn('Idioma salvo não encontrado na lista de idiomas disponíveis:', savedLocale);
-                    return;
-                }
-                
-                console.log('Idioma encontrado:', found);
-                
-                // Atualizar o estado local com o idioma encontrado
-                this.currentLang = JSON.parse(JSON.stringify(found));
-                
-                // Atualizar o i18n (priorizar a API global do Vue I18n 9)
-                if (this.$i18n.global) {
-                    this.$i18n.global.locale.value = savedLocale;
-                } else {
-                    this.$i18n.locale = savedLocale;
-                }
-                
-                // Forçar a atualização da interface
-                this.$nextTick(() => {
-                    this.$forceUpdate();
-                    
-                    // Atualizar classes da bandeira se necessário
-                    const flagElement = document.querySelector('.language-flag');
-                    if (flagElement) {
-                        const correctClass = this.getFlagClassForLang(found);
-                        
-                        // Limpar classes antigas
-                        [...flagElement.classList].forEach(cls => {
-                            if (cls.startsWith('flag-')) {
-                                flagElement.classList.remove(cls);
-                            }
-                        });
-                        
-                        // Adicionar classes novas
-                        correctClass.split(' ').forEach(cls => {
-                            if (cls.startsWith('flag-')) {
-                                flagElement.classList.add(cls);
-                            }
-                        });
-                    }
-                });
-                
-                console.log('Idioma inicializado com sucesso:', savedLocale);
-            } catch (error) {
-                console.error('Erro ao inicializar idioma:', error);
-            }
-        },
-          // Método para lidar com evento de mudança de idioma
-        handleLanguageChangeEvent(event) {
-            try {
-                if (event.detail && event.detail.locale) {
-                    // Encontrar o objeto de idioma correspondente
-                    const found = this.languages.find(l => {
-                        const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
-                        return locale.toLowerCase() === event.detail.locale.toLowerCase();
-                    });
-                    
-                    if (found) {
-                        this.currentLang = { ...found };
-                        
-                        // Forçar atualização do menu quando o idioma mudar
-                        this.$nextTick(() => {
-                            this.$forceUpdate();
-                            console.log('Menu atualizado após mudança de idioma');
-                        });
-                    }
-                }
-            } catch (error) {
-                console.error('Erro ao processar evento de mudança de idioma:', error);
-            }
-        },
-        
-        // Método para lidar com mudanças no localStorage
-        handleStorageEvent(event) {
-            try {
-                if (event.key === 'lang' && event.newValue) {
-                    // Encontrar o objeto de idioma correspondente
-                    const found = this.languages.find(l => {
-                        const locale = l.region && l.region !== l.code ? `${l.code}-${l.region}` : l.code;
-                        return locale.toLowerCase() === event.newValue.toLowerCase();
-                    });
-                    
-                    if (found) {
-                        this.currentLang = { ...found };
-                    }
-                }
-            } catch (error) {
-                console.error('Erro ao processar evento de armazenamento:', error);
-            }
-        },
-    }
-}
+const isActiveRoute = (path) => {
+  return route.path === path;
+};
+
+// Click outside to close language menu
+const handleClickOutside = (event) => {
+  if (langSelector.value && !langSelector.value.contains(event.target)) {
+    isLangMenuOpen.value = false;
+  }
+};
+
+// Lifecycle
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+  
+  // Listener para mudança de locale de outras partes da app
+  document.addEventListener('locale:changed', () => {
+    refresh();
+  });
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+  document.body.style.overflow = '';
+});
 </script>
 
 <style scoped lang="scss">
-.menuHandler {
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  background: transparent;
+  transition: all var(--transition-base);
 }
 
-nav {
-    background-color: rgba(51, 51, 51, .7);
-    color: #fff;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 2rem !important;
-    z-index: 9;
-    backdrop-filter: blur(10px);
+.navbar {
+  background: var(--bg-overlay);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-primary);
+  transition: all var(--transition-base);
 }
 
-nav::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    left: -20px;
-    right: -20px;
-    height: 60px;
-    background: linear-gradient(to top, rgba(34, 34, 34, 0.8), #222222 31%);
-    border-radius: 30px;
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-5);
+  gap: var(--space-4);
+  max-width: var(--max-width-7xl);
+  margin: 0 auto;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
+/* Logo */
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  z-index: var(--z-sticky);
 }
 
-nav ul li {
-    display: inline-block;
-    margin-right: 10px;
-    position: relative;
+.logo {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  letter-spacing: -0.5px;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-nav ul li a.router-link-active {
-    color: #7b5efc;
-    font-weight: bold;
-    position: relative;
-    transition: ease-out .1s;
+.logo-text {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-// make underline effect
-nav ul li a.router-link-active::after {
-    content: '';
-    position: absolute;
-    bottom: -18px;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    border-radius: 2px;
-    background-image: linear-gradient(0deg, #7b5efc 2px, #7b5efc81 2px, #7b5efc21 4px, transparent 100%);
-    animation: underline .2s backwards;
-}
-
-@keyframes underline {
-    0% {
-        width: 0;
-        left: 50%;
-        height: 0;
-    }
-
-    100% {
-        width: 100%;
-        left: 0;
-        height: 10px;
-    }
-}
-
-nav ul li a:hover:not(.router-link-active) {
-    color: #ccc;
-}
-
-nav .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
-    margin: 0 10px;
-    display: flex;
-    align-items: center;
-    height: 1.5em;
-}
-
-nav .logo .code-selector {
-    height: 1.1em;
-    width: .65em;
-    background-color: #fff;
-    display: inline-block;
-    animation: blink 1s infinite;
-    animation-delay: 1s;
-    transition: ease-out 1s;
-}
-
-nav .logo .code-selector.active {
-    animation: none;
-}
-
-nav .logo span {
-    display: none;
-    width: 0;
-}
-
-nav .logo span.active {
-    display: inline-block;
-    animation: typing .1s;
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
-    transition: ease-out 1s;
-}
-
-@keyframes typing {
-    0% {
-        width: 0;
-    }
-
-    100% {
-        width: 0.7em;
-    }
+.logo-cursor {
+  width: 3px;
+  height: 1.4em;
+  background: var(--color-primary);
+  animation: blink 1s infinite;
 }
 
 @keyframes blink {
-    0% {
-        height: 1em;
-    }
-
-    40%,
-    50% {
-        height: 0em;
-    }
-
-    100% {
-        height: 1em;
-    }
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-/* dropdown menu */
-nav ul li ul {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    margin: 0;
-    top: 100%;
-    width: 160px;
-    right: 0;
-}
-
-nav ul li ul li {
-    display: block;
-    margin: 0;
-}
-
-nav .menu-btn {
-    display: none;
-}
-
-nav ul li.lang-switcher {
-    background: #4f4f4f;
-    padding: 0.25em 1em;
-    border-radius: 1em;
-    display: flex;
-    transition: ease-in-out .3s;
-    cursor: pointer;
-}
-
-.lang-switcher:hover {
-    box-shadow: 0 0 0 .15em white;
-    background: black;
-}
-
-.lang-switcher:active {
-    transition-duration: .1s;
-    position: relative;
-    background: #222;
-}
-
-@media (max-width: 1024px) {
-    nav .menu-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        z-index: 20;
-        background-color: rgba(255, 255, 255, .2);
-        width: 2.3rem;
-        height: 2.1rem;
-        border-radius: .2rem;
-        zoom: 1.2;
-
-        .material-icons {
-            height: 24px !important;
-            color: #fff;
-        }
-    }
-
-    nav .menu li {
-        display: none;
-    }
-
-    nav .menu.menu-open {
-        position: absolute;
-        right: -20px;
-        top: -20px;
-        background-color: #111111;
-        box-shadow: 0 0 30px #333;
-        height: 100vh;
-        width: clamp(240px, 30vw, 400px);
-        flex-direction: column;
-        padding-top: 100px;
-    }
-
-    nav .menu.menu-open::after {
-        content: '';
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        height: 100vh;
-        width: 100vw;
-        background: linear-gradient(to top, rgba(34, 34, 34, 0.8), #222222F8 31%);
-        z-index: -1;
-        border-radius: 30px;
-    }
-
-    nav .menu.menu-open::before {
-        content: "WEBSITE";
-        position: absolute;
-        top: 33px;
-        right: 70px;
-    }
-
-    nav .menu:not(.menu-open) li.lang-switcher {
-        display: none;
-    }
-
-    nav .menu.menu-open li {
-        margin: 0;
-        padding: .5em 1.5em;
-        display: block;
-        text-align: left;
-        background-color: #2222223E;
-        width: 100%;
-        border-bottom: thin solid #FFFFFF63;
-    }
-
-    nav .menu.menu-open li:first-of-type {
-        border-top: thin solid #FFFFFF63;
-    }
-
-    nav .menu.menu-open li:last-of-type {
-        margin-bottom: 20px;
-    }
-
-    nav .menu li .submenu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-}
-
-html.light nav {
-    background-color: rgba(227, 227, 227, 0.8);
-    box-shadow: inset 0 0 6px #ccc, 0 0 6px #979797;
-    color: #000;
-}
-
-html.light nav::before {
-    background: linear-gradient(0deg, #d1d1d17a, #D1D1D1 31%);
-}
-
-html.light nav ul li a {
-    color: #555;
-    font-weight: 500;
-}
-
-html.light nav ul li a.router-link-active {
-    color: #7B5EFC;
-    font-weight: bold;
-}
-
-html.light nav ul li a:hover:not(.router-link-active) {
-    color: #000;
-}
-
-html.light nav .logo .code-selector {
-    background-color: #000;
-}
-
-html.light nav ul li.lang-switcher {
-    background: #ECECEC;
-    color: #000;
-    box-shadow: 0 .07em 0 .1em #00000009;
-    position: relative;
-    top: 0;
-}
-
-html.light nav ul li.lang-switcher:hover {
-    box-shadow: 0 0 0 .15em #5f0de4;
-    color: #5f0de4;
-    background: #FFFFFF;
-    transition: ease-out .1s;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-nav ul li.smart-active a {
-    color: #ff0;
-    /* Estilo para o item ativo */
-    font-weight: bold;
-}
-
-// Novos estilos para o selector de idiomas
-.lang-display {
-  display: flex;
-  align-items: center;
-  gap: 0.3em;
-}
-
-.lang-toggle {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  padding: 0;
+/* Desktop Menu */
+.desktop-menu {
+  display: none;
+  list-style: none;
   margin: 0;
+  padding: 0;
+  gap: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .desktop-menu {
+    display: flex;
+  }
+}
+
+.nav-item {
   display: flex;
   align-items: center;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  position: relative;
 }
 
-.lang-popup {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  z-index: 10000;
-  background: #181818;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 1.5px 8px rgba(0, 0, 0, 0.3);
-  padding: 0.5rem;
-  max-width: 280px;
-  width: 75vw;
-  border: 1.5px solid #232323;
-  animation: popup-fade-in 0.2s ease-out;
+.nav-item:hover {
+  color: var(--color-primary);
+  background: var(--hover-overlay);
 }
 
-
-@keyframes popup-fade-in {
-  from { opacity: 0; transform: translateY(-10px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+.nav-item.active {
+  color: var(--color-primary);
+  font-weight: var(--font-semibold);
 }
 
-.lang-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 0.5rem; /* Adiciona espaçamento à direita para rolagem */
-}
-
-.lang-item {
+/* Nav Actions */
+.nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.7em;
-  padding: 0.5em 0.7em 0.5em 1em;
-  border-radius: 1rem;
+  gap: var(--space-3);
+}
+
+/* Language Selector */
+.lang-selector {
+  position: relative;
+}
+
+.lang-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
   cursor: pointer;
-  transition: background 0.2s;
-  position: relative;
-  overflow: visible;
+  transition: all var(--transition-fast);
+  min-height: 40px;
 }
 
-.lang-item:hover {
-  
-  background: #7B5EFC42;
+.lang-button:hover {
+  background: var(--hover-overlay);
+  border-color: var(--color-primary);
 }
 
-.lang-item.active {
-  color: #fff;
-  position: relative;
-  z-index: 10;
-}
-.lang-item.active:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0%;
-    width: .35rem;
-    height: 1.75rem;
-    border-radius: 1rem;
-    background-color: #7B5EFC;
-    transform: translateY(-50%);
-    transition: all 0.2s ease-in-out;
-}
-
-.lang-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.lang-name {
-  font-weight: 600;
-  font-size: 1.05em;
-  color: #fff;
+.flag-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
 }
 
 .lang-code {
-  font-size: 0.85em;
-  color: #bbb;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+}
+
+.dropdown-icon {
+  font-size: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.lang-button[aria-expanded="true"] .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* Language Dropdown */
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  min-width: 240px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-2);
+  z-index: var(--z-dropdown);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lang-option:hover {
+  background: var(--hover-overlay);
+}
+
+.lang-option.active {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.lang-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lang-name {
+  font-weight: var(--font-semibold);
+}
+
+.lang-locale {
+  font-size: var(--text-xs);
   opacity: 0.7;
-  margin-top: 2px;
-}
-.lang-display > .flag {
-    position: relative;
-    left: -.2em;
-}
-.lang-grid .flag {
-  width: 2.4em;
-  height: 2.4em;
-  border-radius: 15%;
+  font-family: var(--font-mono);
 }
 
-html.light {
-  .lang-popup {
-    background: #f5f5f5;
-    border-color: #e0e0e0;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 1.5px 8px rgba(0, 0, 0, 0.1);
+.check-icon {
+  font-size: 18px;
+}
+
+/* Dropdown Transitions */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all var(--transition-base);
+  transform-origin: top right;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.95);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: var(--z-fixed);
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none;
   }
-
-  .lang-item:hover {
-    background: #e9e9e9;
-  }
-
-  .lang-code {
-    color: #333;
-  }
-
-  .lang-name {
-    color: #666;
-  }
 }
 
-/* Language flag animation */
-.language-flag {
-    transition: all 0.3s ease;
-    animation: flag-change 0.4s ease-in-out;
+.menu-icon {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-@keyframes flag-change {
-    0% { 
-        transform: scale(0.8);
-        opacity: 0.6; 
-    }
-    50% { 
-        transform: scale(1.2);
-        opacity: 0.8; 
-    }
-    100% { 
-        transform: scale(1);
-        opacity: 1; 
-    }
+.menu-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+.menu-icon.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Navigation */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-fixed);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobile-nav {
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  background: var(--bg-primary);
+  padding: var(--space-20) var(--space-6) var(--space-6);
+  overflow-y: auto;
+  box-shadow: var(--shadow-2xl);
+}
+
+.mobile-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  min-height: 52px;
+}
+
+.mobile-nav-item:hover {
+  background: var(--hover-overlay);
+  color: var(--color-primary);
+}
+
+.mobile-nav-item.active {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  font-weight: var(--font-semibold);
+}
+
+/* Mobile Menu Transitions */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: all var(--transition-base);
+}
+
+.mobile-menu-enter-from .mobile-nav-overlay,
+.mobile-menu-leave-to .mobile-nav-overlay {
+  opacity: 0;
+}
+
+.mobile-menu-enter-from .mobile-nav,
+.mobile-menu-leave-to .mobile-nav {
+  transform: translateX(100%);
+}
+
+/* Body scroll lock when mobile menu is open */
+.menu-open {
+  overflow: hidden;
 }
 </style>

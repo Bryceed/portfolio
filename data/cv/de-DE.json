@@ -3,7 +3,7 @@
         "name": "Wellington do Nascimento",
         "photo_url": "https://avatars.githubusercontent.com/u/42657376?v=4",
         "linkedin_qr_code_url": "Das PDF enthält einen QR-Code, der wahrscheinlich zum LinkedIn-Profil führt.",
-        "linkedin": "https://linkedin.com/in/wellington-do-nascimento",
+        "linkedin": "https://linkedin.com/in/wellnas",
         "website": "https://wellnas.dev",
         "phone": "+55 (11) 94201-8873",
         "email": "dev.wellnascimento@gmail.com",
@@ -130,18 +130,59 @@
                     "title": "Backend-Entwickler (.NET C# / Angular) – Grupo MAG",
                     "period": "05/2024-03/2025",
                     "details": "Bericht an die Teamleitung beim Kunden und an den technischen Leiter in der Beratung. Verantwortlich für die Entwicklung von APIs zur Kommunikation mit der Kundendatenbank, Entwicklung von Schnittstellen für die Nutzung dieser Daten in einem integrierten Entwicklungsteam (ein einziges Team) mit ca. 10 Mitgliedern, tägliche Zeremonien nach der agilen SCRUM-Methode, proaktive Problemlösung, Ideenfindung, Teilnahme, Implementierung neuer Funktionen, Prozessautomatisierung, autodidaktisches Lernen, E-Commerce-Systeme, Entwicklungs- und Deployment-Prozesse.",
-                    "technologies": [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]
+                    "technologies": [
+                        ".NET Framework",
+                        "Selenium",
+                        "SQL Server",
+                        "Azure",
+                        "MS Power Automate",
+                        "C#",
+                        "Angular.js"
+                    ]
                 },
                 {
                     "title": "Frontend-Entwickler (VTEX / React) – RESERVA (Grupo AR&CO.)",
                     "period": "01/2023 - 04/2024",
                     "details": "Verantwortlich für die gesamte Navigation und Benutzererfahrung im E-Commerce der Textil-Einzelhandelskette Reserva, direkte Arbeit mit VTEX.IO, React und anderen Frameworks zur Sicherstellung der Qualität und Anforderungen der Lieferung. Direkte Arbeit an Hauptanforderungen der Website wie Startseite, Suchsystem und punktuelle Aufgaben wie Backend-Anpassungen, Prototyping in Figma usw. Arbeit mit Master Data, VTEX CLI, JavaScript ES6, React, SASS, APIs und Erweiterung von Funktionen für andere Geschäfte der AR&CO-Gruppe, wie BAW Clothing.",
-                    "technologies": ["Google Analytics", "Serverless", "SQL Queries", "React", "JavaScript", "TypeScript", "Node", "Knockout.js", "Jest (Unit Tests)", "Webpack", "PWA", "React Native", "jQuery", "VTEX.IO", "VTEX CLI", "CSS/SASS", "Google Tag Manager", "Microsoft Clarity", "web:eyez"]
+                    "technologies": [
+                        "Google Analytics",
+                        "Serverless",
+                        "SQL Queries",
+                        "React",
+                        "JavaScript",
+                        "TypeScript",
+                        "Node",
+                        "Knockout.js",
+                        "Jest (Unit Tests)",
+                        "Webpack",
+                        "PWA",
+                        "React Native",
+                        "jQuery",
+                        "VTEX.IO",
+                        "VTEX CLI",
+                        "CSS/SASS",
+                        "Google Tag Manager",
+                        "Microsoft Clarity",
+                        "web:eyez"
+                    ]
                 },
                 {
                     "title": "Full Stack Entwickler – DevLand (by ESX)",
                     "details": "Tätigkeit in internen Bereichen des Unternehmens als einer der ersten Entwickler des Drittanbieterprojekts, alleiniger technischer Verantwortlicher für die Entwicklung des Websystems und der Landingpage zur Gewinnung potenzieller Kunden des Unternehmens, technischer Freiwilliger zur Unterstützung von Junior-/Mid-Level-Entwicklern in den Teams des Unternehmens sowie Teilnahme an Initiativen von DevLand wie den Apps boutSex und HYLA App.",
-                    "technologies": ["Dart", "Flutter", "Google Firebase", "Google Analytics", "Serverless", "Vue", "Nuxt3", "React", "JavaScript", "jQuery", "CSS/SASS", "Google Tag Manager"]
+                    "technologies": [
+                        "Dart",
+                        "Flutter",
+                        "Google Firebase",
+                        "Google Analytics",
+                        "Serverless",
+                        "Vue",
+                        "Nuxt3",
+                        "React",
+                        "JavaScript",
+                        "jQuery",
+                        "CSS/SASS",
+                        "Google Tag Manager"
+                    ]
                 }
             ]
         },
@@ -156,7 +197,27 @@
                     "period": "05/2011-06/2022",
                     "details": "Erstellung von Websites, Webdesign, Erstellung und Bearbeitung von Bildern, Beratung und Entwicklung von visuellen Identitäten und Marken, Automatisierungs- und Self-Service-Systeme integriert in die Website, Discord und WhatsApp, sowie andere Anforderungen, bei denen ich Kenntnisse hatte oder durch 'Learning by Doing' meine Seniorität und den Mehrwert für den Kunden entwickelte. Ich habe auch eigene Projekte zu Gewinnzwecken oder einfach zur Unterstützung erstellt, während ich meine Programmierkenntnisse verbesserte.",
                     "success_cases": "Erfolgsbeispiele: La Luna Luana (Logo-Design), 'Mi Loja, Tu Loja' (WordPress), Deltavese (Server)...",
-                    "technologies": ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "MySQL", "MongoDB", "Node.js", "Photoshop", "InDesign", "React", "C#", "Oracle Cloud", "AWS", "Java", "Spring Boot", "Vue", "Nuxt3", "WordPress"]
+                    "technologies": [
+                        "HTML",
+                        "CSS",
+                        "PHP",
+                        "JavaScript",
+                        "jQuery",
+                        "MySQL",
+                        "MongoDB",
+                        "Node.js",
+                        "Photoshop",
+                        "InDesign",
+                        "React",
+                        "C#",
+                        "Oracle Cloud",
+                        "AWS",
+                        "Java",
+                        "Spring Boot",
+                        "Vue",
+                        "Nuxt3",
+                        "WordPress"
+                    ]
                 }
             ]
         }

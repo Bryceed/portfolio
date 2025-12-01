@@ -1,199 +1,229 @@
 <template>
+  <div class="homepage">
+    <!-- Pride Alert (June only) -->
     <CommonAlertsPride v-if="isPrideMonth" />
+    
+    <!-- About Me Hero -->
     <HomeAboutMe />
+    
+    <!-- Stats Section -->
+    <HomeStats />
+    
+    <!-- Projects Highlight -->
     <ProjectsHighlightsDisplay />
-    <div class="flex flex-row justify-between gap-4 h-80vh 
-        items-start flex-wrap mx-auto">
-        <HomeAboutTrajectory class="max-w-400px x2-sp h-full" />
-        <HomeSkills class="flex-1 max-w-400px pr-8" />
-    </div>
+    
+    <!-- Technologies Showcase -->
+    <HomeTechShowcase />
+    
     <!-- Call to Action -->
-    <div class="section cta-section">
-        <div class="cta-container">
-            <h2>{{ $t('html.home.ctaTitle') || 'Let\'s Work Together' }}</h2>
-            <p>{{ $t('html.home.ctaText') || 'Have a project in mind? Looking for a developer to join your team? Let\'s talk!' }}</p>
-            <div class="cta-buttons">
-                <NuxtLink to="/contact" class="btn btn--primary">
-                    <i class="material-icons">email</i>
-                    <span>{{ $t('html.home.contactMe') || 'Contact Me' }}</span>
-                </NuxtLink>
-                <NuxtLink to="/projects" class="btn btn--secondary">
-                    <i class="material-icons">work</i>
-                    <span>{{ $t('html.home.viewProjects') || 'View Projects' }}</span>
-                </NuxtLink>
-            </div>
+    <section class="cta-section">
+      <div class="cta-content">
+        <div class="cta-badge">
+          <i class="material-icons">check_circle</i>
+          <span>{{ t('html.home.cta.available', {}, 'Available for freelance') }}</span>
         </div>
-    </div>
+        <h2>{{ t('html.home.ctaTitle', {}, 'Let\'s Work Together') }}</h2>
+        <p>{{ t('html.home.ctaText', {}, 'Have a project in mind? Let\'s create something amazing!') }}</p>
+        <div class="cta-buttons">
+          <NuxtLink to="/contact" class="btn btn-primary">
+            <i class="material-icons">email</i>
+            <span>{{ t('html.home.contactMe', {}, 'Contact Me') }}</span>
+          </NuxtLink>
+          <NuxtLink to="/projects" class="btn btn-secondary">
+            <i class="material-icons">work</i>
+            <span>{{ t('html.home.viewProjects', {}, 'View Projects') }}</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useTranslation } from '@/composables/useTranslation';
+
+const { t } = useTranslation();
+
 const date = new Date();
-const isPrideMonth = date.getMonth() === 5;
+const isPrideMonth = ref(date.getMonth() === 5);
 
 definePageMeta({
-  layout: 'default',
-  backgroundType: 'gradient',
-  backgroundGradient: 'linear-gradient(135deg, #f7b42c 0%, #fc575e 100%)',
-  backgroundColor: '', // pode ser usado se quiser cor sólida
-  backgroundSrc: '',   // pode ser usado se quiser imagem
-  backgroundTransitionDuration: 1200
+  layout: 'default'
 });
 </script>
 
-<style lang="scss">
-// CTA Section
+<style scoped>
+.homepage {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Skills & Trajectory Section */
+.home-section {
+  padding: var(--space-12) var(--space-6);
+  max-width: var(--max-width-7xl);
+  margin: 0 auto;
+}
+
+.skills-trajectory {
+  padding: var(--space-16) var(--space-6);
+}
+
+.section-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.skills-card,
+.trajectory-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.skills-card:hover,
+.trajectory-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+/* CTA Section */
 .cta-section {
-    padding: 5rem 20px;
-    text-align: center;
-    border-radius: 12px;
-    margin: 3rem auto;
-    max-width: 1300px;
-    
-    .cta-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    
-    h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--dark-text-color, #9871F6);
-    }
-    
-    p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        color: rgba(255, 255, 255, 0.9);
-    }
-    
-    .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            
-            i {
-                font-size: 1.2rem;
-            }
-            
-            &--primary {
-                background-color: #fff;
-                color: var(--dark-primary-color, #9871F6);
-                
-                &:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-                }
-            }
-            
-            &--secondary {
-                background-color: rgba(255, 255, 255, 0.2);
-                color: #fff;
-                
-                &:hover {
-                    background-color: rgba(255, 255, 255, 0.3);
-                    transform: translateY(-5px);
-                }
-            }
-        }
-    }
+  padding: var(--space-20) var(--space-6);
+  background: linear-gradient(135deg, 
+    var(--color-primary) 0%, 
+    var(--color-primary-light) 100%);
+  margin: var(--space-16) 0 0 0;
+  text-align: center;
+  color: var(--text-inverse);
+  position: relative;
+  overflow: hidden;
 }
 
-// Tema claro
-html.light {
-    .cta-section {
-        color: #333;
-        
-        h2 {
-            color: #9871F6;
-        }
-        
-        p {
-            color: rgba(0, 0, 0, 0.8);
-        }
-        
-        .cta-buttons {
-            .btn--primary {
-                background-color: #9871F6;
-                color: #fff;
-                
-                &:hover {
-                    background-color: #8459d3;
-                }
-            }
-            
-            .btn--secondary {
-                background-color: rgba(255, 255, 255, 0.3);
-                color: #fff;
-                
-                &:hover {
-                    background-color: rgba(255, 255, 255, 0.4);
-                }
-            }
-        }
-    }
-    
-    .section:nth-child(odd) {
-        background-color: rgba(0, 0, 0, 0.03);
-    }
+.cta-section::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: -250px;
+  right: -100px;
+  animation: float 20s infinite ease-in-out;
 }
 
-@media (max-width: 1200px) {
-    .projects-carousel {
-        --slides-per-view: 3;
-    }
-    
-    .timeline-preview .timeline-card {
-        max-width: 100%;
-    }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(50px) rotate(180deg); }
 }
 
-@media (max-width: 768px) {
-    .projects-carousel {
-        --slides-per-view: 2;
-    }
-    
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-    
-    .cta-section {
-        padding: 3rem 20px;
-        
-        h2 {
-            font-size: 2rem;
-        }
-        
-        .cta-buttons {
-            flex-direction: column;
-        }
-    }
+.cta-content {
+  max-width: var(--max-width-3xl);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-@media (max-width: 480px) {
-    .projects-carousel {
-        --slides-per-view: 1;
-    }
-    
-    .timeline-preview {
-        flex-direction: column;
-        
-        .timeline-card {
-            max-width: 100%;
-        }
-    }
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-6);
+  backdrop-filter: blur(10px);
+}
+
+.cta-badge i {
+  font-size: 18px;
+}
+
+.cta-section h2 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-extrabold);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+.cta-section p {
+  font-size: var(--text-xl);
+  opacity: 0.95;
+  margin-bottom: var(--space-8);
+  line-height: var(--leading-relaxed);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-buttons .btn {
+  min-width: 180px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .home-section {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .skills-trajectory {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .section-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .cta-section {
+    padding: var(--space-16) var(--space-4);
+  }
+
+  .cta-section h2 {
+    font-size: var(--text-3xl);
+  }
+
+  .cta-section p {
+    font-size: var(--text-lg);
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-card,
+  .trajectory-card {
+    padding: var(--space-6);
+  }
+
+  .cta-section h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .cta-section p {
+    font-size: var(--text-base);
+  }
 }
 </style>
-

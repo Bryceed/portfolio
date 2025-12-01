@@ -74,7 +74,25 @@
       "trajectoryParagraph1": "Sou apaixonado por entregar soluções tecnológicas que combinam performance, práticas modernas e com boa experiência de usuário. Ao longo da minha carreira, liderei projetos de automação, criação e manutenção de sites em diversas tecnologias.",
       "trajectoryParagraph2": "Tenho experiência com front-end, back-end, mobile, 3D, automação, cultura DevOps, nuvem (AWS, GCP e Azure), conteinerização com Docker e CI/CD. Valorizo boas práticas, código limpo e colaboração com equipes diversas. Meu objetivo é construir soluções modernas que realmente agreguem valor, onde, num ambiente com escuta ativa, possamos reunir as melhores ideias de todos para entregarmos um produto perfeito ao cliente.",
       "skillsCount": "itens",
-      "action[1]": ""
+      "action[1]": "",
+      "stats": {
+        "experience": "Anos de Experiência",
+        "projects": "Projetos Concluídos",
+        "certifications": "Certificações",
+        "technologies": "Tecnologias"
+      },
+      "tech": {
+        "title": "Tecnologias & Ferramentas",
+        "subtitle": "As ferramentas que uso para dar vida às ideias",
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "devops": "DevOps & Cloud",
+        "design": "Design & Ferramentas"
+      },
+      "cta": {
+        "available": "Disponível para freelance"
+      },
+      "actions[0]": "Sobre mim"
     },
     "about": {
       "description": "Conheça mais sobre minha trajetória profissional, habilidades e personalidade.",
@@ -104,9 +122,6 @@
         "title": "Habilidades Técnicas"
       }
     },
-    "projets": {
-      "title": "Projetos"
-    },
     "projects": {
       "intro": "Alguns dos projetos que desenvolvi ao longo da minha jornada de aprendizado e trabalho.",
       "miniDisplay": {
@@ -116,5 +131,13 @@
         }
       }
     }
+  },
+  "menu": {
+    "certifications": "Certificações",
+    "home": "Início",
+    "projects": "Projetos",
+    "blog": "Blog",
+    "about": "Sobre mim",
+    "contact": "Contato"
   }
 }

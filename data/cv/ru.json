@@ -3,7 +3,7 @@
     "name": "Веллингтон до Насименто",
     "photo_url": "https://avatars.githubusercontent.com/u/42657376?v=4",
     "linkedin_qr_code_url": "PDF содержит QR-код, который, вероятно, ведет к профилю LinkedIn.",
-    "linkedin": "https://linkedin.com/in/wellington-do-nascimento",
+    "linkedin": "https://linkedin.com/in/wellnas",
     "website": "https://wellnas.dev",
     "phone": "+55 (11) 94201-8873",
     "email": "dev.wellnascimento@gmail.com",
@@ -130,18 +130,59 @@
           "title": "Back-end разработчик (.NET C# / Angular) - MAG Group",
           "period": "05/2024-03/2025",
           "details": "Отчетность руководству команды клиента и техническому лидеру в консалтинговой компании. Отвечал за разработку API для взаимодействия с базой данных клиента, разработку интерфейсов для использования этих данных в интегрированной команде разработчиков (одной команде) из примерно 10 человек, с ежедневными церемониями по методологии SCRUM, проактивностью в решении проблем, идеей, участием, внедрением новых функций, автоматизацией процессов, самообучением, системами электронной коммерции, процессом разработки и развертывания.",
-          "technologies": [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]
+          "technologies": [
+            ".NET Framework",
+            "Selenium",
+            "SQL Server",
+            "Azure",
+            "MS Power Automate",
+            "C#",
+            "Angular.js"
+          ]
         },
         {
           "title": "Front-end разработчик (VTEX / React) - RESERVA (AR&CO. Group)",
           "period": "01/2023 - 04/2024",
           "details": "Отвечал за всю навигацию и пользовательский опыт в электронной коммерции магазина одежды Reserva, работая напрямую с VTEX.IO, React и другими фреймворками для обеспечения качества и требований к поставкам. Работал непосредственно с основными потребностями сайта, такими как главная страница, система поиска и конкретные действия, такие как настройка back-end, прототипирование в Figma и т.д. Работал с Master Data, VTEX CLI, JavaScript ES6, React, SASS, API и расширением функциональности для других магазинов группы AR&CO, таких как BAW Clothing.",
-          "technologies": ["Google Analytics", "Serverless", "SQL Queries", "React", "JavaScript", "TypeScript", "Node", "Knockout.js", "Jest (Unit Testing)", "Webpack", "PWA", "React Native", "jQuery", "VTEX.IO", "VTEX CLI", "CSS/SASS", "Google Tag Manager", "Microsoft Clarity", "web:eyez"]
+          "technologies": [
+            "Google Analytics",
+            "Serverless",
+            "SQL Queries",
+            "React",
+            "JavaScript",
+            "TypeScript",
+            "Node",
+            "Knockout.js",
+            "Jest (Unit Testing)",
+            "Webpack",
+            "PWA",
+            "React Native",
+            "jQuery",
+            "VTEX.IO",
+            "VTEX CLI",
+            "CSS/SASS",
+            "Google Tag Manager",
+            "Microsoft Clarity",
+            "web:eyez"
+          ]
         },
         {
           "title": "Full Stack разработчик - DevLand (by ESX)",
           "details": "Работал во внутренних направлениях компании как один из первых разработчиков проекта для третьих лиц, единственный технический ответственный за разработку веб-системы и лендинга для привлечения потенциальных клиентов компании, технический волонтер для поддержки младших/средних разработчиков в командах компании, а также участвовал в инициативах DevLand, таких как приложения boutSex и HYLA App.",
-          "technologies": ["Dart", "Flutter", "Google Firebase", "Google Analytics", "Serverless", "Vue", "Nuxt3", "React", "JavaScript", "jQuery", "CSS/SASS", "Google Tag Manager"]
+          "technologies": [
+            "Dart",
+            "Flutter",
+            "Google Firebase",
+            "Google Analytics",
+            "Serverless",
+            "Vue",
+            "Nuxt3",
+            "React",
+            "JavaScript",
+            "jQuery",
+            "CSS/SASS",
+            "Google Tag Manager"
+          ]
         }
       ]
     },
@@ -156,7 +197,27 @@
           "period": "05/2011-06/2022",
           "details": "Создание веб-сайтов, веб-дизайн, создание и манипуляция изображениями, консультации и разработка визуальной идентичности и брендов, системы автоматизации и самообслуживания, интегрированные с веб-сайтом, Discord и WhatsApp, среди других потребностей, где у меня были знания или я \"учился делая\" для развития своего профессионализма и предоставления ценности клиенту. Я также создавал собственные проекты для получения прибыли или просто помощи, одновременно совершенствуя свои навыки кодирования.",
           "success_cases": "Успешные кейсы: La Luna Luana (дизайн логотипа), \"Mi Loja, Tu Loja\" (WordPress), Deltavese (сервер)...",
-          "technologies": ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "MySQL", "MongoDB", "Node.js", "Photoshop", "InDesign", "React", "C#", "Oracle Cloud", "AWS", "Java", "Spring Boot", "Vue", "Nuxt3", "WordPress"]
+          "technologies": [
+            "HTML",
+            "CSS",
+            "PHP",
+            "JavaScript",
+            "jQuery",
+            "MySQL",
+            "MongoDB",
+            "Node.js",
+            "Photoshop",
+            "InDesign",
+            "React",
+            "C#",
+            "Oracle Cloud",
+            "AWS",
+            "Java",
+            "Spring Boot",
+            "Vue",
+            "Nuxt3",
+            "WordPress"
+          ]
         }
       ]
     }

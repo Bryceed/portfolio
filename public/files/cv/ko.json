@@ -3,7 +3,7 @@
     "name": "Wellington do Nascimento",
     "photo_url": "https://avatars.githubusercontent.com/u/42657376?v=4",
     "linkedin_qr_code_url": "PDF에는 LinkedIn 프로필로 연결되는 QR 코드가 포함되어 있습니다.",
-    "linkedin": "https://linkedin.com/in/wellington-do-nascimento",
+    "linkedin": "https://linkedin.com/in/wellnas",
     "website": "https://wellnas.dev",
     "phone": "+55 (11) 94201-8873",
     "email": "dev.wellnascimento@gmail.com",
@@ -130,18 +130,59 @@
           "title": "백엔드 개발자 (.NET C# / Angular) - MAG 그룹",
           "period": "2024년 5월-2025년 3월",
           "details": "컨설팅에서 기술 리더와 클라이언트의 팀 리더십에 보고. 클라이언트 데이터베이스와 통신하기 위한 API 개발, 약 10명의 구성원으로 이루어진 통합 개발 팀(단일 팀)에서 이러한 데이터를 사용하기 위한 인터페이스 개발, 애자일 SCRUM 방법론을 따르는 일일 의식, 문제 해결에 대한 적극성, 신기능의 개념화, 참여, 구현, 프로세스 자동화, 독학, e-커머스 시스템, 개발 및 배포 프로세스 담당.",
-          "technologies": [".NET Framework", "Selenium", "SQL Server", "Azure", "MS Power Automate", "C#", "Angular.js"]
+          "technologies": [
+            ".NET Framework",
+            "Selenium",
+            "SQL Server",
+            "Azure",
+            "MS Power Automate",
+            "C#",
+            "Angular.js"
+          ]
         },
         {
           "title": "프론트엔드 개발자 (VTEX / React) - RESERVA (AR&CO. 그룹)",
           "period": "2023년 1월 - 2024년 4월",
           "details": "섬유 소매점 Reserva의 e-커머스에서 사용자 탐색 및 경험에 대한 모든 책임을 맡아, VTEX.IO, React 및 기타 프레임워크를 직접 사용하여 품질과 전달 요구 사항을 보장. 홈페이지, 검색 시스템 및 특정 활동과 같은 사이트의 주요 요구 사항에 직접 참여하며, 백엔드 조정, Figma에서의 프로토타이핑 등을 수행. Master Data, VTEX CLI, JavaScript ES6, React, SASS, API 작업 및 BAW Clothing과 같은 AR&CO 그룹의 다른 상점들을 위한 기능 확장.",
-          "technologies": ["Google Analytics", "Serverless", "SQL Queries", "React", "JavaScript", "TypeScript", "Node", "Knockout.js", "Jest (단위 테스트)", "Webpack", "PWA", "React Native", "jQuery", "VTEX.IO", "VTEX CLI", "CSS/SASS", "Google Tag Manager", "Microsoft Clarity", "web:eyez"]
+          "technologies": [
+            "Google Analytics",
+            "Serverless",
+            "SQL Queries",
+            "React",
+            "JavaScript",
+            "TypeScript",
+            "Node",
+            "Knockout.js",
+            "Jest (단위 테스트)",
+            "Webpack",
+            "PWA",
+            "React Native",
+            "jQuery",
+            "VTEX.IO",
+            "VTEX CLI",
+            "CSS/SASS",
+            "Google Tag Manager",
+            "Microsoft Clarity",
+            "web:eyez"
+          ]
         },
         {
           "title": "풀스택 개발자 - DevLand (by ESX)",
           "details": "회사의 내부 업무에서 타사를 위한 프로젝트의 첫 개발자 중 한 명으로 활동, 회사의 잠재 고객 확보를 위한 웹 시스템 및 랜딩 페이지 개발의 유일한 기술 책임자, 회사 팀의 주니어/중급 개발자들을 위한 기술 자원봉사자, 그리고 boutSex 및 HYLA App과 같은 DevLand 이니셔티브에 참여.",
-          "technologies": ["Dart", "Flutter", "Google Firebase", "Google Analytics", "Serverless", "Vue", "Nuxt3", "React", "JavaScript", "jQuery", "CSS/SASS", "Google Tag Manager"]
+          "technologies": [
+            "Dart",
+            "Flutter",
+            "Google Firebase",
+            "Google Analytics",
+            "Serverless",
+            "Vue",
+            "Nuxt3",
+            "React",
+            "JavaScript",
+            "jQuery",
+            "CSS/SASS",
+            "Google Tag Manager"
+          ]
         }
       ]
     },
@@ -156,7 +197,27 @@
           "period": "2011년 5월-2022년 6월",
           "details": "웹사이트 제작, 웹 디자인, 이미지 제작 및 조작, 비주얼 아이덴티티 및 브랜드 컨설팅 및 개발, 웹사이트, Discord 및 WhatsApp과 통합된 자동화 및 셀프 서비스 시스템, 그리고 내 경험을 향상시키고 클라이언트에게 가치를 제공하는 과정에서 지식이 있거나 '하면서 배우는' 기타 요구 사항. 또한 수익을 위해 또는 단순히 코딩 실력을 향상시키면서 돕기 위해 자체 프로젝트를 만들었습니다.",
           "success_cases": "성공 사례: La Luna Luana (로고 디자인), \"Mi Loja, Tu Loja\" (워드프레스), Deltavese (서버)...",
-          "technologies": ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "MySQL", "MongoDB", "Node.js", "Photoshop", "InDesign", "React", "C#", "Oracle Cloud", "AWS", "Java", "Spring Boot", "Vue", "Nuxt3", "WordPress"]
+          "technologies": [
+            "HTML",
+            "CSS",
+            "PHP",
+            "JavaScript",
+            "jQuery",
+            "MySQL",
+            "MongoDB",
+            "Node.js",
+            "Photoshop",
+            "InDesign",
+            "React",
+            "C#",
+            "Oracle Cloud",
+            "AWS",
+            "Java",
+            "Spring Boot",
+            "Vue",
+            "Nuxt3",
+            "WordPress"
+          ]
         }
       ]
     }

@@ -1,30 +1,36 @@
 <template>
-  <section class="about-modern x-sp">
-    <MenuOverlay scoop-size="24px" />
-    <div id="particles-bg" class="particles-bg"></div>
-    <div class="about-modern__container">
-      <div class="about-modern__image-wrapper">
+  <section class="about-hero">
+    <div class="particles-bg" ref="particlesBg"></div>
+    <div class="about-container">
+      <div class="about-image-wrapper">
         <img
           ref="tiltImg"
-          class="about-modern__image"
-          :src="about.picture || 'https://avatars.githubusercontent.com/u/42657376?v=4'"
-          :alt="getFullName()"
+          class="about-image"
+          :src="aboutData.picture || 'https://avatars.githubusercontent.com/u/42657376?v=4'"
+          :alt="fullName"
+          loading="eager"
         />
       </div>
-      <div class="about-modern__text">
-        <h1 v-html="getTranslation('html.home.greetings', { name: 'Wellington' })"></h1>
-        <p v-html="getTranslation('html.home.description[0]', { years: personal.age, occupation: 'Full Stack Developer' })"></p>
-        <p v-html="getTranslation('html.home.description[1]', { profession1: 'Front-end', profession2: 'UX Design' })"></p>
-        <p v-html="getTranslation('html.home.description[2]', { business: currentJob.company || 'N/A', time: currentJob.period || 'N/A' })" v-if="currentJob && currentJob.company !== 'N/A'"></p>
-        <p v-html="getTranslation('html.home.description[3]')"></p>
-        <div class="about-modern__buttons">
-          <NuxtLink to="/about" class="btn btn--primary">
+      <div class="about-content">
+        <h1 class="about-title" v-html="t('html.home.greetings', { name: aboutData.name.first }, `Hi, I'm ${aboutData.name.first}!`)">
+        </h1>
+        <p class="about-description" v-html="t('html.home.description[0]', { years: age, occupation: 'Full Stack Developer' }, `I'm ${age} years old and work as a Full Stack Developer`)">
+        </p>
+        <p class="about-description" v-if="currentJobText">
+          <span v-html="currentJobText"></span>
+        </p>
+        <p class="about-description">
+          {{ t('html.home.description[3]', {}, 
+             'Passionate about creating amazing digital experiences') }}
+        </p>
+        <div class="about-actions">
+          <NuxtLink to="/about" class="btn btn-primary">
             <i class="material-icons">person</i>
-            <span v-html="getTranslation('html.home.actions[0]')"></span>
+            <span>{{ t('html.home.actions[0]', {}, 'About Me') }}</span>
           </NuxtLink>
-          <NuxtLink to="/contact" class="btn btn--secondary">
+          <NuxtLink to="/contact" class="btn btn-secondary">
             <i class="material-icons">email</i>
-            <span v-html="getTranslation('html.home.actions[1]')"></span>
+            <span>{{ t('html.home.actions[1]', {}, 'Contact') }}</span>
           </NuxtLink>
         </div>
       </div>
@@ -32,477 +38,333 @@
   </section>
 </template>
 
-<script>
-import timeline from '@/data/timeline.json';
-import about from '@/data/about.json';
+<script setup>
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { useTranslation } from '@/composables/useTranslation';
 import VanillaTilt from 'vanilla-tilt';
-import MenuOverlay from '@/components/common/MenuOverlay.vue';
+import aboutData from '@/data/about.json';
+import timeline from '@/data/timeline.json';
 
-export default {
-  name: 'HomeAboutMe',
-  components: { MenuOverlay },
-  data() {
-    return {
-      about: about,
-      currentJob: null,
-      personal: { age: 0 },
-      currentLocale: this.$i18n?.locale || 'pt-BR',
-      fallbackLocale: 'en',
-      forceUpdate: 0 // contador para forçar reatualização
-    };
-  },
-  mounted() {
-    try {
-      this.personal.age = this.getPersonalAge();
-      this.currentJob = this.getCurrentJob();
-      if (this.$refs.tiltImg) {
-        VanillaTilt.init(this.$refs.tiltImg, {
-          max: 18,
-          speed: 500,
-          glare: true,
-          'max-glare': 0.22,
-          scale: 1.08
-        });
-      }
-      // Carregar particles.js do CDN
-      if (!window.particlesJS) {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';
-        script.onload = this.initParticles;
-        document.body.appendChild(script);
-      } else {
-        this.initParticles();
-      }
-      
-      // Adicionar listener para evento de mudança de idioma
-      document.addEventListener('i18n:localeChanged', this.handleLocaleChange);
-      document.addEventListener('languageChanged', this.handleLocaleChange);
-      document.addEventListener('i18n:refresh', this.handleLocaleChange);
-      
-      // Verificar locale atual
-      if (this.$i18n && this.$i18n.locale) {
-        this.currentLocale = this.$i18n.locale;
-      }
-    } catch (error) {
-      console.error('Error initializing data:', error);
-      this.personal.age = 25;
+const { t, currentLocale } = useTranslation();
+
+// Refs
+const tiltImg = ref(null);
+const particlesBg = ref(null);
+let themeObserver = null;
+
+// Calculate age correctly
+const age = computed(() => {
+  if (!aboutData.birth) return 25;
+  
+  const { year, month, day } = aboutData.birth;
+  const birthDate = new Date(year, month - 1, day); // month is 0-indexed in JS
+  const today = new Date();
+  
+  let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  
+  // Adjust if birthday hasn't occurred this year yet
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    calculatedAge--;
+  }
+  
+  return calculatedAge;
+});
+
+// Full name
+const fullName = computed(() => {
+  if (!aboutData.name) return 'Wellington do Nascimento';
+  return `${aboutData.name.first} ${aboutData.name.middle} ${aboutData.name.last}`;
+});
+
+// Current job
+const currentJob = computed(() => {
+  const today = new Date();
+  const jobs = timeline.events
+    .filter(event => event.startDate && (!event.endDate || new Date(event.endDate) >= today))
+    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+  
+  return jobs.length > 0 ? jobs[0] : null;
+});
+
+// Current job text with proper translation
+const currentJobText = computed(() => {
+  if (!currentJob.value || !currentJob.value.company || currentJob.value.company === 'N/A') {
+    return '';
+  }
+  
+  const period = calculateJobPeriod(currentJob.value.startDate, currentJob.value.endDate);
+  
+  return t('html.home.description[2]', 
+    { business: currentJob.value.company, time: period },
+    `Working at ${currentJob.value.company} for ${period}`
+  );
+});
+
+// Calculate job period based on locale
+const calculateJobPeriod = (startDate, endDate) => {
+  if (!startDate) return '-';
+  
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+  
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  
+  if (end.getDate() < start.getDate()) months--;
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+  
+  const locale = currentLocale.value.split('-')[0];
+  
+  const translations = {
+    pt: (y, m) => {
+      if (y === 0 && m === 0) return 'menos de 1 mês';
+      if (y === 0) return `${m} ${m === 1 ? 'mês' : 'meses'}`;
+      if (m === 0) return `${y} ${y === 1 ? 'ano' : 'anos'}`;
+      return `${y} ${y === 1 ? 'ano' : 'anos'} e ${m} ${m === 1 ? 'mês' : 'meses'}`;
+    },
+    en: (y, m) => {
+      if (y === 0 && m === 0) return 'less than 1 month';
+      if (y === 0) return `${m} month${m !== 1 ? 's' : ''}`;
+      if (m === 0) return `${y} year${y !== 1 ? 's' : ''}`;
+      return `${y} year${y !== 1 ? 's' : ''} and ${m} month${m !== 1 ? 's' : ''}`;
+    },
+    es: (y, m) => {
+      if (y === 0 && m === 0) return 'menos de 1 mes';
+      if (y === 0) return `${m} mes${m !== 1 ? 'es' : ''}`;
+      if (m === 0) return `${y} año${y !== 1 ? 's' : ''}`;
+      return `${y} año${y !== 1 ? 's' : ''} y ${m} mes${m !== 1 ? 'es' : ''}`;
     }
-  },
-  beforeDestroy() {
-    // Remover listeners
-    document.removeEventListener('i18n:localeChanged', this.handleLocaleChange);
-    document.removeEventListener('languageChanged', this.handleLocaleChange);
-    document.removeEventListener('i18n:refresh', this.handleLocaleChange);
-    
-    // Desconectar o theme observer
-    if (this.themeObserver) {
-      this.themeObserver.disconnect();
-    }
-  },
-  methods: {
-    handleLocaleChange(event) {
-      // Atualizar o locale do componente
-      if (this.$i18n && this.$i18n.locale) {
-        this.currentLocale = this.$i18n.locale;
-        // Incrementar contador para forçar re-renderização
-        this.forceUpdate++;
-      }
-    },
-    getTranslation(key, params = {}) {
-      try {
-        // Tentar obter a tradução com o locale atual
-        const translation = this.$t(key, params);
-        
-        // Verificar se é uma chave não traduzida (geralmente retorna a própria chave)
-        if (translation === key || translation === '') {
-          // Tentar com fallback
-          const currentLocale = this.currentLocale;
-          const fallbackLocale = this.fallbackLocale;
-          
-          // Temporariamente mudar para o locale de fallback
-          if (this.$i18n.locale) {
-            this.$i18n.locale = fallbackLocale;
-            const fallbackTranslation = this.$t(key, params);
-            // Restaurar locale original
-            this.$i18n.locale = currentLocale;
-            
-            return fallbackTranslation !== key ? fallbackTranslation : key;
-          }
+  };
+  
+  const fn = translations[locale] || translations.en;
+  return fn(years, months);
+};
+
+// Initialize particles.js
+const initParticles = () => {
+  // Clean old canvas
+  if (particlesBg.value) {
+    const canvases = particlesBg.value.querySelectorAll('canvas');
+    canvases.forEach(c => c.remove());
+  }
+  
+  const isDark = document.documentElement.classList.contains('dark');
+  const color = isDark ? '#a084fa' : '#5f0de4';
+  
+  if (window.particlesJS && particlesBg.value) {
+    window.particlesJS('particles-bg', {
+      particles: {
+        number: { value: 40, density: { enable: true, value_area: 800 } },
+        color: { value: color },
+        shape: { type: 'circle' },
+        opacity: { value: 0.3, random: true },
+        size: { value: 3, random: true },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: 'none',
+          random: true,
+          out_mode: 'out'
         }
-        
-        return translation;
-      } catch (error) {
-        console.error(`Error translating key ${key}:`, error);
-        return key; // Retornar a chave como fallback final
-      }
-    },
-    getFullName() {
-      if (this.about && this.about.name) {
-        return `${this.about.name.first} ${this.about.name.middle} ${this.about.name.last}`;
-      }
-      return 'Wellington do Nascimento';
-    },
-    getCurrentJob() {
-      const today = new Date();
-      const jobs = timeline.events
-        .filter(event => event.startDate && (!event.endDate || new Date(event.endDate) >= today))
-        .sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
-      if (jobs.length > 0) {
-        return {
-          ...jobs[0],
-          period: this.generateTextJobPeriod(jobs[0].startDate, jobs[0].endDate, this.$i18n.locale)
-        };
-      }
-      return jobs.length > 0 ? jobs[0] : { jobRole: 'Em busca de oportunidade', company: 'N/A' };
-    },
-    getPersonalAge() {
-      if (!this.about || !this.about.birth) return null;
-      const { day, month, year } = this.about.birth;
-      const birthDate = new Date(year, month - 1, day);
-      const today = new Date();
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDiff = today.getMonth() - birthDate.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-      return age;
-    },
-    initParticles() {
-      // Limpa canvas antigo se existir
-      const bg = document.getElementById('particles-bg');
-      if (bg) {
-        Array.from(bg.querySelectorAll('canvas')).forEach(c => c.remove());
-      }
-      const isDark = document.documentElement.classList.contains('dark');
-      const color = isDark ? '#a084fa' : '#5f0de4';
-      const bgColor = isDark ? '#222' : '#fff';
-      if (window.particlesJS) {
-        window.particlesJS('particles-bg', {
-          particles: {
-            number: { value: 48, density: { enable: true, value_area: 800 } },
-            color: { value: color },
-            shape: { type: 'triangle' },
-            opacity: { value: 0.22, random: true },
-            size: { value: 25, random: true, anim: { enable: true, speed: 2, size_min: 4, sync: false } },
-            line_linked: { enable: false },
-            move: {
-              enable: true,
-              speed: 2.2,
-              direction: 'top',
-              random: false,
-              straight: true,
-              out_mode: 'out',
-              bounce: false
-            }
-          },
-          interactivity: {
-            detect_on: 'canvas',
-            events: {
-              onhover: { enable: false },
-              onclick: { enable: false },
-              resize: true
-            }
-          },
-          retina_detect: true,
-          background: { color: bgColor }
-        });
-      }
-      if (!this.themeObserver) {
-        this.themeObserver = new MutationObserver((mutations) => {
-          mutations.forEach(mutation => {
-            if (mutation.attributeName === 'class') {
-              setTimeout(() => this.initParticles(), 100);
-            }
-          });
-        });
-        this.themeObserver.observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ['class']
-        });
-      }
-    },
-    generateTextJobPeriod(startDate, endDate, lang = this.currentLocale) {
-      try {
-        if (!startDate) throw new Error('Start date is required');
-        const start = new Date(startDate);
-        const end = endDate ? new Date(endDate) : new Date();
-
-        let years = end.getFullYear() - start.getFullYear();
-        let months = end.getMonth() - start.getMonth();
-
-        if (end.getDate() < start.getDate()) {
-          months--;
-        }
-        if (months < 0) {
-          years--;
-          months += 12;
-        }
-
-        // Idiomas suportados: pt, en, es (pode expandir conforme necessário)
-        const translations = {
-          'pt': (y, m) => {
-            if (y === 0 && m === 0) return 'menos de 1 mês';
-            if (y === 0) return `${m} ${m === 1 ? 'mês' : 'meses'}`;
-            if (m === 0) return `${y} ${y === 1 ? 'ano' : 'anos'}`;
-            return `${y} ${y === 1 ? 'ano' : 'anos'} e ${m} ${m === 1 ? 'mês' : 'meses'}`;
-          },
-          'en': (y, m) => {
-            if (y === 0 && m === 0) return 'less than 1 month';
-            if (y === 0) return `${m} ${m === 1 ? 'month' : 'months'}`;
-            if (m === 0) return `${y} ${y === 1 ? 'year' : 'years'}`;
-            return `${y} ${y === 1 ? 'year' : 'years'} and ${m} ${m === 1 ? 'month' : 'months'}`;
-          },
-          'es': (y, m) => {
-            if (y === 0 && m === 0) return 'menos de 1 mes';
-            if (y === 0) return `${m} ${m === 1 ? 'mes' : 'meses'}`;
-            if (m === 0) return `${y} ${y === 1 ? 'año' : 'años'}`;
-            return `${y} ${y === 1 ? 'año' : 'años'} y ${m} ${m === 1 ? 'mes' : 'meses'}`;
-          },
-          'fr': (y, m) => {
-            if (y === 0 && m === 0) return 'moins d\'1 mois';
-            if (y === 0) return `${m} ${m === 1 ? 'mois' : 'mois'}`;
-            if (m === 0) return `${y} ${y === 1 ? 'an' : 'ans'}`;
-            return `${y} ${y === 1 ? 'an' : 'ans'} et ${m} ${m === 1 ? 'mois' : 'mois'}`;
-          },
-          'it': (y, m) => {
-            if (y === 0 && m === 0) return 'meno di 1 mese';
-            if (y === 0) return `${m} ${m === 1 ? 'mese' : 'mesi'}`;
-            if (m === 0) return `${y} ${y === 1 ? 'anno' : 'anni'}`;
-            return `${y} ${y === 1 ? 'anno' : 'anni'} e ${m} ${m === 1 ? 'mese' : 'mesi'}`;
-          },
-            'de': (y, m) => {
-                if (y === 0 && m === 0) return 'weniger als 1 Monat';
-                if (y === 0) return `${m} ${m === 1 ? 'Monat' : 'Monate'}`;
-                if (m === 0) return `${y} ${y === 1 ? 'Jahr' : 'Jahre'}`;
-                return `${y} ${y === 1 ? 'Jahr' : 'Jahre'} und ${m} ${m === 1 ? 'Monat' : 'Monate'}`;
-            },
-            'ru': (y, m) => {
-                if (y === 0 && m === 0) return 'менее 1 месяца';
-                if (y === 0) return `${m} ${m === 1 ? 'месяц' : 'месяца'}`;
-                if (m === 0) return `${y} ${y === 1 ? 'год' : 'года'}`;
-                return `${y} ${y === 1 ? 'год' : 'года'} и ${m} ${m === 1 ? 'месяц' : 'месяца'}`;
-            },
-            'ja': (y, m) => {
-                if (y === 0 && m === 0) return '1ヶ月未満';
-                if (y === 0) return `${m} ${m === 1 ? 'ヶ月' : 'ヶ月'}`;
-                if (m === 0) return `${y} ${y === 1 ? '年' : '年'}`;
-                return `${y} ${y === 1 ? '年' : '年'}と${m} ${m === 1 ? 'ヶ月' : 'ヶ月'}`;
-            },
-            'zh': (y, m) => {
-                if (y === 0 && m === 0) return '少于1个月';
-                if (y === 0) return `${m} ${m === 1 ? '个月' : '个月'}`;
-                if (m === 0) return `${y} ${y === 1 ? '年' : '年'}`;
-                return `${y} ${y === 1 ? '年' : '年'}和${m} ${m === 1 ? '个月' : '个月'}`;
-            },
-            'ko': (y, m) => {
-                if (y === 0 && m === 0) return '1개월 미만';
-                if (y === 0) return `${m} ${m === 1 ? '개월' : '개월'}`;
-                if (m === 0) return `${y} ${y === 1 ? '년' : '년'}`;
-                return `${y} ${y === 1 ? '년' : '년'}과 ${m} ${m === 1 ? '개월' : '개월'}`;
-            }
-        };
-
-        // Detecta idioma base (pt, en, es)
-        const baseLang = (lang || 'en').split('-')[0];
-        const fn = translations[baseLang] || translations['en'];
-        return fn(years, months);
-      } catch (error) {
-        console.error('Error generating job period text:', error);
-        return '-';
-      }
-    }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: false }, onclick: { enable: false } }
+      },
+      retina_detect: true
+    });
   }
 };
+
+// Load particles script
+const loadParticlesScript = () => {
+  if (window.particlesJS) {
+    initParticles();
+    return;
+  }
+  
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';
+  script.onload = initParticles;
+  document.body.appendChild(script);
+};
+
+onMounted(() => {
+  // Initialize tilt effect
+  if (tiltImg.value) {
+    VanillaTilt.init(tiltImg.value, {
+      max: 15,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.3,
+      scale: 1.05
+    });
+  }
+  
+  // Load particles
+  loadParticlesScript();
+  
+  // Watch theme changes
+  themeObserver = new MutationObserver(() => {
+    setTimeout(initParticles, 100);
+  });
+  
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+});
+
+onBeforeUnmount(() => {
+  if (themeObserver) {
+    themeObserver.disconnect();
+  }
+});
 </script>
 
 <style scoped>
-.about-modern {
-  width: 100dvw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    position: relative;
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    padding: 9.5rem 0 5.5rem 0;
-    background: linear-gradient(180deg, #470de4e6 0%, #cbb2ef00 90%);
-    top: -6rem;
-    border-radius: 3rem;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+.about-hero {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-5);
+  background: linear-gradient(135deg, 
+    var(--color-primary-dark) 0%, 
+    var(--color-primary) 50%, 
+    var(--color-primary-light) 100%);
+  overflow: hidden;
+  margin: calc(var(--space-8) * -1) 0 var(--space-12);
 }
+
 .particles-bg {
   position: absolute;
   inset: 0;
-  width: 100vw;
-  height: 100%;
-  z-index: 0;
+  z-index: var(--z-base);
   pointer-events: none;
 }
-.about-modern__container {
+
+.about-container {
   position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  width: 100%;
-  max-width: 1200px;
-  border-radius: 2rem;
-  padding: 2.5rem 2rem;
-  overflow: hidden;
-}
-.about-modern__image-wrapper {
-  flex: 1 1 320px;
+  z-index: calc(var(--z-base) + 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 220px;
-  max-width: 400px;
-  padding: 0 1rem;
-}
-.about-modern__image {
+  gap: var(--space-12);
+  max-width: var(--max-width-6xl);
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: 6px solid #5f0de4;
-  box-shadow: 0 4px 32px 0 rgba(95, 13, 228, 0.18);
-  background: #fff;
+  padding: var(--space-8);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+}
+
+.about-image-wrapper {
+  flex: 0 0 auto;
+}
+
+.about-image {
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-full);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-xl);
   object-fit: cover;
-  transition: box-shadow 0.3s, border 0.3s;
+  transform-style: preserve-3d;
+  transition: all var(--transition-base);
 }
-.about-modern__image:hover {
-  box-shadow: 0 8px 48px 0 #5f0de444;
-  border: 6px solid #a084fa;
+
+.about-image:hover {
+  border-color: rgba(255, 255, 255, 0.6);
 }
-.about-modern__text {
-  flex: 2 1 400px;
+
+.about-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 1.2rem;
-  color: #fff;
-  text-align: left;
-  padding: 0 1rem;
+  gap: var(--space-5);
+  color: var(--text-inverse);
+  max-width: 600px;
 }
-.about-modern__text h1 {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #5f0de4;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-  text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.5), 
-                1px -1px 0px rgba(255, 255, 255, 0.5), 
-                -1px 1px 0px rgba(255, 255, 255, 0.2), 
-                1px 1px 0px rgba(255, 255, 255, 0.2),
-                0px 0px 4px rgba(95, 13, 228, 1);
+
+.about-title {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  line-height: var(--leading-tight);
+  margin: 0;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
 }
-.about-modern__text p {
-  font-size: 1.15rem;
-  color: #e0e0e0;
-  margin-bottom: 0.2rem;
-  line-height: 1.5;
+
+.about-description {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  opacity: 0.95;
+  margin: 0;
 }
-.about-modern__buttons {
+
+.about-actions {
   display: flex;
-  gap: 1.2rem;
-  margin-top: 1.2rem;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
 }
-.about-modern__buttons .btn {
-  font-size: 1.1rem;
-  font-weight: 700;
-  padding: 0.7rem 1.6rem;
-  border-radius: 2rem;
-  box-shadow: 0 2px 8px rgba(95, 13, 228, 0.08);
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-.about-modern__buttons .btn--primary {
-  background: linear-gradient(90deg, #5f0de4 0%, #a084fa 100%);
-  color: #fff;
-}
-.about-modern__buttons .btn--primary:hover {
-  background: linear-gradient(90deg, #a084fa 0%, #5f0de4 100%);
-  color: #fff;
-  transform: translateY(-2px) scale(1.04);
-}
-.about-modern__buttons .btn--secondary {
-  background: #fff;
-  color: #5f0de4;
-  border: 2px solid #5f0de4;
-}
-.about-modern__buttons .btn--secondary:hover {
-  background: #f3f3f3;
-  color: #5f0de4;
-  border: 2px solid #a084fa;
-  transform: translateY(-2px) scale(1.04);
-}
+
+/* Mobile Responsive */
 @media (max-width: 900px) {
-  .about-modern__container {
+  .about-hero {
+    min-height: auto;
+    padding: var(--space-12) var(--space-4);
+  }
+  
+  .about-container {
     flex-direction: column;
-    gap: 2rem;
-    padding: 2rem 1rem;
+    gap: var(--space-8);
+    padding: var(--space-6);
   }
-  .about-modern__image-wrapper {
-    max-width: 260px;
-    min-width: 160px;
-    margin-bottom: 1.5rem;
+  
+  .about-image {
+    width: 200px;
+    height: 200px;
   }
-  .about-modern__text {
-    align-items: center;
+  
+  .about-content {
     text-align: center;
-    padding: 0;
+    align-items: center;
   }
-  .about-modern__text h1 {
-    font-size: 2rem;
+  
+  .about-title {
+    font-size: var(--text-3xl);
   }
-  .about-modern {
-    min-width: 100vw;
-    width: 100vw;
-    padding: 2rem 0 1rem 0;
+  
+  .about-description {
+    font-size: var(--text-base);
   }
-  .particles-bg {
-    width: 100vw;
-    height: 100%;
+  
+  .about-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .about-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
+
 @media (max-width: 600px) {
-  .about-modern__container {
-    padding: 1.2rem 0.2rem;
-    border-radius: 1rem;
+  .about-image {
+    width: 160px;
+    height: 160px;
   }
-  .about-modern__image-wrapper {
-    max-width: 140px;
-    min-width: 100px;
-    padding: 0;
-  }
-  .about-modern__image {
-    max-width: 120px;
-    border-width: 3px;
-  }
-  .about-modern__text h1 {
-    font-size: 1.3rem;
-  }
-  .about-modern__buttons .btn {
-    font-size: 0.95rem;
-    padding: 0.5rem 1.1rem;
-  }
-  .about-modern {
-    min-width: 100vw;
-    width: 100vw;
-    padding: 1.2rem 0 0.5rem 0;
-  }
-  .particles-bg {
-    width: 100vw;
-    height: 100%;
+  
+  .about-title {
+    font-size: var(--text-2xl);
   }
 }
 </style>

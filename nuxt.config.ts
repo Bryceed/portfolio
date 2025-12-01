@@ -12,17 +12,11 @@ export default defineNuxtConfig({
         content: process.env.npm_package_description || "",
       },
     ],
-    title: "Hello",
   },
 
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
-
-  title: "Hello",
-
-  description:
-    "This is some content coming from app.config.ts that support HMR, try to update it and see it in action.",
 
   showButton: false,
 
@@ -49,7 +43,7 @@ export default defineNuxtConfig({
         depth: 3,
         searchDepth: 3,
       },
-      prism: {  
+      prism: {
         theme: "prism-themes/themes/prism-material-oceanic.css",
       },
     },
@@ -70,5 +64,10 @@ export default defineNuxtConfig({
     optimizeDeps: {
       exclude: ['vanilla-tilt']
     }
+  },
+
+  devServer: {
+    host: '0.0.0.0',
+    port: 3000
   }
 });

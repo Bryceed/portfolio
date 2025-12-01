@@ -1,34 +1,34 @@
 {
-    "menu": {
-        "home": {
+    "menu": [
+        {
+            "id": 1,
             "name": "Home",
-            "description": "This is the home page",
-            "image": "http://placehold.it/350x150",
             "link": "/"
         },
-        "projects": {
+        {
+            "id": 2,
             "name": "Projects",
-            "description": "This is a project",
-            "image": "http://placehold.it/350x150",
             "link": "/projects"
         },
-        "blog": {
+        {
+            "id": 3,
             "name": "Blog",
-            "description": "This is the blog page",
-            "image": "http://placehold.it/350x150",
             "link": "/blog"
         },
-        "about": {
+        {
+            "id": 4,
             "name": "About",
-            "description": "This is the about page",
-            "image": "http://placehold.it/350x150",
             "link": "/about"
         },
-        "contact": {
+        {
+            "id": 5,
+            "name": "Certifications",
+            "link": "/certifications"
+        },
+        {
+            "id": 6,
             "name": "Contact",
-            "description": "This is the contact page",
-            "image": "http://placehold.it/350x150",
             "link": "/contact"
         }
-    }
+    ]
 }

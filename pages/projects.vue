@@ -1,403 +1,318 @@
 <template>
-  <ProjectsHero
-    :title="$t('html.projets.title')"
-    :description="$t('html.projects.intro')"
-    icon="hugeicons:computer-programming-01"
-    :gradient="'linear-gradient(0deg, #067E87FF 0%, #1FAE0CFF 100%)'"
-    baseClass="projects-hero"
-    :showMenuOverlay="true"
-    :showParticles="true"
-    :particlesHeight="180"
-  />
-  <div class="projects projects-bg-wrapper">
-    <div class="project-item" v-for="project in projects" :key="project.id"
-        :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }" :id="project.id">
-      <div class="_left">
-        <img :src="project.placeholder" :alt="project.name" />
+  <div class="projects-page">
+    <!-- Hero Section -->
+    <section class="projects-hero">
+      <div class="hero-content">
+        <i class="material-icons hero-icon">code</i>
+        <h1>{{ t('html.projects.title', {}, 'My Projects') }}</h1>
+        <p>{{ t('html.projects.intro', {}, 'Explore my work and creations') }}</p>
       </div>
-      <div class="_underneath"
-        :style="{ 'background': project.colors.primary ? `linear-gradient(90deg, ${project.colors.primary}, transparent)` : 'transparent', 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
-        <h3>{{ project.title }}</h3>
-        <p>{{ getDescription(project) }}</p>
-      </div>
-      <div class="_right"
-        :style="{ 'color': project.colors.secondary ? `${project.colors.secondary}` : '#ece6ef' }">
-        <div class="actions"
-          :style="{ 'color': project.colors.primary ? `${project.colors.primary}` : '#e6e6e6' }">
-          <template v-if="project.page" class="project-page">
-            <NuxtLink :to="`/project/${project.id}`"><i class="material-icons">arrow_forward</i></NuxtLink>
-          </template>
-          <template v-if="project.code" class="project-code">
-            <a :href="project.code" target="_blank"><i class="material-icons">code</i></a>
-          </template>
-          <template v-if="project.link" class="project-link">
-            <a :href="project.link" target="_blank"><i class="material-icons">launch</i></a>
-          </template>
+    </section>
+
+    <!-- Projects Grid -->
+    <div class="projects-container">
+      <div
+        v-for="project in projects"
+        :key="project.id"
+        class="project-card"
+        @click="navigateToProject(project)"
+      >
+        <!-- Project Image -->
+        <div class="project-image">
+          <img 
+            :src="project.placeholder || '/placeholder-project.jpg'" 
+            :alt="project.title"
+            loading="lazy"
+          />
+          <div class="project-overlay"></div>
+        </div>
+        
+        <!-- Project Info -->
+        <div class="project-info">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-description">{{ getDescription(project) }}</p>
+          
+          <!-- Project Actions -->
+          <div class="project-actions">
+            <NuxtLink 
+              v-if="project.page" 
+              :to="`/project/${project.id}`"
+              class="action-button primary"
+              @click.stop
+            >
+              <i class="material-icons">arrow_forward</i>
+              <span>{{ t('html.projects.details', {}, 'View Details') }}</span>
+            </NuxtLink>
+            
+            <a 
+              v-if="project.code" 
+              :href="project.code" 
+              target="_blank"
+              class="action-button secondary"
+              @click.stop
+            >
+              <i class="material-icons">code</i>
+              <span>{{ t('html.projects.code', {}, 'Code') }}</span>
+            </a>
+            
+            <a 
+              v-if="project.link" 
+              :href="project.link" 
+              target="_blank"
+              class="action-button secondary"
+              @click.stop
+            >
+              <i class="material-icons">launch</i>
+              <span>{{ t('html.projects.demo', {}, 'Demo') }}</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { projects } from "../data/projects.json";
-import { getPageTitle } from '../utils/pageTitle';
-import ProjectsHero from '@/components/common/ProjectsHero.vue';
+<script setup>
+import { useTranslation } from '@/composables/useTranslation';
+import { useRouter } from '#app';
+import { projects } from '@/data/projects.json';
 
-export default {
-    name: 'Projects',
-    components: { ProjectsHero },
-    data() {
-        return {
-            projects
-        };
-    },
-    methods: {
-        getDescription(project) {
-            return project.description[this.$i18n.locale] || project.description['en'];
-        },
-        linkTo(page) {
-            if (page) {
-                this.$router.push({ path: page });
-            }
-        }
-    },
-    mounted() {
-        document.title = getPageTitle({ mainPage: 'Projects' });
-        document.querySelectorAll('.project-item').forEach(item => {
-            item.addEventListener('click', () => {
-                this.linkTo(`/project/${item.id}`);
-            });
-        });
-    }
-}
+const { t, currentLocale } = useTranslation();
+const router = useRouter();
+
+const getDescription = (project) => {
+  const locale = currentLocale.value;
+  return project.description?.[locale] || project.description?.['en'] || project.description?.['pt-BR'] || '';
+};
+
+const navigateToProject = (project) => {
+  if (project.page) {
+    router.push(`/project/${project.id}`);
+  }
+};
 </script>
 
 <style scoped>
-h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 1rem 0;
-    text-align: center;
-}
-
-p {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.projects {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 0 auto 3rem;
-    max-width: 1340px;
-    padding: 0 20px;
-    gap: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-.projects-bg-wrapper {
-  position: relative;
+.projects-page {
   width: 100%;
-  min-height: 180px;
 }
 
-.projects-bg-particles {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  min-width: 100vw;
-  z-index: 0;
-  pointer-events: none;
-  height: 160px !important;
+/* Hero Section */
+.projects-hero {
+  width: 100%;
+  padding: var(--space-16) var(--space-6);
+  background: linear-gradient(135deg, 
+    #067E87 0%, 
+    #1FAE0C 100%);
+  text-align: center;
+  color: var(--text-inverse);
+  margin-bottom: var(--space-12);
 }
 
-.project-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background: #1b1b1b;
-    border-radius: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 10px 0;
-    width: clamp(360px, 100%, 600px);
-    height: 140px;
-    transition: all .1s ease-in-out;
-    color: #fff;
-    overflow: hidden;
+.hero-content {
+  max-width: var(--max-width-3xl);
+  margin: 0 auto;
 }
 
-html.light .project-item {
-    background: #ece6ef;
-    color: #000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.hero-icon {
+  font-size: 5rem;
+  margin-bottom: var(--space-4);
+  opacity: 0.9;
 }
 
-.project-item:hover {
-    box-shadow: 0 0 0 5px #222222, 0 0 0 8px #d1d1d1, 0 0 30px rgba(203, 203, 203, 0.585);
-    transition: all .1s ease-in-out;
-    height: 160px;
-    margin: 0;
+.projects-hero h1 {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-tight);
 }
 
-html.light .project-item:hover {
-    box-shadow: 0 0 0 5px #D1D1D1, 0 0 0 8px currentColor, 0 0 40px currentColor;
-    transition: all .1s ease-in-out;
-    height: 160px;
-    margin: 0;
+.projects-hero p {
+  font-size: var(--text-xl);
+  opacity: 0.9;
 }
 
-.project-item ._left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 30%;
-    overflow: hidden;
-    position: relative;
+/* Projects Container */
+.projects-container {
+  max-width: var(--max-width-6xl);
+  margin: 0 auto;
+  padding: 0 var(--space-6) var(--space-16);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-8);
 }
 
-._left::after {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 4%;
-    background: linear-gradient(to left, currentColor, transparent);
-    content: "";
-}
-
-.project-item ._left img {
-    width: 40vw;
-    height: 100%;
-    object-fit: cover;
-    transition: all .15s ease-in-out;
-}
-
-.project-item:hover ._left img {
-    border-bottom-left-radius: 8px;
-    transition: all .15s ease-in-out;
-}
-
-.project-item ._underneath {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 60%;
-    height: 100%;
-    padding: 7px 20px 0;
-    overflow: hidden;
-    position: relative;
-}
-
-.project-item ._underneath h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: .5rem;
-    margin-top: 0rem;
-    text-align: left;
-    font-family: 'Parkinsans', 'Roboto', sans-serif !important;
-}
-.project-item:hover ._underneath h3 {
-    font-size: 1.75rem;
-    transition: all .1s ease-in;
-    margin-top: .25rem;
-}
-
-.project-item:not(:hover) ._underneath h3 {
-
-    transition: all .1s ease-in-out;
-}
-
-.project-item ._underneath p {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #eee;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.project-item:hover ._underneath p {
-    font-weight: 500;
-    transition: all .1s ease-in;
-}
-.light .project-item ._underneath {
-    background-color: currentColor !important;
-}
-
-.project-item ._right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    height: 100%;
-    padding: 10px;
-    transition: all .1s ease-out;
-}
-
-.project-item:hover ._right {
-    padding: 5px;
-    transition: all .15s ease-in;
-}
-
-.project-item ._right .actions {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border-radius: .7rem;
-    transition: all .1s ease-out;
-}
-
-html.light .project-item ._right {
-    background-color: currentColor;
-    transition: all .15s ease-in;
-    border-radius: 0 8px 8px 0;
-    font-size: 0;
-}
-
-html.light .project-item:hover ._right .actions {
-    background-color: currentColor;
-}
-
-.project-item:hover ._right .actions {
-    background-color: rgb(60, 60, 60);
-    transition: all .15s ease-in;
-}
-
-.project-item ._right .actions a {
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 50%;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    left: -5px;
-    width: 40px;
-    height: 40px;
-
-    transition: all .1s ease-in-out;
-}
-
-.project-item:hover ._right .actions a {
-    left: 0;
-}
-
-.project-item:not(:hover) ._right .actions :not([class^="project-"]):not(:first-of-type) {
-    opacity: 0.2 !important;
-}
-
-.project-item ._right .actions a:hover {
-    color: #000000;
-    background-color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-}
-
-.project-item ._right .actions a i.material-icons {
-    position: relative;
-    top: -4px;
-}
-
-.projects-hero-section {
-  position: relative;
-  min-height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-  padding-bottom: 2rem;
-}
-.projects-hero-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  height: auto;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 2rem;
-}
-.projects-hero-particles {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 180px !important;
-  z-index: 1;
-}
-.projects-hero-gradient {
-  position: absolute;
-  inset: 0;
-  width: 100dvw;
-  background: linear-gradient(0deg, #067E87FF 0%, #1FAE0CFF 100%);
-  opacity: 0.85;
-  z-index: 0;
-  border-radius: 2rem;
-}
-.projects-hero-content {
-  position: relative;
-  z-index: 2;
+/* Project Card */
+.project-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  padding-top: 4rem;
-  gap: .5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  cursor: pointer;
 }
-.projects-hero-logo {
-  width: 90px;
-  height: 90px;
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary);
+}
+
+/* Project Image */
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  color: #fff;
+  transition: transform var(--transition-slow);
 }
-.projects-hero-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 900;
-  color: #111;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  letter-spacing: -1px;
-  line-height: 1.1;
-  text-shadow: 0 2px 16px #00000044;
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
 }
-html.light .projects-hero-title {
-  color: #fff;
-  text-shadow: 0 2px 16px #00000044;
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.6) 0%, 
+    transparent 50%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
-.projects-hero-desc {
-  font-size: 1.2rem;
-  color: #e0e0e0;
-  text-align: center;
-  max-width: 600px;
-  margin: 0.5rem 0 1rem;
+
+.project-card:hover .project-overlay {
+  opacity: 1;
 }
-@media (max-width: 700px) {
-  .projects-hero-section {
-    min-height: 160px;
+
+/* Project Info */
+.project-info {
+  flex: 1;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.project-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+
+.project-description {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+  flex: 1;
+}
+
+/* Project Actions */
+.project-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  min-height: 40px;
+}
+
+.action-button i {
+  font-size: 18px;
+}
+
+.action-button.primary {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-sm);
+}
+
+.action-button.primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-button.secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.action-button.secondary:hover {
+  background: var(--hover-overlay);
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .projects-hero {
+    padding: var(--space-12) var(--space-4);
   }
-  .projects-hero-bg, .projects-hero-gradient {
-    height: 160px;
+
+  .hero-icon {
+    font-size: 4rem;
   }
-  .projects-hero-logo {
-    width: 60px;
-    height: 60px;
+
+  .projects-hero h1 {
+    font-size: var(--text-3xl);
   }
-  .projects-hero-title {
-    font-size: 1.5rem;
+
+  .projects-hero p {
+    font-size: var(--text-lg);
+  }
+
+  .projects-container {
+    grid-template-columns: 1fr;
+    padding: 0 var(--space-4) var(--space-12);
+    gap: var(--space-6);
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  .project-info {
+    padding: var(--space-5);
+  }
+
+  .project-actions {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 374px) {
+  .projects-container {
+    grid-template-columns: 1fr;
   }
 }
 </style>
