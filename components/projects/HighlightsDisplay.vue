@@ -148,7 +148,7 @@ html.light .projects-highlight-container {
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     margin: 2rem;
-    /* limit to 4 columns */
+    justify-items: center;
     max-width: calc(400px * 4 + 3rem);
 }
 
