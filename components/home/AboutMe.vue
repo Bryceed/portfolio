@@ -256,14 +256,10 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-12);
+  gap: var(--space-16);
   max-width: var(--max-width-6xl);
   width: 100%;
   padding: var(--space-8);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-xl);
 }
 
 .about-image-wrapper {

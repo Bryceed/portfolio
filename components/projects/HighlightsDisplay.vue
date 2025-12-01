@@ -120,7 +120,7 @@ html.light .btn-float-right:hover {
     justify-content: center;
     align-items: center;
     width: calc(100% - 4rem);
-    margin: 0 2rem 4rem;
+    margin: 0 auto 4rem;
     min-height: calc(33vh + 50px);
     padding: 2rem 0 0;
     background: #111;
@@ -129,6 +129,7 @@ html.light .btn-float-right:hover {
     position: relative;
     transition: all 0.3s ease-out;
     border-radius: 14px;
+    max-width: var(--max-width-7xl);
 }
 
 html.light .projects-highlight-container {

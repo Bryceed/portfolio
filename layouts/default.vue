@@ -9,6 +9,7 @@
       :transition-duration="backgroundTransitionDuration"
     />
     <div class="layout-content">
+      <MenuOverlay v-if="route.path !== '/'" />
       <Menu />
       <main class="main-container">
         <slot />
@@ -23,6 +24,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import Menu from '@/components/Menu.vue';
 import Footer from '@/components/Footer.vue';
+import MenuOverlay from '@/components/MenuOverlay.vue';
 
 const route = useRoute();
 const meta = computed(() => route.meta || {});

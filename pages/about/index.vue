@@ -9,9 +9,6 @@
           <div class="hero-card__bg-image"></div>
         </div>
         
-        <!-- Menu overlay separado -->
-        <div class="hero-card__menu-overlay"></div>
-        
         <div class="hero-card__profile">
           <div class="hero-card__profile-image">
             <img :src="about.picture" alt="Wellington do Nascimento" onerror="this.src='https://avatars.githubusercontent.com/u/56080521?v=4'" />
@@ -290,67 +287,10 @@ export default {
   mask-position: center;
   -webkit-mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  /* Removido mask-composite: exclude que estava invertendo a máscara */
+  opacity: 1;
 }
 
-
-// Menu overlay for the hero card area
-.hero-card__menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(34px + 4rem); /* Altura do menu */
-  background: linear-gradient(
-    to right,
-    var(--dark-background-color) 0%,
-    rgba(var(--dark-background-color-rgb), 0.5) 50%,
-    var(--dark-background-color) 100%
-  );
-  border-bottom: thin solid var(--dark-background-color);
-  z-index: 8; /* Abaixo do menu principal (z-index: 10), mas acima do background */
-  backdrop-filter: blur(8px);
-  pointer-events: none; /* Permite interação com elementos abaixo */
-  transition: opacity 0.3s ease;
-}
-/* para ter um efeito de borda curva ao conteúdo que passa por baixo do overlay,
-// crie um after e before com um SVG que gere as quinas em formato côncavo */
-.hero-card__menu-overlay:before,
-.hero-card__menu-overlay:after {
-  content: '';
-  position: absolute;
-  /* Define --hero-overlay-scoop-size in .hero-card__menu-overlay, e.g., 20px */
-  width: var(--hero-overlay-scoop-size, 20px); 
-  height: var(--hero-overlay-scoop-size, 20px);
-  bottom: 0;
-  transform: translateY(100%); /* Positions the scoops just below the overlay */
-  /* Define --hero-overlay-edge-color in .hero-card__menu-overlay */
-  /* It should be var(--dark-background-color) for dark theme */
-  /* and var(--light-background-color) for light theme */
-  background-size: 100% 100%; /* Stretches the SVG to the pseudo-element size */
-  z-index: inherit; /* Inherits z-index from .hero-card__menu-overlay */
-}
-
-.hero-card__menu-overlay:before {
-  color: var(--dark-background-color);
-  left: 0;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0 1V0h1A1 1 0 0 0 0 1Z" fill="%23222222"/></svg>');
-}
-
-.hero-card__menu-overlay:after {
-  color: var(--dark-background-color);
-  right: 0;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M1 1V0H0A1 1 0 0 1 1 1Z" fill="%23222222"/></svg>');
-}
-
-
-/* Hide the overlay when scrolled past the hero section */
 @media (min-width: 768px) {
-  .hero-card__menu-overlay {
-    opacity: 1;
-  }
-  
   :root {
     --header-height: calc(40px + 4rem);
   }
@@ -449,25 +389,6 @@ html.light .hero-card {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, .2);
-  }
-
-  .hero-card__menu-overlay {
-    background: linear-gradient(
-      to right,
-      var(--light-background-color) 0%,
-      rgba(255, 255, 255, 0.5) 50%,
-      var(--light-background-color) 100%
-    );
-    border-bottom: thin solid var(--light-background-color);
-  }
-
-  .hero-card__menu-overlay:before {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M0 1V0h1A1 1 0 0 0 0 1Z" fill="%23D1D1D1"/></svg>');
-    color: var(--light-background-color);
-  }
-  .hero-card__menu-overlay:after {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><path d="M1 1V0H0A1 1 0 0 1 1 1Z" fill="%23D1D1D1"/></svg>');
-    color: var(--light-background-color);
   }
 
   .hero-card__profile-info h1,

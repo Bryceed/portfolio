@@ -58,6 +58,7 @@ img {
 .material-icons {
   position: relative;
   height: 16px !important;
+  top: -12%;
 }
 
 

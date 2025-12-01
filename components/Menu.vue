@@ -247,7 +247,7 @@ onBeforeUnmount(() => {
   top: 0;
   z-index: var(--z-sticky);
   width: 100%;
-  padding: var(--space-4) var(--space-5);
+  padding: calc(var(--space-3) + 2px) var(--space-5);
   background: transparent;
   transition: all var(--transition-base);
 }

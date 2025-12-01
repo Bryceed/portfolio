@@ -30,7 +30,6 @@ export default {
     rgba(34,34,34,0.5) 50%,
     var(--dark-background-color, #222) 100%
   );
-  border-bottom: thin solid var(--dark-background-color, #222);
   z-index: 8;
   backdrop-filter: blur(8px);
   pointer-events: none;
