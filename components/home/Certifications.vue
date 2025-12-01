@@ -32,21 +32,6 @@
         </div>
     </div>
 </template>
-
-<script>
-import certifications from '@/data/certifications.json';
-
-export default {
-    name: 'Certifications',
-    data() {
-        return {
-            certifications: certifications.items || []
-        };
-    },
-    mounted() {
-        // Inicializar vanilla-tilt para os cartões
-        if (window.VanillaTilt && document.querySelectorAll('[data-tilt]').length) {
-            window.VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
                 max: 8,
                 speed: 400,
                 glare: true,

@@ -80,7 +80,7 @@ export default {
     
     data() {
         return {
-            certifications: certifications.items || [],
+            certifications: Array.isArray(certifications) ? certifications : (certifications.items || []),
             searchQuery: '',
             selectedTags: []
         };

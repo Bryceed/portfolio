@@ -1,64 +1,469 @@
-{
-    "items": [
-        {
-            "id": "cert1",
-            "title": "Certificado de Desenvolvimento Full Stack",
-            "emissor": "Meta",
-            "issuerLogo": "https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/k97pj8-or0k.png",
-            "image": "/images/certs/fullstack-meta.jpg",
-            "description": "Desenvolvimento de aplicações web completas utilizando tecnologias modernas como React, Node.js e APIs RESTful",
-            "date": "2023-12-15",
-            "expirationDate": null,
-            "link": "https://www.coursera.org/account/accomplishments/professional-cert/XXXXXXXX",
-            "tags": ["React", "Node.js", "JavaScript", "MongoDB", "Express", "API Development", "Front-end", "Back-end"]
-        },
-        {
-            "id": "cert2",
-            "title": "Google UX Design Professional Certificate",
-            "emissor": "Google",
-            "issuerLogo": "https://lh3.googleusercontent.com/7NabwbSMJjZFDc9D-6tlJm2_gX-AbIXgFXUYO2xJ-VyXYxQnDE4JyitPRqMqKXBm5-iQ-TFmKKxdGWTLqSjr9A",
-            "image": "/images/certs/ux-design-google.jpg",
-            "description": "Certificação profissional em Design UX, abordando princípios de design centrado no usuário, prototipação e testes de usabilidade",
-            "date": "2023-10-05",
-            "expirationDate": null,
-            "link": "https://www.coursera.org/account/accomplishments/professional-cert/XXXXXXXX",
-            "tags": ["UI/UX Design", "Figma", "User Research", "Prototyping", "Usability Testing"]
-        },
-        {
-            "id": "cert3",
-            "title": "AWS Certified Developer - Associate",
-            "emissor": "Amazon Web Services",
-            "issuerLogo": "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png",
-            "image": "/images/certs/aws-developer.jpg",
-            "description": "Certificação que valida conhecimentos em desenvolvimento e manutenção de aplicações AWS, incluindo serviços fundamentais como Lambda, S3 e DynamoDB",
-            "date": "2024-02-20",
-            "expirationDate": "2027-02-20",
-            "link": "https://aws.amazon.com/verification",
-            "tags": ["AWS", "Lambda", "S3", "DynamoDB", "Cloud", "Serverless", "API Gateway"]
-        },
-        {
-            "id": "cert4",
-            "title": "Microsoft Certified: Azure Fundamentals",
-            "emissor": "Microsoft",
-            "issuerLogo": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
-            "image": "/images/certs/azure-fundamentals.jpg",
-            "description": "Certificação que valida conhecimentos fundamentais sobre serviços em nuvem Azure e conceitos básicos de computação em nuvem",
-            "date": "2023-08-10",
-            "expirationDate": null,
-            "link": "https://learn.microsoft.com/users/verify-certification",
-            "tags": ["Azure", "Cloud", "Microsoft", "Fundamentals", "Certification"]
-        },
-        {
-            "id": "cert5",
-            "title": "Certified Scrum Master (CSM)",
-            "emissor": "Scrum Alliance",
-            "issuerLogo": "https://www.scrumalliance.org/images/default-source/badges/sa_scrummaster.png",
-            "image": "/images/certs/scrum-master.jpg",
-            "description": "Certificação que valida conhecimentos e habilidades em Scrum e práticas ágeis, incluindo facilitação de sprints e eventos Scrum",
-            "date": "2022-11-15",
-            "expirationDate": "2024-11-15",
-            "link": "https://certification.scrumalliance.org/accounts/certificate-verification",
-            "tags": ["Scrum", "Agile", "Project Management", "Leadership", "Teams"]
-        }
+[
+  {
+    "id": 1,
+    "name": "GitHub Copilot para Negócios (Microsoft Bootcamp)",
+    "issuer": "DIO",
+    "emissor": "DIO",
+    "title": "GitHub Copilot para Negócios (Microsoft Bootcamp)",
+    "description": "DIO - dez de 2024",
+    "date": "dez de 2024",
+    "link": "",
+    "image": "/images/certs/logos/dio.png",
+    "issuerLogo": "/images/certs/logos/dio.png",
+    "credentialId": "Y5A3DODT",
+    "tags": [
+      "Inteligência artificial",
+      "Gestão"
     ]
-}
+  },
+  {
+    "id": 2,
+    "name": "Governança, Risco e Compliance",
+    "issuer": "Grupo MAG",
+    "emissor": "Grupo MAG",
+    "title": "Governança, Risco e Compliance",
+    "description": "Grupo MAG - nov de 2024",
+    "date": "nov de 2024",
+    "link": "",
+    "image": "/images/certs/logos/mag.png",
+    "issuerLogo": "/images/certs/logos/mag.png",
+    "credentialId": "",
+    "tags": [
+      "Governança corporativa",
+      "Conformidade regulatória"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Segurança da Informação (2024)",
+    "issuer": "Grupo MAG",
+    "emissor": "Grupo MAG",
+    "title": "Segurança da Informação (2024)",
+    "description": "Grupo MAG - nov de 2024",
+    "date": "nov de 2024",
+    "link": "",
+    "image": "/images/certs/logos/mag.png",
+    "issuerLogo": "/images/certs/logos/mag.png",
+    "credentialId": "",
+    "tags": [
+      "Segurança da informação",
+      "Cibersegurança"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "The Frontend Developer Career Path",
+    "issuer": "Scrimba",
+    "emissor": "Scrimba",
+    "title": "The Frontend Developer Career Path",
+    "description": "Scrimba - jul de 2024",
+    "date": "jul de 2024",
+    "link": "",
+    "image": "/images/certs/logos/scrimba.png",
+    "issuerLogo": "/images/certs/logos/scrimba.png",
+    "credentialId": "uvbB7EfZ/gfrontend",
+    "tags": []
+  },
+  {
+    "id": 5,
+    "name": "The AI Engineer Path",
+    "issuer": "Scrimba",
+    "emissor": "Scrimba",
+    "title": "The AI Engineer Path",
+    "description": "Scrimba - jun de 2024",
+    "date": "jun de 2024",
+    "link": "",
+    "image": "/images/certs/logos/scrimba.png",
+    "issuerLogo": "/images/certs/logos/scrimba.png",
+    "credentialId": "uvbB7EfZ/gaiengineer",
+    "tags": []
+  },
+  {
+    "id": 6,
+    "name": "Certificado de digitação",
+    "issuer": "Ratatype",
+    "emissor": "Ratatype",
+    "title": "Certificado de digitação",
+    "description": "Ratatype - mai de 2024",
+    "date": "mai de 2024",
+    "link": "",
+    "image": "/images/certs/logos/ratatype.png",
+    "issuerLogo": "/images/certs/logos/ratatype.png",
+    "credentialId": "7009959",
+    "tags": []
+  },
+  {
+    "id": 7,
+    "name": "Programming Basics",
+    "issuer": "Descomplica Faculdade Digital",
+    "emissor": "Descomplica Faculdade Digital",
+    "title": "Programming Basics",
+    "description": "Descomplica Faculdade Digital - nov de 2023",
+    "date": "nov de 2023",
+    "link": "",
+    "image": "/images/certs/logos/descomplica.png",
+    "issuerLogo": "/images/certs/logos/descomplica.png",
+    "credentialId": "b8c7ffb30da815423cf109b91cb55ca2fbb22c539640ba383600aced945878ec",
+    "tags": []
+  },
+  {
+    "id": 8,
+    "name": "Arquitetura e Organização de Computadores",
+    "issuer": "Descomplica Faculdade Digital",
+    "emissor": "Descomplica Faculdade Digital",
+    "title": "Arquitetura e Organização de Computadores",
+    "description": "Descomplica Faculdade Digital - set de 2023",
+    "date": "set de 2023",
+    "link": "",
+    "image": "/images/certs/logos/descomplica.png",
+    "issuerLogo": "/images/certs/logos/descomplica.png",
+    "credentialId": "7baadeeceb0269d66bea74ef7dd53d88117e1fccfd42baa7d3c50642972c6537",
+    "tags": []
+  },
+  {
+    "id": 9,
+    "name": "3D Games with Unity",
+    "issuer": "Udemy",
+    "emissor": "Udemy",
+    "title": "3D Games with Unity",
+    "description": "Udemy - ago de 2023",
+    "date": "ago de 2023",
+    "link": "",
+    "image": "/images/certs/logos/udemy.png",
+    "issuerLogo": "/images/certs/logos/udemy.png",
+    "credentialId": "UC-bdeed96b-6070-4bee-be75-56af47c2bbc7",
+    "tags": [
+      "Desenvolvimento de back-end",
+      "Desenvolvimento de jogos eletrônicos"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Mentoria Hackathon Recode Pro 203",
+    "issuer": "Recode",
+    "emissor": "Recode",
+    "title": "Mentoria Hackathon Recode Pro 203",
+    "description": "Recode - abr de 2023",
+    "date": "abr de 2023",
+    "link": "",
+    "image": "/images/certs/logos/recode.png",
+    "issuerLogo": "/images/certs/logos/recode.png",
+    "credentialId": "",
+    "tags": [
+      "Criatividade",
+      "Competências pessoais e sociais"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "UX Strategy",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "UX Strategy",
+    "description": "Alura - jan de 2023",
+    "date": "jan de 2023",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "305b917e-3765-4da9-8370-9cee0f2f28c5",
+    "tags": [
+      "Experiência do usuário (UX)"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "jQuery",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "jQuery",
+    "description": "Alura - jan de 2023",
+    "date": "jan de 2023",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "bdc83604-5fea-488f-b84d-4676e5fd0281",
+    "tags": [
+      "Desenvolvimento de front-end e JavaScript"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Os Pilares do e-Commerce",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "Os Pilares do e-Commerce",
+    "description": "Alura - dez de 2022",
+    "date": "dez de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "467d991a-e203-4ddb-b97e-93e49fa499d2",
+    "tags": []
+  },
+  {
+    "id": 14,
+    "name": "React: Escrevendo com TypeScript (TS)",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "React: Escrevendo com TypeScript (TS)",
+    "description": "Alura - dez de 2022",
+    "date": "dez de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "659240bb-51d2-4170-b943-59f2dbdf31ea",
+    "tags": [
+      "Desenvolvimento de back-end"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "UX (Básico)",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "UX (Básico)",
+    "description": "Alura - dez de 2022",
+    "date": "dez de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "83a02795-1837-4708-93ff-4a717a16e51d",
+    "tags": [
+      "Experiência do usuário (UX)"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Dart: Lidando com Exceptions e Null Safety",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "Dart: Lidando com Exceptions e Null Safety",
+    "description": "Alura - nov de 2022",
+    "date": "nov de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "8b502b2d-ab10-4a4b-8cc9-d15f85063756",
+    "tags": [
+      "Desenvolvimento de back-end"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Dart: Sintaxe, coleções e dinamismo",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "Dart: Sintaxe, coleções e dinamismo",
+    "description": "Alura - nov de 2022",
+    "date": "nov de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "0b65ea26-b2d7-4cca-82d4-105db7c3a363",
+    "tags": [
+      "Desenvolvimento de back-end"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Dart: Criando e manipulando variáveis e listas",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "Dart: Criando e manipulando variáveis e listas",
+    "description": "Alura - out de 2022",
+    "date": "out de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "628bef14-085e-4fac-9ca7-e91d5f298dac",
+    "tags": [
+      "Desenvolvimento de back-end"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Dart: Entendendo a Orientação a Objetos",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "Dart: Entendendo a Orientação a Objetos",
+    "description": "Alura - out de 2022",
+    "date": "out de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "a0d56e0a-6268-4a08-8418-20c4b0dd1319",
+    "tags": [
+      "Desenvolvimento de back-end"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Vue3 (Básico)",
+    "issuer": "Alura",
+    "emissor": "Alura",
+    "title": "Vue3 (Básico)",
+    "description": "Alura - out de 2022",
+    "date": "out de 2022",
+    "link": "",
+    "image": "/images/certs/logos/alura.png",
+    "issuerLogo": "/images/certs/logos/alura.png",
+    "credentialId": "ffd68967-2e59-494c-8362-2f07bcd1de10",
+    "tags": [
+      "Desenvolvimento de back-end e Desenvolvimento de front-end"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Desenvolvimento de Games (Básico)",
+    "issuer": "Recode",
+    "emissor": "Recode",
+    "title": "Desenvolvimento de Games (Básico)",
+    "description": "Recode - jul de 2022",
+    "date": "jul de 2022",
+    "link": "",
+    "image": "/images/certs/logos/recode.png",
+    "issuerLogo": "/images/certs/logos/recode.png",
+    "credentialId": "62c3341b-fbec-4c63-b9ed-6a710a010069",
+    "tags": [
+      "Desenvolvimento de front-end"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Gestão de Marketing",
+    "issuer": "SEST SENAT",
+    "emissor": "SEST SENAT",
+    "title": "Gestão de Marketing",
+    "description": "SEST SENAT - jun de 2022",
+    "date": "jun de 2022",
+    "link": "",
+    "image": "/images/certs/logos/sestsenat.png",
+    "issuerLogo": "/images/certs/logos/sestsenat.png",
+    "credentialId": "EACCE7256EC7C96335C636F9E035086D",
+    "tags": []
+  },
+  {
+    "id": 23,
+    "name": "Programação Full Stack",
+    "issuer": "Recode",
+    "emissor": "Recode",
+    "title": "Programação Full Stack",
+    "description": "Recode - abr de 2022",
+    "date": "abr de 2022",
+    "link": "",
+    "image": "/images/certs/logos/recode.png",
+    "issuerLogo": "/images/certs/logos/recode.png",
+    "credentialId": "62517022-fad8-4029-91b2-ad990a010068",
+    "tags": [
+      "Desenvolvimento de back-end",
+      "Desenvolvimento de front-end"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Gestão de Projetos e Aplicativos de Impacto",
+    "issuer": "Recode",
+    "emissor": "Recode",
+    "title": "Gestão de Projetos e Aplicativos de Impacto",
+    "description": "Recode - mai de 2021",
+    "date": "mai de 2021",
+    "link": "",
+    "image": "/images/certs/logos/recode.png",
+    "issuerLogo": "/images/certs/logos/recode.png",
+    "credentialId": "60b30349-5214-4d33-959b-59e00a010068",
+    "tags": [
+      "Desenvolvimento de back-end"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "ProgramAção",
+    "issuer": "Recode",
+    "emissor": "Recode",
+    "title": "ProgramAção",
+    "description": "Recode - mai de 2021",
+    "date": "mai de 2021",
+    "link": "",
+    "image": "/images/certs/logos/recode.png",
+    "issuerLogo": "/images/certs/logos/recode.png",
+    "credentialId": "60acbee9-dfac-4496-b3c1-a4500a010068",
+    "tags": [
+      "Desenvolvimento de back-end",
+      "Desenvolvimento de front-end"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "HTML - Avançado",
+    "issuer": "Fundação Bradesco",
+    "emissor": "Fundação Bradesco",
+    "title": "HTML - Avançado",
+    "description": "Fundação Bradesco - fev de 2021",
+    "date": "fev de 2021",
+    "link": "",
+    "image": "/images/certs/logos/bradesco.png",
+    "issuerLogo": "/images/certs/logos/bradesco.png",
+    "credentialId": "094BAE16-DAAF-4866-80E9-4DEADC50E5FC",
+    "tags": [
+      "Desenvolvimento de front-end"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Lei Geral de Proteção de Dados (LGPD)",
+    "issuer": "Fundação Bradesco",
+    "emissor": "Fundação Bradesco",
+    "title": "Lei Geral de Proteção de Dados (LGPD)",
+    "description": "Fundação Bradesco - fev de 2021",
+    "date": "fev de 2021",
+    "link": "",
+    "image": "/images/certs/logos/bradesco.png",
+    "issuerLogo": "/images/certs/logos/bradesco.png",
+    "credentialId": "807C3AC9-3A92-4BCE-AE5F-F1B65E7747D3",
+    "tags": []
+  },
+  {
+    "id": 28,
+    "name": "Noções de Primeiros Socorros",
+    "issuer": "SEST SENAT",
+    "emissor": "SEST SENAT",
+    "title": "Noções de Primeiros Socorros",
+    "description": "SEST SENAT - abr de 2020",
+    "date": "abr de 2020",
+    "link": "",
+    "image": "/images/certs/logos/sestsenat.png",
+    "issuerLogo": "/images/certs/logos/sestsenat.png",
+    "credentialId": "0D2BD0DA42FC7E665412B622125283D5",
+    "tags": []
+  },
+  {
+    "id": 29,
+    "name": "Aplicações Java Mobile",
+    "issuer": "Fundação Bradesco",
+    "emissor": "Fundação Bradesco",
+    "title": "Aplicações Java Mobile",
+    "description": "Fundação Bradesco - abr de 2014",
+    "date": "abr de 2014",
+    "link": "",
+    "image": "/images/certs/logos/bradesco.png",
+    "issuerLogo": "/images/certs/logos/bradesco.png",
+    "credentialId": "11407580-E17E-4E0D-B6D7-C0480857A38D",
+    "tags": [
+      "Desenvolvimento de back-end"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Microsoft Excel 2010 (Intermediário)",
+    "issuer": "Fundação Bradesco",
+    "emissor": "Fundação Bradesco",
+    "title": "Microsoft Excel 2010 (Intermediário)",
+    "description": "Fundação Bradesco - abr de 2014",
+    "date": "abr de 2014",
+    "link": "",
+    "image": "/images/certs/logos/bradesco.png",
+    "issuerLogo": "/images/certs/logos/bradesco.png",
+    "credentialId": "25CB536C-CB7D-45F8-BA33-B6C2253AC26C",
+    "tags": []
+  }
+]

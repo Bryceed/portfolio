@@ -6,16 +6,6 @@
             "link": "/"
         },
         {
-            "id": 2,
-            "name": "Projects",
-            "link": "/projects"
-        },
-        {
-            "id": 3,
-            "name": "Blog",
-            "link": "/blog"
-        },
-        {
             "id": 4,
             "name": "About",
             "link": "/about"
@@ -24,6 +14,16 @@
             "id": 5,
             "name": "Certifications",
             "link": "/certifications"
+        },
+        {
+            "id": 2,
+            "name": "Projects",
+            "link": "/projects"
+        },
+        {
+            "id": 3,
+            "name": "Blog",
+            "link": "/blog"
         },
         {
             "id": 6,
